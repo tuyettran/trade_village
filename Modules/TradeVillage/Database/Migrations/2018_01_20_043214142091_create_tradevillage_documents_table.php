@@ -15,6 +15,8 @@ class CreateTradeVillageDocumentsTable extends Migration
         Schema::create('tradevillage__documents', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('chapter')->unsigned();
+            $table->integer('course_id')->unsigned();
             // Your fields
             $table->timestamps();
         });

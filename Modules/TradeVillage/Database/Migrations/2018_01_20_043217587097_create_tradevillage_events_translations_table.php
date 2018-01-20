@@ -15,6 +15,9 @@ class CreateTradeVillageEventsTranslationsTable extends Migration
         Schema::create('tradevillage__events_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('title', 100);
+            $table->longText('content');
+            $table->text('address');
             // Your translatable fields
 
             $table->integer('events_id')->unsigned();

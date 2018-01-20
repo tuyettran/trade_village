@@ -565,7 +565,109 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'EventsController@destroy',
         'middleware' => 'can:tradevillage.events.destroy'
     ]);
+    $router->bind('artist', function ($id) {
+        return app('Modules\TradeVillage\Repositories\ArtistRepository')->find($id);
+    });
+    $router->get('artists', [
+        'as' => 'admin.tradevillage.artist.index',
+        'uses' => 'ArtistController@index',
+        'middleware' => 'can:tradevillage.artists.index'
+    ]);
+    $router->get('artists/create', [
+        'as' => 'admin.tradevillage.artist.create',
+        'uses' => 'ArtistController@create',
+        'middleware' => 'can:tradevillage.artists.create'
+    ]);
+    $router->post('artists', [
+        'as' => 'admin.tradevillage.artist.store',
+        'uses' => 'ArtistController@store',
+        'middleware' => 'can:tradevillage.artists.create'
+    ]);
+    $router->get('artists/{artist}/edit', [
+        'as' => 'admin.tradevillage.artist.edit',
+        'uses' => 'ArtistController@edit',
+        'middleware' => 'can:tradevillage.artists.edit'
+    ]);
+    $router->put('artists/{artist}', [
+        'as' => 'admin.tradevillage.artist.update',
+        'uses' => 'ArtistController@update',
+        'middleware' => 'can:tradevillage.artists.edit'
+    ]);
+    $router->delete('artists/{artist}', [
+        'as' => 'admin.tradevillage.artist.destroy',
+        'uses' => 'ArtistController@destroy',
+        'middleware' => 'can:tradevillage.artists.destroy'
+    ]);
+    $router->bind('process', function ($id) {
+        return app('Modules\TradeVillage\Repositories\ProcessRepository')->find($id);
+    });
+    $router->get('processes', [
+        'as' => 'admin.tradevillage.process.index',
+        'uses' => 'ProcessController@index',
+        'middleware' => 'can:tradevillage.processes.index'
+    ]);
+    $router->get('processes/create', [
+        'as' => 'admin.tradevillage.process.create',
+        'uses' => 'ProcessController@create',
+        'middleware' => 'can:tradevillage.processes.create'
+    ]);
+    $router->post('processes', [
+        'as' => 'admin.tradevillage.process.store',
+        'uses' => 'ProcessController@store',
+        'middleware' => 'can:tradevillage.processes.create'
+    ]);
+    $router->get('processes/{process}/edit', [
+        'as' => 'admin.tradevillage.process.edit',
+        'uses' => 'ProcessController@edit',
+        'middleware' => 'can:tradevillage.processes.edit'
+    ]);
+    $router->put('processes/{process}', [
+        'as' => 'admin.tradevillage.process.update',
+        'uses' => 'ProcessController@update',
+        'middleware' => 'can:tradevillage.processes.edit'
+    ]);
+    $router->delete('processes/{process}', [
+        'as' => 'admin.tradevillage.process.destroy',
+        'uses' => 'ProcessController@destroy',
+        'middleware' => 'can:tradevillage.processes.destroy'
+    ]);
+    $router->bind('product_rate', function ($id) {
+        return app('Modules\TradeVillage\Repositories\Product_rateRepository')->find($id);
+    });
+    $router->get('product_rates', [
+        'as' => 'admin.tradevillage.product_rate.index',
+        'uses' => 'Product_rateController@index',
+        'middleware' => 'can:tradevillage.product_rates.index'
+    ]);
+    $router->get('product_rates/create', [
+        'as' => 'admin.tradevillage.product_rate.create',
+        'uses' => 'Product_rateController@create',
+        'middleware' => 'can:tradevillage.product_rates.create'
+    ]);
+    $router->post('product_rates', [
+        'as' => 'admin.tradevillage.product_rate.store',
+        'uses' => 'Product_rateController@store',
+        'middleware' => 'can:tradevillage.product_rates.create'
+    ]);
+    $router->get('product_rates/{product_rate}/edit', [
+        'as' => 'admin.tradevillage.product_rate.edit',
+        'uses' => 'Product_rateController@edit',
+        'middleware' => 'can:tradevillage.product_rates.edit'
+    ]);
+    $router->put('product_rates/{product_rate}', [
+        'as' => 'admin.tradevillage.product_rate.update',
+        'uses' => 'Product_rateController@update',
+        'middleware' => 'can:tradevillage.product_rates.edit'
+    ]);
+    $router->delete('product_rates/{product_rate}', [
+        'as' => 'admin.tradevillage.product_rate.destroy',
+        'uses' => 'Product_rateController@destroy',
+        'middleware' => 'can:tradevillage.product_rates.destroy'
+    ]);
 // append
+
+
+
 
 
 

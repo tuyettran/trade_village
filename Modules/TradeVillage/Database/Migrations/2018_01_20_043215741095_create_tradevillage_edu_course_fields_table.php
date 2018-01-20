@@ -15,7 +15,10 @@ class CreateTradeVillageEdu_course_fieldsTable extends Migration
         Schema::create('tradevillage__edu_course_fields', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('course_id')->unsigned();
+            $table->integer('edu_field_id')->unsigned();
             // Your fields
+            $table->unique(['edu_field_id', 'course_id']);
             $table->timestamps();
         });
     }

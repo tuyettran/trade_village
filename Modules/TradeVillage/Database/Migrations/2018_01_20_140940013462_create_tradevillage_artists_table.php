@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTradeVillageCourse_ratesTable extends Migration
+class CreateTradeVillageArtistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,14 @@ class CreateTradeVillageCourse_ratesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tradevillage__course_rates', function (Blueprint $table) {
+        Schema::create('tradevillage__artists', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->float('value', 2, 1);
-            $table->integer('course_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-
+            $table->date('date_of_birth');
+            $table->integer('village_id')->unsigned();
+            $table->text('image');
+            $table->text('contact');
             // Your fields
-            $table->unique(['course_id', 'user_id']);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateTradeVillageCourse_ratesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tradevillage__course_rates');
+        Schema::dropIfExists('tradevillage__artists');
     }
 }

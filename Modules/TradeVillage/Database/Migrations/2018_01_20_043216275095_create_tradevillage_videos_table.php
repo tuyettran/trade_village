@@ -15,6 +15,10 @@ class CreateTradeVillageVideosTable extends Migration
         Schema::create('tradevillage__videos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->text('link');
+            $table->integer('course_id')->unsigned();
+            $table->integer('chapter')->unsigned();
+
             // Your fields
             $table->timestamps();
         });

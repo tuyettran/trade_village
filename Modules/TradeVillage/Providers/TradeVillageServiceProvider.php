@@ -251,7 +251,46 @@ class TradeVillageServiceProvider extends ServiceProvider
                 return new \Modules\TradeVillage\Repositories\Cache\CacheEventsDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\TradeVillage\Repositories\ArtistRepository',
+            function () {
+                $repository = new \Modules\TradeVillage\Repositories\Eloquent\EloquentArtistRepository(new \Modules\TradeVillage\Entities\Artist());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\TradeVillage\Repositories\Cache\CacheArtistDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\TradeVillage\Repositories\ProcessRepository',
+            function () {
+                $repository = new \Modules\TradeVillage\Repositories\Eloquent\EloquentProcessRepository(new \Modules\TradeVillage\Entities\Process());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\TradeVillage\Repositories\Cache\CacheProcessDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\TradeVillage\Repositories\Product_rateRepository',
+            function () {
+                $repository = new \Modules\TradeVillage\Repositories\Eloquent\EloquentProduct_rateRepository(new \Modules\TradeVillage\Entities\Product_rate());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\TradeVillage\Repositories\Cache\CacheProduct_rateDecorator($repository);
+            }
+        );
 // add bindings
+
+
+
 
 
 

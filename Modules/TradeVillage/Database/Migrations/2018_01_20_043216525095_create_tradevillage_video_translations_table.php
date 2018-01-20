@@ -15,6 +15,8 @@ class CreateTradeVillageVideoTranslationsTable extends Migration
         Schema::create('tradevillage__video_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->text('author');
+            $table->string('name', 100);
             // Your translatable fields
 
             $table->integer('video_id')->unsigned();
