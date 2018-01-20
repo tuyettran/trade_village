@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateTradeVillageProduct_rateTranslationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tradevillage__product_rate_translations', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            // Your translatable fields
+
+            $table->integer('product_rate_id')->unsigned();
+            $table->string('locale')->index();
+            $table->unique(['product_rate_id', 'locale']);
+            $table->foreign('product_rate_id')->references('id')->on('tradevillage__product_rates')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('tradevillage__product_rate_translations', function (Blueprint $table) {
+            $table->dropForeign(['product_rate_id']);
+        });
+        Schema::dropIfExists('tradevillage__product_rate_translations');
+    }
+}

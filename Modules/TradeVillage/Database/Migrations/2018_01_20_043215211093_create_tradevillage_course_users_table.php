@@ -15,7 +15,11 @@ class CreateTradeVillageCourse_usersTable extends Migration
         Schema::create('tradevillage__course_users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('course_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('chapter')->unsigned();
             // Your fields
+            $table->unique(['user_id', 'course_id']);
             $table->timestamps();
         });
     }

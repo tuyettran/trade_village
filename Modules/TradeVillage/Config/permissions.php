@@ -103,7 +103,28 @@ return [
         'edit' => 'tradevillage::events.edit resource',
         'destroy' => 'tradevillage::events.destroy resource',
     ],
+    'tradevillage.artists' => [
+        'index' => 'tradevillage::artists.list resource',
+        'create' => 'tradevillage::artists.create resource',
+        'edit' => 'tradevillage::artists.edit resource',
+        'destroy' => 'tradevillage::artists.destroy resource',
+    ],
+    'tradevillage.processes' => [
+        'index' => 'tradevillage::processes.list resource',
+        'create' => 'tradevillage::processes.create resource',
+        'edit' => 'tradevillage::processes.edit resource',
+        'destroy' => 'tradevillage::processes.destroy resource',
+    ],
+    'tradevillage.product_rates' => [
+        'index' => 'tradevillage::product_rates.list resource',
+        'create' => 'tradevillage::product_rates.create resource',
+        'edit' => 'tradevillage::product_rates.edit resource',
+        'destroy' => 'tradevillage::product_rates.destroy resource',
+    ],
 // append
+
+
+
 
 
 

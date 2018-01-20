@@ -196,7 +196,37 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.events.index')
                     );
                 });
+                $item->item(trans('tradevillage::artists.title.artists'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.artist.create');
+                    $item->route('admin.tradevillage.artist.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.artists.index')
+                    );
+                });
+                $item->item(trans('tradevillage::processes.title.processes'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.process.create');
+                    $item->route('admin.tradevillage.process.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.processes.index')
+                    );
+                });
+                $item->item(trans('tradevillage::product_rates.title.product_rates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.product_rate.create');
+                    $item->route('admin.tradevillage.product_rate.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.product_rates.index')
+                    );
+                });
 // append
+
+
+
 
 
 

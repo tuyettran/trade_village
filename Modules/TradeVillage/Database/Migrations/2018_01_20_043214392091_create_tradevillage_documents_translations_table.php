@@ -15,6 +15,9 @@ class CreateTradeVillageDocumentsTranslationsTable extends Migration
         Schema::create('tradevillage__documents_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('title', 100);
+            $table->text('author');
+            $table->longText('content');
             // Your translatable fields
 
             $table->integer('documents_id')->unsigned();

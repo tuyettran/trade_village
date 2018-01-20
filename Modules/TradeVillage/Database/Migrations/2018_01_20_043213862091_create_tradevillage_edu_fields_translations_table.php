@@ -15,6 +15,8 @@ class CreateTradeVillageEdu_fieldsTranslationsTable extends Migration
         Schema::create('tradevillage__edu_fields_translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('name', 100)->unique();
+            $table->text('description');
             // Your translatable fields
 
             $table->integer('edu_fields_id')->unsigned();

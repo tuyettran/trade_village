@@ -15,6 +15,9 @@ class CreateTradeVillageVillage_coordinatesTable extends Migration
         Schema::create('tradevillage__village_coordinates', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('village_id')->unsigned();
+            $table->double('lat', 20, 17);
+            $table->double('Lng', 20, 17);
             // Your fields
             $table->timestamps();
         });
