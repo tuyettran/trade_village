@@ -19,7 +19,7 @@ class CreateTradeVillageEnterprisesTranslationsTable extends Migration
 
             $table->integer('enterprises_id')->unsigned();
             $table->string('locale')->index();
-            $table->unique(['enterprises_id', 'locale']);
+            // $table->unique(['enterprises_id', 'locale']);
             $table->foreign('enterprises_id')->references('id')->on('tradevillage__enterprises')->onDelete('cascade');
         });
     }

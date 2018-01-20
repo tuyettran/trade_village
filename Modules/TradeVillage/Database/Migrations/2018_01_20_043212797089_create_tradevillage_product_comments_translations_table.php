@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTradeVillageProduct_commentsTranslationsTable extends Migration
+class CreateTradeVillageProductCommentsTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateTradeVillageProduct_commentsTranslationsTable extends Migration
 
             $table->integer('product_comments_id')->unsigned();
             $table->string('locale')->index();
-            $table->unique(['product_comments_id', 'locale']);
-            $table->foreign('product_comments_id')->references('id')->on('tradevillage__product_comments')->onDelete('cascade');
+            // $table->unique(['product_comments_id', 'locale']);
+            $table->foreign('product_comments_id', 'pc_foreign')->references('id')->on('tradevillage__product_comments')->onDelete('cascade');
         });
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTradeVillageEdu_fieldsTranslationsTable extends Migration
+class CreateTradeVillageEduFieldsTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,8 +21,8 @@ class CreateTradeVillageEdu_fieldsTranslationsTable extends Migration
 
             $table->integer('edu_fields_id')->unsigned();
             $table->string('locale')->index();
-            $table->unique(['edu_fields_id', 'locale']);
-            $table->foreign('edu_fields_id')->references('id')->on('tradevillage__edu_fields')->onDelete('cascade');
+            // $table->unique(['edu_fields_id', 'locale']);
+            $table->foreign('edu_fields_id', 'ef_foreign')->references('id')->on('tradevillage__edu_fields')->onDelete('cascade');
         });
     }
 

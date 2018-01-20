@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTradeVillageVillage_fieldsTable extends Migration
+class CreateTradeVillageVillageFieldsTable extends Migration
 {
     /**
      * Run the migrations.
