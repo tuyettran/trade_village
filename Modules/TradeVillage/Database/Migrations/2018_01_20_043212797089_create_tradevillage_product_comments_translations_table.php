@@ -20,7 +20,7 @@ class CreateTradeVillageProductCommentsTranslationsTable extends Migration
             $table->integer('product_comments_id')->unsigned();
             $table->string('locale')->index();
             // $table->unique(['product_comments_id', 'locale']);
-            $table->foreign('product_comments_id', 'pc_foreign')->references('id')->on('tradevillage__product_comments')->onDelete('cascade');
+            $table->foreign('product_comments_id', 'tradevillage__product_comments_translations_pc_foreign')->references('id')->on('tradevillage__product_comments')->onDelete('cascade');
         });
     }
 
@@ -32,7 +32,7 @@ class CreateTradeVillageProductCommentsTranslationsTable extends Migration
     public function down()
     {
         Schema::table('tradevillage__product_comments_translations', function (Blueprint $table) {
-            $table->dropForeign(['product_comments_id']);
+            $table->dropForeign(['pc']);
         });
         Schema::dropIfExists('tradevillage__product_comments_translations');
     }

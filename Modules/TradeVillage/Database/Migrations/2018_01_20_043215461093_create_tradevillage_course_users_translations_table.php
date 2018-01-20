@@ -20,7 +20,7 @@ class CreateTradeVillageCourseUsersTranslationsTable extends Migration
             $table->integer('course_users_id')->unsigned();
             $table->string('locale')->index();
             // $table->unique(['course_users_id', 'locale']);
-            $table->foreign('course_users_id', 'cu_foreign')->references('id')->on('tradevillage__course_users')->onDelete('cascade');
+            $table->foreign('course_users_id', 'tradevillage__course_users_translations_cu_foreign')->references('id')->on('tradevillage__course_users')->onDelete('cascade');
         });
     }
 
@@ -32,7 +32,7 @@ class CreateTradeVillageCourseUsersTranslationsTable extends Migration
     public function down()
     {
         Schema::table('tradevillage__course_users_translations', function (Blueprint $table) {
-            $table->dropForeign(['course_users_id']);
+            $table->dropForeign(['cu']);
         });
         Schema::dropIfExists('tradevillage__course_users_translations');
     }
