@@ -1,0 +1,15 @@
+<?php
+
+namespace Modules\TradeVillage\Entities;
+
+use Dimsav\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Model;
+
+class Course_rates extends Model
+{
+    use Translatable;
+
+    protected $table = 'tradevillage__course_rates';
+    public $translatedAttributes = [];
+    protected $fillable = [];
+}

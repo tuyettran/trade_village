@@ -1,0 +1,17 @@
+{
+    "name": "TradeVillage",
+    "alias": "tradevillage",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\TradeVillage\\Providers\\TradeVillageServiceProvider",
+        "Modules\\TradeVillage\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        
+    ],
+    "requires": []
+}
