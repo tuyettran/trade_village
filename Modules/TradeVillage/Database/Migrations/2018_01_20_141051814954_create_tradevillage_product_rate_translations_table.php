@@ -20,7 +20,7 @@ class CreateTradeVillageProductRateTranslationsTable extends Migration
             $table->integer('product_rate_id')->unsigned();
             $table->string('locale')->index();
             // $table->unique(['product_rate_id', 'locale']);
-            $table->foreign('product_rate_id', 'pr_foreign')->references('id')->on('tradevillage__product_rates')->onDelete('cascade');
+            $table->foreign('product_rate_id', 'tradevillage__product_rate_translations_pr_foreign')->references('id')->on('tradevillage__product_rates')->onDelete('cascade');
         });
     }
 
@@ -32,7 +32,7 @@ class CreateTradeVillageProductRateTranslationsTable extends Migration
     public function down()
     {
         Schema::table('tradevillage__product_rate_translations', function (Blueprint $table) {
-            $table->dropForeign(['product_rate_id']);
+            $table->dropForeign(['pr']);
         });
         Schema::dropIfExists('tradevillage__product_rate_translations');
     }

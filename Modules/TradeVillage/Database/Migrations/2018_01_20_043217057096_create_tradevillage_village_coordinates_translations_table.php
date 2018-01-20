@@ -20,7 +20,7 @@ class CreateTradeVillageVillageCoordinatesTranslationsTable extends Migration
             $table->integer('village_coordinates_id')->unsigned();
             $table->string('locale')->index();
             // $table->unique(['village_coordinates_id', 'locale']);
-            $table->foreign('village_coordinates_id', 'vc_foreign')->references('id')->on('tradevillage__village_coordinates')->onDelete('cascade');
+            $table->foreign('village_coordinates_id', 'tradevillage__village_coordinates_translations_vc_foreign')->references('id')->on('tradevillage__village_coordinates')->onDelete('cascade');
         });
     }
 
@@ -32,7 +32,7 @@ class CreateTradeVillageVillageCoordinatesTranslationsTable extends Migration
     public function down()
     {
         Schema::table('tradevillage__village_coordinates_translations', function (Blueprint $table) {
-            $table->dropForeign(['village_coordinates_id']);
+            $table->dropForeign(['vc']);
         });
         Schema::dropIfExists('tradevillage__village_coordinates_translations');
     }
