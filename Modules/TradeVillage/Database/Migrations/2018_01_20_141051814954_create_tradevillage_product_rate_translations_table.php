@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTradeVillageProduct_rateTranslationsTable extends Migration
+class CreateTradeVillageProductRateTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateTradeVillageProduct_rateTranslationsTable extends Migration
 
             $table->integer('product_rate_id')->unsigned();
             $table->string('locale')->index();
-            $table->unique(['product_rate_id', 'locale']);
-            $table->foreign('product_rate_id')->references('id')->on('tradevillage__product_rates')->onDelete('cascade');
+            // $table->unique(['product_rate_id', 'locale']);
+            $table->foreign('product_rate_id', 'pr_foreign')->references('id')->on('tradevillage__product_rates')->onDelete('cascade');
         });
     }
 
