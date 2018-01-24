@@ -15,7 +15,8 @@ class CreateTradeVillageVillagesTable extends Migration
         Schema::create('tradevillage__villages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->integer('visitor_counter')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->timestamps();
         });
     }

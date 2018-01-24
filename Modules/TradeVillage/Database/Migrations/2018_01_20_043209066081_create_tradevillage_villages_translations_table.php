@@ -16,6 +16,12 @@ class CreateTradeVillageVillagesTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
+            $table->text('name');
+            $table->text('description');
+            $table->text('image');
+            $table->text('story');
+            $table->longText('detail');
+            $table->text('address');
 
             $table->integer('villages_id')->unsigned();
             $table->string('locale')->index();

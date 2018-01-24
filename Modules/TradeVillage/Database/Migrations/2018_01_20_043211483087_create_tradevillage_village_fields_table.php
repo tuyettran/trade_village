@@ -15,7 +15,6 @@ class CreateTradeVillageVillageFieldsTable extends Migration
         Schema::create('tradevillage__village_fields', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
             $table->timestamps();
         });
     }

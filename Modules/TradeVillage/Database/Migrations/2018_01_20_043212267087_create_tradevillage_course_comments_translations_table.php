@@ -16,6 +16,7 @@ class CreateTradeVillageCourseCommentsTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
+            $table->text('content');
 
             $table->integer('course_comments_id')->unsigned();
             $table->string('locale')->index();

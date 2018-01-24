@@ -15,7 +15,8 @@ class CreateTradeVillageLinksTable extends Migration
         Schema::create('tradevillage__links', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->integer('village_id')->unsigned();
+            $table->text('link');
             $table->timestamps();
         });
     }

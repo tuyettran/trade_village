@@ -16,6 +16,8 @@ class CreateTradeVillageNewsTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
+            $table->text('title');
+            $table->longText('content');
 
             $table->integer('news_id')->unsigned();
             $table->string('locale')->index();
