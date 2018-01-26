@@ -31,9 +31,9 @@ class Course_ratesController extends AdminBaseController
      */
     public function index()
     {
-        //$course_rates = $this->course_rates->all();
+        $course_rates = $this->course_rates->all();
 
-        return view('tradevillage::admin.course_rates.index', compact(''));
+        return view('tradevillage::admin.course_rates.index', compact('course_rates'));
     }
 
     /**

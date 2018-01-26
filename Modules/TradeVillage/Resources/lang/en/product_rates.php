@@ -14,8 +14,15 @@ return [
         'create product_rate' => 'Create a product rate',
     ],
     'table' => [
+        'product' => 'Product',
+        'value' => 'Value',
+        'user' => "Rate's user",
+        'actions' => 'Actions',
     ],
     'form' => [
+        'product' => 'Product',
+        'value' => 'Value',
+        'user' => "Rate's user",
     ],
     'messages' => [
     ],

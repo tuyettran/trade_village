@@ -15,9 +15,9 @@ class CreateTradeVillageEnterprisesTable extends Migration
         Schema::create('tradevillage__enterprises', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->text('website');
+            $table->text('website')->nullable();
             $table->integer('village_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->nullable();
             $table->text('image');
             $table->double('lat', 20, 17);
             $table->double('lng', 20, 17);

@@ -10,6 +10,6 @@ class Artist extends Model
     use Translatable;
 
     protected $table = 'tradevillage__artists';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['name', 'description', 'detail', 'address'];
+    protected $fillable = ['village_id', 'date_of_birth', 'user_id', 'image', 'contact'];
 }

@@ -29,6 +29,7 @@
             headers: { 'Authorization': 'Bearer {{ $currentUser->getFirstApiKey() }}' }
         });
         var AuthorizationHeaderValue = 'Bearer {{ $currentUser->getFirstApiKey() }}';
+
     </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -70,7 +71,7 @@
     @include('partials.footer')
     @include('partials.right-sidebar')
 </div><!-- ./wrapper -->
-
+<link rel="stylesheet" src="{{URL::asset('themes/adminlte/js/vendor/daterangepicker/daterangepicker.js')}}">
 @foreach($jsFiles as $js)
     <script src="{{ URL::asset($js) }}" type="text/javascript"></script>
 @endforeach

@@ -29,8 +29,11 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::course_rates.table.course') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.value') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.user') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::course_rates.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,8 +57,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::course_rates.table.course') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.value') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.user') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

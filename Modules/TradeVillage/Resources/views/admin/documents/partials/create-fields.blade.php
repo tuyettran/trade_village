@@ -34,7 +34,6 @@
             @endforeach
         @endif
         </select>
-       <!--  {!! Form::select('course_id', array('1' => 'Large', '2' => 'Small'), old("course_id")); !!} -->
         {!! $errors->first("{$lang}.course_id", '<span class="help-block">:message</span>') !!}
     </div>
 

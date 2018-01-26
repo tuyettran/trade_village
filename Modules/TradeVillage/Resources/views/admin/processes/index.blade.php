@@ -29,8 +29,12 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::processes.table.image') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.product') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.step') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.title') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::processes.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +43,31 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.process.edit', [$process->id]) }}">
-                                        {{ $process->created_at }}
+                                        {{ $process->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($process->feature_image['path'].'', 'smallThumb') }}"/>
+                                </td>
+                                <td>
+                                    @if( isset($products))
+                                        @foreach($products as $product)
+                                            @if( $product->products_id == $process->product_id && $product->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.process.edit', [$process->id]) }}">
+                                                    {{ $product->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.process.edit', [$process->id]) }}">
+                                        {{ $process->step }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.process.edit', [$process->id]) }}">
+                                        {{ $process->translate(locale())->title }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +82,12 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::processes.table.image') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.product') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.step') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.description') }}</th>
+                                <th>{{ trans('tradevillage::processes.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

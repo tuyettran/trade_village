@@ -14,8 +14,23 @@ return [
         'create events' => 'Create a event',
     ],
     'table' => [
+        'actions' => 'Actions',
+        'title' => 'Title',
+        'content' => 'Content',
+        'village' => 'Village',
+        'start_time' => 'Start time',
+        'end_time' => 'End time',
+        'address' => 'Address',
+        'image' => 'Image',
     ],
     'form' => [
+        'title' => 'Title',
+        'content' => 'Content',
+        'village' => 'Village',
+        'start_time' => 'Start time',
+        'end_time' => 'End time',
+        'address' => 'Address',
+        'image' => 'Image',
     ],
     'messages' => [
     ],

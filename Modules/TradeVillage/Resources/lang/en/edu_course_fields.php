@@ -6,7 +6,7 @@ return [
     'edit resource' => 'Edit course category',
     'destroy resource' => 'Destroy course category',
     'title' => [
-        'edu_course_fields' => 'Course categories',
+        'edu_course_fields' => 'Course - categories',
         'create edu_course_fields' => 'Create a course category',
         'edit edu_course_fields' => 'Edit a course category',
     ],
@@ -14,8 +14,13 @@ return [
         'create edu_course_fields' => 'Create a course category',
     ],
     'table' => [
+        'course' => 'Course',
+        'edu_field' => 'Education field',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'course' => 'Course',
+        'edu_field' => 'Education field',
     ],
     'messages' => [
     ],

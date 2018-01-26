@@ -11,5 +11,5 @@ class Course_rates extends Model
 
     protected $table = 'tradevillage__course_rates';
     public $translatedAttributes = [];
-    protected $fillable = [];
+    protected $fillable = ['value', 'user_id', 'course_id'];
 }

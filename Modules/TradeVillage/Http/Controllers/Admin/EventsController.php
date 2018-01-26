@@ -31,9 +31,9 @@ class EventsController extends AdminBaseController
      */
     public function index()
     {
-        //$events = $this->events->all();
+        $events = $this->events->all();
 
-        return view('tradevillage::admin.events.index', compact(''));
+        return view('tradevillage::admin.events.index', compact('events'));
     }
 
     /**
