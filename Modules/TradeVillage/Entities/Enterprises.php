@@ -10,6 +10,6 @@ class Enterprises extends Model
     use Translatable;
 
     protected $table = 'tradevillage__enterprises';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['description', 'name', 'detail', 'address'];
+    protected $fillable = ['website', 'image', 'lat', 'lng', 'contact'];
 }

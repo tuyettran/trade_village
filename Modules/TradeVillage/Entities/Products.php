@@ -10,6 +10,6 @@ class Products extends Model
     use Translatable;
 
     protected $table = 'tradevillage__products';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['name', 'description', 'material', 'detail'];
+    protected $fillable = ['enterprise_id', 'image', '3D_image', 'cost', 'artist_id'];
 }

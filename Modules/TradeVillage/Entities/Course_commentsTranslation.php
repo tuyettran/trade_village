@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Course_commentsTranslation extends Model
 {
     public $timestamps = false;
-    protected $fillable = [];
+    protected $fillable = ['content'];
     protected $table = 'tradevillage__course_comments_translations';
 }
