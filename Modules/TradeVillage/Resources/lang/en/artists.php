@@ -2,9 +2,9 @@
 
 return [
     'list resource' => 'List artists',
-    'create resource' => 'Create artists',
-    'edit resource' => 'Edit artists',
-    'destroy resource' => 'Destroy artists',
+    'create resource' => 'Create artist',
+    'edit resource' => 'Edit artist',
+    'destroy resource' => 'Destroy artist',
     'title' => [
         'artists' => 'Artist',
         'create artist' => 'Create a artist',

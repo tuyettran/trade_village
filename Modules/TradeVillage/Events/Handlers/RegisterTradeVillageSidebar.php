@@ -37,7 +37,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('tradevillage::tradevillages.title.tradevillages'), function (Item $item) {
+            $group->item(trans('tradevillage::trade_villages.title.trade_villages'), function (Item $item) {
                 $item->icon('fa fa-copy');
                 $item->weight(10);
                 $item->authorize(
