@@ -14,8 +14,19 @@ return [
         'create documents' => 'Create a document',
     ],
     'table' => [
+        'title' => 'Title',
+        'author' => 'Author',
+        'course_name' => 'Course name',
+        'chapter' => 'Chapter',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'title' => 'Document title',
+        'author' => 'Author',
+        'course_name' => 'Course name',
+        'chapter' => 'Chapter',
+        'actions' => 'Actions',
+        'content' => 'Document content',
     ],
     'messages' => [
     ],
