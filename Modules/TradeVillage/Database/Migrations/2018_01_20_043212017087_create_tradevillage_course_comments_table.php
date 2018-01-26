@@ -15,7 +15,8 @@ class CreateTradeVillageCourseCommentsTable extends Migration
         Schema::create('tradevillage__course_comments', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->integer('user_id')->unsigned();
+            $table->integer('course_id')->unsigned();
             $table->timestamps();
         });
     }

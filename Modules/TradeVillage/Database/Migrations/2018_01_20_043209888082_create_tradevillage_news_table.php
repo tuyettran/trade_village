@@ -15,7 +15,8 @@ class CreateTradeVillageNewsTable extends Migration
         Schema::create('tradevillage__news', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->integer('village_id')->unsigned();
+            $table->text('image');
             $table->timestamps();
         });
     }

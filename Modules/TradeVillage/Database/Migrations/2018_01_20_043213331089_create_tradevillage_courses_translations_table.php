@@ -16,6 +16,7 @@ class CreateTradeVillageCoursesTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
+            $table->text('name');
 
             $table->integer('courses_id')->unsigned();
             $table->string('locale')->index();

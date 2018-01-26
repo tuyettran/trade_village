@@ -16,6 +16,7 @@ class CreateTradeVillageLinksTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
+            $table->text('title');
 
             $table->integer('links_id')->unsigned();
             $table->string('locale')->index();
