@@ -18,6 +18,8 @@ class CreateTradeVillageLinksTable extends Migration
             $table->integer('village_id')->unsigned();
             $table->text('link');
             $table->timestamps();
+
+            $table->foreign('village_id')->references('id')->on('tradevillage__villages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +30,10 @@ class CreateTradeVillageLinksTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__links', function (Blueprint $table) {
+        //     $table->dropForeign(['village_id']);
+        // });
+
         Schema::dropIfExists('tradevillage__links');
     }
 }

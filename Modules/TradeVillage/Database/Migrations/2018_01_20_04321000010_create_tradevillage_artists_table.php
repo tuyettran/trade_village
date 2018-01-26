@@ -16,11 +16,14 @@ class CreateTradeVillageArtistsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->date('date_of_birth');
+            $table->integer('user_id')->unsigned();
             $table->integer('village_id')->unsigned();
             $table->text('image');
             $table->text('contact');
             // Your fields
             $table->timestamps();
+
+            $table->foreign('village_id')->references('id')->on('tradevillage__villages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +34,10 @@ class CreateTradeVillageArtistsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__artists', function (Blueprint $table) {
+        //     $table->dropForeign(['village_id']);
+        // });
+
         Schema::dropIfExists('tradevillage__artists');
     }
 }
