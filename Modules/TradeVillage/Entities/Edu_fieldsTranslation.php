@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Edu_fieldsTranslation extends Model
 {
     public $timestamps = false;
-    protected $fillable = [];
+    protected $fillable = ['name', 'description'];
     protected $table = 'tradevillage__edu_fields_translations';
 }

@@ -10,6 +10,6 @@ class News extends Model
     use Translatable;
 
     protected $table = 'tradevillage__news';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['title', 'content'];
+    protected $fillable = ['village_id', 'image'];
 }

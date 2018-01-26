@@ -10,6 +10,6 @@ class Course_comments extends Model
     use Translatable;
 
     protected $table = 'tradevillage__course_comments';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['content'];
+    protected $fillable = ['user_id', 'course_id'];
 }
