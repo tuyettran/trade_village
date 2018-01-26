@@ -22,6 +22,7 @@ class CreateTradeVillageProductsTable extends Migration
             $table->integer('visitor_counter');
             $table->integer('artist_id')->unsigned();
             $table->timestamps();
+
         });
     }
 

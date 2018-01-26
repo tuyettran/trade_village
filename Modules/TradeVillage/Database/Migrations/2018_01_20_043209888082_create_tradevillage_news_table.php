@@ -18,6 +18,9 @@ class CreateTradeVillageNewsTable extends Migration
             $table->integer('village_id')->unsigned();
             $table->text('image');
             $table->timestamps();
+
+            //foreign keys
+            $table->foreign('village_id')->references('id')->on('tradevillage__villages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +31,10 @@ class CreateTradeVillageNewsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__news', function (Blueprint $table) {
+        //     $table->dropForeign(['village_id']);
+        // });
+
         Schema::dropIfExists('tradevillage__news');
     }
 }

@@ -20,8 +20,11 @@ class CreateTradeVillageEnterprisesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->text('image');
             $table->double('lat', 20, 17);
-            $table->double('Lng', 20, 17);
+            $table->double('lng', 20, 17);
+            $table->text('contact');
             $table->timestamps();
+
+            $table->foreign('village_id')->references('id')->on('tradevillage__villages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +35,10 @@ class CreateTradeVillageEnterprisesTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__enterprises', function (Blueprint $table) {
+        //     $table->dropForeign(['village_id']);
+        // });
+
         Schema::dropIfExists('tradevillage__enterprises');
     }
 }

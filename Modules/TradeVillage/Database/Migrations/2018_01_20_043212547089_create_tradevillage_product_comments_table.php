@@ -18,6 +18,9 @@ class CreateTradeVillageProductCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('product_id', 'tradevillage__product_comments_p_foreign')->references('id')->on('tradevillage__products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id', 'tradevillage__product_comments_u_foreign')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +31,10 @@ class CreateTradeVillageProductCommentsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__product_comments', function (Blueprint $table) {
+        //     $table->dropForeign(['p']);
+        // });
+
         Schema::dropIfExists('tradevillage__product_comments');
     }
 }
