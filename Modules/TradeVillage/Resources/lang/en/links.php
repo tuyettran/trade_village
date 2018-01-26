@@ -2,16 +2,16 @@
 
 return [
     'list resource' => 'List links',
-    'create resource' => 'Create links',
-    'edit resource' => 'Edit links',
-    'destroy resource' => 'Destroy links',
+    'create resource' => 'Create link',
+    'edit resource' => 'Edit link',
+    'destroy resource' => 'Destroy link',
     'title' => [
         'links' => 'Links',
-        'create links' => 'Create a links',
-        'edit links' => 'Edit a links',
+        'create links' => 'Create a link',
+        'edit links' => 'Edit a link',
     ],
     'button' => [
-        'create links' => 'Create a links',
+        'create links' => 'Create a link',
     ],
     'table' => [
     ],

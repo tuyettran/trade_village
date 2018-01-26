@@ -2,16 +2,16 @@
 
 return [
     'list resource' => 'List enterprises',
-    'create resource' => 'Create enterprises',
-    'edit resource' => 'Edit enterprises',
-    'destroy resource' => 'Destroy enterprises',
+    'create resource' => 'Create enterprise',
+    'edit resource' => 'Edit enterprise',
+    'destroy resource' => 'Destroy enterprise',
     'title' => [
         'enterprises' => 'Enterprises',
-        'create enterprises' => 'Create a enterprises',
-        'edit enterprises' => 'Edit a enterprises',
+        'create enterprises' => 'Create a enterprise',
+        'edit enterprises' => 'Edit a enterprise',
     ],
     'button' => [
-        'create enterprises' => 'Create a enterprises',
+        'create enterprises' => 'Create a enterprise',
     ],
     'table' => [
     ],

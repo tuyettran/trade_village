@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list resource' => 'List product_comments',
-    'create resource' => 'Create product_comments',
-    'edit resource' => 'Edit product_comments',
-    'destroy resource' => 'Destroy product_comments',
+    'list resource' => 'List product comments',
+    'create resource' => 'Create product comment',
+    'edit resource' => 'Edit product comment',
+    'destroy resource' => 'Destroy product comment',
     'title' => [
-        'product_comments' => 'Product_comments',
-        'create product_comments' => 'Create a product_comments',
-        'edit product_comments' => 'Edit a product_comments',
+        'product_comments' => 'Product comments',
+        'create product_comments' => 'Create a product comment',
+        'edit product_comments' => 'Edit a product comment',
     ],
     'button' => [
-        'create product_comments' => 'Create a product_comments',
+        'create product_comments' => 'Create a product comment',
     ],
     'table' => [
     ],

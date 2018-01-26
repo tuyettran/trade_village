@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list resource' => 'List product_rates',
-    'create resource' => 'Create product_rates',
-    'edit resource' => 'Edit product_rates',
-    'destroy resource' => 'Destroy product_rates',
+    'list resource' => 'List product rates',
+    'create resource' => 'Create product rates',
+    'edit resource' => 'Edit product rates',
+    'destroy resource' => 'Destroy product rates',
     'title' => [
-        'product_rates' => 'Product_rate',
-        'create product_rate' => 'Create a product_rate',
-        'edit product_rate' => 'Edit a product_rate',
+        'product_rates' => 'Product rate',
+        'create product_rate' => 'Create a product rate',
+        'edit product_rate' => 'Edit a product rate',
     ],
     'button' => [
-        'create product_rate' => 'Create a product_rate',
+        'create product_rate' => 'Create a product rate',
     ],
     'table' => [
     ],

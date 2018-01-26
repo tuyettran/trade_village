@@ -2,16 +2,16 @@
 
 return [
     'list resource' => 'List events',
-    'create resource' => 'Create events',
-    'edit resource' => 'Edit events',
-    'destroy resource' => 'Destroy events',
+    'create resource' => 'Create event',
+    'edit resource' => 'Edit event',
+    'destroy resource' => 'Destroy event',
     'title' => [
         'events' => 'Events',
-        'create events' => 'Create a events',
-        'edit events' => 'Edit a events',
+        'create events' => 'Create a event',
+        'edit events' => 'Edit a event',
     ],
     'button' => [
-        'create events' => 'Create a events',
+        'create events' => 'Create a event',
     ],
     'table' => [
     ],
