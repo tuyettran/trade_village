@@ -70,6 +70,16 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.news.index')
                     );
                 });
+
+                $item->item(trans('tradevillage::links.title.links'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.links.create');
+                    $item->route('admin.tradevillage.links.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.links.index')
+                    );
+                });
                 
                 $item->item(trans('tradevillage::products.title.products'), function (Item $item) {
                     $item->icon('fa fa-copy');
@@ -87,6 +97,66 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                     $item->route('admin.tradevillage.village_fields.index');
                     $item->authorize(
                         $this->auth->hasAccess('tradevillage.village_fields.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::course_comments.title.course_comments'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.course_comments.create');
+                    $item->route('admin.tradevillage.course_comments.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.course_comments.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::product_comments.title.product_comments'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.product_comments.create');
+                    $item->route('admin.tradevillage.product_comments.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.product_comments.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::processes.title.processes'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.process.create');
+                    $item->route('admin.tradevillage.process.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.processes.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::product_rates.title.product_rates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.product_rate.create');
+                    $item->route('admin.tradevillage.product_rate.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.product_rates.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::course_rates.title.course_rates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.course_rates.create');
+                    $item->route('admin.tradevillage.course_rates.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.course_rates.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::village_coordinates.title.village_coordinates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.village_coordinates.create');
+                    $item->route('admin.tradevillage.village_coordinates.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.village_coordinates.index')
                     );
                 });
                 
