@@ -29,23 +29,47 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.title') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.author') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.chapter') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::documents.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($documents)): ?>
-                            <?php foreach ($documents as $documents): ?>
+                            <?php foreach ($documents as $document): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.documents.edit', [$documents->id]) }}">
-                                        {{ $documents->created_at }}
+                                    <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
+                                        {{ $document->translate(locale())->title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @if( isset($courses))
+                                        @foreach($courses as $course)
+                                            @if( $course->courses_id == $document->course_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
+                                        {{ $document->translate(locale())->author }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
+                                        {{ $document->chapter }}
                                     </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.documents.edit', [$documents->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.documents.destroy', [$documents->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.documents.destroy', [$document->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -54,8 +78,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.title') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.author') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.chapter') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::documents.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class DocumentsTranslation extends Model
 {
     public $timestamps = false;
-    protected $fillable = [];
+    protected $fillable = ['content', 'author', 'title'];
     protected $table = 'tradevillage__documents_translations';
 }
