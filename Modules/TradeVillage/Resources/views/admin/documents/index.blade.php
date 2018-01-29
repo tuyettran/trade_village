@@ -29,6 +29,7 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>{{ trans('tradevillage::documents.table.title') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.author') }}</th>
@@ -40,6 +41,7 @@
                             <?php if (isset($documents)): ?>
                             <?php foreach ($documents as $document): ?>
                             <tr>
+                                <td>{{ $document->id }}</td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
                                         {{ $document->translate(locale())->title }}
@@ -78,6 +80,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>Id</th>
                                 <th>{{ trans('tradevillage::documents.table.title') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.author') }}</th>

@@ -31,9 +31,9 @@ class Product_rateController extends AdminBaseController
      */
     public function index()
     {
-        //$product_rates = $this->product_rate->all();
+        $product_rates = $this->product_rate->all();
 
-        return view('tradevillage::admin.product_rates.index', compact(''));
+        return view('tradevillage::admin.product_rates.index', compact('product_rates'));
     }
 
     /**

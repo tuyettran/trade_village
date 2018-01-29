@@ -25,6 +25,7 @@
                             @include('tradevillage::admin.processes.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
+                    @mediaSingle('feature_image', $process)
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>

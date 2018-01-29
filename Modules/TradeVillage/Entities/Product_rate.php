@@ -11,5 +11,5 @@ class Product_rate extends Model
 
     protected $table = 'tradevillage__product_rates';
     public $translatedAttributes = [];
-    protected $fillable = [];
+    protected $fillable = ['value', 'user_id', 'product_id'];
 }

@@ -14,8 +14,19 @@ return [
         'create process' => 'Create a process',
     ],
     'table' => [
+        'product' => 'Product',
+        'image' => 'Image',
+        'description' => 'Description',
+        'step' => 'Step',
+        'actions' => 'Actions',
+        'title' => 'Title',
     ],
     'form' => [
+        'product' => 'Product',
+        'image' => 'Image',
+        'description' => 'Description',
+        'step' => 'Step',
+        'title' => 'Title',
     ],
     'messages' => [
     ],

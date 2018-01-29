@@ -10,6 +10,6 @@ class Events extends Model
     use Translatable;
 
     protected $table = 'tradevillage__events';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['content', 'title', 'address'];
+    protected $fillable = ['village_id', 'image', 'start_time', 'end_time'];
 }

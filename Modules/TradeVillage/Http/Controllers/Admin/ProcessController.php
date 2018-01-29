@@ -4,7 +4,9 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Process;
+use Modules\TradeVillage\Entities\Products;
 use Modules\TradeVillage\Http\Requests\CreateProcessRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProcessRequest;
 use Modules\TradeVillage\Repositories\ProcessRepository;
@@ -31,9 +33,9 @@ class ProcessController extends AdminBaseController
      */
     public function index()
     {
-        //$processes = $this->process->all();
-
-        return view('tradevillage::admin.processes.index', compact(''));
+        $processes = $this->process->all();
+        $products = DB::table('tradevillage__products_translations')->get();
+        return view('tradevillage::admin.processes.index', compact('processes', 'products'));
     }
 
     /**
@@ -43,7 +45,8 @@ class ProcessController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.processes.create');
+        $products = DB::table('tradevillage__products_translations')->get();
+        return view('tradevillage::admin.processes.create', compact('products'));
     }
 
     /**
@@ -68,7 +71,8 @@ class ProcessController extends AdminBaseController
      */
     public function edit(Process $process)
     {
-        return view('tradevillage::admin.processes.edit', compact('process'));
+        $products = DB::table('tradevillage__products_translations')->get();
+        return view('tradevillage::admin.processes.edit', compact('process', 'products'));
     }
 
     /**

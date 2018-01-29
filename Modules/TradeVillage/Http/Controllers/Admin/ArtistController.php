@@ -31,9 +31,9 @@ class ArtistController extends AdminBaseController
      */
     public function index()
     {
-        //$artists = $this->artist->all();
+        $artists = $this->artist->all();
 
-        return view('tradevillage::admin.artists.index', compact(''));
+        return view('tradevillage::admin.artists.index', compact('artists'));
     }
 
     /**

@@ -29,8 +29,14 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::events.table.image') }}</th>
+                                <th>{{ trans('tradevillage::events.table.title') }}</th>
+                                <th>{{ trans('tradevillage::events.table.village') }}</th>
+                                <th>{{ trans('tradevillage::events.table.start_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.end_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.address') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::events.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,8 +60,14 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::events.table.image') }}</th>
+                                <th>{{ trans('tradevillage::events.table.title') }}</th>
+                                <th>{{ trans('tradevillage::events.table.village') }}</th>
+                                <th>{{ trans('tradevillage::events.table.start_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.end_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.address') }}</th>
+                                <th>{{ trans('tradevillage::events.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

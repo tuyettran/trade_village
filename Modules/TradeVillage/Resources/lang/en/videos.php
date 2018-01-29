@@ -14,8 +14,19 @@ return [
         'create video' => 'Create a video',
     ],
     'table' => [
+        'actions' => 'Actions',
+        'name' => 'Name',
+        'course' => 'Course',
+        'author' => 'Author',
+        'chapter' => 'Chapter',
+        'link' => 'Link',
     ],
     'form' => [
+        'name' => 'Name',
+        'course' => 'Course',
+        'author' => 'Author',
+        'chapter' => 'Chapter',
+        'link' => 'Link',
     ],
     'messages' => [
     ],

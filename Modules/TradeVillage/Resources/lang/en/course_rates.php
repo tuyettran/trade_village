@@ -14,8 +14,15 @@ return [
         'create course_rates' => 'Create a course rate',
     ],
     'table' => [
+        'actions' => 'Actions',
+        'user' => "Rate's user",
+        'course' => 'Course',
+        'value' => 'Value',
     ],
     'form' => [
+        'user' => "Rate's user",
+        'course' => 'Course',
+        'value' => 'Value',
     ],
     'messages' => [
     ],
