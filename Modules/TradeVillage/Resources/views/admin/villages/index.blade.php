@@ -29,7 +29,13 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Number of visitors</th>
+                                <th>Category</th>
+                                <th>Address</th>
+
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -39,9 +45,40 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
-                                        {{ $villages->created_at }}
+                                        {{ $villages->id }}
                                     </a>
                                 </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
+                                        {{ $villages->translate(locale())->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
+                                        {{ $villages->translate(locale())->description }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
+                                        {{ $villages->visitor_counter }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @foreach ($fields as $field)
+                                        @if($field->village_fields_id == $villages->id &&
+                                            $field->locale == locale())
+                                            <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
+                                            {{ $field->name }}
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
+                                        {{ $villages->translate(locale())->address }}
+                                    </a>
+                                </td>
+                                
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
@@ -54,7 +91,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Number of visitors</th>
+                                <th>Category</th>
+                                <th>Address</th>
+
                                 <th>{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </tfoot>
