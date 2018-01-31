@@ -29,8 +29,10 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::edu_fields.table.name') }}</th>
+                                <th>{{ trans('tradevillage::edu_fields.table.description') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::edu_fields.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +41,17 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.edu_fields.edit', [$edu_fields->id]) }}">
-                                        {{ $edu_fields->created_at }}
+                                        {{ $edu_fields->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.edu_fields.edit', [$edu_fields->id]) }}">
+                                        {{ $edu_fields->translate(locale())->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.edu_fields.edit', [$edu_fields->id]) }}">
+                                        {{ $edu_fields->translate(locale())->description }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +66,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::edu_fields.table.name') }}</th>
+                                <th>{{ trans('tradevillage::edu_fields.table.description') }}</th>
+                                <th>{{ trans('tradevillage::edu_fields.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

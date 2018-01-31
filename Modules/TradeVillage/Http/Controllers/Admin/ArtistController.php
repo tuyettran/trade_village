@@ -4,6 +4,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Artist;
 use Modules\TradeVillage\Http\Requests\CreateArtistRequest;
 use Modules\TradeVillage\Http\Requests\UpdateArtistRequest;
@@ -32,8 +33,8 @@ class ArtistController extends AdminBaseController
     public function index()
     {
         $artists = $this->artist->all();
-
-        return view('tradevillage::admin.artists.index', compact('artists'));
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.artists.index', compact('artists', 'villages'));
     }
 
     /**
@@ -43,7 +44,8 @@ class ArtistController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.artists.create');
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.artists.create', compact('villages'));
     }
 
     /**
@@ -68,7 +70,8 @@ class ArtistController extends AdminBaseController
      */
     public function edit(Artist $artist)
     {
-        return view('tradevillage::admin.artists.edit', compact('artist'));
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.artists.edit', compact('artist', 'villages'));
     }
 
     /**

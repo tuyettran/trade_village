@@ -25,7 +25,44 @@
                             @include('tradevillage::admin.artists.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("date_of_birth") ? " has-error" : "" }}">
+                            {!! Form::label("date_of_birth", trans("tradevillage::artists.form.date_of_birth")) !!}
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" name="date_of_birth" value="{{$artist->date_of_birth}}" />
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            {!! $errors->first("date_of_birth", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        @mediaSingle('feature_image', $artist)
+                        <div class="form-group{{ $errors->has("contact") ? " has-error" : "" }}">
+                            {!! Form::label("contact", trans("tradevillage::artists.form.contact")) !!}
+                                
+                            {!! Form::text("contact", old("contact", $artist->contact), ["class" => "form-control", "placeholder" => trans("tradevillage::artists.form.contact")]) !!}
+                                
+                            {!! $errors->first("contact", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("village_id") ? " has-error" : "" }}">
+                            {!! Form::label("village_id", trans("tradevillage::artists.form.village")) !!}
+                            <select name="village_id">
+                            @if( isset($villages))
+                                @foreach( $villages as $village)
+                                    @if( $village->locale == locale())
+                                        @if( $village->villages_id == $artist->village_id)
+                                            <option value={{$village->villages_id}} selected>{{$village->name}}</option>
+                                        @else
+                                            <option value={{$village->villages_id}}>{{$village->name}}</option>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
+                            </select>
+                            {!! $errors->first("village_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.artist.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
@@ -63,6 +100,19 @@
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
             });
+        });
+    </script>
+    <script>
+         $(function () {
+                $(".date").datetimepicker({
+                format:'YYYY-MM-DD',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-arrow-up",
+                        down: "fa fa-arrow-down"
+                    }
+                });
         });
     </script>
 @endpush

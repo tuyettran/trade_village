@@ -18,7 +18,6 @@ class CreateTradeVillageArtistsTable extends Migration
             $table->date('date_of_birth');
             $table->integer('user_id')->nullable();
             $table->integer('village_id')->unsigned();
-            $table->text('image');
             $table->text('contact');
             // Your fields
             $table->timestamps();

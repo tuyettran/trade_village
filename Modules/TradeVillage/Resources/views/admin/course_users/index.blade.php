@@ -14,11 +14,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.tradevillage.course_users.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('tradevillage::course_users.button.create course_users') }}
-                    </a>
-                </div>
             </div>
             <div class="box box-primary">
                 <div class="box-header">
@@ -38,17 +33,46 @@
                             </thead>
                             <tbody>
                             <?php if (isset($course_users)): ?>
-                            <?php foreach ($course_users as $course_users): ?>
+                            <?php foreach ($course_users as $course_user): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.course_users.edit', [$course_users->id]) }}">
-                                        {{ $course_users->created_at }}
+                                    <a href="{{ route('admin.tradevillage.course_users.edit', [$course_user->id]) }}">
+                                        {{ $course_user->id }}
+                                    </a>
+                                </td>
+
+                                <td>
+                                    @if( isset($courses))
+                                        @foreach($courses as $course)
+                                            @if( $course->courses_id == $course_user->course_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.course_users.edit', [$course_user->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+
+                                <td>
+                                    @if( isset($users))
+                                        @foreach($users as $user)
+                                            @if( $user->id == $course_user->user_id)
+                                                <a href="{{ route('admin.tradevillage.course_users.edit', [$course_user->id]) }}">
+                                                    {{ $user->first_name.''.$user->last_name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.course_users.edit', [$course_user->id]) }}">
+                                        {{ $course_user->chapter }}
                                     </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.course_users.edit', [$course_users->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.course_users.destroy', [$course_users->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.course_users.destroy', [$course_user->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

@@ -45,23 +45,37 @@
                             <tr>
                                 <td>{{ $artist->id }}</td>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
-                                        {{ $artist->image }}
-                                    </a>
+                                    <img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'smallThumb') }}"/>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
                                         {{ $artist->translate(locale())->name }}
                                     </a>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
                                         {{ $artist->date_of_birth }}
                                     </a>
-                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
-                                        {{ $artist->village_id }}
-                                    </a>
+                                </td>
+                                <td>
+                                    @if( isset($villages))
+                                        @foreach($villages as $village)
+                                            @if( $village->villages_id == $artist->village_id && $village->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                                    {{ $village->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
                                         {{ $artist->translate(locale())->address }}
                                     </a>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
-                                        {{ $artist->translate(locale())->contact }}
+                                        {{ $artist->contact }}
                                     </a>
                                 </td>
                                 <td>

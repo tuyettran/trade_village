@@ -37,17 +37,37 @@
                             </thead>
                             <tbody>
                             <?php if (isset($edu_course_fields)): ?>
-                            <?php foreach ($edu_course_fields as $edu_course_fields): ?>
+                            <?php foreach ($edu_course_fields as $edu_course_field): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.edu_course_fields.edit', [$edu_course_fields->id]) }}">
-                                        {{ $edu_course_fields->created_at }}
-                                    </a>
+                                    {{ $edu_course_field-> id}}
+                                </td>
+                                <td>
+                                    @if( isset($courses))
+                                        @foreach($courses as $course)
+                                            @if( $course->courses_id == $edu_course_field->course_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.edu_course_fields.edit', [$edu_course_field->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    @if( isset($edu_fields))
+                                        @foreach($edu_fields as $edu_field)
+                                            @if( $edu_field->edu_fields_id == $edu_course_field->edu_field_id && $edu_field->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.edu_course_fields.edit', [$edu_course_field->id]) }}">
+                                                    {{ $edu_field->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.edu_course_fields.edit', [$edu_course_fields->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.edu_course_fields.destroy', [$edu_course_fields->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.tradevillage.edu_course_fields.edit', [$edu_course_field->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.edu_course_fields.destroy', [$edu_course_field->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

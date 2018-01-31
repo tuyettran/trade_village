@@ -4,6 +4,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Events;
 use Modules\TradeVillage\Http\Requests\CreateEventsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateEventsRequest;
@@ -32,8 +33,8 @@ class EventsController extends AdminBaseController
     public function index()
     {
         $events = $this->events->all();
-
-        return view('tradevillage::admin.events.index', compact('events'));
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.events.index', compact('events', 'villages'));
     }
 
     /**
@@ -43,7 +44,9 @@ class EventsController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.events.create');
+        $villages = DB::table('tradevillage__villages_translations')->get();
+
+        return view('tradevillage::admin.events.create', compact('villages'));
     }
 
     /**
@@ -68,7 +71,9 @@ class EventsController extends AdminBaseController
      */
     public function edit(Events $events)
     {
-        return view('tradevillage::admin.events.edit', compact('events'));
+        $villages = DB::table('tradevillage__villages_translations')->get();
+
+        return view('tradevillage::admin.events.edit', compact('events', 'villages'));
     }
 
     /**
