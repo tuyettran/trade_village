@@ -5,6 +5,8 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\TradeVillage\Entities\Links;
+use Modules\TradeVillage\Entities\VillagesTranslation;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Http\Requests\CreateLinksRequest;
 use Modules\TradeVillage\Http\Requests\UpdateLinksRequest;
 use Modules\TradeVillage\Repositories\LinksRepository;
@@ -31,9 +33,10 @@ class LinksController extends AdminBaseController
      */
     public function index()
     {
-        //$links = $this->links->all();
+        $links = $this->links->all();
+        $villages = DB::table('tradevillage__villages_translations')->get();
 
-        return view('tradevillage::admin.links.index', compact(''));
+        return view('tradevillage::admin.links.index', compact('villages', 'links'));
     }
 
     /**
@@ -43,7 +46,8 @@ class LinksController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.links.create');
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.links.create', compact('villages'));
     }
 
     /**
@@ -68,7 +72,8 @@ class LinksController extends AdminBaseController
      */
     public function edit(Links $links)
     {
-        return view('tradevillage::admin.links.edit', compact('links'));
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.links.edit', compact('links', 'villages'));
     }
 
     /**
