@@ -14,8 +14,12 @@ return [
         'create courses' => 'Create a course',
     ],
     'table' => [
+        'no' => 'No',
+        'name' => 'Name',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'name' => 'Name',
     ],
     'messages' => [
     ],

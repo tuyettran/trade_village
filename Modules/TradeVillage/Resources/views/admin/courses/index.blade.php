@@ -29,8 +29,9 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +40,12 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}">
-                                        {{ $courses->created_at }}
+                                        {{ $courses->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}">
+                                        {{ $courses->translate(locale())->name }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +60,9 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
