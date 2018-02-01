@@ -1,19 +1,18 @@
 <?php
 
 return [
-    'list resource' => 'List course_comments',
-    'create resource' => 'Create course comment',
-    'edit resource' => 'Edit course comment',
+    'list resource' => 'List course comments',
     'destroy resource' => 'Destroy course comment',
     'title' => [
-        'course_comments' => 'Course_comments',
-        'create course_comments' => 'Create a course comment',
-        'edit course_comments' => 'Edit a course comment',
+        'course_comments' => 'Course comments',
     ],
-    'button' => [
-        'create course_comments' => 'Create a course comment',
-    ],
+    
     'table' => [
+        'no' => 'No',
+        'content' => 'Content',
+        'user' => 'User',
+        'course' => 'Course',
+        'actions' => 'Action',
     ],
     'form' => [
     ],

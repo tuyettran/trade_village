@@ -14,11 +14,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.tradevillage.course_comments.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('tradevillage::course_comments.button.create course_comments') }}
-                    </a>
-                </div>
+                
             </div>
             <div class="box box-primary">
                 <div class="box-header">
@@ -29,22 +25,37 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.content') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.user') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.course') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($course_comments)): ?>
                             <?php foreach ($course_comments as $course_comments): ?>
                             <tr>
+                                <td>{{ $course_comments->id }}</td>
+                                <td>{{ $course_comments->translate(locale())->content }}</td>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.course_comments.edit', [$course_comments->id]) }}">
-                                        {{ $course_comments->created_at }}
-                                    </a>
+                                    @foreach($users as $user)
+                                        @if($user->id == $course_comments->user_id)
+                                            {{ $user->first_name }}
+                                            {{ $user->last_name }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($courses as $course)
+                                        @if($course->courses_id == $course_comments->course_id
+                                            && $course->locale == locale())
+                                            {{ $course->name }}
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.course_comments.edit', [$course_comments->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.course_comments.destroy', [$course_comments->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -54,8 +65,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.content') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.user') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.course') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::course_comments.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
