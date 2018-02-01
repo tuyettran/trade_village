@@ -14,8 +14,18 @@ return [
         'create news' => 'Create a new',
     ],
     'table' => [
+        'no' => 'No',
+        'title' => 'Title',
+        'content' => 'Content',
+        'image' => 'Image',
+        'village' => 'Village',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'title' => 'Title',
+        'content' => 'Content',
+        'image' => 'Image',
+        'village' => 'Village',
     ],
     'messages' => [
     ],
