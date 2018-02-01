@@ -45,8 +45,9 @@ class VillagesController extends AdminBaseController
      * @return Response
      */
     public function create()
-    {
-        return view('tradevillage::admin.villages.create');
+    {   
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::admin.villages.create', compact('categories'));
     }
 
     /**
