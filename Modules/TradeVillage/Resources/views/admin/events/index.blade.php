@@ -45,7 +45,41 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
-                                        {{ $events->created_at }}
+                                        {{ $events->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($events->feature_image['path'].'', 'smallThumb') }}"/>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->translate(locale())->title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @if( isset($villages))
+                                        @foreach($villages as $village)
+                                            @if( $village->villages_id == $events->village_id && $village->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                                    {{ $village->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->start_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->end_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->translate(locale())->address }}
                                     </a>
                                 </td>
                                 <td>

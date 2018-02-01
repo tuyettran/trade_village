@@ -16,7 +16,6 @@ class CreateTradeVillageEventsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('village_id')->unsigned();
-            $table->string('image');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             // Your fields

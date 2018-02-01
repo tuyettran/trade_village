@@ -2,27 +2,27 @@
 	namespace Modules\TradeVillage\Events;
 
 	use Modules\Media\Contracts\StoringMedia;
-	use Modules\TradeVillage\Entities\Process;
+	use Modules\TradeVillage\Entities\Events;
 
-	class ProcessWasUpdated implements StoringMedia
+	class EventWasUpdated implements StoringMedia
 	{
 	/**
     * @var Author
     */
-    private $process;
+    private $event;
     /**
     * @var array
     */
  	private $data;
 
- 	public function __construct(Process $process, array $data)
+ 	public function __construct(Events $event, array $data)
  	{
- 		$this->process = $process;
+ 		$this->event = $event;
  		$this->data = $data;
  	}
 
  	public function getEntity(){
- 		return $this->process;
+ 		return $this->event;
  	}
 
  	public function getSubmissionData(){

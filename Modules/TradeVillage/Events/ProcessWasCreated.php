@@ -9,7 +9,7 @@
 	/**
     * @var Author
     */
-    private $author;
+    private $process;
     /**
     * @var array
     */

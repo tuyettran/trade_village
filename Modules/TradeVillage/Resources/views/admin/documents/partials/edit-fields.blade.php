@@ -32,6 +32,6 @@
     </div>
 
     <!-- ckeditor -->
-    @editor("content", trans("tradevillage::documents.form.content"), old("{$lang}.content", $documents->translate(locale())->title), $lang)
+    @editor("content", trans("tradevillage::documents.form.content"), old("{$lang}.content", $documents->translate($lang)->title), $lang)
 
 </div>

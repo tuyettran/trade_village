@@ -14,8 +14,13 @@ return [
         'create edu_fields' => 'Create a education category',
     ],
     'table' => [
+        'name' => 'Name',
+        'description' => 'Description',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'name' => 'Name',
+        'description' => 'Description',
     ],
     'messages' => [
     ],

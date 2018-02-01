@@ -17,6 +17,7 @@
         <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset($css) }}">
     @endforeach
     <link media="all" type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('css/bootstrap-datetimepicker.css') }}">
     {!! Theme::script('vendor/jquery/jquery.min.js') !!}
     @include('partials.asgard-globals')
     @section('styles')
@@ -71,7 +72,6 @@
     @include('partials.footer')
     @include('partials.right-sidebar')
 </div><!-- ./wrapper -->
-<link rel="stylesheet" src="{{URL::asset('themes/adminlte/js/vendor/daterangepicker/daterangepicker.js')}}">
 @foreach($jsFiles as $js)
     <script src="{{ URL::asset($js) }}" type="text/javascript"></script>
 @endforeach
@@ -84,6 +84,9 @@
 </script>
 
 <script src="{{ mix('js/app.js') }}"></script>
+
+<script src="{{ URL::asset('js/moment.min.js') }}"></script>
+<script src="{{ URL::asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 
 <?php if (is_module_enabled('Notification')): ?>
     <script src="https://js.pusher.com/3.0/pusher.min.js"></script>

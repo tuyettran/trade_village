@@ -11,5 +11,5 @@ class Edu_fields extends Model
 
     protected $table = 'tradevillage__edu_fields';
     public $translatedAttributes = ['name', 'description'];
-    protected $fillable = [];
+    protected $fillable = ['id'];
 }

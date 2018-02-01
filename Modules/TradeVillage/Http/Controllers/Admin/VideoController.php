@@ -4,7 +4,9 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Video;
+use Modules\TradeVillage\Entities\Courses;
 use Modules\TradeVillage\Http\Requests\CreateVideoRequest;
 use Modules\TradeVillage\Http\Requests\UpdateVideoRequest;
 use Modules\TradeVillage\Repositories\VideoRepository;
@@ -32,8 +34,8 @@ class VideoController extends AdminBaseController
     public function index()
     {
         $videos = $this->video->all();
-
-        return view('tradevillage::admin.videos.index', compact('videos'));
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        return view('tradevillage::admin.videos.index', compact('videos','courses'));
     }
 
     /**
@@ -43,7 +45,8 @@ class VideoController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.videos.create');
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        return view('tradevillage::admin.videos.create', compact('courses'));
     }
 
     /**
@@ -55,7 +58,6 @@ class VideoController extends AdminBaseController
     public function store(CreateVideoRequest $request)
     {
         $this->video->create($request->all());
-
         return redirect()->route('admin.tradevillage.video.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('tradevillage::videos.title.videos')]));
     }
@@ -68,7 +70,8 @@ class VideoController extends AdminBaseController
      */
     public function edit(Video $video)
     {
-        return view('tradevillage::admin.videos.edit', compact('video'));
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        return view('tradevillage::admin.videos.edit', compact('video','courses'));
     }
 
     /**

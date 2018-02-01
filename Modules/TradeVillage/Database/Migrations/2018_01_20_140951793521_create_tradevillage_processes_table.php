@@ -16,7 +16,6 @@ class CreateTradeVillageProcessesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->text('image');
             $table->integer('step')->unsigned();
             // Your fields
             $table->timestamps();

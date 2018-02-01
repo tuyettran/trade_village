@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                <div class="btn-grou,p pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.tradevillage.video.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('tradevillage::videos.button.create video') }}
                     </a>
@@ -49,17 +49,33 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
-                                        {{ $video->created_at }}
+                                        {{ $video->translate(locale())->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @if( isset($courses))
+                                        @foreach($courses as $course)
+                                            @if( $course->courses_id == $video->course_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                        {{ $video->chapter }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
-                                        {{ $video->created_at }}
+                                        {{ $video->translate(locale())->author }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
-                                        {{ $video->created_at }}
+                                        {{ $video->link }}
                                     </a>
                                 </td>
                                 <td>

@@ -2,27 +2,27 @@
 	namespace Modules\TradeVillage\Events;
 
 	use Modules\Media\Contracts\StoringMedia;
-	use Modules\TradeVillage\Entities\Process;
+	use Modules\TradeVillage\Entities\Artist;
 
-	class ProcessWasUpdated implements StoringMedia
+	class ArtistWasUpdated implements StoringMedia
 	{
 	/**
     * @var Author
     */
-    private $process;
+    private $artist;
     /**
     * @var array
     */
  	private $data;
 
- 	public function __construct(Process $process, array $data)
+ 	public function __construct(Artist $artist, array $data)
  	{
- 		$this->process = $process;
+ 		$this->artist = $artist;
  		$this->data = $data;
  	}
 
  	public function getEntity(){
- 		return $this->process;
+ 		return $this->artist;
  	}
 
  	public function getSubmissionData(){

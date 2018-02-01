@@ -25,7 +25,29 @@
                             @include('tradevillage::admin.documents.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-
+                    <div class="box-body">
+                        
+                        <div class="form-group{{ $errors->has("course_id") ? " has-error" : "" }}">
+                            {!! Form::label("course_id", trans("tradevillage::documents.form.course_name")) !!}
+                            <select name="course_id">
+                            @if( isset($course))
+                                @foreach( $course as $course)
+                                    @if( $course->locale == $lang)
+                                        <option value={{$course->courses_id}}>{{$course->name}}</option>
+                                    @endif
+                                @endforeach
+                            @endif
+                            </select>
+                            {!! $errors->first("{$lang}.course_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("chapter") ? " has-error" : "" }}">
+                            {!! Form::label("chapter", trans("tradevillage::documents.form.chapter")) !!}
+                            
+                            {!! Form::number("chapter", old("chapter"), ["class" => "form-control", "placeholder" => trans("tradevillage::documents.form.chapter")]) !!}
+                            
+                            {!! $errors->first("{$lang}.chapter", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.documents.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
