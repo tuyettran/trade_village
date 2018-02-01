@@ -25,7 +25,32 @@
                             @include('tradevillage::admin.villages.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
+                    
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("visitor_counter") ? " has-error" : "" }}">
+                            {!! Form::label("visitor_counter", trans("tradevillage::villages.form.visitor_counter")) !!}
+                            
+                            {!! Form::number("visitor_counter", old("visitor_counter"), ["class" => "form-control", "placeholder" => trans("tradevillage::villages.form.visitor_counter")]) !!}
+                            
+                            {!! $errors->first("visitor_counter", '<span class="help-block">:message</span>') !!}
+                        </div>
 
+                        <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
+                            {!! Form::label("id", trans("tradevillage::villages.form.category")) !!} 
+                                <select name="category_id">
+                                    @if( isset($categories))
+                                    @foreach( $categories as $category)
+                                        @if( $category->locale == locale())
+                                            <option value={{$category->village_fields_id}}>{{$category->name}}</option>
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                </select>
+                            {!! $errors->first("category_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
+                    @mediaSingle('image_village')
+                
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.villages.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>

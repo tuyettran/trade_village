@@ -14,8 +14,23 @@ return [
         'create villages' => 'Create a village',
     ],
     'table' => [
+        'no' => 'No',
+        'name'=> 'Name',
+        'description' => 'Description',
+        'nov' => 'Number of visitors',
+        'category' => 'Category',
+        'address' => 'Address',
+        'image' => 'Image',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'name'=> 'Name',
+        'description' => 'Description',
+        'visitor_counter' => 'Number of visitors',
+        'category' => 'Category',
+        'address' => 'Address',
+        'story' => 'Story',
+        'detail' => 'Detail',
     ],
     'messages' => [
     ],

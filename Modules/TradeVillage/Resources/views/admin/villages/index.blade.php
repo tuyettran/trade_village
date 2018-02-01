@@ -29,14 +29,16 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Number of visitors</th>
-                                <th>Category</th>
-                                <th>Address</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.no') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.name') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.description') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.nov') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.category') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.address') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.image') }}</th>
 
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -78,6 +80,9 @@
                                         {{ $villages->translate(locale())->address }}
                                     </a>
                                 </td>
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($villages->image_village['path'].'', 'smallThumb') }}"/>
+                                </td>
                                 
                                 <td>
                                     <div class="btn-group">
@@ -91,14 +96,15 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Number of visitors</th>
-                                <th>Category</th>
-                                <th>Address</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.no') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.name') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.description') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.nov') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.category') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.address') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::villages.table.image') }}</th>
 
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
