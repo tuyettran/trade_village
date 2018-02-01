@@ -11,5 +11,5 @@ class Courses extends Model
 
     protected $table = 'tradevillage__courses';
     public $translatedAttributes = ['name'];
-    protected $fillable = [];
+    protected $fillable = ['id'];
 }
