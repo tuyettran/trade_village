@@ -5,6 +5,8 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\TradeVillage\Entities\News;
+use Modules\TradeVillage\Entities\VillagesTranslation;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Http\Requests\CreateNewsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateNewsRequest;
 use Modules\TradeVillage\Repositories\NewsRepository;
@@ -31,9 +33,10 @@ class NewsController extends AdminBaseController
      */
     public function index()
     {
-        //$news = $this->news->all();
+        $news = $this->news->all();
+        $villages = DB::table('tradevillage__villages_translations')->get();
 
-        return view('tradevillage::admin.news.index', compact(''));
+        return view('tradevillage::admin.news.index', compact('news', 'villages'));
     }
 
     /**
@@ -43,7 +46,8 @@ class NewsController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.news.create');
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.news.create', compact('villages'));
     }
 
     /**
@@ -68,7 +72,8 @@ class NewsController extends AdminBaseController
      */
     public function edit(News $news)
     {
-        return view('tradevillage::admin.news.edit', compact('news'));
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.news.edit', compact('news', 'villages'));
     }
 
     /**

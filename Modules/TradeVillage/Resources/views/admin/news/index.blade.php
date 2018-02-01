@@ -29,8 +29,12 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.title') }}</th>
+                                
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.image') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.village') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,8 +43,26 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.news.edit', [$news->id]) }}">
-                                        {{ $news->created_at }}
+                                        {{ $news->id }}
                                     </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.news.edit', [$news->id]) }}">
+                                        {{ $news->translate(locale())->title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($news->feature_image['path'].'', 'smallThumb') }}"/>
+                                </td>
+                                <td>
+                                    @foreach ($villages as $village)
+                                        @if($village->villages_id == $news->village_id &&
+                                            $village->locale == locale())
+                                            <a href="{{ route('admin.tradevillage.news.edit', [$news->id]) }}">
+                                            {{ $village->name }}
+                                            </a>
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td>
                                     <div class="btn-group">
@@ -54,8 +76,12 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.title') }}</th>
+                                
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.image') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.village') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::news.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
