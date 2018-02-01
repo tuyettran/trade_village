@@ -14,8 +14,16 @@ return [
         'create links' => 'Create a link',
     ],
     'table' => [
+        'no' => 'No',
+        'title' => 'Title',
+        'village' => 'Village',
+        'link' => 'Link',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'title' => 'Title',
+        'village' => 'Village',
+        'link' => 'Link',
     ],
     'messages' => [
     ],
