@@ -21,6 +21,8 @@ class CreateTradeVillageEventsTable extends Migration
             $table->dateTime('end_time');
             // Your fields
             $table->timestamps();
+
+            $table->foreign('village_id')->references('id')->on('tradevillage__villages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +33,11 @@ class CreateTradeVillageEventsTable extends Migration
      */
     public function down()
     {
+
+        // Schema::table('tradevillage__events', function (Blueprint $table) {
+        //     $table->dropForeign(['village_id']);
+        // });
+
         Schema::dropIfExists('tradevillage__events');
     }
 }

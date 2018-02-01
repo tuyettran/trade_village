@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list resource' => 'List edu_fields',
-    'create resource' => 'Create edu_fields',
-    'edit resource' => 'Edit edu_fields',
-    'destroy resource' => 'Destroy edu_fields',
+    'list resource' => 'List education category',
+    'create resource' => 'Create education category',
+    'edit resource' => 'Edit education category',
+    'destroy resource' => 'Destroy education category',
     'title' => [
-        'edu_fields' => 'Edu_fields',
-        'create edu_fields' => 'Create a edu_fields',
-        'edit edu_fields' => 'Edit a edu_fields',
+        'edu_fields' => 'Education categories',
+        'create edu_fields' => 'Create a education category',
+        'edit edu_fields' => 'Edit education category',
     ],
     'button' => [
-        'create edu_fields' => 'Create a edu_fields',
+        'create edu_fields' => 'Create a education category',
     ],
     'table' => [
     ],

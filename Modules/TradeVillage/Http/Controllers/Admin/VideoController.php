@@ -31,9 +31,9 @@ class VideoController extends AdminBaseController
      */
     public function index()
     {
-        //$videos = $this->video->all();
+        $videos = $this->video->all();
 
-        return view('tradevillage::admin.videos.index', compact(''));
+        return view('tradevillage::admin.videos.index', compact('videos'));
     }
 
     /**

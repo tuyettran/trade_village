@@ -20,6 +20,9 @@ class CreateTradeVillageEduCourseFieldsTable extends Migration
             // Your fields
             $table->unique(['edu_field_id', 'course_id']);
             $table->timestamps();
+
+            $table->foreign('course_id', 'tradevillage__edu_course_fields_c_foreign')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('edu_field_id', 'tradevillage__edu_course_fields_ef_foreign')->references('id')->on('tradevillage__edu_fields')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +33,10 @@ class CreateTradeVillageEduCourseFieldsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__edu_course_fields', function (Blueprint $table) {
+        //     $table->dropForeign(['ef']);
+        //     $table->dropForeign(['c']);
+        // });
         Schema::dropIfExists('tradevillage__edu_course_fields');
     }
 }

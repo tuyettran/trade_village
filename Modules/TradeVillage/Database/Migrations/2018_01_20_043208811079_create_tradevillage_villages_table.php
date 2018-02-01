@@ -17,6 +17,7 @@ class CreateTradeVillageVillagesTable extends Migration
             $table->increments('id');
             $table->integer('visitor_counter')->unsigned();
             $table->integer('category_id')->unsigned();
+            $table->text('image');
             $table->timestamps();
         });
     }

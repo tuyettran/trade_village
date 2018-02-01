@@ -17,7 +17,6 @@ class CreateTradeVillageEduFieldsTranslationsTable extends Migration
             $table->increments('id');
             $table->string('name', 100)->unique();
             $table->text('description');
-            // Your translatable fields
 
             $table->integer('edu_fields_id')->unsigned();
             $table->string('locale')->index();

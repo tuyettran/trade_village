@@ -31,9 +31,9 @@ class Course_usersController extends AdminBaseController
      */
     public function index()
     {
-        //$course_users = $this->course_users->all();
+        $course_users = $this->course_users->all();
 
-        return view('tradevillage::admin.course_users.index', compact(''));
+        return view('tradevillage::admin.course_users.index', compact('course_users'));
     }
 
     /**

@@ -20,6 +20,8 @@ class CreateTradeVillageProcessesTable extends Migration
             $table->integer('step')->unsigned();
             // Your fields
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('tradevillage__products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +32,9 @@ class CreateTradeVillageProcessesTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__process', function (Blueprint $table) {
+        //     $table->dropForeign(['product_id']);
+        // });
         Schema::dropIfExists('tradevillage__processes');
     }
 }

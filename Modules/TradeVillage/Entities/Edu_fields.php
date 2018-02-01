@@ -10,6 +10,6 @@ class Edu_fields extends Model
     use Translatable;
 
     protected $table = 'tradevillage__edu_fields';
-    public $translatedAttributes = [];
+    public $translatedAttributes = ['name', 'description'];
     protected $fillable = [];
 }

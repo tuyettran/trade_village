@@ -29,17 +29,39 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::artists.table.image') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.name') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.date_of_birth') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.village') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.address') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.contact') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::artists.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($artists)): ?>
                             <?php foreach ($artists as $artist): ?>
                             <tr>
+                                <td>{{ $artist->id }}</td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
-                                        {{ $artist->created_at }}
+                                        {{ $artist->image }}
+                                    </a>
+                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                        {{ $artist->translate(locale())->name }}
+                                    </a>
+                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                        {{ $artist->date_of_birth }}
+                                    </a>
+                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                        {{ $artist->village_id }}
+                                    </a>
+                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                        {{ $artist->translate(locale())->address }}
+                                    </a>
+                                    <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                        {{ $artist->translate(locale())->contact }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +76,14 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::artists.table.image') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.name') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.date_of_birth') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.village') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.address') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.contact') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

@@ -20,6 +20,9 @@ class CreateTradeVillageProductRatesTable extends Migration
             $table->float('value', 2, 1)->unsigned();
             // Your fields
             $table->timestamps();
+
+            $table->foreign('product_id', 'tradevillage__product_rates_p_foreign')->references('id')->on('tradevillage__products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id', 'tradevillage__product_rates_u_foreign')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +33,10 @@ class CreateTradeVillageProductRatesTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__product_rates', function (Blueprint $table) {
+        //     $table->dropForeign(['p']);
+        // });
+
         Schema::dropIfExists('tradevillage__product_rates');
     }
 }

@@ -22,6 +22,9 @@ class CreateTradeVillageCourseRatesTable extends Migration
             // Your fields
             $table->unique(['course_id', 'user_id']);
             $table->timestamps();
+
+            $table->foreign('course_id', 'tradevillage__course_rates_c_foreign')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id', 'tradevillage__course_rates_u_foreign')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +35,10 @@ class CreateTradeVillageCourseRatesTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__course_rates', function (Blueprint $table) {
+        //     $table->dropForeign(['c']);
+        // });
+
         Schema::dropIfExists('tradevillage__course_rates');
     }
 }

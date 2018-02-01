@@ -21,6 +21,8 @@ class CreateTradeVillageVideosTable extends Migration
 
             // Your fields
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +33,9 @@ class CreateTradeVillageVideosTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__videos', function (Blueprint $table) {
+        //     $table->dropForeign(['course_id']);
+        // });
         Schema::dropIfExists('tradevillage__videos');
     }
 }

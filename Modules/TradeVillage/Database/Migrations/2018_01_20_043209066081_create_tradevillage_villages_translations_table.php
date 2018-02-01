@@ -18,7 +18,7 @@ class CreateTradeVillageVillagesTranslationsTable extends Migration
             // Your translatable fields
             $table->text('name');
             $table->text('description');
-            $table->text('image');
+            
             $table->text('story');
             $table->longText('detail');
             $table->text('address');

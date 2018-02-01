@@ -18,6 +18,11 @@ class CreateTradeVillageCourseCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('course_id')->unsigned();
             $table->timestamps();
+
+
+            $table->foreign('course_id', 'tradevillage__course_comments_c_foreign')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign('user_id', 'tradevillage__course_comments_u_foreign')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +33,10 @@ class CreateTradeVillageCourseCommentsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__course_comments', function (Blueprint $table) {
+        //     $table->dropForeign(['c']);
+        // });
+
         Schema::dropIfExists('tradevillage__course_comments');
     }
 }

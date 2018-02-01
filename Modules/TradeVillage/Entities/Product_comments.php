@@ -10,6 +10,6 @@ class Product_comments extends Model
     use Translatable;
 
     protected $table = 'tradevillage__product_comments';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['content'];
+    protected $fillable = ['user_id', 'product_id'];
 }

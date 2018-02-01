@@ -1,21 +1,27 @@
 <?php
 
 return [
-    'list resource' => 'List village_fields',
-    'create resource' => 'Create village_fields',
-    'edit resource' => 'Edit village_fields',
-    'destroy resource' => 'Destroy village_fields',
+    'list resource' => 'List village fields',
+    'create resource' => 'Create village fields',
+    'edit resource' => 'Edit village fields',
+    'destroy resource' => 'Destroy village fields',
     'title' => [
-        'village_fields' => 'Village_fields',
-        'create village_fields' => 'Create a village_fields',
-        'edit village_fields' => 'Edit a village_fields',
+        'village_fields' => 'Village fields',
+        'create village_fields' => 'Create a village field',
+        'edit village_fields' => 'Edit a village field',
     ],
     'button' => [
-        'create village_fields' => 'Create a village_fields',
+        'create village_fields' => 'Create a village field',
     ],
     'table' => [
+        'no' => 'No',
+        'name' => 'Name',
+        'description' => 'Description',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'name' => 'Name',
+        'description' => 'Description',
     ],
     'messages' => [
     ],

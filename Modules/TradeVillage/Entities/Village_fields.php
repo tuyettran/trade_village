@@ -10,6 +10,6 @@ class Village_fields extends Model
     use Translatable;
 
     protected $table = 'tradevillage__village_fields';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['name', 'description'];
+    protected $fillable = ['id'];
 }

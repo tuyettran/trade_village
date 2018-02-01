@@ -12,6 +12,7 @@ return [
     ],
     'tab' => [
         'english' => 'English',
+        'vietnamese' => 'Vietnamese',
         'french' => 'French',
         'dutch' => 'Dutch',
         'italian' => 'Italian',
