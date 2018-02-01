@@ -31,9 +31,9 @@ class Village_fieldsController extends AdminBaseController
      */
     public function index()
     {
-        //$village_fields = $this->village_fields->all();
+        $village_fields = $this->village_fields->all();
 
-        return view('tradevillage::admin.village_fields.index', compact(''));
+        return view('tradevillage::admin.village_fields.index', compact('village_fields'));
     }
 
     /**

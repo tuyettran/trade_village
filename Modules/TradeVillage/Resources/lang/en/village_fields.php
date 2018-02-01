@@ -14,8 +14,14 @@ return [
         'create village_fields' => 'Create a village field',
     ],
     'table' => [
+        'no' => 'No',
+        'name' => 'Name',
+        'description' => 'Description',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'name' => 'Name',
+        'description' => 'Description',
     ],
     'messages' => [
     ],
