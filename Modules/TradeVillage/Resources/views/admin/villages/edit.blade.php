@@ -26,6 +26,16 @@
                         </div>
                     @endforeach
 
+                    <div class="form-group{{ $errors->has("visitor_counter") ? " has-error" : "" }}">
+                        {!! Form::label("visitor_counter", trans("tradevillage::villages.form.visitor_counter")) !!}
+                        
+                        {!! Form::number("visitor_counter", old("visitor_counter", $villages->visitor_counter), ["class" => "form-control", "placeholder" => trans("tradevillage::villages.form.visitor_counter")]) !!}
+                        
+                        {!! $errors->first("visitor_counter", '<span class="help-block">:message</span>') !!}
+                    </div>
+                    
+                    @mediaSingle('image_village',$villages)
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.villages.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>

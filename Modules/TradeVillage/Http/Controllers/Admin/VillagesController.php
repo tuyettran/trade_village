@@ -34,9 +34,9 @@ class VillagesController extends AdminBaseController
     public function index()
     {
         $villages = $this->villages->all();
-        $fields = DB::table('tradevillage__village_fields_translations')->get();
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
     
-        return view('tradevillage::admin.villages.index', compact('villages','fields'));
+        return view('tradevillage::admin.villages.index', compact('villages','categories'));
     }
 
     /**
@@ -72,7 +72,8 @@ class VillagesController extends AdminBaseController
      */
     public function edit(Villages $villages)
     {
-        return view('tradevillage::admin.villages.edit', compact('villages'));
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::admin.villages.edit', compact('villages', 'categories'));
     }
 
     /**

@@ -29,16 +29,16 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.no') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.name') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.description') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.nov') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.category') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.address') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.image') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.description') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.nov') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.category') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.address') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
 
 
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,11 +66,11 @@
                                     </a>
                                 </td>
                                 <td>
-                                    @foreach ($fields as $field)
-                                        @if($field->village_fields_id == $villages->id &&
-                                            $field->locale == locale())
+                                    @foreach ($categories as $category)
+                                        @if($category->village_fields_id == $villages->category_id &&
+                                            $category->locale == locale())
                                             <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
-                                            {{ $field->name }}
+                                            {{ $category->name }}
                                             </a>
                                         @endif
                                     @endforeach
@@ -96,13 +96,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.no') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.name') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.description') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.nov') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.category') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.address') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::villages.table.image') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.description') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.nov') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.category') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.address') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
 
                                 <th>{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
