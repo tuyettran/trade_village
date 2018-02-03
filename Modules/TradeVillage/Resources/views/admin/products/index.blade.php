@@ -29,8 +29,13 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::products.table.name') }}</th>
+                                <th>{{ trans('tradevillage::products.table.description') }}</th>
+                                <th>{{ trans('tradevillage::products.table.cost') }}</th>
+                                <th>{{ trans('tradevillage::products.table.material') }}</th>
+                                <th>{{ trans('tradevillage::products.table.owner') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::products.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,9 +44,47 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
-                                        {{ $products->created_at }}
+                                        {{ $products->id }}
                                     </a>
                                 </td>
+                                <th>
+                                    <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
+                                        {{ $products->translate(locale())->name }}
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
+                                        {{ $products->translate(locale())->description }}
+                                    </a>
+                                </th>
+                                <th>
+                                <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
+                                        {{ $products->cost }}
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
+                                        {{ $products->translate(locale())->material }}
+                                    </a>
+                                <th>
+                                    @if( $products->enterprise_id != null)
+                                        @foreach( $enterprises as $enterprise)
+                                            @if( $enterprise->enterprises_id == $products->enterprise_id && $enterprise->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
+                                                    {{ $enterprise->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @elseif( $products->artist_id != null)
+                                        @foreach( $artists as $artist)
+                                            @if( $artist->artist_id == $products->artist_id && $artist->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
+                                                    {{ $artist->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </th>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
@@ -54,8 +97,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::products.table.name') }}</th>
+                                <th>{{ trans('tradevillage::products.table.description') }}</th>
+                                <th>{{ trans('tradevillage::products.table.cost') }}</th>
+                                <th>{{ trans('tradevillage::products.table.material') }}</th>
+                                <th>{{ trans('tradevillage::products.table.owner') }}</th>
+                                <th>{{ trans('tradevillage::products.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

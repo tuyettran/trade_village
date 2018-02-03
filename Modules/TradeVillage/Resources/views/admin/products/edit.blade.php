@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.tradevillage.products.update', $products->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.tradevillage.products.update', $products->id], 'method' => 'put', 'files' => true]) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -25,7 +25,75 @@
                             @include('tradevillage::admin.products.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("artist_id") ? " has-error" : "" }}">
+                            {!! Form::label("village_id", trans("tradevillage::products.form.artist")) !!}
+                            <select name="artist_id">
+                                <option value="">---</option>
+                                @if( isset($artists))
+                                    @foreach( $artists as $artist)
+                                        @if( $artist->locale == locale())
+                                            @if( $artist->artist_id == $products->artist_id)
+                                                <option value={{$artist->artist_id}} selected>{{$artist->name}}</option>
+                                            @else
+                                                <option value={{$artist->artist_id}}>{{$artist->name}}</option>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            {!! $errors->first("artist_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("enterprise_id") ? " has-error" : "" }}">
+                            {!! Form::label("enterprise_id", trans("tradevillage::products.form.enterprise")) !!}
+                            <select name="artist_id">
+                                <option value="">---</option>
+                                @if( isset($enterprises))
+                                    @foreach( $enterprises as $enterprise)
+                                        @if( $enterprise->locale == locale())
+                                            @if( $enterprise->enterprises_id == $products->enterprise_id)
+                                                <option value={{$enterprise->enterprises_id}} selected>{{$enterprise->name}}</option>
+                                            @else
+                                                <option value={{$enterprise->enterprises_id}}>{{$enterprise->name}}</option>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            {!! $errors->first("enterprise_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("cost") ? " has-error" : "" }}">
+                            {!! Form::label("cost", trans("tradevillage::products.form.cost")) !!}
+                                
+                            {!! Form::text("cost", old("cost", $products->cost), ["class" => "form-control", "placeholder" => trans("tradevillage::products.form.cost")]) !!}
+                                
+                            {!! $errors->first("cost", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        @mediaMultiple('images', $products)
+                        <div class="form-group{{ $errors->has("3D_image") ? " has-error" : "" }}">
+                            {!! Form::label("3D_image", trans("tradevillage::products.form.model")) !!}
+                            <br /> 
+                            @if(isset($files))
+                                <div class="files-list">
+                                    ({{count($files)}} files)&ensp;&ensp;&ensp;&ensp;&ensp;
+                                    <a class="btn btn-danger delete-model-btn btn-sm">x</a>
+                                    
+                                    <input type="text" name="delete_model" id="delete_model" hidden>
+                                    <br />
+                                    <ul>
+                                        @foreach( $files as $file)
+                                            <li>{{$file}}</li>
+                                            <br />
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <input type="file" name="file[]" id="file-1" multiple disabled/>
+                            @else
+                                <input type="file" name="file[]" id="file-2" multiple/>
+                            @endif
+                            {!! $errors->first("3D_image", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.products.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
@@ -62,6 +130,15 @@
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
+            });
+        });
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $(".delete-model-btn").click(function(){
+                $("#file-1").prop("disabled", false);
+                $(".files-list").hide();
+                $("#delete_model").val("yes");
             });
         });
     </script>
