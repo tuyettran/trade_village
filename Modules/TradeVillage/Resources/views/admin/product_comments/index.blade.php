@@ -14,11 +14,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.tradevillage.product_comments.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('tradevillage::product_comments.button.create product_comments') }}
-                    </a>
-                </div>
+                
             </div>
             <div class="box box-primary">
                 <div class="box-header">
@@ -29,8 +25,11 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.content') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.user') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.product') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,13 +37,28 @@
                             <?php foreach ($product_comments as $product_comments): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.product_comments.edit', [$product_comments->id]) }}">
-                                        {{ $product_comments->created_at }}
-                                    </a>
+                                    {{ $product_comments->id }}
+                                </td>
+                                <td>
+                                    {{ $product_comments->translate(locale())->content }}
+                                </td>
+                                <td>
+                                    @foreach($users as $user)
+                                        @if($user->id == $product_comments->user_id)
+                                            {{ $user->first_name }}
+                                            {{ $user->last_name }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($products as $product)
+                                        @if($product->products_id == $product_comments->product_id && $product->locale == locale())
+                                            {{ $product->name }}
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.product_comments.edit', [$product_comments->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.product_comments.destroy', [$product_comments->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -54,8 +68,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.content') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.user') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.product') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::product_comments.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
