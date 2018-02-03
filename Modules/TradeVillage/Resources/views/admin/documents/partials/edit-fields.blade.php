@@ -14,24 +14,4 @@
         
         {!! $errors->first("{$lang}.author", '<span class="help-block">:message</span>') !!}
     </div>
-
-    <div class="form-group{{ $errors->has("chapter") ? " has-error" : "" }}">
-        {!! Form::label("chapter", trans("tradevillage::documents.form.chapter")) !!}
-        
-        {!! Form::number("chapter", old("chapter", $documents->chapter), ["class" => "form-control", "placeholder" => trans("tradevillage::documents.form.chapter")]) !!}
-        
-        {!! $errors->first("{$lang}.chapter", '<span class="help-block">:message</span>') !!}
-    </div>
-
-    <div class="form-group{{ $errors->has("chapter") ? " has-error" : "" }}">
-        {!! Form::label("course_id", trans("tradevillage::documents.form.course_name")) !!}
-        
-        {!! Form::select('course_id', array('1' => 'Large', '2' => 'Small'), old("course_id", $documents->course_id)); !!}
-        
-        {!! $errors->first("{$lang}.course_id", '<span class="help-block">:message</span>') !!}
-    </div>
-
-    <!-- ckeditor -->
-    @editor("content", trans("tradevillage::documents.form.content"), old("{$lang}.content", $documents->translate($lang)->title), $lang)
-
 </div>

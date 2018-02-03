@@ -64,7 +64,9 @@ class ProductsController extends AdminBaseController
         $path = '/public/products/'.$product->id;
         if( !empty($request->file('file'))){
             foreach ($request->file('file') as $photo) {
-            Storage::putFileAs($path, $photo, $photo->getClientOriginalName());
+                if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs($path, $photo, $photo->getClientOriginalName());
+                }
             }
             $requests['model'] = $path; 
             $product->update($requests);  
@@ -110,11 +112,11 @@ class ProductsController extends AdminBaseController
             if(!empty($products->model)){
                 Storage::deleteDirectory($products->model);
             }
-
             foreach ($request->file('file') as $photo) {
-                Storage::putFileAs($path, $photo, $photo->getClientOriginalName());
+                if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs($path, $photo, $photo->getClientOriginalName());  
+                }
             }
-
             $requests['model'] = $path;
         }
         $this->products->update($products, $requests);

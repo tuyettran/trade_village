@@ -16,8 +16,7 @@ class CreateTradeVillageProductsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('enterprise_id')->nullable();
-            $table->text('image');
-            $table->text('3D_image');
+            $table->text('model');
             $table->float('cost');
             $table->integer('visitor_counter');
             $table->integer('artist_id')->nullable();

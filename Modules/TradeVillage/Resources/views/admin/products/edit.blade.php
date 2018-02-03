@@ -10,7 +10,6 @@
         <li class="active">{{ trans('tradevillage::products.title.edit products') }}</li>
     </ol>
 @stop
-
 @section('content')
     {!! Form::open(['route' => ['admin.tradevillage.products.update', $products->id], 'method' => 'put', 'files' => true]) !!}
     <div class="row">
@@ -46,7 +45,7 @@
                         </div>
                         <div class="form-group{{ $errors->has("enterprise_id") ? " has-error" : "" }}">
                             {!! Form::label("enterprise_id", trans("tradevillage::products.form.enterprise")) !!}
-                            <select name="artist_id">
+                            <select name="enterprise_id">
                                 <option value="">---</option>
                                 @if( isset($enterprises))
                                     @foreach( $enterprises as $enterprise)
@@ -70,28 +69,29 @@
                             {!! $errors->first("cost", '<span class="help-block">:message</span>') !!}
                         </div>
                         @mediaMultiple('images', $products)
-                        <div class="form-group{{ $errors->has("3D_image") ? " has-error" : "" }}">
-                            {!! Form::label("3D_image", trans("tradevillage::products.form.model")) !!}
+                        <div class="form-group{{ $errors->has("model") ? " has-error" : "" }}">
+                            {!! Form::label("model", trans("tradevillage::products.form.model")) !!}
                             <br /> 
                             @if(isset($files))
                                 <div class="files-list">
-                                    ({{count($files)}} files)&ensp;&ensp;&ensp;&ensp;&ensp;
-                                    <a class="btn btn-danger delete-model-btn btn-sm">x</a>
-                                    
+                                    <a class="btn btn-danger delete-model-btn btn-xs">x</a>
+                                    &ensp;&ensp;({{count($files)}} files)
                                     <input type="text" name="delete_model" id="delete_model" hidden>
                                     <br />
-                                    <ul>
-                                        @foreach( $files as $file)
-                                            <li>{{$file}}</li>
-                                            <br />
-                                        @endforeach
-                                    </ul>
+                                    <div>
+                                        <ul>
+                                            @foreach( $files as $file)
+                                                <li>{{$file}}</li>
+                                                <br />
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
                                 <input type="file" name="file[]" id="file-1" multiple disabled/>
                             @else
                                 <input type="file" name="file[]" id="file-2" multiple/>
                             @endif
-                            {!! $errors->first("3D_image", '<span class="help-block">:message</span>') !!}
+                            {!! $errors->first("model", '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
                     <div class="box-footer">
