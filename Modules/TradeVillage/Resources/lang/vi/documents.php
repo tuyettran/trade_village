@@ -18,6 +18,7 @@ return [
         'author' => 'Tác giả',
         'course_name' => 'Khóa học',
         'chapter' => 'Chương',
+        'file' => 'File PDF',
         'actions' => 'Hành động',
     ],
     'form' => [
@@ -25,6 +26,7 @@ return [
         'author' => 'Tác giả',
         'course_name' => 'Khóa học',
         'chapter' => 'Chương',
+        'file' => 'File PDF',
         'content' => 'Nội dung tài liệu',
     ],
     'messages' => [

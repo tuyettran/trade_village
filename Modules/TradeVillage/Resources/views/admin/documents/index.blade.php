@@ -33,6 +33,7 @@
                                 <th>{{ trans('tradevillage::documents.table.title') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.author') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.file') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.chapter') }}</th>
                                 <th data-sortable="false">{{ trans('tradevillage::documents.table.actions') }}</th>
                             </tr>
@@ -65,6 +66,11 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
+                                        {{ $document->file }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
                                         {{ $document->chapter }}
                                     </a>
                                 </td>
@@ -84,6 +90,7 @@
                                 <th>{{ trans('tradevillage::documents.table.title') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.author') }}</th>
+                                <th>{{ trans('tradevillage::documents.table.file') }}</th>
                                 <th>{{ trans('tradevillage::documents.table.chapter') }}</th>
                                 <th data-sortable="false">{{ trans('tradevillage::documents.table.actions') }}</th>
                             </tr>

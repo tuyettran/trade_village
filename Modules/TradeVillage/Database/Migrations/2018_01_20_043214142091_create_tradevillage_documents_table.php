@@ -17,6 +17,7 @@ class CreateTradeVillageDocumentsTable extends Migration
             $table->increments('id');
             $table->integer('chapter')->unsigned();
             $table->integer('course_id')->unsigned();
+            $table->string('file')->nullable($value = false);
             // Your fields
             $table->timestamps();
 

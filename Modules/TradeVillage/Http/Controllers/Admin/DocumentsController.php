@@ -5,6 +5,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Modules\TradeVillage\Entities\Documents;
 use Modules\TradeVillage\Entities\Courses;
 use Modules\TradeVillage\Http\Requests\CreateDocumentsRequest;
@@ -57,7 +58,19 @@ class DocumentsController extends AdminBaseController
      */
     public function store(CreateDocumentsRequest $request)
     {
-        $this->documents->create($request->all());
+        $file = $request->file('file');
+        $requests = $request->all();
+        $documents = $this->documents->create($request->all());
+        if( !empty($file)){
+            if( $file->getClientOriginalExtension() == 'pdf'){
+                Storage::disk('public')->putFileAs('/documents', $request->file('file'), $request->file('file')->getClientOriginalName());
+                $requests['file'] = '/documents/'.$request->file('file')->getClientOriginalName(); 
+            }
+            else {
+                $requests['file'] = '';
+            }
+            $documents->update($requests);  
+        }
         return redirect()->route('admin.tradevillage.documents.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('tradevillage::documents.title.documents')]));
     }
@@ -70,8 +83,8 @@ class DocumentsController extends AdminBaseController
      */
     public function edit(Documents $documents)
     {
-        $course = DB::table('tradevillage__courses')->pluck('id');
-        return view('tradevillage::admin.documents.edit', compact('documents', 'course'));
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        return view('tradevillage::admin.documents.edit', compact('documents', 'courses'));
     }
 
     /**
@@ -83,7 +96,19 @@ class DocumentsController extends AdminBaseController
      */
     public function update(Documents $documents, UpdateDocumentsRequest $request)
     {
-        $this->documents->update($documents, $request->all());
+        $file = $request->file('file');
+        $requests = $request->all();
+        if( !empty($file)){
+            if( $file->getClientOriginalExtension() == 'pdf'){
+                Storage::disk('public')->delete($documents->file);
+                Storage::disk('public')->putFileAs('/documents', $request->file('file'), $request->file('file')->getClientOriginalName());
+                $requests['file'] = '/documents/'.$file->getClientOriginalName(); 
+            }
+            else {
+                $requests['file'] = '';
+            } 
+        }
+        $this->documents->update($documents, $requests);
 
         return redirect()->route('admin.tradevillage.documents.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('tradevillage::documents.title.documents')]));
@@ -97,6 +122,7 @@ class DocumentsController extends AdminBaseController
      */
     public function destroy(Documents $documents)
     {
+        Storage::disk('public')->delete($documents->file);
         $this->documents->destroy($documents);
 
         return redirect()->route('admin.tradevillage.documents.index')

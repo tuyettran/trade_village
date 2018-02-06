@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group{{ $errors->has("enterprise_id") ? " has-error" : "" }}">
                             {!! Form::label("enterprise_id", trans("tradevillage::products.form.enterprise")) !!}
-                            <select name="artist_id">
+                            <select name="enterprise_id">
                                 <option value="">---</option>
                                 @if( isset($enterprises))
                                     @foreach( $enterprises as $enterprise)
@@ -63,11 +63,11 @@
                         </div>
                         @mediaMultiple('images')
                         <div class="form-group{{ $errors->has("3D_image") ? " has-error" : "" }}">
-                            {!! Form::label("3D_image", trans("tradevillage::products.form.model")) !!}
+                            {!! Form::label("model", trans("tradevillage::products.form.model")) !!}
                                 
                             <input type="file" name="file[]" id="file" multiple />
                                 
-                            {!! $errors->first("3D_image", '<span class="help-block">:message</span>') !!}
+                            {!! $errors->first("model", '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
                     <div class="box-footer">

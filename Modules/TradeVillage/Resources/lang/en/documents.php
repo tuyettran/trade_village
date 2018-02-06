@@ -18,6 +18,7 @@ return [
         'author' => 'Author',
         'course_name' => 'Course name',
         'chapter' => 'Chapter',
+        'file' => 'PDF File',
         'actions' => 'Actions',
     ],
     'form' => [
@@ -26,7 +27,7 @@ return [
         'course_name' => 'Course name',
         'chapter' => 'Chapter',
         'actions' => 'Actions',
-        'content' => 'Document content',
+        'file' => 'PDF File',
     ],
     'messages' => [
     ],
