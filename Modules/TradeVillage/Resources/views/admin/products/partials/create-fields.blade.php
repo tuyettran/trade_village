@@ -13,7 +13,11 @@
 	        
 	    {!! $errors->first("{$lang}.description", '<span class="help-block">:message</span>') !!}
 	</div>
-	@editor("{$lang}[detail]", trans("tradevillage::products.form.detail"), old("{$lang}.detail"))
+	<div class="form-group{{ $errors->has("{$lang}.detail") ? " has-error" : "" }}">
+		@editor("{$lang}[detail]", trans("tradevillage::products.form.detail"), old("{$lang}.detail"))
+
+		{!! $errors->first("{$lang}.detail", '<span class="help-block">:message</span>') !!}
+	</div>
 	<div class="form-group{{ $errors->has("{$lang}.material") ? " has-error" : "" }}">
 	    {!! Form::label("{$lang}[material]", trans("tradevillage::products.form.material")) !!}
 	        

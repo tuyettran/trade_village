@@ -8,12 +8,20 @@ class UpdateEventsRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'village_id' => 'required|integer|min:1',
+            'start_time' => 'required|date',
+            'end_time' => 'date|after:start_time',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'title' => 'required|max:100',
+            'content' => 'required',
+            'address' => 'required',
+        ];
     }
 
     public function authorize()

@@ -27,7 +27,7 @@
                     @endforeach
                     <div class="box-body">
                         <div class="form-group{{ $errors->has("date_of_birth") ? " has-error" : "" }}">
-                            {!! Form::label("date_of_birth", trans("tradevillage::artists.form.date_of_birth")) !!}
+                            {!! Form::label("date_of_birth", trans("tradevillage::artists.form.date_of_birth")." ( yyyy-mm-dd )") !!}
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' class="form-control" name="date_of_birth" />
@@ -100,15 +100,16 @@
     </script>
     <script>
          $(function () {
-                $(".date").datetimepicker({
+            $(".date").datetimepicker({
                 format:'YYYY-MM-DD',
-                    icons: {
-                        time: "fa fa-clock-o",
-                        date: "fa fa-calendar",
-                        up: "fa fa-arrow-up",
-                        down: "fa fa-arrow-down"
-                    }
-                });
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                },
+                defaultDate: new Date('1970-01-01')
+            });
         });
     </script>
 @endpush
