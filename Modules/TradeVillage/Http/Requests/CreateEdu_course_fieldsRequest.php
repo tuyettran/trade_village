@@ -8,7 +8,10 @@ class CreateEdu_course_fieldsRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'course_id' => 'required|integer|min:1',
+            'edu_field_id' => 'required|integer|min:1',
+        ];
     }
 
     public function translationRules()

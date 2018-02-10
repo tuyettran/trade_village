@@ -29,7 +29,7 @@
                         @mediaSingle('feature_image')
 
                         <div class="form-group{{ $errors->has("start_time") ? " has-error" : "" }}">
-                            {!! Form::label("start_time", trans("tradevillage::events.form.start_time")) !!}
+                            {!! Form::label("start_time", trans("tradevillage::events.form.start_time")." ( yyyy-mm-dd hh:mm )") !!}
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' class="form-control" name="start_time" />
@@ -40,7 +40,7 @@
                             {!! $errors->first("start_time", '<span class="help-block">:message</span>') !!}
                         </div>
                         <div class="form-group{{ $errors->has("end_time") ? " has-error" : "" }}">
-                            {!! Form::label("end_time", trans("tradevillage::events.form.end_time")) !!}
+                            {!! Form::label("end_time", trans("tradevillage::events.form.end_time")." ( yyyy-mm-dd hh:mm )") !!}
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker2'>
                                     <input type='text' class="form-control" id ="end_time" name="end_time" />
@@ -114,7 +114,8 @@
                     date: "fa fa-calendar",
                     up: "fa fa-arrow-up",
                     down: "fa fa-arrow-down"
-                }
+                },
+                defaultDate: new Date()
             });
             $("#datetimepicker1").datetimepicker({
                 format:'YYYY-MM-DD HH:mm',
@@ -124,7 +125,8 @@
                     date: "fa fa-calendar",
                     up: "fa fa-arrow-up",
                     down: "fa fa-arrow-down"
-                }
+                },
+                defaultDate: new Date()
             });
         });
     </script>

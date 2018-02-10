@@ -26,8 +26,7 @@
                         </div>
                     @endforeach
                     <div class="box-body">
-                        
-                        <div class="form-group{{ $errors->has("course_id") ? " has-error" : "" }}">
+                        <div class="form-group{{ $errors->has("{course_id") ? " has-error" : "" }}">
                             {!! Form::label("course_id", trans("tradevillage::documents.form.course_name")) !!}
                             <select name="course_id">
                             @if( isset($course))

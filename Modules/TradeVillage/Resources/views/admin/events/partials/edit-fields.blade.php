@@ -13,7 +13,9 @@
 	        
 	    {!! $errors->first("{$lang}.address", '<span class="help-block">:message</span>') !!}
 	</div>
+	<div class="form-group{{ $errors->has("{$lang}.content") ? " has-error" : "" }}">
+        @editor("{$lang}[content]", trans("tradevillage::events.form.content"), old("{$lang}.content", $events->translate($lang)->content))
 
-	@editor("{$lang}[content]", trans("tradevillage::events.form.content"), old("{$lang}.content", $events->translate($lang)->content))
-
+        {!! $errors->first("{$lang}.content", '<span class="help-block">:message</span>') !!}
+    </div>
 </div>

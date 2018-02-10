@@ -6,8 +6,16 @@
 	        
 	    {!! $errors->first("{$lang}.name", '<span class="help-block">:message</span>') !!}
 	</div>
-	@editor("{$lang}[description]", trans("tradevillage::artists.form.description"), old("{$lang}.description", $artist->translate($lang)->description, $lang))
-	@editor("{$lang}[detail]", trans("tradevillage::artists.form.detail"), old("{$lang}.detail", $artist->translate($lang)->detail, $lang))
+	<div class="form-group{{ $errors->has("{$lang}.description") ? " has-error" : "" }}">
+		@editor("{$lang}[description]", trans("tradevillage::artists.form.description"), old("{$lang}.description", $artist->translate($lang)->description))
+
+		{!! $errors->first("{$lang}.description", '<span class="help-block">:message</span>') !!}
+	</div>
+	<div class="form-group{{ $errors->has("{$lang}.detail") ? " has-error" : "" }}">
+		@editor("{$lang}[detail]", trans("tradevillage::artists.form.detail"), old("{$lang}.detail", $artist->translate($lang)->detail))
+
+		{!! $errors->first("{$lang}.detail", '<span class="help-block">:message</span>') !!}
+	</div>
 	<div class="form-group{{ $errors->has("{$lang}.address") ? " has-error" : "" }}">
 	    {!! Form::label("{$lang}[address]", trans("tradevillage::artists.form.address")) !!}
 	        
