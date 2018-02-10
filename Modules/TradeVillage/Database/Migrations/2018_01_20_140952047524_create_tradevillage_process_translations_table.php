@@ -16,6 +16,7 @@ class CreateTradeVillageProcessTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->longText('description');
+            $table->string('title', 100);
             // Your translatable fields
 
             $table->integer('process_id')->unsigned();

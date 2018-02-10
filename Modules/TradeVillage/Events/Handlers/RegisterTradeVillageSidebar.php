@@ -37,7 +37,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('tradevillage::tradevillages.title.tradevillages'), function (Item $item) {
+            $group->item(trans('tradevillage::trade_villages.title.trade_villages'), function (Item $item) {
                 $item->icon('fa fa-copy');
                 $item->weight(10);
                 $item->authorize(
@@ -70,6 +70,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.news.index')
                     );
                 });
+
                 $item->item(trans('tradevillage::links.title.links'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -79,6 +80,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.links.index')
                     );
                 });
+                
                 $item->item(trans('tradevillage::products.title.products'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -97,6 +99,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.village_fields.index')
                     );
                 });
+
                 $item->item(trans('tradevillage::course_comments.title.course_comments'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -106,6 +109,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.course_comments.index')
                     );
                 });
+
                 $item->item(trans('tradevillage::product_comments.title.product_comments'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -115,6 +119,47 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.product_comments.index')
                     );
                 });
+
+                $item->item(trans('tradevillage::processes.title.processes'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.process.create');
+                    $item->route('admin.tradevillage.process.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.processes.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::product_rates.title.product_rates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.product_rate.create');
+                    $item->route('admin.tradevillage.product_rate.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.product_rates.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::course_rates.title.course_rates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.course_rates.create');
+                    $item->route('admin.tradevillage.course_rates.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.course_rates.index')
+                    );
+                });
+
+                $item->item(trans('tradevillage::village_coordinates.title.village_coordinates'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.village_coordinates.create');
+                    $item->route('admin.tradevillage.village_coordinates.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.village_coordinates.index')
+                    );
+                });
+                
                 $item->item(trans('tradevillage::courses.title.courses'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -142,24 +187,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.documents.index')
                     );
                 });
-                $item->item(trans('tradevillage::course_rates.title.course_rates'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.course_rates.create');
-                    $item->route('admin.tradevillage.course_rates.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.course_rates.index')
-                    );
-                });
-                $item->item(trans('tradevillage::course_users.title.course_users'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.course_users.create');
-                    $item->route('admin.tradevillage.course_users.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.course_users.index')
-                    );
-                });
+                
                 $item->item(trans('tradevillage::edu_course_fields.title.edu_course_fields'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -178,15 +206,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.videos.index')
                     );
                 });
-                $item->item(trans('tradevillage::village_coordinates.title.village_coordinates'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.village_coordinates.create');
-                    $item->route('admin.tradevillage.village_coordinates.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.village_coordinates.index')
-                    );
-                });
+                
                 $item->item(trans('tradevillage::events.title.events'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -205,24 +225,7 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.artists.index')
                     );
                 });
-                $item->item(trans('tradevillage::processes.title.processes'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.process.create');
-                    $item->route('admin.tradevillage.process.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.processes.index')
-                    );
-                });
-                $item->item(trans('tradevillage::product_rates.title.product_rates'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.product_rate.create');
-                    $item->route('admin.tradevillage.product_rate.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.product_rates.index')
-                    );
-                });
+                
 // append
 
 

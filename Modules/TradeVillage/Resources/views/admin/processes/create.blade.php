@@ -25,7 +25,31 @@
                             @include('tradevillage::admin.processes.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("product_id") ? " has-error" : "" }}">
+                            {!! Form::label("product_id", trans("tradevillage::processes.form.product")) !!}
+                            <br/>
+                            <select name="product_id">
+                            @if( isset($products))
+                                @foreach( $products as $product)
+                                    @if( $product->locale == locale())
+                                        <option value={{$product->products_id}}>{{$product->name}}</option>
+                                    @endif
+                                @endforeach
+                            @endif
+                            </select>
+                            {!! $errors->first("product", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("step") ? " has-error" : "" }}">
+                            {!! Form::label("step", trans("tradevillage::processes.form.step")) !!}
+                            
+                            {!! Form::text("step", old("step"), ["class" => "form-control", "placeholder" => trans("tradevillage::processes.form.step")]) !!}
+                            
+                            {!! $errors->first("step", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        @mediaSingle('feature_image')
+                    </div>
+                    
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.process.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>

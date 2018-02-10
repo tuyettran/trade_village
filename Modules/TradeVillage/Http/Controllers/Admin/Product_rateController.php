@@ -4,7 +4,10 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Product_rate;
+use Modules\TradeVillage\Entities\Products;
+use Modules\User\Entities\Sentinel\User;
 use Modules\TradeVillage\Http\Requests\CreateProduct_rateRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProduct_rateRequest;
 use Modules\TradeVillage\Repositories\Product_rateRepository;
@@ -31,9 +34,10 @@ class Product_rateController extends AdminBaseController
      */
     public function index()
     {
-        //$product_rates = $this->product_rate->all();
-
-        return view('tradevillage::admin.product_rates.index', compact(''));
+        $product_rates = $this->product_rate->all();
+        $products = DB::table('tradevillage__products_translations')->get();
+        $users = DB::table('users')->select('id','last_name', 'first_name')->get();
+        return view('tradevillage::admin.product_rates.index', compact('product_rates', 'products', 'users'));
     }
 
     /**
@@ -43,7 +47,9 @@ class Product_rateController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.product_rates.create');
+        $products = DB::table('tradevillage__products_translations')->get();
+        $users = DB::table('users')->get();
+        return view('tradevillage::admin.product_rates.create', compact('products', 'users'));
     }
 
     /**
@@ -68,7 +74,9 @@ class Product_rateController extends AdminBaseController
      */
     public function edit(Product_rate $product_rate)
     {
-        return view('tradevillage::admin.product_rates.edit', compact('product_rate'));
+        $products = DB::table('tradevillage__products_translations')->get();
+        $users = DB::table('users')->get();
+        return view('tradevillage::admin.product_rates.edit', compact('product_rate', 'products', 'users'));
     }
 
     /**

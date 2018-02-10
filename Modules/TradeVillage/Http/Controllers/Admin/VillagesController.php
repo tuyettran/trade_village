@@ -5,10 +5,12 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\TradeVillage\Entities\Villages;
+use Modules\TradeVillage\Entities\Village_fields;
 use Modules\TradeVillage\Http\Requests\CreateVillagesRequest;
 use Modules\TradeVillage\Http\Requests\UpdateVillagesRequest;
 use Modules\TradeVillage\Repositories\VillagesRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Illuminate\Support\Facades\DB;
 
 class VillagesController extends AdminBaseController
 {
@@ -31,9 +33,10 @@ class VillagesController extends AdminBaseController
      */
     public function index()
     {
-        //$villages = $this->villages->all();
-
-        return view('tradevillage::admin.villages.index', compact(''));
+        $villages = $this->villages->all();
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+    
+        return view('tradevillage::admin.villages.index', compact('villages','categories'));
     }
 
     /**
@@ -42,8 +45,9 @@ class VillagesController extends AdminBaseController
      * @return Response
      */
     public function create()
-    {
-        return view('tradevillage::admin.villages.create');
+    {   
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::admin.villages.create', compact('categories'));
     }
 
     /**
@@ -68,7 +72,8 @@ class VillagesController extends AdminBaseController
      */
     public function edit(Villages $villages)
     {
-        return view('tradevillage::admin.villages.edit', compact('villages'));
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::admin.villages.edit', compact('villages', 'categories'));
     }
 
     /**

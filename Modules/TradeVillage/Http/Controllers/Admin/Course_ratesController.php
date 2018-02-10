@@ -4,6 +4,8 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Modules\TradeVillage\Entities\Courses;
 use Modules\TradeVillage\Entities\Course_rates;
 use Modules\TradeVillage\Http\Requests\CreateCourse_ratesRequest;
 use Modules\TradeVillage\Http\Requests\UpdateCourse_ratesRequest;
@@ -31,9 +33,10 @@ class Course_ratesController extends AdminBaseController
      */
     public function index()
     {
-        //$course_rates = $this->course_rates->all();
-
-        return view('tradevillage::admin.course_rates.index', compact(''));
+        $course_rates = $this->course_rates->all();
+        $courses = DB::table('tradevillage__courses_translations')->select('courses_id','name', 'locale')->get();
+        $users = DB::table('users')->select('id','last_name', 'first_name')->get();
+        return view('tradevillage::admin.course_rates.index', compact('course_rates', 'courses', 'users'));
     }
 
     /**
@@ -43,6 +46,8 @@ class Course_ratesController extends AdminBaseController
      */
     public function create()
     {
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        $users = DB::table('users')->select('id','last_name', 'first_name')->get();
         return view('tradevillage::admin.course_rates.create');
     }
 

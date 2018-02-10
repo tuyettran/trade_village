@@ -127,7 +127,7 @@ class MediaServiceProvider extends ServiceProvider
         $this->app[ThumbnailManager::class]->registerThumbnail('mediumThumb', [
             'resize' => [
                 'width' => 180,
-                'height' => null,
+                'height' => 180,
                 'callback' => function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();

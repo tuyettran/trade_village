@@ -26,6 +26,16 @@
                         </div>
                     @endforeach
 
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("link") ? " has-error" : "" }}">
+                            {!! Form::label("link", trans("tradevillage::links.form.link")) !!}
+                            
+                            {!! Form::text("link", old("link"), ["class" => "form-control", "placeholder" => trans("tradevillage::links.form.link")]) !!}
+                            
+                            {!! $errors->first("link", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.links.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>

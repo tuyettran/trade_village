@@ -4,7 +4,9 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Course_comments;
+use Modules\TradeVillage\Entities\Courses;
 use Modules\TradeVillage\Http\Requests\CreateCourse_commentsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateCourse_commentsRequest;
 use Modules\TradeVillage\Repositories\Course_commentsRepository;
@@ -31,9 +33,11 @@ class Course_commentsController extends AdminBaseController
      */
     public function index()
     {
-        //$course_comments = $this->course_comments->all();
+        $course_comments = $this->course_comments->all();
+        $users = DB::table('users')->get();
+        $courses = DB::table('tradevillage__courses_translations')->get();
 
-        return view('tradevillage::admin.course_comments.index', compact(''));
+        return view('tradevillage::admin.course_comments.index', compact('course_comments', 'users', 'courses'));
     }
 
     /**

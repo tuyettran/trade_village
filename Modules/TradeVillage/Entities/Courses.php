@@ -10,6 +10,6 @@ class Courses extends Model
     use Translatable;
 
     protected $table = 'tradevillage__courses';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['name'];
+    protected $fillable = ['id'];
 }

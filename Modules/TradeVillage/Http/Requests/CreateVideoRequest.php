@@ -8,12 +8,19 @@ class CreateVideoRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'link' => 'required',
+            'chapter' => 'required|integer|min:1',
+            'course_id' => 'required|integer|min:1',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'author' => 'required',
+            'name' => 'required|max:100',
+        ];
     }
 
     public function authorize()

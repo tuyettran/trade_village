@@ -12,19 +12,47 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.tradevillage.edu_course_fields.update', $edu_course_fields->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.tradevillage.edu_course_fields.update', $edu_course_field->id], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
-                @include('partials.form-tab-headers')
-                <div class="tab-content">
-                    <?php $i = 0; ?>
-                    @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
-                        <?php $i++; ?>
-                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('tradevillage::admin.edu_course_fields.partials.edit-fields', ['lang' => $locale])
+                <div class="box-body">
+                    <div class="form-group{{ $errors->has("course_id") ? " has-error" : "" }}">
+                            {!! Form::label("course_id", trans("tradevillage::edu_course_fields.form.course")) !!}
+                            <br/>
+                            <select name="course_id">
+                                @if( isset($courses))
+                                    @foreach( $courses as $course)
+                                        @if( $course->locale == locale())
+                                            @if( $course->courses_id == $edu_course_field->course_id)
+                                                <option value={{$course->courses_id}} selected>{{$course->name}}</option>
+                                            @else
+                                                <option value={{$course->courses_id}}>{{$course->name}}</option>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            
+                            {!! $errors->first("course_id", '<span class="help-block">:message</span>') !!}
                         </div>
-                    @endforeach
+
+                        <div class="form-group{{ $errors->has("edu_field_id") ? " has-error" : "" }}">
+                            {!! Form::label("edu_field_id", trans("tradevillage::edu_course_fields.form.edu_field")) !!}
+                            <br/>
+                            <select name="edu_field_id">
+                                @if( isset($edu_fields))
+                                    @foreach( $edu_fields as $edu_field)
+                                        @if( $edu_field->locale == locale())
+                                            <option value={{$edu_field->edu_fields_id}}>{{$edu_field->name}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            
+                            {!! $errors->first("edu_field_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>

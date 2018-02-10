@@ -13,7 +13,10 @@ class CreateEdu_fieldsRequest extends BaseFormRequest
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required|max:100',
+            'description' => 'required'
+        ];
     }
 
     public function authorize()

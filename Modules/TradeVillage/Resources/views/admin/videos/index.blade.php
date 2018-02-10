@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                <div class="btn-grou,p pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.tradevillage.video.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('tradevillage::videos.button.create video') }}
                     </a>
@@ -29,8 +29,13 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::videos.table.name') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.course') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.chapter') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.author') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.link') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::videos.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +44,38 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
-                                        {{ $video->created_at }}
+                                        {{ $video->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                        {{ $video->translate(locale())->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @if( isset($courses))
+                                        @foreach($courses as $course)
+                                            @if( $course->courses_id == $video->course_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                        {{ $video->chapter }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                        {{ $video->translate(locale())->author }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
+                                        {{ $video->link }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +90,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::videos.table.name') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.course') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.chapter') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.author') }}</th>
+                                <th>{{ trans('tradevillage::videos.table.link') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::videos.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

@@ -4,6 +4,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Edu_course_fields;
 use Modules\TradeVillage\Http\Requests\CreateEdu_course_fieldsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateEdu_course_fieldsRequest;
@@ -31,9 +32,10 @@ class Edu_course_fieldsController extends AdminBaseController
      */
     public function index()
     {
-        //$edu_course_fields = $this->edu_course_fields->all();
-
-        return view('tradevillage::admin.edu_course_fields.index', compact(''));
+        $edu_course_fields = $this->edu_course_fields->all();
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        $edu_fields = DB::table('tradevillage__edu_fields_translations')->get();
+        return view('tradevillage::admin.edu_course_fields.index', compact('edu_course_fields', 'courses', 'edu_fields'));
     }
 
     /**
@@ -43,7 +45,9 @@ class Edu_course_fieldsController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.edu_course_fields.create');
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        $edu_fields = DB::table('tradevillage__edu_fields_translations')->get();
+        return view('tradevillage::admin.edu_course_fields.create', compact('courses','edu_fields'));
     }
 
     /**
@@ -66,9 +70,11 @@ class Edu_course_fieldsController extends AdminBaseController
      * @param  Edu_course_fields $edu_course_fields
      * @return Response
      */
-    public function edit(Edu_course_fields $edu_course_fields)
+    public function edit(Edu_course_fields $edu_course_field)
     {
-        return view('tradevillage::admin.edu_course_fields.edit', compact('edu_course_fields'));
+        $courses = DB::table('tradevillage__courses_translations')->get();
+        $edu_fields = DB::table('tradevillage__edu_fields_translations')->get();
+        return view('tradevillage::admin.edu_course_fields.edit', compact('edu_course_field', 'edu_fields', 'courses'));
     }
 
     /**

@@ -2,9 +2,9 @@
 
 return [
     'list resource' => 'List processes',
-    'create resource' => 'Create processes',
-    'edit resource' => 'Edit processes',
-    'destroy resource' => 'Destroy processes',
+    'create resource' => 'Create process',
+    'edit resource' => 'Edit process',
+    'destroy resource' => 'Destroy process',
     'title' => [
         'processes' => 'Process',
         'create process' => 'Create a process',
@@ -14,8 +14,19 @@ return [
         'create process' => 'Create a process',
     ],
     'table' => [
+        'product' => 'Product',
+        'image' => 'Image',
+        'description' => 'Description',
+        'step' => 'Step',
+        'actions' => 'Actions',
+        'title' => 'Title',
     ],
     'form' => [
+        'product' => 'Product',
+        'image' => 'Image',
+        'description' => 'Description',
+        'step' => 'Step',
+        'title' => 'Title',
     ],
     'messages' => [
     ],

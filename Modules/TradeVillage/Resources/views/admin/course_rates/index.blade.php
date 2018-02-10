@@ -14,11 +14,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.tradevillage.course_rates.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('tradevillage::course_rates.button.create course_rates') }}
-                    </a>
-                </div>
             </div>
             <div class="box box-primary">
                 <div class="box-header">
@@ -29,23 +24,54 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::course_rates.table.course') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.value') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.user') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::course_rates.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($course_rates)): ?>
-                            <?php foreach ($course_rates as $course_rates): ?>
+                            <?php foreach ($course_rates as $course_rate): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.tradevillage.course_rates.edit', [$course_rates->id]) }}">
-                                        {{ $course_rates->created_at }}
+                                    <a href="{{ route('admin.tradevillage.course_rates.edit', [$course_rate->id]) }}">
+                                        {{ $course_rate->id }}
                                     </a>
                                 </td>
                                 <td>
+                                    @if( isset($courses))
+                                        @foreach($courses as $course)
+                                            @if( $course->courses_id == $course_rate->course_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.course_rates.edit', [$course_rate->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.course_rates.edit', [$course_rate->id]) }}">
+                                        {{ $course_rate->value }}
+                                    </a>
+                                </td>
+
+                                <td>
+                                    @if( isset($users))
+                                        @foreach($users as $user)
+                                            @if( $user->id == $course_rate->user_id && $course->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.course_rates.edit', [$course_rate->id]) }}">
+                                                    {{ $user->first_name.''.$user->last_name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.course_rates.edit', [$course_rates->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.course_rates.destroy', [$course_rates->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.course_rates.destroy', [$course_rate->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -54,8 +80,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::course_rates.table.course') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.value') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.user') }}</th>
+                                <th>{{ trans('tradevillage::course_rates.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

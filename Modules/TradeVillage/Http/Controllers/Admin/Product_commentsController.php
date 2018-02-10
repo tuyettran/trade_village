@@ -5,6 +5,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\TradeVillage\Entities\Product_comments;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Http\Requests\CreateProduct_commentsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProduct_commentsRequest;
 use Modules\TradeVillage\Repositories\Product_commentsRepository;
@@ -31,9 +32,11 @@ class Product_commentsController extends AdminBaseController
      */
     public function index()
     {
-        //$product_comments = $this->product_comments->all();
+        $product_comments = $this->product_comments->all();
+        $users = DB::table('users')->get();
+        $products = DB::table('tradevillage__products_translations')->get();
 
-        return view('tradevillage::admin.product_comments.index', compact(''));
+        return view('tradevillage::admin.product_comments.index', compact('product_comments', 'users', 'products'));
     }
 
     /**

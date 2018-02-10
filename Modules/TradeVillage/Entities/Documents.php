@@ -10,6 +10,6 @@ class Documents extends Model
     use Translatable;
 
     protected $table = 'tradevillage__documents';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['title', 'author'];
+    protected $fillable = ['chapter', 'course_id', 'file'];
 }

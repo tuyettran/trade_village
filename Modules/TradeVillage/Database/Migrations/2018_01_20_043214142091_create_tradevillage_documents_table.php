@@ -17,8 +17,11 @@ class CreateTradeVillageDocumentsTable extends Migration
             $table->increments('id');
             $table->integer('chapter')->unsigned();
             $table->integer('course_id')->unsigned();
+            $table->string('file')->nullable($value = false);
             // Your fields
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -29,6 +32,10 @@ class CreateTradeVillageDocumentsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('tradevillage__documents', function (Blueprint $table) {
+        //     $table->dropForeign(['course_id']);
+        // });
+
         Schema::dropIfExists('tradevillage__documents');
     }
 }

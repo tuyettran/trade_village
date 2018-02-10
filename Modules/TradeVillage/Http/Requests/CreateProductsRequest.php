@@ -8,12 +8,20 @@ class CreateProductsRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'cost' => 'required',
+            'visitor_counter' => 'integer|min:0',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required|max:100',
+            'description' => 'required',
+            'material' => 'required',
+            'detail' => 'required',
+        ];
     }
 
     public function authorize()

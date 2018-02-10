@@ -8,7 +8,11 @@ class CreateCourse_usersRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'user_id' => 'required',
+            'chapter' => 'required|integer|min:1',
+            'course_id' => 'required',
+        ];
     }
 
     public function translationRules()

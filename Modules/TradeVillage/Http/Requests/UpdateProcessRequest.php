@@ -8,12 +8,17 @@ class UpdateProcessRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'step' => 'required|integer|min:1',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'description' => 'required',
+            'title' => 'required|max:100',
+        ];
     }
 
     public function authorize()

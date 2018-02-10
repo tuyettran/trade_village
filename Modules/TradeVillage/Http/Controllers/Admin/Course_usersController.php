@@ -4,6 +4,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Course_users;
 use Modules\TradeVillage\Http\Requests\CreateCourse_usersRequest;
 use Modules\TradeVillage\Http\Requests\UpdateCourse_usersRequest;
@@ -31,9 +32,10 @@ class Course_usersController extends AdminBaseController
      */
     public function index()
     {
-        //$course_users = $this->course_users->all();
-
-        return view('tradevillage::admin.course_users.index', compact(''));
+        $course_users = $this->course_users->all();
+        $users = DB::table('users')->select('id','last_name', 'first_name')->get();
+        $courses = DB::table('tradevillage__courses_translations')->select('courses_id','name', 'locale')->get();
+        return view('tradevillage::admin.course_users.index', compact('course_users', 'users', 'courses'));
     }
 
     /**

@@ -31,9 +31,9 @@ class Edu_fieldsController extends AdminBaseController
      */
     public function index()
     {
-        //$edu_fields = $this->edu_fields->all();
+        $edu_fields = $this->edu_fields->all();
 
-        return view('tradevillage::admin.edu_fields.index', compact(''));
+        return view('tradevillage::admin.edu_fields.index', compact('edu_fields'));
     }
 
     /**

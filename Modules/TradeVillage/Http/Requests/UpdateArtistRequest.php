@@ -8,12 +8,22 @@ class UpdateArtistRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'date_of_birth' => 'required|date|after:now',
+            'village_id' => 'required|integer|min:1',
+            'user_id' => 'integer|min:1',
+            'contact' => 'required'
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required|max:100',
+            'description' => 'required',
+            'detail' => 'required',
+            'address' => 'required',
+        ];
     }
 
     public function authorize()

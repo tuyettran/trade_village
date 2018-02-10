@@ -10,6 +10,6 @@ class Links extends Model
     use Translatable;
 
     protected $table = 'tradevillage__links';
-    public $translatedAttributes = [];
-    protected $fillable = [];
+    public $translatedAttributes = ['title'];
+    protected $fillable = ['village_id', 'link'];
 }

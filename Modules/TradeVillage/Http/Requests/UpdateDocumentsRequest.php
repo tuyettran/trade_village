@@ -8,12 +8,19 @@ class UpdateDocumentsRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'chapter' => 'required|integer|min:1',
+            'file' => 'file|mimes:pdf',
+            'course_id' => 'required',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'title' => 'required|max:100',
+            'author' => 'required',
+        ];
     }
 
     public function authorize()

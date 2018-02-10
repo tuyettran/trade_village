@@ -13,13 +13,13 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.tradevillage.product_rate.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('tradevillage::product_rates.button.create product_rate') }}
                     </a>
                 </div>
-            </div>
+            </div> -->
             <div class="box box-primary">
                 <div class="box-header">
                 </div>
@@ -29,22 +29,47 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::product_rates.table.product') }}</th>
+                                <th>{{ trans('tradevillage::product_rates.table.value') }}</th>
+                                <th>{{ trans('tradevillage::product_rates.table.user') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::product_rates.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($product_rates)): ?>
                             <?php foreach ($product_rates as $product_rate): ?>
                             <tr>
+                                <td>{{$product_rate->id}}</td>
+                                <td>
+                                    @if( isset($products))
+                                        @foreach($products as $product)
+                                            @if( $product->products_id == $product_rate->product_id && $product->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.product_rate.edit', [$product_rate->id]) }}">
+                                                    {{ $product->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.product_rate.edit', [$product_rate->id]) }}">
-                                        {{ $product_rate->created_at }}
+                                    {{$product_rate->value}}
                                     </a>
                                 </td>
                                 <td>
+                                    @if( isset($users))
+                                        @foreach($users as $user)
+                                            @if( $user->id == $product_rate->user_id)
+                                                <a href="{{ route('admin.tradevillage.product_rate.edit', [$product_rate->id]) }}">
+                                                    {{ $user->first_name.' '.$user->last_name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.tradevillage.product_rate.edit', [$product_rate->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.product_rate.destroy', [$product_rate->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -54,8 +79,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::product_rates.table.product') }}</th>
+                                <th>{{ trans('tradevillage::product_rates.table.value') }}</th>
+                                <th>{{ trans('tradevillage::product_rates.table.user') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::product_rates.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

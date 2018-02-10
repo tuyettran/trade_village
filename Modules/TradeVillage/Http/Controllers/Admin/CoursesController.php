@@ -31,9 +31,9 @@ class CoursesController extends AdminBaseController
      */
     public function index()
     {
-        //$courses = $this->courses->all();
+        $courses = $this->courses->all();
 
-        return view('tradevillage::admin.courses.index', compact(''));
+        return view('tradevillage::admin.courses.index', compact('courses'));
     }
 
     /**

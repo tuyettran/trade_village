@@ -15,13 +15,13 @@ class CreateTradeVillageProductsTable extends Migration
         Schema::create('tradevillage__products', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('enterprise_id')->unsigned();
-            $table->text('image');
-            $table->text('3D_image');
+            $table->integer('enterprise_id')->nullable();
+            $table->text('model');
             $table->float('cost');
             $table->integer('visitor_counter');
-            $table->integer('artist_id')->unsigned();
+            $table->integer('artist_id')->nullable();
             $table->timestamps();
+
         });
     }
 

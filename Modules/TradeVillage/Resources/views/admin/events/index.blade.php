@@ -29,8 +29,14 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::events.table.image') }}</th>
+                                <th>{{ trans('tradevillage::events.table.title') }}</th>
+                                <th>{{ trans('tradevillage::events.table.village') }}</th>
+                                <th>{{ trans('tradevillage::events.table.start_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.end_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.address') }}</th>
+                                <th data-sortable="false">{{ trans('tradevillage::events.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +45,41 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
-                                        {{ $events->created_at }}
+                                        {{ $events->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($events->feature_image['path'].'', 'smallThumb') }}"/>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->translate(locale())->title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @if( isset($villages))
+                                        @foreach($villages as $village)
+                                            @if( $village->villages_id == $events->village_id && $village->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                                    {{ $village->name }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->start_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->end_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.events.edit', [$events->id]) }}">
+                                        {{ $events->translate(locale())->address }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +94,14 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th>Id</th>
+                                <th>{{ trans('tradevillage::events.table.image') }}</th>
+                                <th>{{ trans('tradevillage::events.table.title') }}</th>
+                                <th>{{ trans('tradevillage::events.table.village') }}</th>
+                                <th>{{ trans('tradevillage::events.table.start_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.end_time') }}</th>
+                                <th>{{ trans('tradevillage::events.table.address') }}</th>
+                                <th>{{ trans('tradevillage::events.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
