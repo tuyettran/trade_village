@@ -121,7 +121,21 @@ return [
         'edit' => 'tradevillage::product_rates.edit resource',
         'destroy' => 'tradevillage::product_rates.destroy resource',
     ],
+    'tradevillage.provinces' => [
+        'index' => 'tradevillage::provinces.list resource',
+        'create' => 'tradevillage::provinces.create resource',
+        'edit' => 'tradevillage::provinces.edit resource',
+        'destroy' => 'tradevillage::provinces.destroy resource',
+    ],
+    'tradevillage.districts' => [
+        'index' => 'tradevillage::districts.list resource',
+        'create' => 'tradevillage::districts.create resource',
+        'edit' => 'tradevillage::districts.edit resource',
+        'destroy' => 'tradevillage::districts.destroy resource',
+    ],
 // append
+
+
 
 
 

@@ -664,7 +664,75 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'Product_rateController@destroy',
         'middleware' => 'can:tradevillage.product_rates.destroy'
     ]);
+    $router->bind('provinces', function ($id) {
+        return app('Modules\Tradevillage\Repositories\provincesRepository')->find($id);
+    });
+    $router->get('provinces', [
+        'as' => 'admin.tradevillage.provinces.index',
+        'uses' => 'provincesController@index',
+        'middleware' => 'can:tradevillage.provinces.index'
+    ]);
+    $router->get('provinces/create', [
+        'as' => 'admin.tradevillage.provinces.create',
+        'uses' => 'provincesController@create',
+        'middleware' => 'can:tradevillage.provinces.create'
+    ]);
+    $router->post('provinces', [
+        'as' => 'admin.tradevillage.provinces.store',
+        'uses' => 'provincesController@store',
+        'middleware' => 'can:tradevillage.provinces.create'
+    ]);
+    $router->get('provinces/{provinces}/edit', [
+        'as' => 'admin.tradevillage.provinces.edit',
+        'uses' => 'provincesController@edit',
+        'middleware' => 'can:tradevillage.provinces.edit'
+    ]);
+    $router->put('provinces/{provinces}', [
+        'as' => 'admin.tradevillage.provinces.update',
+        'uses' => 'provincesController@update',
+        'middleware' => 'can:tradevillage.provinces.edit'
+    ]);
+    $router->delete('provinces/{provinces}', [
+        'as' => 'admin.tradevillage.provinces.destroy',
+        'uses' => 'provincesController@destroy',
+        'middleware' => 'can:tradevillage.provinces.destroy'
+    ]);
+    $router->bind('districts', function ($id) {
+        return app('Modules\Tradevillage\Repositories\districtsRepository')->find($id);
+    });
+    $router->get('districts', [
+        'as' => 'admin.tradevillage.districts.index',
+        'uses' => 'districtsController@index',
+        'middleware' => 'can:tradevillage.districts.index'
+    ]);
+    $router->get('districts/create', [
+        'as' => 'admin.tradevillage.districts.create',
+        'uses' => 'districtsController@create',
+        'middleware' => 'can:tradevillage.districts.create'
+    ]);
+    $router->post('districts', [
+        'as' => 'admin.tradevillage.districts.store',
+        'uses' => 'districtsController@store',
+        'middleware' => 'can:tradevillage.districts.create'
+    ]);
+    $router->get('districts/{districts}/edit', [
+        'as' => 'admin.tradevillage.districts.edit',
+        'uses' => 'districtsController@edit',
+        'middleware' => 'can:tradevillage.districts.edit'
+    ]);
+    $router->put('districts/{districts}', [
+        'as' => 'admin.tradevillage.districts.update',
+        'uses' => 'districtsController@update',
+        'middleware' => 'can:tradevillage.districts.edit'
+    ]);
+    $router->delete('districts/{districts}', [
+        'as' => 'admin.tradevillage.districts.destroy',
+        'uses' => 'districtsController@destroy',
+        'middleware' => 'can:tradevillage.districts.destroy'
+    ]);
 // append
+
+
 
 
 

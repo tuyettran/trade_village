@@ -34,7 +34,8 @@
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.description') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.nov') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.category') }}</th>
-                                <th data-sortable="true">{{ trans('tradevillage::villages.table.address') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.district') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.province') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
 
 
@@ -75,11 +76,19 @@
                                         @endif
                                     @endforeach
                                 </td>
+                                
                                 <td>
                                     <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
-                                        {{ $villages->translate(locale())->address }}
+                                        {{ $villages->district }}
                                     </a>
                                 </td>
+
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
+                                        {{ $villages->province }}
+                                    </a>
+                                </td>
+                                
                                 <td>
                                     <img src="{{ Imagy::getThumbnail($villages->image_village['path'].'', 'smallThumb') }}"/>
                                 </td>
@@ -101,7 +110,8 @@
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.description') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.nov') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.category') }}</th>
-                                <th data-sortable="true">{{ trans('tradevillage::villages.table.address') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.district') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.province') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
 
                                 <th>{{ trans('tradevillage::villages.table.actions') }}</th>

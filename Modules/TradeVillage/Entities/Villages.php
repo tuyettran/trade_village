@@ -12,8 +12,8 @@ class Villages extends Model
     use MediaRelation;
 
     protected $table = 'tradevillage__villages';
-    public $translatedAttributes = ['name', 'description', 'story', 'detail', 'address'];
-    protected $fillable = ['category_id', 'image','visitor_counter'];
+    public $translatedAttributes = ['name', 'description', 'story', 'detail'];
+    protected $fillable = ['category_id', 'image', 'visitor_counter', 'district', 'province'];
 
     public function getImageVillageAttribute(){
     	return $this->filesByZone('image_village')->first();
