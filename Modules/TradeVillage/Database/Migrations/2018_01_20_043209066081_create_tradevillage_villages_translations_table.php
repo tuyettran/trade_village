@@ -21,7 +21,6 @@ class CreateTradeVillageVillagesTranslationsTable extends Migration
             
             $table->text('story');
             $table->longText('detail');
-            $table->text('address');
 
             $table->integer('villages_id')->unsigned();
             $table->string('locale')->index();

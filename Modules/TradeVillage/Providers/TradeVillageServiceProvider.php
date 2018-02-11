@@ -287,7 +287,33 @@ class TradeVillageServiceProvider extends ServiceProvider
                 return new \Modules\TradeVillage\Repositories\Cache\CacheProduct_rateDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Tradevillage\Repositories\provincesRepository',
+            function () {
+                $repository = new \Modules\Tradevillage\Repositories\Eloquent\EloquentprovincesRepository(new \Modules\Tradevillage\Entities\provinces());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Tradevillage\Repositories\Cache\CacheprovincesDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Tradevillage\Repositories\districtsRepository',
+            function () {
+                $repository = new \Modules\Tradevillage\Repositories\Eloquent\EloquentdistrictsRepository(new \Modules\Tradevillage\Entities\districts());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Tradevillage\Repositories\Cache\CachedistrictsDecorator($repository);
+            }
+        );
 // add bindings
+
+
 
 
 

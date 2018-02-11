@@ -18,7 +18,11 @@ class CreateTradeVillageVillagesTable extends Migration
             $table->integer('visitor_counter')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->text('image');
+            $table->String('district');
+            $table->String('province');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('tradevillage__village_fields')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

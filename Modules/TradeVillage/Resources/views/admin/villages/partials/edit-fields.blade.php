@@ -15,14 +15,6 @@
         {!! $errors->first("{$lang}.description", '<span class="help-block">:message</span>') !!}
     </div>
 
-    <div class="form-group{{ $errors->has("{$lang}.address") ? " has-error" : "" }}">
-        {!! Form::label("{$lang}[address]", trans("tradevillage::villages.form.address")) !!}
-        
-        {!! Form::text("{$lang}[address]", old("{$lang}.address", $villages->translate($lang)->address), ["class" => "form-control", "placeholder" => trans("tradevillage::villages.form.address")]) !!}
-        
-        {!! $errors->first("{$lang}.address", '<span class="help-block">:message</span>') !!}
-    </div>
-
     <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
         {!! Form::label("category_id", trans("tradevillage::villages.form.category")) !!} 
             <select name="category_id">

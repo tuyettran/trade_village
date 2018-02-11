@@ -226,7 +226,27 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                     );
                 });
                 
+                $item->item(trans('tradevillage::provinces.title.provinces'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.provinces.create');
+                    $item->route('admin.tradevillage.provinces.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.provinces.index')
+                    );
+                });
+                $item->item(trans('tradevillage::districts.title.districts'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.districts.create');
+                    $item->route('admin.tradevillage.districts.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.districts.index')
+                    );
+                });
 // append
+
+
 
 
 
