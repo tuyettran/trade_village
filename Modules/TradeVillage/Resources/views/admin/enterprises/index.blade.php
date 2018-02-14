@@ -29,8 +29,16 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.description') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.address') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.village') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.user') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.image') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.website') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.contact') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +47,54 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
-                                        {{ $enterprises->created_at }}
+                                        {{ $enterprises->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                        {{ $enterprises->translate(locale())->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                        {{ $enterprises->translate(locale())->description }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                        {{ $enterprises->translate(locale())->address }}
+                                    </a>
+                                </td>
+                                <td>
+                                    @foreach($villages as $village)
+                                        @if($village->villages_id == $enterprises->village_id && $village->locale == locale())
+                                            <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                                {{ $village->name }}
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($users as $user)
+                                        @if($user->id == $enterprises->user_id)
+                                            <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                                {{ $user->first_name }}
+                                                {{ $user->last_name }}
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($enterprises->feature_image['path'].'', 'smallThumb') }}"/>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                        {{ $enterprises->website }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.enterprises.edit', [$enterprises->id]) }}">
+                                        {{ $enterprises->contact }}
                                     </a>
                                 </td>
                                 <td>
@@ -54,8 +109,16 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.description') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.address') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.village') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.user') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.image') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.website') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.contact') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::enterprises.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

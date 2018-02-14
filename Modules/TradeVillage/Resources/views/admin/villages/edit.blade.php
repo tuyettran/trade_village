@@ -25,29 +25,31 @@
                             @include('tradevillage::admin.villages.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    <div class="form-group{{ $errors->has("province") ? " has-error" : "" }}">
-                        {!! Form::label("province", trans("tradevillage::villages.form.province")) !!} 
-                            <select name="province" id="province">
-                            </select>
-                        {!! $errors->first("province", '<span class="help-block">:message</span>') !!}
-                    </div>
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("province") ? " has-error" : "" }}">
+                            {!! Form::label("province", trans("tradevillage::villages.form.province")) !!} 
+                                <select name="province" id="province">
+                                </select>
+                            {!! $errors->first("province", '<span class="help-block">:message</span>') !!}
+                        </div>
 
-                    <div class="form-group{{ $errors->has("district") ? " has-error" : "" }}">
-                        {!! Form::label("district", trans("tradevillage::villages.form.district")) !!} 
-                            <select name="district" id="district">   
-                            </select>
-                        {!! $errors->first("district", '<span class="help-block">:message</span>') !!}
-                    </div>
+                        <div class="form-group{{ $errors->has("district") ? " has-error" : "" }}">
+                            {!! Form::label("district", trans("tradevillage::villages.form.district")) !!} 
+                                <select name="district" id="district">   
+                                </select>
+                            {!! $errors->first("district", '<span class="help-block">:message</span>') !!}
+                        </div>
 
-                    <div class="form-group{{ $errors->has("visitor_counter") ? " has-error" : "" }}">
-                        {!! Form::label("visitor_counter", trans("tradevillage::villages.form.visitor_counter")) !!}
+                        <div class="form-group{{ $errors->has("visitor_counter") ? " has-error" : "" }}">
+                            {!! Form::label("visitor_counter", trans("tradevillage::villages.form.visitor_counter")) !!}
+                            
+                            {!! Form::number("visitor_counter", old("visitor_counter", $villages->visitor_counter), ["class" => "form-control", "placeholder" => trans("tradevillage::villages.form.visitor_counter")]) !!}
+                            
+                            {!! $errors->first("visitor_counter", '<span class="help-block">:message</span>') !!}
+                        </div>
                         
-                        {!! Form::number("visitor_counter", old("visitor_counter", $villages->visitor_counter), ["class" => "form-control", "placeholder" => trans("tradevillage::villages.form.visitor_counter")]) !!}
-                        
-                        {!! $errors->first("visitor_counter", '<span class="help-block">:message</span>') !!}
+                        @mediaSingle('image_village',$villages)
                     </div>
-                    
-                    @mediaSingle('image_village',$villages)
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
