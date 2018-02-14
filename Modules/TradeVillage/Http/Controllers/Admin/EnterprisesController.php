@@ -4,6 +4,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Enterprises;
 use Modules\TradeVillage\Http\Requests\CreateEnterprisesRequest;
 use Modules\TradeVillage\Http\Requests\UpdateEnterprisesRequest;
@@ -31,9 +32,11 @@ class EnterprisesController extends AdminBaseController
      */
     public function index()
     {
-        //$enterprises = $this->enterprises->all();
+        $enterprises = $this->enterprises->all();
+        $users = DB::table('users')->get();
+        $villages = DB::table('tradevillage__villages_translations')->get();
 
-        return view('tradevillage::admin.enterprises.index', compact(''));
+        return view('tradevillage::admin.enterprises.index', compact('enterprises', 'users', 'villages'));
     }
 
     /**
@@ -43,7 +46,9 @@ class EnterprisesController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.enterprises.create');
+        $users = DB::table('users')->get();
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.enterprises.create', compact('users', 'villages'));
     }
 
     /**
@@ -68,7 +73,9 @@ class EnterprisesController extends AdminBaseController
      */
     public function edit(Enterprises $enterprises)
     {
-        return view('tradevillage::admin.enterprises.edit', compact('enterprises'));
+        $users = DB::table('users')->get();
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.enterprises.edit', compact('enterprises', 'users', 'villages'));
     }
 
     /**

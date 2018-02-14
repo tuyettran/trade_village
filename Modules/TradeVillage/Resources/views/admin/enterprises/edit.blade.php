@@ -25,6 +25,45 @@
                             @include('tradevillage::admin.enterprises.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
+                    <div class="box-body">
+                        <input id="submit" type="button" value="Get coordinates">
+                        <input id="lat" name="lat" style="display: none;">
+                        <input id="lng" name="lng" style="display: none;">
+                        <div class="col-md-12" id="map" style="width:100%;height: 300px;"></div>
+
+                        <div class="form-group{{ $errors->has("user_id") ? " has-error" : "" }}">
+                            {!! Form::label("user_id", trans("tradevillage::enterprises.form.user")) !!} 
+                                <select name="user_id">
+                                    @if( isset($users))
+                                    <option value="">--None--</option>
+                                    @foreach( $users as $user)
+                                        @if( $user->id == $enterprises->user_id)
+                                            <option value={{$user->id}} selected>{{$user->first_name}} {{$user->last_name}}</option>
+                                        @else
+                                            <option value={{$user->id}}>{{$user->first_name}} {{$user->last_name}}</option>
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                </select>
+                            {!! $errors->first("user_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+
+                        <div class="form-group{{ $errors->has("website") ? " has-error" : "" }}">
+                            {!! Form::label("website", trans("tradevillage::enterprises.form.website")) !!}
+                            
+                            {!! Form::text("website", old("website", $enterprises->website), ["class" => "form-control", "placeholder" => trans("tradevillage::enterprises.form.website")]) !!}
+                            
+                            {!! $errors->first("website", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("contact") ? " has-error" : "" }}">
+                            {!! Form::label("contact", trans("tradevillage::enterprises.form.contact")) !!}
+                            
+                            {!! Form::text("contact", old("contact", $enterprises->contact), ["class" => "form-control", "placeholder" => trans("tradevillage::enterprises.form.contact")]) !!}
+                            
+                            {!! $errors->first("contact", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        @mediaSingle('feature_image', $enterprises)
+                    </div>
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
@@ -48,6 +87,51 @@
 @stop
 
 @push('js-stack')
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
+    <script type="text/javascript">
+        var address = document.getElementById('address').value;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+                var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 16,
+                    center: myLatLng
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map
+                });
+            }
+        });
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+        
+        function geocodeAddress(geocoder, resultsMap) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({'address': address}, function(results, status) {
+              if (status === 'OK') {
+                document.getElementById('lat').value = results[0].geometry.location.lat();
+                document.getElementById('lng').value = results[0].geometry.location.lng();
+                var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 18,
+                    center: myLatLng
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map
+                });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
+        }  
+    </script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
