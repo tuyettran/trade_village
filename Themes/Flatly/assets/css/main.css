@@ -10,9 +10,6 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-body {
-  margin: 0;
-}
 article,
 aside,
 details,
@@ -1071,7 +1068,6 @@ body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.42857143;
-  color: #2C3E50;
   background-color: #ecf0f1;
 }
 input,
@@ -9137,10 +9133,6 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
-body {
-  background: #ecf0f1;
-  padding-top: 80px;
-}
 .group:after {
   content: "";
   display: table;
