@@ -12,4 +12,9 @@ class Documents extends Model
     protected $table = 'tradevillage__documents';
     public $translatedAttributes = ['title', 'author'];
     protected $fillable = ['chapter', 'course_id', 'file'];
+
+    public function course()
+	{
+	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Courses", 'course_id');
+	}
 }

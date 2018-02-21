@@ -14,7 +14,13 @@ class Process extends Model
     public $translatedAttributes = ['description', 'title'];
     protected $fillable = ['product_id', 'image', 'step'];
 
-    public function getFeatureImageAttribute(){
+    public function getFeatureImageAttribute()
+    {
     	return $this->filesByZone('feature_image')->first();
     }
+
+    public function product()
+	{
+	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Products", 'product_id');
+	}
 }

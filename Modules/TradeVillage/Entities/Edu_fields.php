@@ -12,4 +12,9 @@ class Edu_fields extends Model
     protected $table = 'tradevillage__edu_fields';
     public $translatedAttributes = ['name', 'description'];
     protected $fillable = ['id'];
+
+    public function courses()
+    {
+        return $this->belongsToMany('Modules\\TradeVillage\\Entities\\Courses', 'tradevillage__edu_course_fields', 'ef', 'c');
+    }
 }

@@ -84,10 +84,15 @@ return [
      |--------------------------------------------------------------------------
      | Add relations that will be dynamically added to the User entity
      */
-    'relations' => [
+// 'relations' => [
 //        'extension' => function ($self) {
 //            return $self->belongsTo(UserExtension::class, 'user_id', 'id')->first();
 //        }
+// ],
+    'relations' => [
+        'courses' => function ($self) {
+            return $self->belongsToMany(\Modules\TradeVillage\Entities\Courses::class, 'tradevillage__course_users', 'u', 'c');
+        },
     ],
     /*
     |--------------------------------------------------------------------------

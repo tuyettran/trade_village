@@ -18,4 +18,9 @@ class Events extends Model
     public function getFeatureImageAttribute(){
     	return $this->filesByZone('feature_image')->first();
     }
+
+    public function village()
+	{
+	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Villages", 'village_id');
+	}
 }
