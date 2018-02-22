@@ -25,7 +25,6 @@ class FrontendDocumentController extends BasePublicController
     public function index()
     {
         $documents = $this->document->all();
-        $villages = DB::table('tradevillage__villages_translations')->get();
-        return view('tradevillage::frontend.documents.index', compact('documents', 'villages'));
+        return view('tradevillage::frontend.education.documents.index', compact('documents', 'villages'));
     }
 }

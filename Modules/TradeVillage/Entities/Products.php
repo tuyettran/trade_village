@@ -19,4 +19,14 @@ class Products extends Model
     public function getFeatureImageAttribute(){
     	return $this->filesByZone('images')->get();
     }
+
+    public function documents()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Process', 'product_id');
+    }
+
+    public function rates()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_rate', 'p');
+    }
 }
