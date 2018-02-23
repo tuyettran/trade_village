@@ -2,14 +2,47 @@
 use Illuminate\Routing\Router;
 /** @var Router $router */
 $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
-    $router->bind('documents', function ($id) {
-        return app('Modules\TradeVillage\Repositories\DocumentsRepository')->find($id);
+    $router->group(['prefix' =>'/education'], function (Router $router) {
+        $router->bind('documents', function ($id) {
+            return app('Modules\TradeVillage\Repositories\DocumentsRepository')->find($id);
+        });
+        $router->get('document/{document}', [
+            'as' => 'frontend.tradevillage.course.documents.show',
+            'uses' => 'FrontendDocumentController@show',
+            'middleware' => 'can:tradevillage.documents.index'
+        ]);
+        $router->bind('video', function ($id) {
+            return app('Modules\TradeVillage\Repositories\VideoRepository')->find($id);
+        });
+        $router->get('videos', [
+            'as' => 'admin.tradevillage.video.index',
+            'uses' => 'FrontendVideoController@index',
+            'middleware' => 'can:tradevillage.videos.index'
+        ]);
+        $router->bind('course_users', function ($id) {
+            return app('Modules\TradeVillage\Repositories\Course_usersRepository')->find($id);
+        });
+        $router->get('course_users', [
+            'as' => 'admin.tradevillage.course_users.index',
+            'uses' => 'FrontendCourse_usersController@index',
+            'middleware' => 'can:tradevillage.course_users.index'
+        ]);
+        $router->get('course_users/create', [
+            'as' => 'admin.tradevillage.course_users.create',
+            'uses' => 'FrontendCourse_usersController@create',
+            'middleware' => 'can:tradevillage.course_users.create'
+        ]);
+        $router->post('course_users', [
+            'as' => 'admin.tradevillage.course_users.store',
+            'uses' => 'FrontendCourse_usersController@store',
+            'middleware' => 'can:tradevillage.course_users.create'
+        ]);
+        $router->delete('course_users/{course_users}', [
+            'as' => 'admin.tradevillage.course_users.destroy',
+            'uses' => 'FrontendCourse_usersController@destroy',
+            'middleware' => 'can:tradevillage.course_users.destroy'
+        ]);
     });
-    $router->get('documents', [
-        'as' => 'frontend.tradevillage.documents.index',
-        'uses' => 'FrontendDocumentController@index',
-        'middleware' => 'can:tradevillage.documents.index'
-    ]);
     $router->bind('process', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProcessRepository')->find($id);
     });
@@ -43,37 +76,6 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'FrontendProcessController@destroy',
         'middleware' => 'can:tradevillage.processes.destroy'
     ]);
-    $router->bind('video', function ($id) {
-        return app('Modules\TradeVillage\Repositories\VideoRepository')->find($id);
-    });
-    $router->get('videos', [
-        'as' => 'admin.tradevillage.video.index',
-        'uses' => 'FrontendVideoController@index',
-        'middleware' => 'can:tradevillage.videos.index'
-    ]);
-    $router->bind('course_users', function ($id) {
-        return app('Modules\TradeVillage\Repositories\Course_usersRepository')->find($id);
-    });
-    $router->get('course_users', [
-        'as' => 'admin.tradevillage.course_users.index',
-        'uses' => 'FrontendCourse_usersController@index',
-        'middleware' => 'can:tradevillage.course_users.index'
-    ]);
-    $router->get('course_users/create', [
-        'as' => 'admin.tradevillage.course_users.create',
-        'uses' => 'FrontendCourse_usersController@create',
-        'middleware' => 'can:tradevillage.course_users.create'
-    ]);
-    $router->post('course_users', [
-        'as' => 'admin.tradevillage.course_users.store',
-        'uses' => 'FrontendCourse_usersController@store',
-        'middleware' => 'can:tradevillage.course_users.create'
-    ]);
-    $router->delete('course_users/{course_users}', [
-        'as' => 'admin.tradevillage.course_users.destroy',
-        'uses' => 'FrontendCourse_usersController@destroy',
-        'middleware' => 'can:tradevillage.course_users.destroy'
-    ]);
     $router->bind('artist', function ($id) {
         return app('Modules\TradeVillage\Repositories\ArtistRepository')->find($id);
     });
@@ -94,8 +96,13 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         return app('Modules\TradeVillage\Repositories\ProductsRepository')->find($id);
     });
     $router->get('products', [
-        'as' => 'admin.tradevillage.products.index',
+        'as' => 'frontend.tradevillage.products.index',
         'uses' => 'FrontendProductController@index',
+        'middleware' => 'can:tradevillage.products.index'
+    ]);
+    $router->get('product/{product}', [
+        'as' => 'frontend.tradevillage.products.show',
+        'uses' => 'FrontendProductController@show',
         'middleware' => 'can:tradevillage.products.index'
     ]);
 });
