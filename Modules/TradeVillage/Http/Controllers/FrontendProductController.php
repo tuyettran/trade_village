@@ -33,7 +33,7 @@ class FrontendProductController extends BasePublicController
      */
     public function index()
     {
-        $products = $this->products->paginate($perPage = 15);
+        $products = $this->products->all();
         return view('tradevillage::frontend.villages.products.index', compact('products'));
     }
 
@@ -46,7 +46,7 @@ class FrontendProductController extends BasePublicController
     {
         $artists = DB::table('tradevillage__artist_translations')->get();
         $enterprises = DB::table('tradevillage__enterprises_translations')->get();
-        return view('tradevillage::admin.products.create', compact('artists', 'enterprises'));
+        return view('tradevillage::frontend.villages.products.create', compact('artists', 'enterprises'));
     }
 
     /**
@@ -79,14 +79,16 @@ class FrontendProductController extends BasePublicController
      * @param  Products $products
      * @return Response
      */
-    public function edit(Products $products)
+    public function edit(Products $product)
     {
-        if(!empty($products->model)){
-            $files = Storage::files($products->model);
+        if(!empty($product->model)){
+            $files = Storage::files($product->model);
         }
-        $artists = DB::table('tradevillage__artist_translations')->get();
-        $enterprises = DB::table('tradevillage__enterprises_translations')->get();
-        return view('tradevillage::admin.products.edit', compact('products', 'artists', 'enterprises', 'files'));
+        if(!empty($product->images)){
+            $images = Storage::files($product->images);
+        }
+        
+        return view('tradevillage::frontend.villages.products.edit', compact('product', 'files', 'images'));
     }
 
     /**

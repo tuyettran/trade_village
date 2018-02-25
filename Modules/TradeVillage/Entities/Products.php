@@ -14,11 +14,7 @@ class Products extends Model
 
     protected $table = 'tradevillage__products';
     public $translatedAttributes = ['name', 'description', 'material', 'detail'];
-    protected $fillable = ['enterprise_id', 'image', 'model', 'cost', 'artist_id'];
-
-    public function getFeatureImageAttribute(){
-    	return $this->filesByZone('images')->get();
-    }
+    protected $fillable = ['enterprise_id', 'images', 'model', 'cost', 'artist_id'];
 
     public function documents()
     {

@@ -92,7 +92,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'FrontendEventController@index',
         'middleware' => 'can:tradevillage.events.index'
     ]);
-    $router->bind('products', function ($id) {
+    $router->bind('product', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProductsRepository')->find($id);
     });
     $router->get('products', [
@@ -100,10 +100,20 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'FrontendProductController@index',
         'middleware' => 'can:tradevillage.products.index'
     ]);
-    $router->get('product/{product}', [
-        'as' => 'frontend.tradevillage.products.show',
-        'uses' => 'FrontendProductController@show',
-        'middleware' => 'can:tradevillage.products.index'
+    // $router->get('product/{product}', [
+    //     'as' => 'frontend.tradevillage.products.show',
+    //     'uses' => 'FrontendProductController@show',
+    //     'middleware' => 'can:tradevillage.products.index'
+    // ]);
+    $router->get('product/create', [
+        'as' => 'frontend.tradevillage.products.create',
+        'uses' => 'FrontendProductController@create',
+        'middleware' => 'can:tradevillage.products.create'
+    ]);
+    $router->get('product/{product}/edit', [
+        'as' => 'frontend.tradevillage.products.edit',
+        'uses' => 'FrontendProductController@edit',
+        'middleware' => 'can:tradevillage.products.edit'
     ]);
 });
 ?>

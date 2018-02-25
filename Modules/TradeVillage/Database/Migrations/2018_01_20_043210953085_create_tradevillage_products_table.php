@@ -17,6 +17,7 @@ class CreateTradeVillageProductsTable extends Migration
             $table->increments('id');
             $table->integer('enterprise_id')->nullable();
             $table->text('model');
+            $table->text('images');
             $table->float('cost');
             $table->integer('visitor_counter');
             $table->integer('artist_id')->nullable();

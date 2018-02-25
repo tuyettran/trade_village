@@ -2,8 +2,7 @@
 
 @section('style')
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/filter.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/educateIndex.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/videoDetail.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/productIndex.css') }}">
 
 @stop
 
@@ -20,30 +19,45 @@
 		    </form>
 		</div>
 		<div class="col-md-9 filter">
-			@include('tradevillage::frontend.education.partials.filter', ['lang' => locale()])
+			@include('tradevillage::frontend.education.partials.filter')
 		</div>
 		
 	</div>
 	
 	<div class="row">
-		<a><h3>Mây tre đan</h3></a>
-		@foreach ($products as $product)
-			<ul>
-				<li>
-					{{ $product->chapter }}
-					<a href="{{ route('frontend.tradevillage.products.index') }}">
-			            <h3>{{ $product->translate(locale())->description }}</h3>
-			        </a>
-			        <a href="{{ route('frontend.tradevillage.products.index') }}">
-			        	{{ $product->translate(locale())->name }}
-			        </a>
-			        <a href="{{ route('frontend.tradevillage.products.index') }}">
-			        	{{ $product->translate(locale())->material }}
-			        </a>
-				</li>
-			</ul>
-		@endforeach
-		{{ $products->links() }}
+		<div class="col-md-9 col-sm-12">
+			<div class="row categories-item">
+                <div>
+                    <a href="#"><h4 class="text">Mây Tre Đan</h4></a>
+                   	<div id="products" class="row list-group">
+                   		@foreach ($products as $product)
+	                        @include('tradevillage::frontend.villages.products.partials.product')
+	                    @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+        	@include('tradevillage::frontend.villages.products.partials.sidebar')
+        </div>
 	</div>
+@stop
+
+@section('scripts')
 	
+<script type="text/javascript">
+    $("#images").change(function(){
+        $('#image_preview').html("");
+        var total_file=document.getElementById("images").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+            $('#image_preview').append("<div class=' col-md-2 col-xs-4'><img src='"+URL.createObjectURL(event.target.files[i])+"' class='img-responsive thumbnail medium-thumbnail' ></div>");
+        }
+        $(".delete-model-btn").click(function(){
+            $("#file-1").prop("disabled", false);
+            $(".files-list").hide();
+            $("#delete_model").val("yes");
+        });
+    });
+</script>
 @stop

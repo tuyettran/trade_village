@@ -49,12 +49,12 @@
                                 </td>
                                 <th>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
-                                        {{ $products->translate(locale())->name }}
+                                        {{ ($products->translate(locale())) ? $products->translate(locale())->name : "" }}
                                     </a>
                                 </th>
                                 <th>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
-                                        {{ $products->translate(locale())->description }}
+                                        {{ ($products->translate(locale())) ? $products->translate(locale())->description : "" }}
                                     </a>
                                 </th>
                                 <th>
@@ -64,7 +64,7 @@
                                 </th>
                                 <th>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
-                                        {{ $products->translate(locale())->material }}
+                                        {{ ($products->translate(locale())) ? $products->translate(locale())->material : "" }}
                                     </a>
                                 <th>
                                     @if( $products->enterprise_id != null)

@@ -62,9 +62,12 @@ class DocumentsController extends AdminBaseController
         $requests = $request->all();
         $documents = $this->documents->create($request->all());
         if( !empty($file)){
-            if( $file->getClientOriginalExtension() == 'pdf'){
-                Storage::disk('public')->putFileAs('/documents', $request->file('file'), $request->file('file')->getClientOriginalName());
-                $requests['file'] = '\documents\\'.$request->file('file')->getClientOriginalName(); 
+            if( $file->getClientOriginalExtension() == 'pdf')
+            {
+                $name = $request->file('file')->getClientOriginalName();
+                $filename = pathinfo($name, PATHINFO_FILENAME).'_'.$documents->id.'.pdf';
+                Storage::disk('public')->putFileAs('/documents', $request->file('file'), $filename);
+                $requests['file'] = '\documents\\'.$filename; 
             }
             else {
                 $requests['file'] = '';
@@ -100,9 +103,11 @@ class DocumentsController extends AdminBaseController
         $requests = $request->all();
         if( !empty($file)){
             if( $file->getClientOriginalExtension() == 'pdf'){
+                $name = $request->file('file')->getClientOriginalName();
+                $filename = pathinfo($name, PATHINFO_FILENAME).'_'.$documents->id.'.pdf';
                 Storage::disk('public')->delete($documents->file);
-                Storage::disk('public')->putFileAs('/documents', $request->file('file'), $request->file('file')->getClientOriginalName());
-                $requests['file'] = '\documents\\'.$request->file('file')->getClientOriginalName(); 
+                Storage::disk('public')->putFileAs('/documents', $request->file('file'), $filename);
+                $requests['file'] = '\documents\\'.$filename; 
             }
             else {
                 $requests['file'] = '';

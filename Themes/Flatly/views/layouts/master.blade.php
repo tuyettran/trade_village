@@ -28,7 +28,7 @@
     </div>
     @include('partials.footer')
 
-    {!! Theme::script('js/all.js') !!}
+<!--     {!! Theme::script('js/all.js') !!} -->
     {!! Theme::script('library/js/jquery-3.2.1.min.js') !!}
     {!! Theme::script('library/js/bootstrap.min.js') !!}
     @yield('scripts')
