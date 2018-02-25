@@ -12,39 +12,42 @@
     <link rel="shortcut icon" href="{{ Theme::url('favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
-    {!! Theme::style('css/main.css') !!}
     {!! Theme::style('css/style.css') !!}
     {!! Theme::style('css/header_footer.css') !!}
+    {!! Theme::style('library/css/bootstrap.min.css') !!}
 
     @yield('style')
 </head>
 <body>
-@include('partials.header')
-@include('partials.navigation')
+    
+    @include('partials.header')
+    @include('partials.navigation')
 
-<div class="custom-container">
-    @yield('content')
-</div>
-@include('partials.footer')
+    <div class="custom-container">
+        @yield('content')
+    </div>
+    @include('partials.footer')
 
-{!! Theme::script('js/all.js') !!}
-@yield('scripts')
+    {!! Theme::script('js/all.js') !!}
+    {!! Theme::script('library/js/jquery-3.2.1.min.js') !!}
+    {!! Theme::script('library/js/bootstrap.min.js') !!}
+    @yield('scripts')
 
-<?php if (Setting::has('core::analytics-script')): ?>
-    {!! Setting::get('core::analytics-script') !!}
-<?php endif; ?>
+    <?php if (Setting::has('core::analytics-script')): ?>
+        {!! Setting::get('core::analytics-script') !!}
+    <?php endif; ?>
 
-    <script type="text/javascript">
-        $(window).scroll(function(e){ 
-        var $el = $('.super-header'); 
+        <script type="text/javascript">
+            $(window).scroll(function(e){ 
+            var $el = $('.super-header'); 
 
-        if ($(this).scrollTop() > 200){ 
-                $('.navbar').addClass("navbar-fixed-top");
-            }
-        if ($(this).scrollTop() < 200){
-                $('.navbar').removeClass("navbar-fixed-top");
-        } 
-    }); 
+            if ($(this).scrollTop() > 200){ 
+                    $('.navbar').addClass("navbar-fixed-top");
+                }
+            if ($(this).scrollTop() < 200){
+                    $('.navbar').removeClass("navbar-fixed-top");
+            } 
+        }); 
     </script>
 </body>
 </html>

@@ -64,7 +64,7 @@ class DocumentsController extends AdminBaseController
         if( !empty($file)){
             if( $file->getClientOriginalExtension() == 'pdf'){
                 Storage::disk('public')->putFileAs('/documents', $request->file('file'), $request->file('file')->getClientOriginalName());
-                $requests['file'] = '/documents/'.$request->file('file')->getClientOriginalName(); 
+                $requests['file'] = '\documents\\'.$request->file('file')->getClientOriginalName(); 
             }
             else {
                 $requests['file'] = '';
@@ -102,7 +102,7 @@ class DocumentsController extends AdminBaseController
             if( $file->getClientOriginalExtension() == 'pdf'){
                 Storage::disk('public')->delete($documents->file);
                 Storage::disk('public')->putFileAs('/documents', $request->file('file'), $request->file('file')->getClientOriginalName());
-                $requests['file'] = '/documents/'.$file->getClientOriginalName(); 
+                $requests['file'] = '\documents\\'.$request->file('file')->getClientOriginalName(); 
             }
             else {
                 $requests['file'] = '';

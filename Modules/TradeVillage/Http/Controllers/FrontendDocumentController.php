@@ -5,6 +5,7 @@ namespace Modules\TradeVillage\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Modules\TradeVillage\Entities\Documents;
 use Modules\TradeVillage\Http\Requests\CreateDocumentsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateDocumentsRequest;
@@ -22,9 +23,9 @@ class FrontendDocumentController extends BasePublicController
         $this->document = $document;
     }
 
-    public function index()
+    public function show(Documents $document)
     {
-        $documents = $this->document->all();
-        return view('tradevillage::frontend.education.documents.index', compact('documents', 'villages'));
+        $path = storage_path('app\public').$document->file;
+        return response()->file($path);
     }
 }

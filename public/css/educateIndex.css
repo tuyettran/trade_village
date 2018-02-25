@@ -1,0 +1,59 @@
+.course-feed {
+	list-style: none;
+	padding: 5px;
+}
+.course-status {
+	margin-left: 30px;
+}
+.category, .course, .cate-intro, .sidebar-educate {
+	padding: 0;
+}
+.category {
+	min-height: 170px;
+	max-height: 300px;
+	overflow: hidden;
+	margin: 5px 0 35px;
+	padding-right: 30px;
+}
+.course {
+	padding-left: 5px;
+	height: auto;
+	max-height: 190px;
+}
+.course-list {
+	font-size: 11px !important;
+}
+.sidebar-educate {
+	background-color: #b3b3b3;
+	margin: 15px 0 5px;
+	min-height: 600px;
+}
+.cate-intro {
+	background-color: #ffcc66 !important;
+	padding: 3px 3px 3px 10px;
+	height: auto;
+	min-height: 190px;
+	border-radius: 3px;
+}
+.main-content {
+	margin-top: 5px !important;
+	min-height: 600px;
+	height: auto;
+	padding-left: 20px !important;
+}
+.course-feed {
+	background-color: white;
+	margin: 7px;
+	margin-top: 0;
+	border-radius: 3px;
+}
+.new-updated-courses {
+	margin-top: 45px;
+}
+.search-form {
+	width: auto;
+	margin-bottom: 0;
+}
+.show-all {
+	margin-right: 10px;
+}
