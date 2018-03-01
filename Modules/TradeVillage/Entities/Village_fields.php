@@ -12,4 +12,14 @@ class Village_fields extends Model
     protected $table = 'tradevillage__village_fields';
     public $translatedAttributes = ['name', 'description'];
     protected $fillable = ['id'];
+
+    public function villages()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Villages', 'category_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Products', 'category_id');
+    }
 }

@@ -20,6 +20,7 @@ return [
         'cost' => 'Giá',
         'material' => 'Chất liệu',
         'actions' => 'Hành động',
+        'category' => 'Category',
     ],
     'form' => [
         'name' => 'Tên',
@@ -34,6 +35,7 @@ return [
         'detail' => 'Chi tiết',
         'visitor_counter' => 'Số lượt xem',
         'model' => 'Mô hình 3D',
+        'category' => 'Category',
     ],
     'messages' => [
     ],

@@ -11,7 +11,7 @@
 		<div class="col-md-3 pull-right">
 			<form class="navbar-form pull-right search-form" role="search">
 		        <div class="input-group add-on">
-		            <input class="form-control" placeholder="Tìm kiếm sản phẩm..." name="srch-term" id="srch-term" type="text">
+		            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search product') }}" name="srch-term" id="srch-term" type="text">
 		            <div class="input-group-btn">
 		                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 		            </div>
@@ -19,28 +19,27 @@
 		    </form>
 		</div>
 		<div class="col-md-9 filter">
-			@include('tradevillage::frontend.education.partials.filter')
+			@include('tradevillage::frontend.education.partials.filter', ['categories' => $categories])
 		</div>
 		
 	</div>
 	
 	<div class="row">
 		<div class="col-md-9 col-sm-12">
-			<div class="row categories-item">
-                <div>
-                    <a href="#"><h4 class="text">Mây Tre Đan</h4></a>
-                   	<div id="products" class="row list-group">
-                   		@foreach ($products as $product)
-	                        @include('tradevillage::frontend.villages.products.partials.product')
-	                    @endforeach
+            @foreach ($categories as $category)
+				<div class="row categories-item">
+            		<a href="#"><h4 class="text">{{ $category->translate(locale())->name }}</h4></a>
+               		<div id="products" class="row list-group">
+                        @include('tradevillage::frontend.villages.products.partials.product', ['category' => $category])
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
         <div class="col-md-3 col-sm-12">
         	@include('tradevillage::frontend.villages.products.partials.sidebar')
         </div>
 	</div>
+	@include('core::partials.delete-modal')
 @stop
 
 @section('scripts')

@@ -54,6 +54,19 @@
                             </select>
                             {!! $errors->first("enterprise_id", '<span class="help-block">:message</span>') !!}
                         </div>
+                        <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
+                            {!! Form::label("village_id", trans("tradevillage::products.form.category")) !!}
+                            <select name="category_id">
+                                @if( isset($categories))
+                                    @foreach( $categories as $category)
+                                        @if( $category->locale == locale())
+                                            <option value={{$category->village_fields_id}}>{{$category->name}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            {!! $errors->first("category_id", '<span class="help-block">:message</span>') !!}
+                        </div>
                         <div class="form-group{{ $errors->has("cost") ? " has-error" : "" }}">
                             {!! Form::label("cost", trans("tradevillage::products.form.cost")) !!}
                                 
@@ -64,7 +77,7 @@
                         <div class="form-group{{ $errors->has("images") ? " has-error" : "" }}">
                             {!! Form::label("model", trans("tradevillage::products.form.images")) !!}
                                 
-                            <input type="file" name="image[]" id="images" multiple />
+                            <input type="file" name="image[]" id="images" multiple required />
                                 
                             {!! $errors->first("images", '<span class="help-block">:message</span>') !!}
 

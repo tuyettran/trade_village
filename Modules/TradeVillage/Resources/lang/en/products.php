@@ -20,6 +20,7 @@ return [
         'cost' => 'Cost',
         'material' => 'Material',
         'actions' => 'Actions',
+        'category' => 'Category',
     ],
     'form' => [
         'name' => 'Name',
@@ -34,6 +35,7 @@ return [
         'detail' => 'Detail',
         'visitor_counter' => 'Visitor counter',
         'model' => '3D model',
+        'category' => 'Category',
     ],
     'messages' => [
     ],

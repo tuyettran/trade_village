@@ -18,4 +18,19 @@ class Villages extends Model
     public function getImageVillageAttribute(){
     	return $this->filesByZone('image_village')->first();
     }
+
+    public function category()
+	{
+	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Village_fields", 'category_id');
+	}
+
+    public function artists()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Artist', 'village_id');
+    }
+
+    public function enterprises()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Enterprises', 'village_id');
+    }
 }
