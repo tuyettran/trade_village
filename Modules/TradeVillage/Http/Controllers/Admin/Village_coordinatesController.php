@@ -4,6 +4,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Entities\Village_coordinates;
 use Modules\TradeVillage\Http\Requests\CreateVillage_coordinatesRequest;
 use Modules\TradeVillage\Http\Requests\UpdateVillage_coordinatesRequest;
@@ -30,10 +31,10 @@ class Village_coordinatesController extends AdminBaseController
      * @return Response
      */
     public function index()
-    {
-        //$village_coordinates = $this->village_coordinates->all();
-
-        return view('tradevillage::admin.village_coordinates.index', compact(''));
+    {   
+        $village_coordinates = $this->village_coordinates->all();
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.village_coordinates.index', compact('village_coordinates', 'villages'));
     }
 
     /**
@@ -43,7 +44,8 @@ class Village_coordinatesController extends AdminBaseController
      */
     public function create()
     {
-        return view('tradevillage::admin.village_coordinates.create');
+        $villages = DB::table('tradevillage__villages_translations')->get();
+        return view('tradevillage::admin.village_coordinates.create', compact('villages'));
     }
 
     /**

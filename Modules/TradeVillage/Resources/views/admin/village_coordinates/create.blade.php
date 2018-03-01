@@ -25,6 +25,15 @@
                             @include('tradevillage::admin.village_coordinates.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
+                    <div class="box-body">
+                        {!! Form::label("map", trans("tradevillage::village_coordinates.form.map")) !!}
+                        <input id="savebutton" type="button" value="Save">
+                        <input id="lat" name="lat" style="display: none;">
+                        <input id="lng" name="lng" style="display: none;">
+                        <!-- <textarea id="savedata" rows="5" cols="70"></textarea> -->
+                        <input id="cancelbutton" type="button" value="Cancel">
+                        <div class="col-md-12" id="map" style="width:100%;height: 500px;"></div>
+                    </div>
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
@@ -48,6 +57,100 @@
 @stop
 
 @push('js-stack')
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
+    <script type="text/javascript">
+        function initMap() {
+            var myLatLng = {lat: 21.027764, lng: 105.834160};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: myLatLng
+            });
+            
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.MARKER,
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['polygon']
+                },
+            });
+            drawingManager.setMap(map);
+
+            var polygons = [];
+
+            google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                polygons.push(polygon);
+            });
+
+            google.maps.event.addDomListener(savebutton, 'click', function() {
+                var lat = "";
+                var lng = "";
+                for (var i = 0; i < polygons.length; i++) {
+                    var polygonBounds = polygons[i].getPath();
+                    for (var j = 0; j < polygonBounds.length; j++)
+                    {
+                        lat += polygonBounds.getAt(j).lat() + "|";
+                        lng += polygonBounds.getAt(j).lng() + "|";
+                    }
+                    document.getElementById('lat').value = lat;
+                    document.getElementById('lng').value = lng;
+                }
+            });
+
+            google.maps.event.addDomListener(cancelbutton, 'click', function() {
+                var myLatLng = {lat: 21.027764, lng: 105.834160};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: myLatLng
+            });
+            
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.MARKER,
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['polygon']
+                },
+            });
+            drawingManager.setMap(map);
+
+            var polygons = [];
+
+            google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                polygons.push(polygon);
+            });
+
+            google.maps.event.addDomListener(savebutton, 'click', function() {
+                var lat = "";
+                var lng = "";
+                for (var i = 0; i < polygons.length; i++) {
+                    var polygonBounds = polygons[i].getPath();
+                    for (var j = 0; j < polygonBounds.length; j++)
+                    {
+                        lat += polygonBounds.getAt(j).lat() + "|";
+                        lng += polygonBounds.getAt(j).lng() + "|";
+                    }
+                    document.getElementById('lat').value = lat;
+                    document.getElementById('lng').value = lng;
+                }
+            });
+            });
+            google.maps.event.addDomListener(window, 'load', initMap);
+        }
+        initMap();
+    </script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({

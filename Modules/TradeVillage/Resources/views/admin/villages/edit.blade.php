@@ -49,6 +49,15 @@
                         </div>
                         
                         @mediaSingle('image_village',$villages)
+
+                        {!! Form::label("map", trans("tradevillage::villages.form.map")) !!}
+                        <input type="text" id="olat" value="{{ $villages->lat }}" style="display: none;">
+                        <input type="text" id="olng" value="{{ $villages->lng }}" style="display: none;">
+                        <input id="savebutton" type="button" value="Save">
+                        <input id="lat" name="lat" style="display: none;">
+                        <input id="lng" name="lng" style="display: none;">
+                        <input id="cancelbutton" type="button" value="Edit">
+                        <div class="col-md-12" id="map" style="width:100%;height: 500px;"></div>
                     </div>
 
                     <div class="box-footer">
@@ -73,6 +82,98 @@
 @stop
 
 @push('js-stack')
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
+    <script type="text/javascript">
+        function initMap() {
+            document.getElementById('lat').value = document.getElementById('olat').value;
+            document.getElementById('lng').value = document.getElementById('olng').value;
+            var lt = document.getElementById('olat').value.split("|");
+            var lg = document.getElementById('olng').value.split("|");
+            var lat = new Array();
+            var lng = new Array();
+            for(var i = 0; i < lt.length-1; i++) {
+                lat[i] = parseFloat(lt[i]);
+                lng[i] = parseFloat(lg[i]);
+            }
+
+            var myLatLng = {lat: lat[0], lng: lng[0]};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: myLatLng
+            });
+            
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+
+            var polygonCoords  = [];
+            for(var i = 0; i < lat.length; i++) { 
+                polygonCoords.push(new google.maps.LatLng(lat[i],lng[i]));
+            }
+
+            var polygon = new google.maps.Polygon({
+                paths: polygonCoords,
+                strokeColor: 'black',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#505256',
+                fillOpacity: 0.4
+            });
+
+            polygon.setMap(map);
+
+            google.maps.event.addDomListener(cancelbutton, 'click', function() {
+                document.getElementById('lat').value = "";
+                document.getElementById('lng').value = "";
+                var myLatLng = {lat: 21.027764, lng: 105.834160};
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 18,
+                    center: myLatLng
+                });
+                
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map
+                });
+
+                var drawingManager = new google.maps.drawing.DrawingManager({
+                    drawingMode: google.maps.drawing.OverlayType.MARKER,
+                    drawingControl: true,
+                    drawingControlOptions: {
+                        position: google.maps.ControlPosition.TOP_CENTER,
+                        drawingModes: ['polygon']
+                    },
+                });
+                drawingManager.setMap(map);
+
+                var polygons = [];
+
+                google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                    polygons.push(polygon);
+                });
+
+                google.maps.event.addDomListener(savebutton, 'click', function() {
+                    var lat = "";
+                    var lng = "";
+                    for (var i = 0; i < polygons.length; i++) {
+                        var polygonBounds = polygons[i].getPath();
+                        for (var j = 0; j < polygonBounds.length; j++)
+                        {
+                            lat += polygonBounds.getAt(j).lat() + "|";
+                            lng += polygonBounds.getAt(j).lng() + "|";
+                        }
+                        document.getElementById('lat').value = lat;
+                        document.getElementById('lng').value = lng;
+                    }
+                });
+            });
+            google.maps.event.addDomListener(window, 'load', initMap);
+        }
+        initMap();
+    </script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -104,7 +205,7 @@
                 var selectedProvinceIndex = document.getElementById( provinceElementId ).selectedIndex;
                 var districtElement = document.getElementById( districtElementId );          
                 districtElement.length = 0;
-                districtElement.options[0] = new Option('Select State','');
+                districtElement.options[0] = new Option('Select District','');
                 districtElement.selectedIndex = 0;   
                 var district_arr = district_a[selectedProvinceIndex].split("|");      
                 for (var i = 0; i < district_arr.length; i++) {
@@ -115,7 +216,7 @@
             function province(provinceElementId, districtElementId){
                 var provinceElement = document.getElementById(provinceElementId);
                 provinceElement.length = 0;
-                provinceElement.options[0] = new Option('Select Country','-1');
+                provinceElement.options[0] = new Option('Select Province','-1');
                 provinceElement.selectedIndex = 0;
                 for (var i = 0; i < province_arr.length; i++) {
                     provinceElement.options[provinceElement.length] = new Option(province_arr[i],province_arr[i]);

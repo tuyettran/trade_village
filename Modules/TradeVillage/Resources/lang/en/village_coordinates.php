@@ -14,8 +14,14 @@ return [
         'create village_coordinates' => 'Create a village_coordinates',
     ],
     'table' => [
+        'no' => 'No',
+        'village' => 'Village',
+        'map' => 'Map',
+        'actions' => 'Actions',
     ],
     'form' => [
+        'village' => 'Village',
+        'map' => 'Map',
     ],
     'messages' => [
     ],

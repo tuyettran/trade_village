@@ -33,6 +33,7 @@ return [
         'province' => 'Tỉnh/Thành Phố',
         'story' => 'Câu chuyện',
         'detail' => 'Chi tiết',
+        'map' => 'Bản đồ',
     ],
     'messages' => [
     ],
