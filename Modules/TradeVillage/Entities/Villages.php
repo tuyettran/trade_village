@@ -13,7 +13,7 @@ class Villages extends Model
 
     protected $table = 'tradevillage__villages';
     public $translatedAttributes = ['name', 'description', 'story', 'detail'];
-    protected $fillable = ['category_id', 'image', 'visitor_counter', 'district', 'province'];
+    protected $fillable = ['category_id', 'image', 'visitor_counter', 'district', 'province','lat','lng'];
 
     public function getImageVillageAttribute(){
     	return $this->filesByZone('image_village')->first();

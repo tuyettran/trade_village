@@ -29,18 +29,36 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.village') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.map') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($village_coordinates)): ?>
                             <?php foreach ($village_coordinates as $village_coordinates): ?>
+                            <input type="text" id="lat" value="{{ $village_coordinates->lat }}" style="display: none;">
+                            <input type="text" id="lng" value="{{ $village_coordinates->lng }}" style="display: none;">
+                            <input type="text" id="idNo" value="{{ $village_coordinates->id }}" style="display: none;">
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.village_coordinates.edit', [$village_coordinates->id]) }}">
-                                        {{ $village_coordinates->created_at }}
+                                        {{ $village_coordinates->id }}
                                     </a>
+                                </td>
+                                <td>
+                                    @foreach($villages as $village)
+                                        @if($village->villages_id == $village_coordinates->village_id && $village->locale == locale())
+                                            <a href="{{ route('admin.tradevillage.village_coordinates.edit', [$village_coordinates->id]) }}">
+                                                {{ $village->name }}
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <div class="col-md-12" id="map{{$village_coordinates->id}}" style="width:100%;height: 200px;"></div>
+
                                 </td>
                                 <td>
                                     <div class="btn-group">
@@ -54,9 +72,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.village') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.map') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::village_coordinates.table.actions') }}</th>
                             </tfoot>
                         </table>
                         <!-- /.box-body -->
@@ -80,6 +99,49 @@
 @stop
 
 @push('js-stack')
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing&callback=initMap" async defer></script>
+    <script type="text/javascript">
+        function initMap() {
+            var id = document.getElementById('idNo').value;
+            var idMap = 'map' + id; 
+            var lt = document.getElementById('lat').value.split("|");
+            var lg = document.getElementById('lng').value.split("|");
+            var lat = new Array();
+            var lng = new Array();
+            for(var i = 0; i < lt.length-1; i++) {
+                lat[i] = parseFloat(lt[i]);
+                lng[i] = parseFloat(lg[i]);
+            }
+
+            var myLatLng = {lat: 21.027764, lng: 105.834160};
+
+            var map = new google.maps.Map(document.getElementById(idMap), {
+                zoom: 16,
+                center: myLatLng
+            });
+            
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+
+            var polygonCoords  = [];
+            for(var i = 0; i < lat.length; i++) { 
+                polygonCoords.push(new google.maps.LatLng(lat[i],lng[i]));
+            }
+
+            var polygon = new google.maps.Polygon({
+                paths: polygonCoords,
+                strokeColor: 'black',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#505256',
+                fillOpacity: 0.4
+            });
+
+            polygon.setMap(map);
+        }
+    </script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({

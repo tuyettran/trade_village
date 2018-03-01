@@ -33,6 +33,7 @@ return [
         'province' => 'Province',
         'story' => 'Story',
         'detail' => 'Detail',
+        'map' => 'Map',
     ],
     'messages' => [
     ],

@@ -16,8 +16,8 @@ class CreateTradeVillageVillageCoordinatesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('village_id')->unsigned();
-            $table->double('lat', 20, 17);
-            $table->double('lng', 20, 17);
+            $table->text('lat');
+            $table->text('lng');
             // Your fields
             $table->timestamps();
 

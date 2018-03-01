@@ -10,6 +10,6 @@ class Village_coordinates extends Model
     use Translatable;
 
     protected $table = 'tradevillage__village_coordinates';
-    public $translatedAttributes = ['village_id', 'lat', 'lng'];
-    protected $fillable = [];
+    public $translatedAttributes = [];
+    protected $fillable = ['village_id', 'lat', 'lng'];
 }
