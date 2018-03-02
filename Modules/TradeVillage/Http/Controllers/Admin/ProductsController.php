@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Modules\TradeVillage\Entities\Products;
 use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
@@ -48,7 +49,8 @@ class ProductsController extends AdminBaseController
     {
         $artists = DB::table('tradevillage__artist_translations')->get();
         $enterprises = DB::table('tradevillage__enterprises_translations')->get();
-        return view('tradevillage::admin.products.create', compact('artists', 'enterprises'));
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::admin.products.create', compact('artists', 'enterprises', 'categories'));
     }
 
     /**
@@ -60,17 +62,28 @@ class ProductsController extends AdminBaseController
     public function store(CreateProductsRequest $request)
     {
         $requests = $request->all();
+        $requests['user_id'] = Auth::user()->id;
         $product = $this->products->create( $requests);
-        $path = '/public/products/'.$product->id;
+        $model_path = '/public/product/models/'.$product->id;
+        $images_path = '/product/images/'.$product->id;
         if( !empty($request->file('file'))){
             foreach ($request->file('file') as $photo) {
                 if(substr($photo->getMimeType(), 0, 5) == 'image') {
-                    Storage::putFileAs($path, $photo, $photo->getClientOriginalName());
+                    Storage::putFileAs($model_path, $photo, $photo->getClientOriginalName());
                 }
             }
-            $requests['model'] = $path; 
-            $product->update($requests);  
+
+            $requests['model'] = $model_path; 
         } 
+        if( !empty($request->file('image'))){
+            foreach ($request->file('image') as $photo) {
+                if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs('/public'.$images_path, $photo, $photo->getClientOriginalName());
+                }
+            }
+            $requests['images'] = $images_path.'\\';  
+            $this->products->update($product, $requests);;  
+        }
         return redirect()->route('admin.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('tradevillage::products.title.products')]));
     }
@@ -86,9 +99,13 @@ class ProductsController extends AdminBaseController
         if(!empty($products->model)){
             $files = Storage::files($products->model);
         }
+        if(!empty($products->images)){
+            $images = Storage::files('/public'.$products->images);
+        }
         $artists = DB::table('tradevillage__artist_translations')->get();
         $enterprises = DB::table('tradevillage__enterprises_translations')->get();
-        return view('tradevillage::admin.products.edit', compact('products', 'artists', 'enterprises', 'files'));
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::admin.products.edit', compact('products', 'artists', 'enterprises', 'files', 'images', 'categories'));
     }
 
     /**
@@ -101,7 +118,8 @@ class ProductsController extends AdminBaseController
     public function update(Products $products, UpdateProductsRequest $request)
     {
         $requests = $request->all();
-        $path = '/public/products/'.$products->id;
+        $path = '/public/product/models/'.$products->id;
+        $images_path = '/product/images/'.$products->id;
         if( !empty($request->delete_model)){
             if(!empty($products->model))
                 Storage::deleteDirectory($products->model);
@@ -119,6 +137,17 @@ class ProductsController extends AdminBaseController
             }
             $requests['model'] = $path;
         }
+        if( !empty($request->file('image'))){
+            if(!empty($products->images)){
+                Storage::deleteDirectory($products->images);
+            }
+            foreach ($request->file('image') as $photo) {
+                if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs('/public'.$images_path, $photo, $photo->getClientOriginalName());
+                }
+            }
+            $requests['images'] = $images_path.'\\';
+        }
         $this->products->update($products, $requests);
         return redirect()->route('admin.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('tradevillage::products.title.products')]));
@@ -133,7 +162,10 @@ class ProductsController extends AdminBaseController
     public function destroy(Products $products)
     {
         if( !empty($products->model)){
-            Storage::deleteDirectory($products->model);
+            Storage::deleteDirectory('/public'.$products->model);
+        }
+        if( !empty($products->images)){
+            Storage::deleteDirectory('/public'.$products->images);
         }
         $this->products->destroy($products);
         return redirect()->route('admin.tradevillage.products.index')

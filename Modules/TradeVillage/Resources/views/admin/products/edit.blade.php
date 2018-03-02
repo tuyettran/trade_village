@@ -61,6 +61,23 @@
                             </select>
                             {!! $errors->first("enterprise_id", '<span class="help-block">:message</span>') !!}
                         </div>
+                        <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
+                            {!! Form::label("village_id", trans("tradevillage::products.form.category")) !!}
+                            <select name="category_id">
+                                @if( isset($categories))
+                                    @foreach( $categories as $category)
+                                        @if( $category->locale == locale())
+                                            @if( $category->village_fields_id == $products->category_id)
+                                                <option value={{$category->village_fields_id}} selected> {{ $category->name }} </option>
+                                            @else
+                                                <option value={{$category->village_fields_id}}>{{$category->name}}</option>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            {!! $errors->first("category_id", '<span class="help-block">:message</span>') !!}
+                        </div>
                         <div class="form-group{{ $errors->has("cost") ? " has-error" : "" }}">
                             {!! Form::label("cost", trans("tradevillage::products.form.cost")) !!}
                                 
@@ -68,14 +85,25 @@
                                 
                             {!! $errors->first("cost", '<span class="help-block">:message</span>') !!}
                         </div>
-                        @mediaMultiple('images', $products)
+                        <div class="form-group{{ $errors->has("cost") ? " has-error" : "" }}">
+                            {!! Form::label("cost", trans("tradevillage::products.form.images")) !!}
+                            <input type="file" name="image[]" id="images" multiple required />
+                            <div class="row" id="image_preview">
+                                @if(isset($images))
+                                    @foreach( $images as $image)
+                                        <div class="col-md-2 col-xs-4">
+                                            <img src="{{ URL::asset(substr($image, 7)) }}" class="img-responsive thumbnail">
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
                         <div class="form-group{{ $errors->has("model") ? " has-error" : "" }}">
                             {!! Form::label("model", trans("tradevillage::products.form.model")) !!}
                             <br /> 
                             @if(isset($files))
                                 <div class="files-list">
-                                    <a class="btn btn-danger delete-model-btn btn-xs">x</a>
                                     &ensp;&ensp;({{count($files)}} files)
+                                    <a class="btn btn-danger delete-model-btn btn-xs">Delete X</a>
                                     <input type="text" name="delete_model" id="delete_model" hidden>
                                     <br />
                                     <div>
@@ -139,6 +167,14 @@
                 $("#file-1").prop("disabled", false);
                 $(".files-list").hide();
                 $("#delete_model").val("yes");
+            });
+            $("#images").change(function(){
+                $('#image_preview').html("");
+                var total_file=document.getElementById("images").files.length;
+                for(var i=0;i<total_file;i++)
+                {
+                    $('#image_preview').append("<div class=' col-md-2 col-xs-4'><img src='"+URL.createObjectURL(event.target.files[i])+"' class='img-responsive thumbnail medium-thumbnail' ></div>");
+                }
             });
         });
     </script>

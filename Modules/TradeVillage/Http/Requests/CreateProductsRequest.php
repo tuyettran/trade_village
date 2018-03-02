@@ -11,6 +11,7 @@ class CreateProductsRequest extends BaseFormRequest
         return [
             'cost' => 'required',
             'visitor_counter' => 'integer|min:0',
+            'category_id' => 'required|integer|min:1',
         ];
     }
 

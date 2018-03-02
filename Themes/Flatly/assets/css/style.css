@@ -4,12 +4,24 @@
 .pull-right {
 	clear: both;
 }
+.active {
+	font-weight: bold;
+	background-color: transparent;
+}
+.medium-thumbnail {
+	width: 100%;
+	max-height: 300px;
+}
 .oneline {
 	white-space: nowrap;
   	overflow: hidden;
   	text-overflow: ellipsis;
   	width: 100%;
   	margin-bottom: 0;
+}
+.search-form {
+	width: auto;
+	margin-bottom: 0;
 }
 a h5:hover, a h3:hover, a:hover {
 	text-decoration: none ;

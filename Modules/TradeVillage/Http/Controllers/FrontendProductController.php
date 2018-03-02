@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Gate;
 use Modules\TradeVillage\Entities\Products;
+use Modules\TradeVillage\Entities\Village_fields;
 use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
 use Modules\TradeVillage\Repositories\ProductsRepository;
+use Modules\TradeVillage\Repositories\Village_fieldsRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 
 class FrontendProductController extends BasePublicController
@@ -18,12 +22,14 @@ class FrontendProductController extends BasePublicController
      * @var ProductsRepository
      */
     private $products;
+    private $user;
 
-    public function __construct(ProductsRepository $products)
+    public function __construct(ProductsRepository $products, Village_fieldsRepository $category)
     {
         parent::__construct();
 
         $this->products = $products;
+        $this->category = $category;
     }
 
     /**
@@ -33,8 +39,8 @@ class FrontendProductController extends BasePublicController
      */
     public function index()
     {
-        $products = $this->products->paginate($perPage = 15);
-        return view('tradevillage::frontend.villages.products.index', compact('products'));
+        $categories = $this->category->all();
+        return view('tradevillage::frontend.villages.products.index', compact('categories'));
     }
 
     /**
@@ -44,9 +50,8 @@ class FrontendProductController extends BasePublicController
      */
     public function create()
     {
-        $artists = DB::table('tradevillage__artist_translations')->get();
-        $enterprises = DB::table('tradevillage__enterprises_translations')->get();
-        return view('tradevillage::admin.products.create', compact('artists', 'enterprises'));
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::frontend.villages.products.create', compact('categories'));
     }
 
     /**
@@ -58,18 +63,28 @@ class FrontendProductController extends BasePublicController
     public function store(CreateProductsRequest $request)
     {
         $requests = $request->all();
+        $requests['user_id'] = Auth::user()->id;
         $product = $this->products->create( $requests);
-        $path = '/public/products/'.$product->id;
+        $path = '/public/product/models/'.$product->id;
+        $images_path = '/product/images/'.$product->id;
         if( !empty($request->file('file'))){
             foreach ($request->file('file') as $photo) {
                 if(substr($photo->getMimeType(), 0, 5) == 'image') {
-                    Storage::putFileAs($path, $photo, $photo->getClientOriginalName());
+                    Storage::putFileAs($path, $photo, $photo->getClientOriginalName());  
                 }
             }
-            $requests['model'] = $path; 
-            $product->update($requests);  
-        } 
-        return redirect()->route('admin.tradevillage.products.index')
+            $requests['model'] = $path;
+        }
+        if( !empty($request->file('image'))){
+            foreach ($request->file('image') as $photo) {
+                if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs('/public'.$images_path, $photo, $photo->getClientOriginalName());
+                }
+            }
+            $requests['images'] = $images_path.'/';
+        }
+        $product->update($requests);
+        return redirect()->route('frontend.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('tradevillage::products.title.products')]));
     }
 
@@ -79,14 +94,20 @@ class FrontendProductController extends BasePublicController
      * @param  Products $products
      * @return Response
      */
-    public function edit(Products $products)
+    public function edit(Products $product)
     {
-        if(!empty($products->model)){
-            $files = Storage::files($products->model);
+        if (Gate::denies('update-product', $product)) {
+            abort(403);
         }
-        $artists = DB::table('tradevillage__artist_translations')->get();
-        $enterprises = DB::table('tradevillage__enterprises_translations')->get();
-        return view('tradevillage::admin.products.edit', compact('products', 'artists', 'enterprises', 'files'));
+
+        if(!empty($product->model)){
+            $files = Storage::files($product->model);
+        }
+        if(!empty($product->images)){
+            $images = Storage::files('/public'.$product->images);
+        }
+        $categories = DB::table('tradevillage__village_fields_translations')->get();
+        return view('tradevillage::frontend.villages.products.edit', compact('product', 'files', 'images', 'categories'));
     }
 
     /**
@@ -98,8 +119,12 @@ class FrontendProductController extends BasePublicController
      */
     public function update(Products $products, UpdateProductsRequest $request)
     {
+        if (Gate::denies('update-product', $products)) {
+            abort(403);
+        }
         $requests = $request->all();
-        $path = '/public/products/'.$products->id;
+        $path = '/public/product/models/'.$products->id;
+        $images_path = '/product/images/'.$products->id;
         if( !empty($request->delete_model)){
             if(!empty($products->model))
                 Storage::deleteDirectory($products->model);
@@ -117,8 +142,19 @@ class FrontendProductController extends BasePublicController
             }
             $requests['model'] = $path;
         }
+        if( !empty($request->file('image'))){
+            if(!empty($products->images)){
+                Storage::deleteDirectory($products->images);
+            }
+            foreach ($request->file('image') as $photo) {
+                if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs('/public'.$images_path, $photo, $photo->getClientOriginalName());
+                }
+            }
+            $requests['images'] = $images_path.'/';
+        }
         $this->products->update($products, $requests);
-        return redirect()->route('admin.tradevillage.products.index')
+        return redirect()->route('frontend.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('tradevillage::products.title.products')]));
     }
 
@@ -130,11 +166,17 @@ class FrontendProductController extends BasePublicController
      */
     public function destroy(Products $products)
     {
+        if (Gate::denies('update-product', $products)) {
+            abort(403);
+        }
         if( !empty($products->model)){
             Storage::deleteDirectory($products->model);
         }
+        if( !empty($products->images)){
+            Storage::deleteDirectory('/public'.$products->images);
+        }
         $this->products->destroy($products);
-        return redirect()->route('admin.tradevillage.products.index')
+        return redirect()->route('frontend.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('tradevillage::products.title.products')]));
     }
 }

@@ -100,20 +100,9 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                     );
                 });
 
-                $item->item(trans('tradevillage::course_comments.title.course_comments'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.course_comments.create');
-                    $item->route('admin.tradevillage.course_comments.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.course_comments.index')
-                    );
-                });
-
                 $item->item(trans('tradevillage::product_comments.title.product_comments'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
-                    $item->append('admin.tradevillage.product_comments.create');
                     $item->route('admin.tradevillage.product_comments.index');
                     $item->authorize(
                         $this->auth->hasAccess('tradevillage.product_comments.index')
@@ -133,33 +122,80 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                 $item->item(trans('tradevillage::product_rates.title.product_rates'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
-                    $item->append('admin.tradevillage.product_rate.create');
                     $item->route('admin.tradevillage.product_rate.index');
                     $item->authorize(
                         $this->auth->hasAccess('tradevillage.product_rates.index')
                     );
                 });
 
+                $item->item(trans('tradevillage::events.title.events'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.events.create');
+                    $item->route('admin.tradevillage.events.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.events.index')
+                    );
+                });
+                $item->item(trans('tradevillage::artists.title.artists'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.artist.create');
+                    $item->route('admin.tradevillage.artist.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.artists.index')
+                    );
+                });
+                
+                // $item->item(trans('tradevillage::provinces.title.provinces'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.tradevillage.provinces.create');
+                //     $item->route('admin.tradevillage.provinces.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('tradevillage.provinces.index')
+                //     );
+                // });
+                // $item->item(trans('tradevillage::districts.title.districts'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.tradevillage.districts.create');
+                //     $item->route('admin.tradevillage.districts.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('tradevillage.districts.index')
+                //     );
+                // });
+
+            });
+            
+        });
+
+        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+            $group->item(trans('tradevillage::trade_villages.title.education'), function (Item $item) {
+                $item->icon('fa fa-copy');
+                $item->weight(10);
+                $item->authorize(
+                     /* append */
+                );
+
+                $item->item(trans('tradevillage::course_comments.title.course_comments'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->route('admin.tradevillage.course_comments.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.course_comments.index')
+                    );
+                });
+
                 $item->item(trans('tradevillage::course_rates.title.course_rates'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
-                    $item->append('admin.tradevillage.course_rates.create');
                     $item->route('admin.tradevillage.course_rates.index');
                     $item->authorize(
                         $this->auth->hasAccess('tradevillage.course_rates.index')
                     );
                 });
 
-                $item->item(trans('tradevillage::village_coordinates.title.village_coordinates'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.village_coordinates.create');
-                    $item->route('admin.tradevillage.village_coordinates.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.village_coordinates.index')
-                    );
-                });
-                
                 $item->item(trans('tradevillage::courses.title.courses'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
@@ -206,68 +242,8 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.videos.index')
                     );
                 });
-                
-                $item->item(trans('tradevillage::events.title.events'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.events.create');
-                    $item->route('admin.tradevillage.events.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.events.index')
-                    );
-                });
-                $item->item(trans('tradevillage::artists.title.artists'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.artist.create');
-                    $item->route('admin.tradevillage.artist.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.artists.index')
-                    );
-                });
-                
-                $item->item(trans('tradevillage::provinces.title.provinces'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.provinces.create');
-                    $item->route('admin.tradevillage.provinces.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.provinces.index')
-                    );
-                });
-                $item->item(trans('tradevillage::districts.title.districts'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.districts.create');
-                    $item->route('admin.tradevillage.districts.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.districts.index')
-                    );
-                });
-// append
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             });
+            
         });
 
         return $menu;

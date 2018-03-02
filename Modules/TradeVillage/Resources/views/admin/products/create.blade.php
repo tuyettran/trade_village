@@ -54,6 +54,19 @@
                             </select>
                             {!! $errors->first("enterprise_id", '<span class="help-block">:message</span>') !!}
                         </div>
+                        <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
+                            {!! Form::label("village_id", trans("tradevillage::products.form.category")) !!}
+                            <select name="category_id">
+                                @if( isset($categories))
+                                    @foreach( $categories as $category)
+                                        @if( $category->locale == locale())
+                                            <option value={{$category->village_fields_id}}>{{$category->name}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                            {!! $errors->first("category_id", '<span class="help-block">:message</span>') !!}
+                        </div>
                         <div class="form-group{{ $errors->has("cost") ? " has-error" : "" }}">
                             {!! Form::label("cost", trans("tradevillage::products.form.cost")) !!}
                                 
@@ -61,7 +74,16 @@
                                 
                             {!! $errors->first("cost", '<span class="help-block">:message</span>') !!}
                         </div>
-                        @mediaMultiple('images')
+                        <div class="form-group{{ $errors->has("images") ? " has-error" : "" }}">
+                            {!! Form::label("model", trans("tradevillage::products.form.images")) !!}
+                                
+                            <input type="file" name="image[]" id="images" multiple required />
+                                
+                            {!! $errors->first("images", '<span class="help-block">:message</span>') !!}
+
+                            <div class="row" id="image_preview"></div>
+                        </div>
+                        
                         <div class="form-group{{ $errors->has("3D_image") ? " has-error" : "" }}">
                             {!! Form::label("model", trans("tradevillage::products.form.model")) !!}
                                 
@@ -106,6 +128,14 @@
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
+            });
+            $("#images").change(function(){
+                $('#image_preview').html("");
+                var total_file=document.getElementById("images").files.length;
+                for(var i=0;i<total_file;i++)
+                {
+                    $('#image_preview').append("<div class=' col-md-2 col-xs-4'><img src='"+URL.createObjectURL(event.target.files[i])+"' class='img-responsive thumbnail medium-thumbnail' ></div>");
+                }
             });
         });
     </script>

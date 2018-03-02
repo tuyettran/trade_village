@@ -11,7 +11,6 @@
     </title>
     <link rel="shortcut icon" href="{{ Theme::url('favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-
     {!! Theme::style('css/style.css') !!}
     {!! Theme::style('css/header_footer.css') !!}
     {!! Theme::style('library/css/bootstrap.min.css') !!}
@@ -28,7 +27,8 @@
     </div>
     @include('partials.footer')
 
-    {!! Theme::script('js/all.js') !!}
+<!--     {!! Theme::script('js/all.js') !!} -->
+    <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
     {!! Theme::script('library/js/jquery-3.2.1.min.js') !!}
     {!! Theme::script('library/js/bootstrap.min.js') !!}
     @yield('scripts')
@@ -49,5 +49,7 @@
             } 
         }); 
     </script>
+    <script src="{{ URL::asset('ckeditor/ckeditor.js') }}"></script>
+    <script> CKEDITOR.replaceAll('editor1'); </script>
 </body>
 </html>

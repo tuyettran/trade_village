@@ -14,11 +14,7 @@ class Products extends Model
 
     protected $table = 'tradevillage__products';
     public $translatedAttributes = ['name', 'description', 'material', 'detail'];
-    protected $fillable = ['enterprise_id', 'image', 'model', 'cost', 'artist_id'];
-
-    public function getFeatureImageAttribute(){
-    	return $this->filesByZone('images')->get();
-    }
+    protected $fillable = ['enterprise_id', 'images', 'model', 'cost', 'artist_id', 'category_id', 'user_id'];
 
     public function documents()
     {
@@ -28,5 +24,10 @@ class Products extends Model
     public function rates()
     {
         return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_rate', 'p');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('Modules\\TradeVillage\\Entities\\Village_fields', 'category_id');
     }
 }

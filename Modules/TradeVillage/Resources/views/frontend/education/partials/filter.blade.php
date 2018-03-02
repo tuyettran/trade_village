@@ -1,17 +1,18 @@
 <div class="filter-group">
-	<button class="filter-item">Tên<span class="glyphicon glyphicon glyphicon-sort"></span></button>
-	<button class="filter-item">Yêu thích<span class="glyphicon glyphicon glyphicon-sort"></span></button>
+	<button class="filter-item">{{ trans('tradevillage::main.filter.name') }}<span class="glyphicon glyphicon glyphicon-sort"></span></button>
+	<button class="filter-item">{{ trans('tradevillage::main.filter.favorite') }}<span class="glyphicon glyphicon glyphicon-sort"></span></button>
 </div>
 <div class="filter-group">
 	<table>
 		<tr>
-			<td><p class="filter-item">Lĩnh vực</p></td>
+			<td><p class="filter-item">{{ trans('tradevillage::main.filter.category') }}</p></td>
 			<td>
 				<select class="form-control filter-item">
-			        <option>Vải lụa</option>
-			        <option>Gốm & điêu khắc</option>
-			        <option>Ẩm thực</option>
-			        <option>Mây tre đan</option>
+					@foreach($categories as $category)
+			        <option value={{ $category->village_fields_id }}>
+			        	{{ $category->translate(locale())->name }}
+			        </option>
+			        @endforeach
 			    </select>
 			</td>
 		</tr>
