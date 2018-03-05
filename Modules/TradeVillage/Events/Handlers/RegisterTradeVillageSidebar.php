@@ -233,6 +233,17 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.edu_course_fields.index')
                     );
                 });
+
+                $item->item(trans('tradevillage::course_users.title.course_users'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.course_users.create');
+                    $item->route('admin.tradevillage.course_users.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.course_users.index')
+                    );
+                });
+
                 $item->item(trans('tradevillage::videos.title.videos'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);

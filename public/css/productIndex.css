@@ -7,6 +7,12 @@
     list-style-type: none;
 }
 
+.carousel-control.right,
+.carousel-control.left {
+    background-image: none !important;
+    color: black;
+}
+
 .img-bar {
     width: 50px;
     height: 50px;
@@ -28,6 +34,15 @@ a:hover {
     color: #0000cc;
 }
 
+.product-footer {
+    margin-top: 10px;
+}
+
+.list-group {
+    padding-left: 10px;
+    margin: 10px;
+}
+
 .product-name {
     color: #ff8000;
 }
@@ -38,12 +53,13 @@ a:hover {
 }
 
 .thumbnail {
-    height: 275px;
+    height: 315px;
+    position: relative;
 }
 
 .categories {
     margin-top: 20px;
-    max-height: 300px;
+    max-height: 315px;
     overflow: hidden;
 }
 
@@ -55,6 +71,7 @@ a:hover {
 .bar {
     background-color: #f6f6ee;
     margin-top: 50px;
+    padding-top: 5px !important;
 }
 
 /*filter*/

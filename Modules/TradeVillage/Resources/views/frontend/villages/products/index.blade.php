@@ -27,11 +27,15 @@
 	<div class="row">
 		<div class="col-md-9 col-sm-12">
             @foreach ($categories as $category)
-				<div class="row categories-item">
-            		<a href="#"><h4 class="text">{{ $category->translate(locale())->name }}</h4></a>
-               		<div id="products" class="row list-group">
-                        @include('tradevillage::frontend.villages.products.partials.product', ['category' => $category])
-                    </div>
+				<div class="row">
+					<div class="categories-item">
+						<a href="#"><h4 class="text">{{ mb_strtoupper($category->translate(locale())->name, "UTF-8") }}</h4></a>
+	               		<div id="products" class="row">
+	               			<div class="list-group">
+	               				@include('tradevillage::frontend.villages.products.partials.product', ['category' => $category])
+	               			</div>
+	                    </div>
+					</div>
                 </div>
             @endforeach
         </div>
