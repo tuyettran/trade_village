@@ -5,6 +5,7 @@ return [
     'create resource' => 'Thêm sản phẩm',
     'edit resource' => 'Sửa sản phẩm',
     'destroy resource' => 'Xóa sản phẩm',
+    'unit' => 'VNĐ',
     'title' => [
         'products' => 'Sản phẩm',
         'create products' => 'Thêm sản phẩm',

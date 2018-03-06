@@ -15,7 +15,6 @@
     <div class="form-group{{ $errors->has("{$lang}.detail") ? " has-error" : "" }}">
         {!! Form::i18nTextarea("detail", trans("tradevillage::products.form.detail"), $errors, $lang, ['id' => 'editor1']) !!}
         
-        {!! $errors->first("{$lang}.detail", '<span class="help-block">:message</span>') !!}
     </div>
     <div class="form-group{{ $errors->has("{$lang}.material") ? " has-error" : "" }}">
         {!! Form::label("{$lang}[material]", trans("tradevillage::products.form.material")) !!}

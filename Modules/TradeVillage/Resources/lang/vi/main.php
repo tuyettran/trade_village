@@ -16,5 +16,10 @@ return [
         'name' => 'Tên',
         'favorite' => 'Yêu thích',
         'search product' => 'Tìm kiếm sản phẩm'
+    ],
+    'sidebar' => [
+        'newest_products' => 'Sản phẩm mới',
+        'favorite_products' => 'Sản phẩm được yêu thích',
+        'hot_products' => 'Phổ biến',
     ]
 ];

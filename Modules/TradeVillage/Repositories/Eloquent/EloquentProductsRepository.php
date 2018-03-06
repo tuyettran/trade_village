@@ -4,11 +4,34 @@ namespace Modules\TradeVillage\Repositories\Eloquent;
 
 use Illuminate\Support\Facades\DB;
 use Modules\TradeVillage\Repositories\ProductsRepository;
+
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentProductsRepository extends EloquentBaseRepository implements ProductsRepository
 {
-	// public function findByCategory($category){
-	// 	$products = DB::table('tradevillage__products')->join('tradevillage__enterprises', 'tradevillage__products.enterprise_id', '=', 'tradevillage__enterprises.id')->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__enterprises.village_id')->where('tradevillage__villages.category_id', '=', $category)->select('tradevillage__products.*')->limit(4)->get();
-	// 	return $products;
+	public function newest($number)
+    {
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->orderBy('created_at', 'DESC')->limit($number)->get();
+        }
+
+        return $this->model->orderBy('created_at', 'DESC')->limit($number)->get();
+    }
+
+    public function favorite($number)
+    {
+    	if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->join('tradevillage__product_rates', 'product_id', '=', 'tradevillage__products.id')->select(array('tradevillage__products.*',DB::raw('AVG(value) as ratings_average')))->groupBy('product_id')->orderBy('ratings_average', 'DESC')->limit($number)->get();
+        }
+
+        return $this->model->join('tradevillage__product_rates', 'product_id', '=', 'tradevillage__products.id')->select(array('tradevillage__products.*',DB::raw('AVG(value) as ratings_average')))->groupBy('product_id')->orderBy('ratings_average', 'DESC')->limit($number)->get();
+    }
+
+    public function hot($number){
+    	if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->orderBy('visitor_counter', 'DESC')->limit($number)->get();
+        }
+        return $this->model->orderBy('visitor_counter', 'DESC')->limit($number)->get();
+    }
+    
 }

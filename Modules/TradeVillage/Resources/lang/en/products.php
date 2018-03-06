@@ -5,6 +5,7 @@ return [
     'create resource' => 'Create product',
     'edit resource' => 'Edit product',
     'destroy resource' => 'Destroy product',
+    'unit' => 'VND',
     'title' => [
         'products' => 'Products',
         'create products' => 'Create a product',

@@ -23,7 +23,7 @@ class Products extends Model
 
     public function rates()
     {
-        return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_rate', 'p');
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_rate', 'Product_id');
     }
 
     public function category()
