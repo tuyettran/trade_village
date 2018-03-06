@@ -13,7 +13,9 @@ class UpdateCoursesRequest extends BaseFormRequest
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required',
+        ];
     }
 
     public function authorize()
