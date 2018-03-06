@@ -13,7 +13,10 @@ class UpdateVillage_fieldsRequest extends BaseFormRequest
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required',
+            'description' => 'required',
+        ];
     }
 
     public function authorize()

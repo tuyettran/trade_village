@@ -8,12 +8,15 @@ class CreateCoursesRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required',
+        ];
     }
 
     public function authorize()

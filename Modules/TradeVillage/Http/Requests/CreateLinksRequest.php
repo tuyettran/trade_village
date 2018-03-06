@@ -8,12 +8,17 @@ class CreateLinksRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'link' => 'required',
+            'village_id' => 'required|integer|min:1',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'title' => 'required',
+        ];
     }
 
     public function authorize()

@@ -8,12 +8,17 @@ class CreateNewsRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'village_id' => 'required|integer|min:1',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'title' => 'required',
+            'content' => 'required',
+        ];
     }
 
     public function authorize()

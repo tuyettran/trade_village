@@ -8,12 +8,19 @@ class CreateEnterprisesRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'village_id' => 'required|integer|min:1',
+            'contact' => 'required', 
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'description' => 'required',
+            'name' => 'required',
+            'detail' => 'required',
+        ];
     }
 
     public function authorize()

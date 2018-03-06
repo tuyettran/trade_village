@@ -8,12 +8,22 @@ class UpdateVillagesRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'category_id' => 'required|integer|min:1',
+            'visitor_counter' => 'required|integer',
+            'district' => 'required',
+            'province' => 'required',
+        ];
     }
 
     public function translationRules()
     {
-        return [];
+        return [
+            'name' => 'required',
+            'description' => 'required',
+            'story' => 'required',
+            'detail' => 'required',
+        ];
     }
 
     public function authorize()
