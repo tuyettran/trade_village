@@ -13,13 +13,13 @@ class Product_rate extends Model
 
     public function product()
 	{
-	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Products", 'p');
+	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Products", 'product_id');
 	}
 
 	public function user()
 	{
 		$driver = config('asgard.user.users.driver');
 
-    	return $this->belongsTo('Modules\\User\\Entities\\{$driver}\\User', 'u');
+    	return $this->belongsTo('Modules\\User\\Entities\\{$driver}\\User', 'user_id');
 	}
 }

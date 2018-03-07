@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Modules\TradeVillage\Entities\Products;
 use Modules\TradeVillage\Entities\Village_fields;
+use Modules\TradeVillage\Repositories\EnterprisesRepository;
+use Modules\TradeVillage\Repositories\ArtistRepository;
 use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
 use Modules\TradeVillage\Repositories\ProductsRepository;
@@ -22,14 +25,15 @@ class FrontendProductController extends BasePublicController
      * @var ProductsRepository
      */
     private $products;
-    private $user;
 
-    public function __construct(ProductsRepository $products, Village_fieldsRepository $category)
+    public function __construct(ProductsRepository $products, Village_fieldsRepository $category, ArtistRepository $artist, EnterprisesRepository $enterprise)
     {
         parent::__construct();
 
         $this->products = $products;
         $this->category = $category;
+        $this->artist = $artist;
+        $this->enterprise = $enterprise;
     }
 
     /**
@@ -49,11 +53,19 @@ class FrontendProductController extends BasePublicController
     public function show(Products $product)
     {
         $categories = $this->category->all();
-        $newest_products = $this->products->newest(4);
-        $favorite = $this->products->favorite(4);
-        $hot = $this->products->hot(4);
         $images = Storage::files('/public/product/images/'.$product->id);
-        return view('tradevillage::frontend.villages.products.show', compact('newest_products', 'favorite', 'hot', 'categories', 'product', 'images'));
+        $comments = $product->comments;
+        if (count($product->rates) > 0)
+        {
+            $rates = 0;
+            foreach ($product->rates as $rate) {
+                $rates += $rate->value;
+            }
+            $rate_average = $rates/count($product->rates);
+        }
+        else
+            $rate_average = 0;
+        return view('tradevillage::frontend.villages.products.show', compact('categories', 'product', 'images', 'rate_average', 'comments'));
     }
 
     public function user_products($user_id)
@@ -87,6 +99,10 @@ class FrontendProductController extends BasePublicController
     {
         $requests = $request->all();
         $requests['user_id'] = Auth::user()->id;
+        if($this->artist->findByAttributes(['user_id' => $requests['user_id']]))
+            $requests['artist_id'] = $this->artist->findByAttributes(['user_id' => $requests['user_id']])->id;
+        if($this->enterprise->findByAttributes(['user_id' => $requests['user_id']]))
+            $requests['enterprise_id'] = $this->enterprise->findByAttributes(['user_id' => $requests['user_id']])->id;
         $product = $this->products->create( $requests);
         $path = '/public/product/models/'.$product->id;
         $images_path = '/product/images/'.$product->id;
@@ -179,6 +195,11 @@ class FrontendProductController extends BasePublicController
         $this->products->update($products, $requests);
         return redirect()->route('frontend.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('tradevillage::products.title.products')]));
+    }
+
+    public function model(Products $product)
+    {
+        return view('tradevillage::frontend.villages.products.product_model', compact('product'));
     }
 
     /**

@@ -110,6 +110,8 @@
                 }
             });
             $('.super-header').hide();
+            $('.nav-products').addClass("active-nav");
+
         });
     </script>
 @stop

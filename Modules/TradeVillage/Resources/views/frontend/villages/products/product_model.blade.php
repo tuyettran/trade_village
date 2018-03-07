@@ -14,17 +14,20 @@
 </head>
 <body>
 	<div class="custom-container">
-		<div><h4>àheaihfewiuaefah</h4></div>
+		<div><h2 class="center">{{ $product->translate(locale())->name }}</h2></div>
 		<div class="col-md-12">
 			<div id="AZplayerParentContainer" style="height: 700px; width: 100%; overflow: hidden; z-index: 1; position: relative;"></div>
 			
 		</div>
 	</div>
 
+	<p id="app_url" style="display: none">{{ env('APP_URL') }}</p>
+
 	<script type="text/javascript" src="{{ URL::asset('axZm/jquery.axZm.js') }}"></script>
 
 	<script type="text/javascript">
-	window.ajaxZoom = {};
+		var url = $('#app_url').html();
+		window.ajaxZoom = {};
 			var callbacks = {
 					onBeforeStart: function(){
 						// Some of the options can be set directly as js var in this callback, e.g. 
@@ -36,9 +39,11 @@
 						jQuery.axZm.fullScreenExitText = false;
 					}
 				}
+
 				$.fn.axZm.openResponsive(
-					'http://langnghe.dev:8000/axZm/', // Absolute path to AJAX-ZOOM directory, e.g. '/axZm/'
-					'example=17&3dDir=http://langnghe.dev:8000/product/models/mouse', // Defines which images and which options set to load
+					url+'/axZm/', // Absolute path to AJAX-ZOOM directory, e.g. '/axZm/'
+					// {{env('APP_URL')}}.'/axZm/'
+					'example=17&3dDir='+url+'/product/models/'+ {{ $product->id }}, // Defines which images and which options set to load
 					{}, // callbacks
 					'AZplayerParentContainer', // target - container ID (default 'window' - fullscreen)
 					false, // apiFullscreen- use browser fullscreen mode if available

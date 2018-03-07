@@ -23,11 +23,26 @@ class Products extends Model
 
     public function rates()
     {
-        return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_rate', 'Product_id');
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_rate', 'product_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Product_comments', 'product_id');
     }
 
     public function category()
     {
         return $this->belongsTo('Modules\\TradeVillage\\Entities\\Village_fields', 'category_id');
+    }
+
+    public function artist()
+    {
+        return $this->belongsTo('Modules\\TradeVillage\\Entities\\Artist', 'artist_id');
+    }
+
+    public function enterprise()
+    {
+        return $this->belongsTo('Modules\\TradeVillage\\Entities\\Enterprises', 'enterprise_id');
     }
 }
