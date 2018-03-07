@@ -17,6 +17,7 @@ class CreateTradeVillageProductCommentsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
+            $table->text('content');
             $table->timestamps();
 
             $table->foreign('product_id', 'tradevillage__product_comments_p_foreign')->references('id')->on('tradevillage__products')->onDelete('cascade')->onUpdate('cascade');

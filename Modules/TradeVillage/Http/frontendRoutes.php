@@ -104,10 +104,15 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.products.show',
         'uses' => 'FrontendProductController@show'
     ]);
-    $router->get('product/create', [
+    $router->get('products/create', [
         'as' => 'frontend.tradevillage.products.create',
         'uses' => 'FrontendProductController@create',
         'middleware' => 'can:tradevillage.products.create'
+    ]);
+    $router->get('product/{product}/model', [
+        'as' => 'frontend.tradevillage.products.model',
+        'uses' => 'FrontendProductController@model',
+        'middleware' => 'can:tradevillage.products.index'
     ]);
     $router->post('products', [
         'as' => 'frontend.tradevillage.products.store',

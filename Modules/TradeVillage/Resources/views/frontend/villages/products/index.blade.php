@@ -62,5 +62,6 @@
             $("#delete_model").val("yes");
         });
     });
+    $('.nav-products').addClass("active-nav");
 </script>
 @stop

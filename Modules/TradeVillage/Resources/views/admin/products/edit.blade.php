@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group{{ $errors->has("cost") ? " has-error" : "" }}">
                             {!! Form::label("cost", trans("tradevillage::products.form.images")) !!}
-                            <input type="file" name="image[]" id="images" multiple required />
+                            <input type="file" name="image[]" id="images" multiple />
                             <div class="row" id="image_preview">
                                 @if(isset($images))
                                     @foreach( $images as $image)

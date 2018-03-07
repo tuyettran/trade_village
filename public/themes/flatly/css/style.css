@@ -4,9 +4,26 @@
 .pull-right {
 	clear: both;
 }
+.active-nav {
+	font-weight: bold;
+	background-color: #cc6600;
+}
 .active {
 	font-weight: bold;
 	background-color: transparent;
+}
+.user-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.darkgrey-text {
+    font-size: 12px;
+    color: darkgrey;
+    font-style: initial;
+}
+.blue-text {
+	color: #23527c;
 }
 .medium-thumbnail {
 	width: 100%;

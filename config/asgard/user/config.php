@@ -88,6 +88,12 @@ return [
 //        'extension' => function ($self) {
 //            return $self->belongsTo(UserExtension::class, 'user_id', 'id')->first();
 //        }
+        'artist' => function ($self) {
+            return $self->hasOne(\Modules\TradeVillage\Entities\Artist::class, 'user_id', 'id')->first();
+        },
+        'enterprise' => function ($self) {
+            return $self->hasOne(\Modules\TradeVillage\Entities\Enterprises::class, 'user_id', 'id')->first();
+        },
     ],
     /*
     |--------------------------------------------------------------------------

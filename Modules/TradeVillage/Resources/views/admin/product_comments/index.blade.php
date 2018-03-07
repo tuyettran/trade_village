@@ -40,7 +40,7 @@
                                     {{ $product_comments->id }}
                                 </td>
                                 <td>
-                                    {{ $product_comments->translate(locale())->content }}
+                                    {{ $product_comments->content }}
                                 </td>
                                 <td>
                                     @foreach($users as $user)
