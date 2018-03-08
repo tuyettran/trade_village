@@ -21,8 +21,10 @@ return [
         'address' => 'Address',
         'contact' => 'Contact',
         'actions' => 'Actions',
+        'user' => 'User',
     ],
     'form' => [
+        'user' => 'User',
         'name' => 'Name',
         'date_of_birth' => 'Date of birth',
         'village' => 'Village',

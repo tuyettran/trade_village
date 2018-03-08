@@ -21,8 +21,8 @@
 		</div> -->
 	@else
 		<div class="sign bottom-right">
-			<a href="#" class="btn btn-warning black-text">Đăng nhập</a>
-			<a href="#" class="btn btn-warning black-text">Đăng ký</a>
+			<a href="{{ route('login') }}" class="btn btn-warning black-text">Đăng nhập</a>
+			<a href="{{ route('register') }}" class="btn btn-warning black-text">Đăng ký</a>
 		</div>
 	@endif
 </div>

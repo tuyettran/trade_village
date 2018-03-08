@@ -33,8 +33,9 @@ class ArtistController extends AdminBaseController
     public function index()
     {
         $artists = $this->artist->all();
+        $users = DB::table('users')->get();
         $villages = DB::table('tradevillage__villages_translations')->get();
-        return view('tradevillage::admin.artists.index', compact('artists', 'villages'));
+        return view('tradevillage::admin.artists.index', compact('artists', 'villages', 'users'));
     }
 
     /**
@@ -44,8 +45,9 @@ class ArtistController extends AdminBaseController
      */
     public function create()
     {
+        $users = DB::table('users')->get();
         $villages = DB::table('tradevillage__villages_translations')->get();
-        return view('tradevillage::admin.artists.create', compact('villages'));
+        return view('tradevillage::admin.artists.create', compact('villages', 'users'));
     }
 
     /**
@@ -70,8 +72,9 @@ class ArtistController extends AdminBaseController
      */
     public function edit(Artist $artist)
     {
+        $users = DB::table('users')->get();
         $villages = DB::table('tradevillage__villages_translations')->get();
-        return view('tradevillage::admin.artists.edit', compact('artist', 'villages'));
+        return view('tradevillage::admin.artists.edit', compact('artist', 'villages', 'users'));
     }
 
     /**
