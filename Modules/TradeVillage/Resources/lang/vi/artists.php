@@ -15,6 +15,7 @@ return [
     ],
     'table' => [
         'name' => 'Tên',
+        'user'=> 'Tài khoản',
         'date_of_birth' => 'Ngày sinh',
         'village' => 'Làng nghề',
         'image' =>'Ảnh',
@@ -23,6 +24,7 @@ return [
         'actions' => 'Hành động',
     ],
     'form' => [
+        'user'=> 'Tài khoản',
         'name' => 'Tên',
         'date_of_birth' => 'Ngày sinh',
         'village' => 'Làng nghề',

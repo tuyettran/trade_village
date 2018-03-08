@@ -8,7 +8,7 @@ class CreateArtistRequest extends BaseFormRequest
 {
     public function rules()
     {
-        $before_date = Carbon::now()->subYears(18)->toDateString();
+        $before_date = Carbon::now()->toDateString();
         return [
             'date_of_birth' => 'required|date|before:'.$before_date,
             'village_id' => 'required|integer|min:1',

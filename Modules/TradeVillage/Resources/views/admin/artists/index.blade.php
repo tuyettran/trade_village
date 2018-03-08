@@ -33,6 +33,7 @@
                                 <th>{{ trans('tradevillage::artists.table.image') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.name') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.date_of_birth') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::artists.table.user') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.village') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.address') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.contact') }}</th>
@@ -56,6 +57,16 @@
                                     <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
                                         {{ $artist->date_of_birth }}
                                     </a>
+                                </td>
+                                <td>
+                                    @foreach($users as $user)
+                                        @if($user->id == $artist->user_id)
+                                            <a href="{{ route('admin.tradevillage.artist.edit', [$artist->id]) }}">
+                                                {{ $user->first_name }}
+                                                {{ $user->last_name }}
+                                            </a>
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td>
                                     @if( isset($villages))
@@ -94,6 +105,7 @@
                                 <th>{{ trans('tradevillage::artists.table.image') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.name') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.date_of_birth') }}</th>
+                                <th>{{ trans('tradevillage::artists.table.user') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.village') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.address') }}</th>
                                 <th>{{ trans('tradevillage::artists.table.contact') }}</th>

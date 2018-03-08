@@ -37,6 +37,18 @@
                             </div>
                             {!! $errors->first("date_of_birth", '<span class="help-block">:message</span>') !!}
                         </div>
+                        <div class="form-group{{ $errors->has("user_id") ? " has-error" : "" }}">
+                            {!! Form::label("user_id", trans("tradevillage::artists.form.user")) !!} 
+                                <select name="user_id">
+                                    <option value="">--None--</option>
+                                    @if( isset($users))
+                                    @foreach( $users as $user)
+                                        <option value={{$user->id}}>{{$user->first_name}} {{$user->last_name}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                            {!! $errors->first("user_id", '<span class="help-block">:message</span>') !!}
+                        </div>
                         @mediaSingle('feature_image')
                         <div class="form-group{{ $errors->has("contact") ? " has-error" : "" }}">
                             {!! Form::label("contact", trans("tradevillage::artists.form.contact")) !!}
