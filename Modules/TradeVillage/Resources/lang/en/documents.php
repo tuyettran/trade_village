@@ -14,9 +14,11 @@ return [
         'create documents' => 'Create a document',
     ],
     'table' => [
+        'no' => 'No',
         'title' => 'Title',
         'author' => 'Author',
-        'course_name' => 'Course name',
+        'description' => 'Description',
+        'lesson_id' => 'Lesson name',
         'chapter' => 'Chapter',
         'file' => 'PDF File',
         'actions' => 'Actions',
@@ -24,9 +26,9 @@ return [
     'form' => [
         'title' => 'Document title',
         'author' => 'Author',
-        'course_name' => 'Course name',
+        'description' => 'Description',
+        'lesson_id' => 'Lesson name',
         'chapter' => 'Chapter',
-        'actions' => 'Actions',
         'file' => 'PDF File',
     ],
     'messages' => [

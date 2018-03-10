@@ -17,7 +17,8 @@ class CreateTradeVillageCourseUsersTable extends Migration
             $table->increments('id');
             $table->integer('course_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('chapter')->unsigned();
+            $table->integer('lesson_id')->unsigned();
+            $table->boolean('is_pass');
             // Your fields
             $table->unique(['user_id', 'course_id']);
             $table->timestamps();

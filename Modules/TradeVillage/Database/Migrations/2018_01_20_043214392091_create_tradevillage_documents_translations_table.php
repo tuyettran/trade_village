@@ -17,6 +17,7 @@ class CreateTradeVillageDocumentsTranslationsTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->text('author');
+            $table->text('description');
             // Your translatable fields
 
             $table->integer('documents_id')->unsigned();

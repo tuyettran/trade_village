@@ -26,22 +26,22 @@
                         </div>
                     @endforeach
                     <div class="box-body">
-                        <div class="form-group{{ $errors->has("course_id") ? " has-error" : "" }}">
-                            {!! Form::label("course_id", trans("tradevillage::documents.form.course_name")) !!}
-                            <select name="course_id">
-                            @if( isset($courses))
-                                @foreach( $courses as $course)
-                                    @if( $course->locale == locale())
-                                        @if( $course->courses_id == $documents->course_id)
-                                            <option value={{$course->courses_id}} selected>{{$course->name}}</option>
+                        <div class="form-group{{ $errors->has("lesson_id") ? " has-error" : "" }}">
+                            {!! Form::label("lesson_id", trans("tradevillage::documents.form.lesson_id")) !!}
+                            <select name="lesson_id">
+                            @if( isset($lessons))
+                                @foreach( $lessons as $lessons)
+                                    @if( $lessons->locale == locale())
+                                        @if( $lessons->lessons_id == $documents->lesson_id)
+                                            <option value={{$lessons->lessons_id}} selected>{{$lessons->name}}</option>
                                         @else
-                                            <option value={{$course->courses_id}}>{{$course->name}}</option>
+                                            <option value={{$lessons->lessons_id}}>{{$lessons->name}}</option>
                                         @endif
                                     @endif
                                 @endforeach
                             @endif
                             </select>
-                            {!! $errors->first("course_id", '<span class="help-block">:message</span>') !!}
+                            {!! $errors->first("lesson_id", '<span class="help-block">:message</span>') !!}
                         </div>
                         <div class="form-group{{ $errors->has("file") ? " has-error" : "" }}">
                             {!! Form::label("file", trans("tradevillage::documents.form.file")) !!}

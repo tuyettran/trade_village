@@ -25,6 +25,39 @@
                             @include('tradevillage::admin.courses.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
+                    <div class="box-body">
+                        <div class="form-group{{ $errors->has("start_time") ? " has-error" : "" }}">
+                            {!! Form::label("start_time", trans("tradevillage::courses.form.start_time")." ( yyyy-mm-dd hh:mm )") !!}
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" name="start_time" value="{{$courses->start_time}}"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            {!! $errors->first("start_time", '<span class="help-block">:message</span>') !!}
+                        </div>
+
+                        <div class="form-group{{ $errors->has("end_time") ? " has-error" : "" }}">
+                            {!! Form::label("end_time", trans("tradevillage::courses.form.end_time")." ( yyyy-mm-dd hh:mm )") !!}
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" id ="end_time" name="end_time" value="{{$courses->end_time}}"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            {!! $errors->first("end_time", '<span class="help-block">:message</span>') !!}
+                        </div>
+
+                        <div class="form-group{{ $errors->has("fee") ? " has-error" : "" }}">
+                            {!! Form::label("fee", trans("tradevillage::courses.form.fee")) !!}
+                            
+                            {!! Form::text("fee", old("fee", $courses->fee), ["class" => "form-control", "placeholder" => trans("tradevillage::courses.form.fee")]) !!}
+                            
+                            {!! $errors->first("fee", '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
@@ -62,6 +95,32 @@
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datetimepicker2").datetimepicker({
+                format:'YYYY-MM-DD HH:mm',
+                sideBySide : true,  
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                },
+                defaultDate: new Date()
+            });
+            $("#datetimepicker1").datetimepicker({
+                format:'YYYY-MM-DD HH:mm',
+                sideBySide : true,  
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                },
+                defaultDate: new Date()
             });
         });
     </script>

@@ -10,11 +10,6 @@ class Video extends Model
     use Translatable;
 
     protected $table = 'tradevillage__videos';
-    public $translatedAttributes = ['name', 'author'];
-    protected $fillable = ['link', 'course_id', 'chapter'];
-
-    public function course()
-	{
-	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Courses", 'course_id');
-	}
+    public $translatedAttributes = ['name', 'author', 'description'];
+    protected $fillable = ['link', 'lesson_id', 'chapter'];
 }

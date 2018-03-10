@@ -17,6 +17,8 @@ class CreateTradeVillageCoursesTranslationsTable extends Migration
             $table->increments('id');
             // Your translatable fields
             $table->text('name');
+            $table->text('description');
+            $table->text('author');
 
             $table->integer('courses_id')->unsigned();
             $table->string('locale')->index();
