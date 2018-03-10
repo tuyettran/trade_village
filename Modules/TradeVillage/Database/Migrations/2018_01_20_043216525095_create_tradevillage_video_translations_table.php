@@ -17,6 +17,7 @@ class CreateTradeVillageVideoTranslationsTable extends Migration
             $table->increments('id');
             $table->text('author');
             $table->string('name', 100);
+            $table->text('description');
             // Your translatable fields
 
             $table->integer('video_id')->unsigned();

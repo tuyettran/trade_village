@@ -11,5 +11,5 @@ class Course_users extends Model
 
     protected $table = 'tradevillage__course_users';
     public $translatedAttributes = [];
-    protected $fillable = ['course_id', 'user_id', 'chapter'];
+    protected $fillable = ['course_id', 'user_id', 'lesson_id', 'is_pass'];
 }

@@ -6,4 +6,14 @@
         
         {!! $errors->first("{$lang}.name", '<span class="help-block">:message</span>') !!}
     </div>
+
+    @editor("description", trans("tradevillage::courses.form.description"), old("{$lang}.description", $courses->translate($lang)->description), $lang)
+
+    <div class="form-group{{ $errors->has("{$lang}.author") ? " has-error" : "" }}">
+        {!! Form::label("{$lang}[author]", trans("tradevillage::courses.form.author")) !!}
+        
+        {!! Form::text("{$lang}[author]", old("{$lang}.author", $courses->translate($lang)->author), ["class" => "form-control", "placeholder" => trans("tradevillage::courses.form.author")]) !!}
+        
+        {!! $errors->first("{$lang}.author", '<span class="help-block">:message</span>') !!}
+    </div>
 </div>

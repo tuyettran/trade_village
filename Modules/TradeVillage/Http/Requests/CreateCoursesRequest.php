@@ -9,6 +9,8 @@ class CreateCoursesRequest extends BaseFormRequest
     public function rules()
     {
         return [
+            'start_time' => 'required|date',
+            'end_time' => 'date|after:start_time',
         ];
     }
 
@@ -16,6 +18,8 @@ class CreateCoursesRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
+            'description' => 'required',
+            'author' => 'required',
         ];
     }
 

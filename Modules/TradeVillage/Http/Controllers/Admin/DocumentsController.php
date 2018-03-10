@@ -35,8 +35,8 @@ class DocumentsController extends AdminBaseController
     public function index()
     {
         $documents = $this->documents->all();
-        $courses = DB::table('tradevillage__courses_translations')->get();
-        return view('tradevillage::admin.documents.index', compact('documents', 'courses'));
+        $lessons = DB::table('tradevillage__lessons_translations')->get();
+        return view('tradevillage::admin.documents.index', compact('documents', 'lessons'));
     }
 
     /**
@@ -46,8 +46,8 @@ class DocumentsController extends AdminBaseController
      */
     public function create()
     {
-        $course = DB::table('tradevillage__courses_translations')->get();
-        return view('tradevillage::admin.documents.create', compact('course'));
+        $lessons = DB::table('tradevillage__lessons_translations')->get();
+        return view('tradevillage::admin.documents.create', compact('lessons'));
     }
 
     /**
@@ -86,8 +86,8 @@ class DocumentsController extends AdminBaseController
      */
     public function edit(Documents $documents)
     {
-        $courses = DB::table('tradevillage__courses_translations')->get();
-        return view('tradevillage::admin.documents.edit', compact('documents', 'courses'));
+        $lessons = DB::table('tradevillage__lessons_translations')->get();
+        return view('tradevillage::admin.documents.edit', compact('documents', 'lessons'));
     }
 
     /**

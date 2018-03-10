@@ -16,12 +16,12 @@ class CreateTradeVillageDocumentsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('chapter')->unsigned();
-            $table->integer('course_id')->unsigned();
+            $table->integer('lesson_id')->unsigned();
             $table->string('file')->nullable($value = false);
             // Your fields
             $table->timestamps();
 
-            $table->foreign('course_id')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('lesson_id')->references('id')->on('tradevillage__lessons')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

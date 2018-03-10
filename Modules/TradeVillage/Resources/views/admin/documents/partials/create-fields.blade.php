@@ -14,4 +14,6 @@
         
         {!! $errors->first("{$lang}.author", '<span class="help-block">:message</span>') !!}
     </div>
+
+    @editor("description", trans("tradevillage::documents.form.description"), old("{$lang}.description"), $lang)
 </div>

@@ -205,6 +205,16 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                         $this->auth->hasAccess('tradevillage.courses.index')
                     );
                 });
+
+                $item->item(trans('tradevillage::lessons.title.lessons'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.tradevillage.lessons.create');
+                    $item->route('admin.tradevillage.lessons.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('tradevillage.lessons.index')
+                    );
+                });
                 $item->item(trans('tradevillage::edu_fields.title.edu_fields'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);

@@ -29,13 +29,13 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>{{ trans('tradevillage::videos.table.name') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.course') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.chapter') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.author') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.link') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::videos.table.actions') }}</th>
+                                <th data-sortable="true">No</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.lesson_id') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.chapter') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.author') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.link') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -53,11 +53,11 @@
                                     </a>
                                 </td>
                                 <td>
-                                    @if( isset($courses))
-                                        @foreach($courses as $course)
-                                            @if( $course->courses_id == $video->course_id && $course->locale == locale())
-                                                <a href="{{ route('admin.tradevillage.video.edit', [$video->id]) }}">
-                                                    {{ $course->name }}
+                                    @if( isset($lessons))
+                                        @foreach($lessons as $lessons)
+                                            @if( $lessons->lessons_id == $video->lesson_id && $lessons->locale == locale())
+                                                <a href="{{ route('admin.tradevillage.documents.edit', [$video->id]) }}">
+                                                    {{ $lessons->name }}
                                                 </a>
                                             @endif
                                         @endforeach
@@ -90,13 +90,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Id</th>
-                                <th>{{ trans('tradevillage::videos.table.name') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.course') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.chapter') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.author') }}</th>
-                                <th>{{ trans('tradevillage::videos.table.link') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::videos.table.actions') }}</th>
+                                <th data-sortable="true">No</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.lesson_id') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.chapter') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.author') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.link') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::videos.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

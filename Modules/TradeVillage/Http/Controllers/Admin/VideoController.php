@@ -34,8 +34,8 @@ class VideoController extends AdminBaseController
     public function index()
     {
         $videos = $this->video->all();
-        $courses = DB::table('tradevillage__courses_translations')->get();
-        return view('tradevillage::admin.videos.index', compact('videos','courses'));
+        $lessons = DB::table('tradevillage__lessons_translations')->get();
+        return view('tradevillage::admin.videos.index', compact('videos','lessons'));
     }
 
     /**
@@ -45,8 +45,8 @@ class VideoController extends AdminBaseController
      */
     public function create()
     {
-        $courses = DB::table('tradevillage__courses_translations')->get();
-        return view('tradevillage::admin.videos.create', compact('courses'));
+        $lessons = DB::table('tradevillage__lessons_translations')->get();
+        return view('tradevillage::admin.videos.create', compact('lessons'));
     }
 
     /**
@@ -70,8 +70,8 @@ class VideoController extends AdminBaseController
      */
     public function edit(Video $video)
     {
-        $courses = DB::table('tradevillage__courses_translations')->get();
-        return view('tradevillage::admin.videos.edit', compact('video','courses'));
+        $lessons = DB::table('tradevillage__lessons_translations')->get();
+        return view('tradevillage::admin.videos.edit', compact('video','lessons'));
     }
 
     /**

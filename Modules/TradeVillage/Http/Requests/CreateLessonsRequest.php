@@ -1,25 +1,22 @@
 <?php
 
-namespace Modules\TradeVillage\Http\Requests;
+namespace Modules\Tradevillage\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class UpdateVideoRequest extends BaseFormRequest
+class CreateLessonsRequest extends BaseFormRequest
 {
     public function rules()
     {
         return [
-            'link' => 'required',
-            'chapter' => 'required|integer|min:1',
-            'lesson_id' => 'required|integer|min:1',
+            'course_id' => 'required|integer|min:1',
         ];
     }
 
     public function translationRules()
     {
         return [
-            'author' => 'required',
-            'name' => 'required|max:100',
+            'name' => 'required',
             'description' => 'required',
         ];
     }
