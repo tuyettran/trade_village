@@ -71,7 +71,7 @@
    			</div>
         </div>
         <div class="col-md-3 col-sm-12">
-   			<h4 class="blue-text"><b>Sản phẩm tiêu biểu</b></h4>
+   			<h4 class="blue-text"><b>{{ trans('tradevillage::artists.products') }}</b></h4>
    			@foreach($products as $product)
    				@include('tradevillage::frontend.villages.artists.partials.product', ['product' => $product])
    			@endforeach

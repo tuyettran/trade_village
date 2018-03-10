@@ -21,7 +21,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-md-8 col-sm-12">
+		<div class="col-md-9 col-sm-12">
    			<div class="event-content">
    				<h2><b class="blue-text title">{{ $event->translate(locale())->title }}</b></h2>
    				<div class="row pull-right">
@@ -35,7 +35,7 @@
    			</div>
 
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-3 col-sm-12">
    			<div class="event-sidebar">
    				@include('tradevillage::frontend.villages.events.partials.sidebar', ['top_events' => $top_events, 'similar_events' => $similar_events, 'event' => $event])
    			</div>

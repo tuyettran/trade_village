@@ -11,6 +11,7 @@ return [
     'category' => 'Lĩnh vực',
     'description' => 'Mô tả chung',
     'detail' => 'Chi tiết',
+    'products' => 'Sản phẩm tiêu biểu',
     'title' => [
         'artists' => 'Nghệ nhân',
         'create artist' => 'Thêm mới một nghệ nhân',

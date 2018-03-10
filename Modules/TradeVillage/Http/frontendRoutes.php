@@ -97,6 +97,13 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.events.index',
         'uses' => 'FrontendEventController@index'
     ]);
+    $router->bind('category', function ($id) {
+        return app('Modules\TradeVillage\Repositories\Village_fieldsRepository')->find($id);
+    });
+    $router->get('category/{category}/products', [
+        'as' => 'frontend.tradevillage.village_field.product',
+        'uses' => 'FrontendVillageFieldController@product'
+    ]);
     $router->bind('product', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProductsRepository')->find($id);
     });

@@ -3,6 +3,9 @@
 	width: 80%;
 	height: 110px !important;
 }
+.custom-container {
+	font-size: 17px !important;
+}
 .item-thumbnail {
 	margin: 15px;
 	border: 0.5px solid darkgrey;
