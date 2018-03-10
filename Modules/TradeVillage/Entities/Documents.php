@@ -10,8 +10,8 @@ class Documents extends Model
     use Translatable;
 
     protected $table = 'tradevillage__documents';
-    public $translatedAttributes = ['title', 'author'];
-    protected $fillable = ['chapter', 'course_id', 'file'];
+    public $translatedAttributes = ['title', 'author', 'description'];
+    protected $fillable = ['chapter', 'lesson_id', 'file'];
 
     public function course()
 	{

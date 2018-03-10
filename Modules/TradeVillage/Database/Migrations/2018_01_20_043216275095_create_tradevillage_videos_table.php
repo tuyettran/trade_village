@@ -16,13 +16,13 @@ class CreateTradeVillageVideosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->text('link');
-            $table->integer('course_id')->unsigned();
+            $table->integer('lesson_id')->unsigned();
             $table->integer('chapter')->unsigned();
 
             // Your fields
             $table->timestamps();
 
-            $table->foreign('course_id')->references('id')->on('tradevillage__courses')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('lesson_id')->references('id')->on('tradevillage__lessons')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

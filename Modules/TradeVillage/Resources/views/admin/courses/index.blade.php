@@ -31,6 +31,10 @@
                             <tr>
                                 <th data-sortable="true">{{ trans('tradevillage::courses.table.no') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::courses.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.author') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.start_time') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.end_time') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.fee') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::courses.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -49,6 +53,26 @@
                                     </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}">
+                                        {{ $courses->translate(locale())->author }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}">
+                                        {{ $courses->start_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}">
+                                        {{ $courses->end_time }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}">
+                                        {{ $courses->fee }}
+                                    </a>
+                                </td>
+                                <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.tradevillage.courses.edit', [$courses->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.courses.destroy', [$courses->id]) }}"><i class="fa fa-trash"></i></button>
@@ -62,6 +86,10 @@
                             <tr>
                                 <th data-sortable="true">{{ trans('tradevillage::courses.table.no') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::courses.table.name') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.author') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.start_time') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.end_time') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::courses.table.fee') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::courses.table.actions') }}</th>
                             </tr>
                             </tfoot>

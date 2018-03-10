@@ -311,7 +311,20 @@ class TradeVillageServiceProvider extends ServiceProvider
                 return new \Modules\Tradevillage\Repositories\Cache\CachedistrictsDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Tradevillage\Repositories\LessonsRepository',
+            function () {
+                $repository = new \Modules\Tradevillage\Repositories\Eloquent\EloquentLessonsRepository(new \Modules\Tradevillage\Entities\Lessons());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Tradevillage\Repositories\Cache\CacheLessonsDecorator($repository);
+            }
+        );
 // add bindings
+
 
 
 

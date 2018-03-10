@@ -10,8 +10,8 @@ class Courses extends Model
     use Translatable;
 
     protected $table = 'tradevillage__courses';
-    public $translatedAttributes = ['name'];
-    protected $fillable = ['id'];
+    public $translatedAttributes = ['name', 'description', 'author'];
+    protected $fillable = ['id', 'start_time', 'end_time', 'fee'];
 
     public function documents()
     {

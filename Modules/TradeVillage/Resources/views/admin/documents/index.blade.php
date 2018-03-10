@@ -29,13 +29,13 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>{{ trans('tradevillage::documents.table.title') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.author') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.file') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.chapter') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::documents.table.actions') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.no') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.title') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.lesson_id') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.author') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.file') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.chapter') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::documents.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,11 +49,11 @@
                                     </a>
                                 </td>
                                 <td>
-                                    @if( isset($courses))
-                                        @foreach($courses as $course)
-                                            @if( $course->courses_id == $document->course_id && $course->locale == locale())
+                                    @if( isset($lessons))
+                                        @foreach($lessons as $lessons)
+                                            @if( $lessons->lessons_id == $document->lesson_id && $lessons->locale == locale())
                                                 <a href="{{ route('admin.tradevillage.documents.edit', [$document->id]) }}">
-                                                    {{ $course->name }}
+                                                    {{ $lessons->name }}
                                                 </a>
                                             @endif
                                         @endforeach
@@ -86,13 +86,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Id</th>
-                                <th>{{ trans('tradevillage::documents.table.title') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.course_name') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.author') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.file') }}</th>
-                                <th>{{ trans('tradevillage::documents.table.chapter') }}</th>
-                                <th data-sortable="false">{{ trans('tradevillage::documents.table.actions') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.no') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.title') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.lesson_id') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.author') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.file') }}</th>
+                                <th ata-sortable="true">{{ trans('tradevillage::documents.table.chapter') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::documents.table.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>

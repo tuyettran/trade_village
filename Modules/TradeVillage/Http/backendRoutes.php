@@ -730,7 +730,41 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'districtsController@destroy',
         'middleware' => 'can:tradevillage.districts.destroy'
     ]);
+    $router->bind('lessons', function ($id) {
+        return app('Modules\Tradevillage\Repositories\LessonsRepository')->find($id);
+    });
+    $router->get('lessons', [
+        'as' => 'admin.tradevillage.lessons.index',
+        'uses' => 'LessonsController@index',
+        'middleware' => 'can:tradevillage.lessons.index'
+    ]);
+    $router->get('lessons/create', [
+        'as' => 'admin.tradevillage.lessons.create',
+        'uses' => 'LessonsController@create',
+        'middleware' => 'can:tradevillage.lessons.create'
+    ]);
+    $router->post('lessons', [
+        'as' => 'admin.tradevillage.lessons.store',
+        'uses' => 'LessonsController@store',
+        'middleware' => 'can:tradevillage.lessons.create'
+    ]);
+    $router->get('lessons/{lessons}/edit', [
+        'as' => 'admin.tradevillage.lessons.edit',
+        'uses' => 'LessonsController@edit',
+        'middleware' => 'can:tradevillage.lessons.edit'
+    ]);
+    $router->put('lessons/{lessons}', [
+        'as' => 'admin.tradevillage.lessons.update',
+        'uses' => 'LessonsController@update',
+        'middleware' => 'can:tradevillage.lessons.edit'
+    ]);
+    $router->delete('lessons/{lessons}', [
+        'as' => 'admin.tradevillage.lessons.destroy',
+        'uses' => 'LessonsController@destroy',
+        'middleware' => 'can:tradevillage.lessons.destroy'
+    ]);
 // append
+
 
 
 

@@ -15,6 +15,9 @@ class CreateTradeVillageCoursesTable extends Migration
         Schema::create('tradevillage__courses', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->String('fee')->nullable();
             $table->timestamps();
         });
     }

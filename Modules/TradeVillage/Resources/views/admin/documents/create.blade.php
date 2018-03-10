@@ -26,13 +26,13 @@
                         </div>
                     @endforeach
                     <div class="box-body">
-                        <div class="form-group{{ $errors->has("{course_id") ? " has-error" : "" }}">
-                            {!! Form::label("course_id", trans("tradevillage::documents.form.course_name")) !!}
-                            <select name="course_id">
-                            @if( isset($course))
-                                @foreach( $course as $course)
-                                    @if( $course->locale == locale())
-                                        <option value={{$course->courses_id}}>{{$course->name}}</option>
+                        <div class="form-group{{ $errors->has("{lesson_id") ? " has-error" : "" }}">
+                            {!! Form::label("lesson_id", trans("tradevillage::documents.form.lesson_id")) !!}
+                            <select name="lesson_id">
+                            @if( isset($lessons))
+                                @foreach( $lessons as $lessons)
+                                    @if( $lessons->locale == locale())
+                                        <option value={{$lessons->lessons_id}}>{{$lessons->name}}</option>
                                     @endif
                                 @endforeach
                             @endif

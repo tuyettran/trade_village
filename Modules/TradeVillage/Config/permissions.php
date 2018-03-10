@@ -133,7 +133,14 @@ return [
         'edit' => 'tradevillage::districts.edit resource',
         'destroy' => 'tradevillage::districts.destroy resource',
     ],
+    'tradevillage.lessons' => [
+        'index' => 'tradevillage::lessons.list resource',
+        'create' => 'tradevillage::lessons.create resource',
+        'edit' => 'tradevillage::lessons.edit resource',
+        'destroy' => 'tradevillage::lessons.destroy resource',
+    ],
 // append
+
 
 
 

@@ -11,7 +11,7 @@ class CreateDocumentsRequest extends BaseFormRequest
         return [
             'chapter' => 'required|integer|min:1',
             'file' => 'required|file|mimes:pdf',
-            'course_id' => 'required',
+            'lesson_id' => 'required',
         ];
     }
 
@@ -20,6 +20,7 @@ class CreateDocumentsRequest extends BaseFormRequest
         return [
             'title' => 'required|max:100',
             'author' => 'required',
+            'description' => 'required',
         ];
     }
 

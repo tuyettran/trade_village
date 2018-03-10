@@ -11,7 +11,7 @@ class CreateVideoRequest extends BaseFormRequest
         return [
             'link' => 'required',
             'chapter' => 'required|integer|min:1',
-            'course_id' => 'required|integer|min:1',
+            'lesson_id' => 'required|integer|min:1',
         ];
     }
 
@@ -20,6 +20,7 @@ class CreateVideoRequest extends BaseFormRequest
         return [
             'author' => 'required',
             'name' => 'required|max:100',
+            'description' => 'required',
         ];
     }
 

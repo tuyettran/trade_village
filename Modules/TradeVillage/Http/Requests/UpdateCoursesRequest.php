@@ -8,13 +8,18 @@ class UpdateCoursesRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'start_time' => 'required|date',
+            'end_time' => 'date|after:start_time',
+        ];
     }
 
     public function translationRules()
     {
         return [
             'name' => 'required',
+            'description' => 'required',
+            'author' => 'required',
         ];
     }
 
