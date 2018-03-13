@@ -2,19 +2,19 @@
 	<img src="{{ URL::asset('/images/ntbic-header.png') }}" class="img-responsive">
 	@if($currentUser)
 		<div class="user sign bottom-right">
-			<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<div class="dropdown user-dropdown">
+                <a href="#" class="dropdown-toggle white-text" data-toggle="dropdown">
                     <i class="fa fa-flag"></i>
                     <span>
-                        <span class="glyphicon glyphicon-user"></span><b>{{ $currentUser->first_name.' '.$currentUser->last_name }}</b><i class="caret"></i>
+                        <span class="glyphicon glyphicon-user"> </span><b>{{ $currentUser->first_name.' '.$currentUser->last_name }}</b><i class="caret"></i>
                     </span>
                 </a>
-                <ul class="dropdown-menu language-menu">
-                	<li>Profile</li>
-                	<li>My products</li>
-               		<li>My courses</li>
+                <ul class="dropdown-menu user-menu">
+                	<li><a href="">My Profile</a></li>
+                	<li><a href="">My products</a></li>
+               		<li><a href="">My courses</a></li>
                 </ul>
-            </li>
+            </div>
         </div>
 		<!-- <div class="user sign bottom-right">
 			<a href=""><span class="glyphicon glyphicon-user"></span><b>{{ $currentUser->first_name.' '.$currentUser->last_name }}</b></a>

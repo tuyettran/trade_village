@@ -16,6 +16,9 @@ return [
         'name' => 'Name',
         'favorite' => 'Favorite',
         'search product' => 'Search product',
+        'search event' => 'Search event',
+        'search artist' => 'Search artist',
+        'province' => 'Province',
     ],
     'sidebar' => [
         'newest_products' => 'Newest products',

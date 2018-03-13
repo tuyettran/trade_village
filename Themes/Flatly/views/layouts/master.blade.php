@@ -11,9 +11,10 @@
     </title>
     <link rel="shortcut icon" href="{{ Theme::url('favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-    {!! Theme::style('css/style.css') !!}
     {!! Theme::style('css/header_footer.css') !!}
     {!! Theme::style('library/css/bootstrap.min.css') !!}
+    
+    {!! Theme::style('css/style.css') !!}
 
     @yield('style')
 </head>

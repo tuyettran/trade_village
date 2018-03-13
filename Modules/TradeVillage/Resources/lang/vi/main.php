@@ -15,7 +15,10 @@ return [
         'category' => 'Lĩnh vực',
         'name' => 'Tên',
         'favorite' => 'Yêu thích',
-        'search product' => 'Tìm kiếm sản phẩm'
+        'search product' => 'Tìm kiếm sản phẩm',
+        'search event' => 'Tìm kiếm sự kiện',
+        'search artist' => 'Tìm kiếm nghệ nhân',
+        'province' => 'Thành phố',
     ],
     'sidebar' => [
         'newest_products' => 'Sản phẩm mới',
