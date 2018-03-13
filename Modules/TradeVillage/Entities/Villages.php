@@ -33,4 +33,9 @@ class Villages extends Model
     {
         return $this->hasMany('Modules\\TradeVillage\\Entities\\Enterprises', 'village_id');
     }
+
+    public function events()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Events', 'village_id');
+    }
 }

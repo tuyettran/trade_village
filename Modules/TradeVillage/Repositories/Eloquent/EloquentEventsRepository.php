@@ -25,4 +25,12 @@ class EloquentEventsRepository extends EloquentBaseRepository implements EventsR
 		event(new EventWasDeleted($events));
 		return $events->delete();
 	}
+
+	public function newest_events($number){
+		if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->orderBy('created_at', 'DESC')->limit($number)->get();
+        }
+
+        return $this->model->orderBy('created_at', 'DESC')->limit($number)->get();
+	}
 }

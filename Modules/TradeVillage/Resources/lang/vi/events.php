@@ -5,6 +5,11 @@ return [
     'create resource' => 'Thêm sự kiện',
     'edit resource' => 'Sửa sự kiện',
     'destroy resource' => 'Xóa sự kiện',
+    'start_time' => 'Bắt đầu',
+    'end_time' => 'Kết thúc',
+    'address' => 'Địa điểm',
+    'newest_events' => 'Sự kiện mới',
+    'similar_events' => 'Sự kiện liên quan',
     'title' => [
         'events' => 'Sự kiện',
         'create events' => 'Thêm sự kiện',

@@ -5,6 +5,12 @@ return [
     'create resource' => 'Thêm mới một nghệ nhân',
     'edit resource' => 'Chỉnh sửa thông tin nghệ nhân',
     'destroy resource' => 'Xóa nghệ nhân',
+    'village name' => 'Làng nghề',
+    'artist name' => 'Tên nghệ nhân',
+    'dob' => 'Năm sinh',
+    'category' => 'Lĩnh vực',
+    'description' => 'Mô tả chung',
+    'detail' => 'Chi tiết',
     'title' => [
         'artists' => 'Nghệ nhân',
         'create artist' => 'Thêm mới một nghệ nhân',

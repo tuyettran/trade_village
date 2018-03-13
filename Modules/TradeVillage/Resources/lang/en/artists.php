@@ -5,6 +5,12 @@ return [
     'create resource' => 'Create artist',
     'edit resource' => 'Edit artist',
     'destroy resource' => 'Destroy artist',
+    'village name' => 'Village',
+    'artist name' => 'Artist name',
+    'dob' => 'Date of birth',
+    'category' => 'Category',
+    'description' => 'Description',
+    'detail' => 'Detail',
     'title' => [
         'artists' => 'Artist',
         'create artist' => 'Create a artist',
