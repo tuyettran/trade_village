@@ -7,7 +7,18 @@ use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
-
+use Modules\TradeVillage\Entities\Artist;
+use Modules\TradeVillage\Entities\Villages;
+use Modules\TradeVillage\Entities\Products;
+use Modules\TradeVillage\Entities\Enterprises;
+use Modules\TradeVillage\Entities\News;
+use Modules\TradeVillage\Entities\Events;
+use Modules\TradeVillage\Repositories\ArtistRepository;
+use Modules\TradeVillage\Repositories\ProductsRepository;
+use Modules\TradeVillage\Repositories\VillagesRepository;
+use Modules\TradeVillage\Repositories\NewsRepository;
+use Modules\TradeVillage\Repositories\EventsRepository;
+use Modules\TradeVillage\Repositories\EnterprisesRepository;
 class PublicController extends BasePublicController
 {
     /**
@@ -19,11 +30,17 @@ class PublicController extends BasePublicController
      */
     private $app;
 
-    public function __construct(PageRepository $page, Application $app)
+    public function __construct(PageRepository $page, Application $app,VillagesRepository $villages, ProductsRepository $products, NewsRepository $news, EventsRepository $events, EnterprisesRepository $enterprises, ArtistRepository $artists)
     {
         parent::__construct();
         $this->page = $page;
         $this->app = $app;
+        $this->villages = $villages;
+        $this->products = $products;
+        $this->events = $events;
+        $this->news = $news;
+        $this->enterprises = $enterprises;
+        $this->artists = $artists;
     }
 
     /**
@@ -46,8 +63,13 @@ class PublicController extends BasePublicController
      */
     public function homepage()
     {
-
-        return view('tradevillage::frontend.villages.homepage');;
+        $villages = $this->villages->findByMany([2,3]);
+        $products = $this->products->favorite(8);
+        $artists = $this->artists->findByMany([1,2]);
+        $enterprises = $this->enterprises->all();
+        $news = $this->news->all();
+        $events = $this->events->newest_events(5);
+        return view('tradevillage::frontend.villages.homepage', compact('villages', 'products', 'artists', 'enterprises', 'news', 'events'));;
     }
 
     /**

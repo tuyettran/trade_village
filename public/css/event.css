@@ -25,6 +25,7 @@ body {
 .event {
 	margin-bottom: 10px !important;
 	padding-right: 15px;
+	background-color: #f1f1f1;
 }
 .description {
 	margin-bottom: 5px;

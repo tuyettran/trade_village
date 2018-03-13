@@ -21,6 +21,10 @@
 	font-weight: bold;
 	background-color: transparent;
 }
+.active-nav {
+	font-weight: bold;
+	background-color: #eb7f3c;
+}
 .medium-thumbnail {
 	width: 100%;
 	max-height: 300px;
