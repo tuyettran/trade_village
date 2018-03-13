@@ -8,7 +8,7 @@
                 <?php $i++ ?>
                 <img class="group list-group-image img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">
                 <div class="caption">
-                    <a href="#"><h5 class="group inner list-group-item-heading product-name">
+                    <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name">
                         {{ $product->translate(locale())->name }}</h5></a>
                     
                     <p class="group inner list-group-item-text intro">

@@ -1,4 +1,4 @@
-<nav class="row navbar">
+<nav class="navbar">
     <div class="header-container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -10,12 +10,12 @@
         <div class="navbar-collapse collapse " id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
                 <li class="nav-home"><a href="home.html">{{ trans('tradevillage::main.title.home') }}</a></li>
-                <li class="nav-events"><a href="home.html">{{ trans('tradevillage::main.title.event') }}</a></li>
+                <li class="nav-events"><a href="{{ route('frontend.tradevillage.events.index') }}">{{ trans('tradevillage::main.title.event') }}</a></li>
                 <li class="nav-news"><a href="tinTucSuKien.html">{{ trans('tradevillage::main.title.new') }}</a></li>
                 <li class="nav-villages"><a href="tradeVillageIndex.html">{{ trans('tradevillage::main.title.village') }}</a>
                 </li>
                 <li class="nav-products"><a href="{{ route('frontend.tradevillage.products.index') }}">{{ trans('tradevillage::main.title.product') }}</a></li>
-                <li class="nav-artists"><a href="#">{{ trans('tradevillage::main.title.artist') }}</a></li>
+                <li class="nav-artists"><a href="{{ route('frontend.tradevillage.artist.index') }}">{{ trans('tradevillage::main.title.artist') }}</a></li>
                 <li class="nav-education"><a href="educateIndex.html">{{ trans('tradevillage::main.title.education') }}</a></li>
                 <li class="nav-contact"><a href="#">{{ trans('tradevillage::main.title.contact') }}</a></li>
             </ul>

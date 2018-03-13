@@ -5,6 +5,11 @@ return [
     'create resource' => 'Create event',
     'edit resource' => 'Edit event',
     'destroy resource' => 'Destroy event',
+    'start_time' => 'Start time',
+    'end_time' => 'End time',
+    'address' => 'Place',
+    'newest_events' => 'Newest events',
+    'similar_events' => 'Similar events',
     'title' => [
         'events' => 'Events',
         'create events' => 'Create a event',
