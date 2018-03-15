@@ -19,6 +19,7 @@ return [
         'search event' => 'Search event',
         'search artist' => 'Search artist',
         'province' => 'Province',
+        'search' => 'Search',
     ],
     'sidebar' => [
         'newest_products' => 'Newest products',

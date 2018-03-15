@@ -122,7 +122,7 @@ class ProductsController extends AdminBaseController
         $images_path = '/product/images/'.$products->id;
         if( !empty($request->delete_model)){
             if(!empty($products->model))
-                Storage::deleteDirectory($products->model);
+                Storage::deleteDirectory('/public'.$products->model);
 
             $requests['model'] = '';
         }
@@ -138,9 +138,7 @@ class ProductsController extends AdminBaseController
             $requests['model'] = $path;
         }
         if( !empty($request->file('image'))){
-            if(!empty($products->images)){
-                Storage::deleteDirectory($products->images);
-            }
+            Storage::deleteDirectory('/public'.$products->images);
             foreach ($request->file('image') as $photo) {
                 if(substr($photo->getMimeType(), 0, 5) == 'image') {
                     Storage::putFileAs('/public'.$images_path, $photo, $photo->getClientOriginalName());

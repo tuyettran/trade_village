@@ -19,6 +19,7 @@ return [
         'search event' => 'Tìm kiếm sự kiện',
         'search artist' => 'Tìm kiếm nghệ nhân',
         'province' => 'Thành phố',
+        'search' => 'Tìm kiếm',
     ],
     'sidebar' => [
         'newest_products' => 'Sản phẩm mới',

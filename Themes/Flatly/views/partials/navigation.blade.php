@@ -9,7 +9,7 @@
         </div>
         <div class="navbar-collapse collapse " id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li class="nav-home"><a href="home.html">{{ trans('tradevillage::main.title.home') }}</a></li>
+                <li class="nav-home"><a href="/">{{ trans('tradevillage::main.title.home') }}</a></li>
                 <li class="nav-events"><a href="{{ route('frontend.tradevillage.events.index') }}">{{ trans('tradevillage::main.title.event') }}</a></li>
                 <li class="nav-news"><a href="tinTucSuKien.html">{{ trans('tradevillage::main.title.new') }}</a></li>
                 <li class="nav-villages"><a href="tradeVillageIndex.html">{{ trans('tradevillage::main.title.village') }}</a>
