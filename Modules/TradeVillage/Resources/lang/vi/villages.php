@@ -17,11 +17,13 @@ return [
         'no' => 'No',
         'name'=> 'Tên',
         'description' => 'Mô tả',
-        'nov' => 'Số lượng truy cập',
+        'nov' => 'Lượt ghé thăm',
         'category' => 'Lĩnh vực',
         'district' => 'Quận/Huyện',
         'province' => 'Tỉnh/Thành Phố',
         'image' => 'Ảnh',
+        'address' => 'Địa chỉ',
+        'story' => 'Giai thoại của',
         'actions' => 'Hoạt động',
     ],
     'form' => [
@@ -38,5 +40,17 @@ return [
     'messages' => [
     ],
     'validation' => [
+    ],
+    'other' => [
+        'topProducts' => 'Sản phẩm tiêu biểu',
+        'viewAll' => 'Xem tất cả',
+        'enterprises' => 'Doanh nghiệp/Hộ nghề',
+        'products' => 'Sản phẩm liên quan đến làng nghề',
+        'artists' => 'Nghệ nhân nổi tiếng',
+        'newsRelative' => 'Tin tức sự kiện liên quan',
+        'visits' => 'Lượt ghé thăm',
+        'news' => 'Tin tức mới',
+        'artistFamous' =>'Nghệ nhân tiêu biểu',
+        'messagenews' => 'Không có tin tức nào',
     ],
 ];

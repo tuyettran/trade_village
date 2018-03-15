@@ -26,4 +26,12 @@ class EloquentNewsRepository extends EloquentBaseRepository implements NewsRepos
         event(new NewsWasDeleted($new));
         return $new->delete();
     }
+
+    public function latestNews($villageId, $number) {
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__news.village_id') ->where('tradevillage__news.village_id', '=', $villageId)->select('tradevillage__news.*')->orderBy('created_at', 'DESC')->limit($number)->get();
+        }
+
+        return $this->model->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__news.village_id') ->where('tradevillage__news.village_id', '=', $villageId)->select('tradevillage__news.*')->orderBy('created_at', 'DESC')->limit($number)->get();
+    }
 }

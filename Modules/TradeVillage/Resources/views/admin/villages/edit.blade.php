@@ -91,12 +91,16 @@
             var lg = document.getElementById('olng').value.split("|");
             var lat = new Array();
             var lng = new Array();
+            var avgLat = 0;
+            var avgLng = 0;
             for(var i = 0; i < lt.length-1; i++) {
                 lat[i] = parseFloat(lt[i]);
+                avgLat += lat[i];
                 lng[i] = parseFloat(lg[i]);
+                avgLng += lng[i];
             }
 
-            var myLatLng = {lat: lat[0], lng: lng[0]};
+            var myLatLng = {lat: avgLat/(lt.length-1), lng: avgLng/(lt.length-1)};
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,

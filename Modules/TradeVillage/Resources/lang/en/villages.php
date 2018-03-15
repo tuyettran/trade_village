@@ -17,11 +17,13 @@ return [
         'no' => 'No',
         'name'=> 'Name',
         'description' => 'Description',
-        'nov' => 'Number of visitors',
+        'nov' => 'Visists',
         'category' => 'Category',
         'district' => 'District',
         'province' => 'Province',
         'image' => 'Image',
+        'address' => 'Address',
+        'story' => 'The story of',
         'actions' => 'Actions',
     ],
     'form' => [
@@ -38,5 +40,17 @@ return [
     'messages' => [
     ],
     'validation' => [
+    ],
+    'other' => [
+        'topProducts' => 'Top Products',
+        'viewAll' => 'See all',
+        'enterprises' => 'Enterprises',
+        'products' => 'Relative products',
+        'artists' => 'Famous artisans',
+        'newsRelative' => 'Relative news/Events',
+        'visits' => 'Visits',
+        'news' => 'News',
+        'artistFamous' => 'Famous artisans',
+        'messagenews' => 'Do not have any news',
     ],
 ];

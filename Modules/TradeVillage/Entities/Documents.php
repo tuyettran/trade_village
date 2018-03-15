@@ -13,8 +13,8 @@ class Documents extends Model
     public $translatedAttributes = ['title', 'author', 'description'];
     protected $fillable = ['chapter', 'lesson_id', 'file'];
 
-    public function course()
+    public function lesson()
 	{
-	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Courses", 'course_id');
+	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Lessons", 'lesson_id');
 	}
 }

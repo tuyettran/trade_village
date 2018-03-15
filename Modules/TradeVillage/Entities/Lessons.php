@@ -12,4 +12,8 @@ class Lessons extends Model
     protected $table = 'tradevillage__lessons';
     public $translatedAttributes = ['name', 'description'];
     protected $fillable = ['course_id', 'refer_doc', 'refer_video'];
+
+    public function documents() {
+    	return $this->hasMany("Modules\\TradeVillage\\Entities\\Documents", 'lesson_id')
+    }
 }

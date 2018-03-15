@@ -20,7 +20,7 @@ class CreateVillagesRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:255',
             'story' => 'required',
             'detail' => 'required',
         ];

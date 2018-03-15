@@ -23,4 +23,9 @@ class Artist extends Model
 	{
 	    return $this->belongsTo("Modules\\TradeVillage\\Entities\\Villages", 'village_id');
 	}
+
+    public function products()
+    {
+        return $this->hasMany("Modules\\TradeVillage\\Entities\\Products", 'artist_id');
+    }
 }
