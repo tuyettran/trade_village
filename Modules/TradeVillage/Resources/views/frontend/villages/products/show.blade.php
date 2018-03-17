@@ -78,13 +78,13 @@
 		        			@if($product->enterprise)
                                 <img src="{{ Imagy::getThumbnail($product->enterprise->feature_image['path'].'', 'smallThumb') }}"/>
 
-		        				<a href="">{{ $product->enterprise->translate(locale())->name}}</a>
+		        				<a href="#">{{ $product->enterprise->translate(locale())->name}}</a>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->contact }}</p>
 		        				<p>Website: {{ $product->enterprise->website }}</p>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->translate(locale())->address}}</p>
 		        			@elseif($product->artist)
 		        				<img src="{{ Imagy::getThumbnail($product->artist->feature_image['path'].'', 'smallThumb') }}" style="border-radius: 50%; max-height: 50px" />
-		        				<a href="">{{ $product->artist->translate(locale())->name}}</a>
+		        				<a href="{{ route('frontend.tradevillage.artist.show', [$product->artist->id]) }}">{{ $product->artist->translate(locale())->name}}</a>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->artist->translate(locale())->address}}</p>
 		        				{{ $product->artist->contact }}
 		        			@endif

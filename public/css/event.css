@@ -64,7 +64,8 @@ body {
 	margin: 5px; 
 }
 .event-sidebar {
-	margin: 5px 20px;
+	margin: 5px;
+	margin-left: 5px !important;
 	font-size: 15px !important;
 }
 .description {
