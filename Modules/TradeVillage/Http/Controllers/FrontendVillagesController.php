@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Support\Gate;
 use Illuminate\Support\Facades\Auth;
 use Modules\TradeVillage\Entities\Villages;
 use Modules\TradeVillage\Entities\Village_fields;
@@ -99,5 +99,27 @@ class FrontendVillagesController extends BasePublicController
         // dd($collecTopPros);
 
         return view('tradevillage::frontend.villages.village.show', compact('village', 'collecTopPros', 'collectAll', 'enterprises', 'artists', 'news', 'events', 'latestNews'));
+    }
+
+    public function xmlGenerate(Villages $village) {
+        $enterprises = $village->enterprises;
+        if(count($enterprises) > 0) {
+            $filename = 'xmlVillage' + $village->id;
+            $xml = new XMLWriter();
+            $xml->openMemory();
+            $xml->startDocument();
+            $xml->startElement('markers');
+            foreach ($enterprises as $enterprise) {
+                $xml->startElement('marker');
+                $xml->writeAttribute('id',$enterprise->id);
+                $xml->endElement();
+            }
+            $xml->endElement();
+            $xml->endDocument();
+            $content = $xml->outputMemory();
+
+            Storage::put($filename, $content);
+            return response($content)->header('Content-Type', 'text/xml');
+        }
     }
 }

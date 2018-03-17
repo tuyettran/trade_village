@@ -109,8 +109,17 @@
 @section('scripts')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
 <script type="text/javascript">
+    var pathname = window.location.pathname;
+    $.ajax({
+        url     : pathname,
+        method  : 'post',
+        success : function(response){
+            console.log('abc');
+        }
+    });
+</script>
+<script type="text/javascript">
     function initMap() {
-        console.log(document.getElementById('enterprises').value);
         document.getElementById('lat').value = document.getElementById('olat').value;
         document.getElementById('lng').value = document.getElementById('olng').value;
         var lt = document.getElementById('olat').value.split("|");
@@ -133,10 +142,10 @@
             center: myLatLng
         });
         
-        // var marker = new google.maps.Marker({
-        //     position: myLatLng,
-        //     map: map
-        // });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
 
         var polygonCoords  = [];
         for(var i = 0; i < lat.length; i++) { 
@@ -157,45 +166,47 @@
 
 
 
-        var infoWindow = new google.maps.InfoWindow;
 
-        // Change this depending on the name of your PHP or XML file
-        downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
-            var xml = data.responseXML;
-            var markers = xml.documentElement.getElementsByTagName('marker');
-            Array.prototype.forEach.call(markers, function(markerElem) {
-                var id = markerElem.getAttribute('id');
-                var name = markerElem.getAttribute('name');
-                var address = markerElem.getAttribute('address');
-                var type = markerElem.getAttribute('type');
-                var point = new google.maps.LatLng(
-                    parseFloat(markerElem.getAttribute('lat')),
-                    parseFloat(markerElem.getAttribute('lng'))
-                );
 
-                var infowincontent = document.createElement('div');
-                var strong = document.createElement('strong');
-                strong.textContent = name
-                infowincontent.appendChild(strong);
-                infowincontent.appendChild(document.createElement('br'));
 
-                var text = document.createElement('text');
-                text.textContent = address
-                infowincontent.appendChild(text);
-                
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: point
+        var request = new XMLHttpRequest();
+        request.open('GET', 'http://127.0.0.1:8000/xml/xmltest.xml', true);
+        request.send();
+        request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var xml = request.responseXML;
+                var markers = xml.documentElement.getElementsByTagName('marker');
+                Array.prototype.forEach.call(markers, function(markerElem) {
+                    var id = markerElem.getAttribute('id');
+                    var name = markerElem.getAttribute('name');
+                    var address = markerElem.getAttribute('address');
+                    var type = markerElem.getAttribute('type');
+                    var point = new google.maps.LatLng(
+                        parseFloat(markerElem.getAttribute('lat')),
+                        parseFloat(markerElem.getAttribute('lng'))
+                    );
+
+                    var infowincontent = document.createElement('div');
+                    var strong = document.createElement('strong');
+                    strong.textContent = name
+                    infowincontent.appendChild(strong);
+                    infowincontent.appendChild(document.createElement('br'));
+
+                    var text = document.createElement('text');
+                    text.textContent = address
+                    infowincontent.appendChild(text);
+                    
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: point
+                    });
+                    marker.addListener('click', function() {
+                        infoWindow.setContent(infowincontent);
+                        infoWindow.open(map, marker);
+                    });
                 });
-                marker.addListener('click', function() {
-                    infoWindow.setContent(infowincontent);
-                    infoWindow.open(map, marker);
-                });
-            });
-          });
-
-
-
+            }
+        }
 
 
 
