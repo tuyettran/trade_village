@@ -1,0 +1,147 @@
+.village-label {
+	margin-top: 20px;
+}
+.image {
+	padding: 0;
+}
+.village-image img{
+	height: 450px;
+	width: 100%;
+	padding: 0;
+	border-radius: 3px;
+	margin-bottom: 5px;
+}
+.top-artists ul {
+	font-size: 14px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.sidebar {
+	margin: 0;
+	padding: 0;
+}
+.artist{
+	padding: 5px;
+	height: 60px;
+}
+.right-side-box {
+	border-left: 1px solid darkgrey;
+	padding-left: 10px;
+	margin-left: 10px !important;
+}
+.map-box {
+	padding: 0;
+}
+.show-all {
+	margin: 5px 0;
+}
+.village-map {
+	height: 250px;
+	margin: 0;
+	padding: 0;
+}
+.infomation {
+	font-size: 16px;
+	margin-bottom: 15px;
+	padding: 0;
+	line-height: 28px;
+}
+.infomation h3 {
+	margin-top: 0;
+}
+.top-new-list {
+	margin: 0px;
+	padding: 0px;
+}
+.top-list {
+	margin: 0px;
+	padding: 15px 0px 0px 20px;
+}
+.top-new-list a {
+	font-size: 17px;
+	font-weight: bold;
+}
+.top-list a {
+	font-size: 14px;
+}
+.top-news ul {
+    list-style: none;
+    font-size: 15px;
+    padding-left: 17px;
+}
+.top-news li {
+    position: relative;
+}
+.top-list {
+    list-style: none;
+    font-size: 150%;
+    padding-left: 17px;
+}
+.top-list li {
+    position: relative;
+}
+.top-list li:before {
+    position: absolute;
+    display: block;
+    content: '\2022';
+    text-indent: -999999px;
+    left: -.75em;
+    width: .6em;
+    height: 1em;
+    background-repeat: no-repeat;
+    background-image: url("../images/link-style2.png");
+    background-size: .5em .7em;
+    background-position: 0 .3em;
+}
+.story {
+	overflow: hidden;
+	text-overflow: ellipsis;
+  	line-height: 26px;
+  	max-height: 415px;
+  	font-style: italic;
+}
+.relation {
+	margin: 20px 0;
+}
+.new-feed {
+	padding-left: 0 !important;
+}
+.top-product .product{
+	height: 145px;
+	padding: 0;
+	margin: 0;
+}
+.product img {
+	height: 140px;
+	width: 100%;
+	padding: 5px;
+  	-webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    transition: all 2s ease;
+}
+.product:hover .overlay{
+	height: auto;
+}
+.overlay {
+  	position: absolute;
+  	bottom: 12px;
+	left: 10px;
+	right: 10px;
+	background-color: white;
+	overflow: hidden;
+	height: 0;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+	transition: .5s ease;
+}
+.product .bottom-right {
+	bottom: 70px;
+}
+.timestamp {
+	font-size: 13px;
+	font-style: italic;
+	color: grey;
+}

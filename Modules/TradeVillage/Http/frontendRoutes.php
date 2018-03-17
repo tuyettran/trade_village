@@ -82,27 +82,12 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.artist.index',
         'uses' => 'FrontendArtistController@index'
     ]);
-    $router->get('artists/{artist}', [
-        'as' => 'frontend.tradevillage.artist.show',
-        'uses' => 'FrontendArtistController@show'
-    ]);
     $router->bind('events', function ($id) {
         return app('Modules\TradeVillage\Repositories\EventsRepository')->find($id);
     });
-    $router->get('events/{event}', [
-        'as' => 'frontend.tradevillage.events.show',
-        'uses' => 'FrontendEventController@show'
-    ]);
     $router->get('events', [
         'as' => 'frontend.tradevillage.events.index',
         'uses' => 'FrontendEventController@index'
-    ]);
-    $router->bind('category', function ($id) {
-        return app('Modules\TradeVillage\Repositories\Village_fieldsRepository')->find($id);
-    });
-    $router->get('category/{category}/products', [
-        'as' => 'frontend.tradevillage.village_field.product',
-        'uses' => 'FrontendVillageFieldController@product'
     ]);
     $router->bind('product', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProductsRepository')->find($id);
@@ -148,6 +133,22 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.products.destroy',
         'uses' => 'FrontendProductController@destroy',
         'middleware' => 'can:tradevillage.products.destroy'
+    ]);
+
+    $router->bind('villages', function ($id) {
+        return app('Modules\TradeVillage\Repositories\VillagesRepository')->find($id);
+    });
+    $router->get('villages', [
+        'as' => 'frontend.tradevillage.villages.index',
+        'uses' => 'FrontendVillagesController@index'
+    ]);
+    $router->get('villages/{village}', [
+        'as' => 'frontend.tradevillage.villages.show',
+        'uses' => 'FrontendVillagesController@show'
+    ]);
+    $router->post('villages/{village}', [
+        'as' => 'frontend.tradevillage.villages.xmlGenerate',
+        'uses' => 'FrontendVillagesController@show'
     ]);
 });
 ?>
