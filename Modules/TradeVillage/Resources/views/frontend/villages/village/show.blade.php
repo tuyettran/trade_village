@@ -44,6 +44,7 @@
                     <input id="lng" name="lng" style="display: none;">
                     <input type="text" id="olat" value="{{ $village->lat }}" style="display: none;">
                     <input type="text" id="olng" value="{{ $village->lng }}" style="display: none;">
+                    <input type="text" id="id" value="{{ $village->id }}" style="display: none;">
                     <div class="col-md-12 col-xs-6 map-box" id="map" style="width:100%;height: 300px;">
                         
                     </div>
@@ -110,9 +111,11 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
 <script type="text/javascript">
     var pathname = window.location.pathname;
+    var id = document.getElementById('id').value;
     $.ajax({
-        url     : pathname,
-        method  : 'post',
+        url     : '/tradevillage/abc',
+        method  : 'get',
+        data    : id,
         success : function(response){
             console.log('abc');
         }
