@@ -15,6 +15,7 @@ use Modules\TradeVillage\Repositories\Village_fieldsRepository;
 use Modules\TradeVillage\Repositories\VillagesRepository;
 use Modules\TradeVillage\Repositories\NewsRepository;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 
 class FrontendVillagesController extends BasePublicController
 {
@@ -101,7 +102,8 @@ class FrontendVillagesController extends BasePublicController
         return view('tradevillage::frontend.villages.village.show', compact('village', 'collecTopPros', 'collectAll', 'enterprises', 'artists', 'news', 'events', 'latestNews'));
     }
 
-    public function xmlGenerate(Request $request) {
-        dd($request);
+    public function xmlGenerate(Villages $village) {
+        $enterprises = $village->enterprises;
+        return $enterprises;
     }
 }

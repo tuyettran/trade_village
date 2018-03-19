@@ -146,7 +146,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.villages.show',
         'uses' => 'FrontendVillagesController@show'
     ]);
-    $router->get('abc', [
+    $router->get('villages/{villages}/xml-generate', [
         'as' => 'frontend.tradevillage.villages.xmlGenerate',
         'uses' => 'FrontendVillagesController@xmlGenerate'
     ]);
