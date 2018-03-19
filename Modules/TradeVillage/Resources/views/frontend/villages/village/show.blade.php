@@ -83,7 +83,6 @@
             </div>
         </div>
     </div>
-
     <div class="row relation">
         <div class="col-md-7 col-xs-12 top-product">
             <h4 class="orange-text"><b>{{ trans('tradevillage::villages.other.topProducts') }}</b></h4>
@@ -110,19 +109,11 @@
 @section('scripts')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
 <script type="text/javascript">
-    var pathname = window.location.pathname;
-    var id = document.getElementById('id').value;
-    $.ajax({
-        url     : '/tradevillage/abc',
-        method  : 'get',
-        data    : id,
-        success : function(response){
-            console.log('abc');
-        }
-    });
+    
 </script>
 <script type="text/javascript">
     function initMap() {
+        //Display villages
         document.getElementById('lat').value = document.getElementById('olat').value;
         document.getElementById('lng').value = document.getElementById('olng').value;
         var lt = document.getElementById('olat').value.split("|");
@@ -145,11 +136,6 @@
             center: myLatLng
         });
         
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map
-        });
-
         var polygonCoords  = [];
         for(var i = 0; i < lat.length; i++) { 
             polygonCoords.push(new google.maps.LatLng(lat[i],lng[i]));
@@ -166,56 +152,37 @@
 
         polygon.setMap(map);
 
+        //Display enterprises
+        var pathname = window.location.pathname;
+        var id = document.getElementById('id').value;
+        $.ajax({
+            url     : '/tradevillage/villages/'+id+'/xml-generate',
+            method  : 'get',
+            success : function(response){
+                for(var i = 0; i < response.length; i++) {
+                    var infowindow = new google.maps.InfoWindow;
+                    var id = response[i]['id'];
+                    var name = response[i]['name'];
+                    var address = response[i]['address'];
+                    var myLatLng = {lat: response[i]['lat'], lng: response[i]['lng']};
 
-
-
-
-
-
-        var request = new XMLHttpRequest();
-        request.open('GET', 'http://127.0.0.1:8000/xml/xmltest.xml', true);
-        request.send();
-        request.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var xml = request.responseXML;
-                var markers = xml.documentElement.getElementsByTagName('marker');
-                Array.prototype.forEach.call(markers, function(markerElem) {
-                    var id = markerElem.getAttribute('id');
-                    var name = markerElem.getAttribute('name');
-                    var address = markerElem.getAttribute('address');
-                    var type = markerElem.getAttribute('type');
-                    var point = new google.maps.LatLng(
-                        parseFloat(markerElem.getAttribute('lat')),
-                        parseFloat(markerElem.getAttribute('lng'))
-                    );
-
-                    var infowincontent = document.createElement('div');
-                    var strong = document.createElement('strong');
-                    strong.textContent = name
-                    infowincontent.appendChild(strong);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var text = document.createElement('text');
-                    text.textContent = address
-                    infowincontent.appendChild(text);
+                    var infowincontent = '<div><strong><a href="#">' + name + '</a></strong>' + '<br>' + address + '</div>';
                     
                     var marker = new google.maps.Marker({
                         map: map,
-                        position: point
+                        position: myLatLng,
+                        icon: '/images/icon10.png'
                     });
-                    marker.addListener('click', function() {
-                        infoWindow.setContent(infowincontent);
-                        infoWindow.open(map, marker);
-                    });
-                });
+
+                    google.maps.event.addListener(marker,'click', (function(marker,infowincontent,infowindow){ 
+                        return function() {
+                            infowindow.setContent(infowincontent);
+                            infowindow.open(map,marker);
+                        };
+                    })(marker,infowincontent,infowindow));  
+                }
             }
-        }
-
-
-
-
-
-        google.maps.event.addDomListener(window, 'load', initMap);
+        });
     }
     initMap();
 </script>
