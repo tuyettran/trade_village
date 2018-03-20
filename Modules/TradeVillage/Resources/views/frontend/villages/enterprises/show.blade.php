@@ -2,7 +2,7 @@
 
 @section('style')
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/filter.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/artist.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/enterprise.css') }}">
 
 @stop
 
@@ -11,7 +11,7 @@
 		<div class="col-md-3 pull-right">
 			<form class="navbar-form pull-right search-form" role="search">
 		        <div class="input-group add-on">
-		            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search artist') }}" name="srch-term" id="srch-term" type="text">
+		            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search enterprise') }}" name="srch-term" id="srch-term" type="text">
 		            <div class="input-group-btn">
 		                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 		            </div>
@@ -24,70 +24,70 @@
 		<div class="col-md-9 col-sm-12">
    			<div class="row">
    				<div class="col-md-6 col-sm-12 image">
-   					<img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'largeThumb') }}" class="artist-image-detail img-responsive" />
+   					<img src="{{ Imagy::getThumbnail($enterprise->feature_image['path'].'', 'largeThumb') }}" class="enterprise-image-detail img-responsive thumbnail" />
    					
    				</div>
 	   			<div class="col-md-6 col-sm-12">
-	   				<h3 class="blue-text"><b>{{ $artist->translate(locale())->name }}</b></h3>
+	   				<h3 class="blue-text"><b>{{ $enterprise->translate(locale())->name }}</b></h3>
 	   				<table>
 	   					<tr>
 	   						<th>
-	   							{{ trans('tradevillage::artists.dob') }}: 
+	   							{{ trans('tradevillage::enterprises.website') }}: 
 	   						</th>
 	   						<td>
-	   							{{ $artist->date_of_birth }}
+	   							{{ $enterprise->website }}
 	   						</td>
 	   					</tr>
 	   					<tr>
 	   						<th>
-	   							{{ trans('tradevillage::artists.contact') }}: 
+	   							{{ trans('tradevillage::enterprises.contact') }}: 
 	   						</th>
 	   						<td>
-	   							{{ $artist->contact }}
+	   							{{ $enterprise->contact }}
 	   						</td>
 	   					</tr>
 	   					<tr>
 	   						<th>
-	   							{{ trans('tradevillage::artists.address') }}: 
+	   							{{ trans('tradevillage::enterprises.address') }}: 
 	   						</th>
 	   						<td>
-	   							{{ $artist->translate(locale())->address }}
+	   							{{ $enterprise->translate(locale())->address }}
 	   						</td>
 	   					</tr>
 	   					<tr>
 	   						<th>
-	   							{{ trans('tradevillage::artists.category') }}: 
+	   							{{ trans('tradevillage::enterprises.category') }}: 
 	   						</th>
 	   						<td>
-	   							{{ $artist->village->category->translate(locale())->name }}
+	   							{{ $enterprise->village->category->translate(locale())->name }}
 	   						</td>
 	   					</tr>
 	   					<tr>
 	   						<th>
-	   							{{ trans('tradevillage::artists.village name') }}: 
+	   							{{ trans('tradevillage::enterprises.village name') }}: 
 	   						</th>
 	   						<td>
-	   							{{ $artist->village->translate(locale())->name }}
+	   							{{ $enterprise->village->translate(locale())->name }}
 	   						</td>
 	   					</tr>
 	   					<tr>
 	   						<th>
-	   							{{ trans('tradevillage::artists.description') }}: 
+	   							{{ trans('tradevillage::enterprises.description') }}: 
 	   						</th>
 	   						<td>
-	   							{!! $artist->translate(locale())->description !!}
+	   							{!! $enterprise->translate(locale())->description !!}
 	   						</td>
 	   					</tr>
 	   				</table>
 	   			</div>
    			</div>
-   			<div class="artist-detail">
+   			<div class="enterprise-detail">
    				<h4><b>Chi tiết</b></h4>
-   				{!! $artist->translate(locale())->detail !!}
+   				{!! $enterprise->translate(locale())->detail !!}
    			</div>
         </div>
         <div class="col-md-3 col-sm-12">
-   			<h4 class="blue-text"><b>{{ trans('tradevillage::artists.products') }}</b></h4>
+   			<h4 class="blue-text"><b>{{ trans('tradevillage::enterprises.products') }}</b></h4>
    			@foreach($products as $product)
    				@include('tradevillage::frontend.villages.artists.partials.product', ['product' => $product])
    			@endforeach
@@ -98,7 +98,7 @@
 @section('scripts')
 	
 <script type="text/javascript">
-    $('.nav-artists').addClass("active-nav");
+    $('.nav-enterprises').addClass("active-nav");
 
 </script>
 @stop

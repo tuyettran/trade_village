@@ -18,7 +18,6 @@ class CreateTradeVillageEnterprisesTable extends Migration
             $table->text('website')->nullable();
             $table->integer('village_id')->unsigned();
             $table->integer('user_id')->nullable();
-            $table->text('image');
             $table->double('lat', 20, 17);
             $table->double('lng', 20, 17);
             $table->text('contact');
