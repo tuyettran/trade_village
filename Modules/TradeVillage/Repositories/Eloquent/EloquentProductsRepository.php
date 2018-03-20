@@ -21,10 +21,10 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
     public function favorite($number)
     {
     	if (method_exists($this->model, 'translations')) {
-            return $this->model->with('translations')->join('tradevillage__product_rates', 'product_id', '=', 'tradevillage__products.id')->select(array('tradevillage__products.*',DB::raw('AVG(value) as ratings_average')))->groupBy('product_id')->orderBy('ratings_average', 'DESC')->limit($number)->get();
+            return $this->model->with('translations')->orderBy('rate', 'DESC')->limit($number)->get();
         }
 
-        return $this->model->join('tradevillage__product_rates', 'product_id', '=', 'tradevillage__products.id')->select(array('tradevillage__products.*',DB::raw('AVG(value) as ratings_average')))->groupBy('product_id')->orderBy('ratings_average', 'DESC')->limit($number)->get();
+        return $this->model->orderBy('rate', 'DESC')->limit($number)->get();
     }
 
     public function hot($number){

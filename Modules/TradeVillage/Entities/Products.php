@@ -14,7 +14,7 @@ class Products extends Model
 
     protected $table = 'tradevillage__products';
     public $translatedAttributes = ['name', 'description', 'material', 'detail'];
-    protected $fillable = ['enterprise_id', 'images', 'model', 'cost', 'artist_id', 'category_id', 'user_id'];
+    protected $fillable = ['enterprise_id', 'images', 'model', 'cost', 'artist_id', 'category_id', 'user_id', 'rate'];
 
     public function documents()
     {

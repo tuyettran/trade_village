@@ -55,17 +55,17 @@ class FrontendProductController extends BasePublicController
         $categories = $this->category->all();
         $images = Storage::files('/public/product/images/'.$product->id);
         $comments = $product->comments;
-        if (count($product->rates) > 0)
-        {
-            $rates = 0;
-            foreach ($product->rates as $rate) {
-                $rates += $rate->value;
-            }
-            $rate_average = $rates/count($product->rates);
-        }
-        else
-            $rate_average = 0;
-        return view('tradevillage::frontend.villages.products.show', compact('categories', 'product', 'images', 'rate_average', 'comments'));
+        // if (count($product->rates) > 0)
+        // {
+        //     $rates = 0;
+        //     foreach ($product->rates as $rate) {
+        //         $rates += $rate->value;
+        //     }
+        //     $rate_average = $rates/count($product->rates);
+        // }
+        // else
+        //     $rate_average = 0;
+        return view('tradevillage::frontend.villages.products.show', compact('categories', 'product', 'images', 'comments'));
     }
 
     public function user_products($user_id)

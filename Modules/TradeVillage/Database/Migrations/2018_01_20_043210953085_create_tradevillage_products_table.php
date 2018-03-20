@@ -21,6 +21,7 @@ class CreateTradeVillageProductsTable extends Migration
             $table->text('model');
             $table->text('images');
             $table->float('cost');
+            $table->float('rate')->default(0);
             $table->integer('visitor_counter');
             $table->integer('artist_id')->nullable();
             $table->timestamps();

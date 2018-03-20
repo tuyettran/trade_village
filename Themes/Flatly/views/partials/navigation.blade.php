@@ -16,7 +16,7 @@
                 <li class="nav-villages"><a href="{{ route('frontend.tradevillage.villages.index') }}">{{ trans('tradevillage::main.title.village') }}</a>
                 </li>
                 <li class="nav-products"><a href="{{ route('frontend.tradevillage.products.index') }}">{{ trans('tradevillage::main.title.product') }}</a></li>
-                <li class="nav-artists"><a href="#">{{ trans('tradevillage::main.title.artist') }}</a></li>
+                <li class="nav-artists"><a href="{{ route('frontend.tradevillage.artist.index') }}">{{ trans('tradevillage::main.title.artist') }}</a></li>
                 <li class="nav-education"><a href="educateIndex.html">{{ trans('tradevillage::main.title.education') }}</a></li>
                 <li class="nav-contact"><a href="#">{{ trans('tradevillage::main.title.contact') }}</a></li>
             </ul>

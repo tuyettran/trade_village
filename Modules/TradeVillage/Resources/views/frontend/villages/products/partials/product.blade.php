@@ -10,10 +10,8 @@
                 <div class="caption">
                     <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name">
                         {{ $product->translate(locale())->name }}</h5></a>
-                    
                     <p class="group inner list-group-item-text intro">
                         {{ $product->translate(locale())->description }} </p>
-
                     <div class="product-footer bottom-right">
                         @can('update-product', $product)
                             <div class="pull-right">

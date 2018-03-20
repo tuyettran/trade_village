@@ -5,7 +5,7 @@
             @if(isset($favorite))
                 @foreach($favorite as $product)
                     <?php $image_direct = public_path().$product->images ?>
-                    <li><a href="#"><img src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}" class="img-thumbnail img-bar img-responsive"><span> {{ $product->translate(locale())->name}} </span></a></li>
+                    <li><a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}" class="img-thumbnail img-bar img-responsive"><span> {{ $product->translate(locale())->name}} </span></a></li>
                 @endforeach
             @endif
         </ul>
@@ -17,7 +17,7 @@
             @if(isset($newest_products))
                 @foreach($newest_products as $product)
                     <?php $image_direct = public_path().$product->images ?>
-                    <li><a href="#"><img src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}" class="img-thumbnail img-bar img-responsive"><span> {{ $product->translate(locale())->name}} </span></a></li>
+                    <li><a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}" class="img-thumbnail img-bar img-responsive"><span> {{ $product->translate(locale())->name}} </span></a></li>
                 @endforeach
             @endif
         </ul>
