@@ -82,12 +82,20 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.artist.index',
         'uses' => 'FrontendArtistController@index'
     ]);
+    $router->get('artists/{artist}', [
+        'as' => 'frontend.tradevillage.artist.show',
+        'uses' => 'FrontendArtistController@show'
+    ]);
     $router->bind('events', function ($id) {
         return app('Modules\TradeVillage\Repositories\EventsRepository')->find($id);
     });
     $router->get('events', [
         'as' => 'frontend.tradevillage.events.index',
         'uses' => 'FrontendEventController@index'
+    ]);
+    $router->get('events/{event}', [
+        'as' => 'frontend.tradevillage.events.show',
+        'uses' => 'FrontendEventController@show'
     ]);
     $router->bind('product', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProductsRepository')->find($id);
