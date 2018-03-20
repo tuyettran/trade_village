@@ -43,34 +43,29 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
             'middleware' => 'can:tradevillage.course_users.destroy'
         ]);
     });
-    $router->bind('process', function ($id) {
+    $router->bind('processes', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProcessRepository')->find($id);
     });
-    $router->get('processes', [
-        'as' => 'frontend.tradevillage.process.index',
-        'uses' => 'FrontendProcessController@index'
+    $router->get('product/{product}/processes', [
+        'as' => 'frontend.tradevillage.products.processes',
+        'uses' => 'FrontendProcessController@process'
     ]);
-    $router->get('processes/create', [
-        'as' => 'frontend.tradevillage.process.create',
-        'uses' => 'FrontendProcessController@create',
-        'middleware' => 'can:tradevillage.processes.create'
-    ]);
-    $router->post('processes', [
+    $router->post('{product}/processes', [
         'as' => 'frontend.tradevillage.process.store',
         'uses' => 'FrontendProcessController@store',
         'middleware' => 'can:tradevillage.processes.create'
     ]);
-    $router->get('processes/{process}/edit', [
+    $router->get('processes/{process}/{product}/edit', [
         'as' => 'frontend.tradevillage.process.edit',
         'uses' => 'FrontendProcessController@edit',
         'middleware' => 'can:tradevillage.processes.edit'
     ]);
-    $router->put('processes/{process}', [
+    $router->put('processes/{process}/{product}', [
         'as' => 'frontend.tradevillage.process.update',
         'uses' => 'FrontendProcessController@update',
         'middleware' => 'can:tradevillage.processes.edit'
     ]);
-    $router->delete('processes/{process}', [
+    $router->delete('processes/{process}/{product}', [
         'as' => 'frontend.tradevillage.process.destroy',
         'uses' => 'FrontendProcessController@destroy',
         'middleware' => 'can:tradevillage.processes.destroy'

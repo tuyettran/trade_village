@@ -14,6 +14,7 @@ return [
     'contact' => 'CONTACT TO BUY',
     'category' => 'Category',
     'show_model' => 'Show 3D image',
+    'show_processes' => 'Production process',
     'address' => 'Address',
     'comments' => 'Comments',
     'similar' => 'SIMILAR PRODUCTS',

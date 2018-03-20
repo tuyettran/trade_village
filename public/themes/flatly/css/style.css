@@ -1,6 +1,7 @@
-/*body, custom-container {
-	font-family: 'Roboto Slab', serif;
-}*/
+.custom-container {
+	font-size: 15px;
+	margin-top: 10px !important;
+}
 .pull-right {
 	clear: both;
 }

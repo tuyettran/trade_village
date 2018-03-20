@@ -94,6 +94,17 @@
 			        			<a href="{{ route('frontend.tradevillage.products.model', [$product->id]) }}" class="btn btn-primary" target="_blank">{{ trans('tradevillage::products.show_model') }}</a>
 			        		</div>
 			        	@endif
+			        	@if(count($product->processes) > 0 )
+			        		<div class="col-md-4 col-xs-12">
+			        			<a href="{{ route('frontend.tradevillage.products.processes', $product->id) }}" class="btn btn-success show_processes" target="_blank">{{ trans('tradevillage::products.show_processes') }}</a>
+			        		</div>
+			        	@else
+			        		@can('update-product', $product)
+				        		<div class="col-md-4 col-xs-12">
+				        			<a href="{{ route('frontend.tradevillage.products.processes', $product->id) }}" class="btn btn-success show_processes" target="_blank">{{ trans('tradevillage::products.show_processes') }}</a>
+				        		</div>
+				        	@endcan
+			        	@endif
 	        		</div>
 	        	</div>
 	        </div>
@@ -121,7 +132,7 @@
 			@foreach ($categories as $category)
 				@if($category->id == $product->category_id)
 					<div class="row">
-						<div class="categories-item col-md-8">
+						<div class="categories-item col-md-9">
 		               		<div id="products" class="row">
 		               			<div class="list-group">
 		               				@include('tradevillage::frontend.villages.products.partials.product', ['category' => $category, 'current_product' => $product])

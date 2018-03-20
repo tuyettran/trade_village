@@ -45,4 +45,9 @@ class Products extends Model
     {
         return $this->belongsTo('Modules\\TradeVillage\\Entities\\Enterprises', 'enterprise_id');
     }
+
+    public function processes()
+    {
+        return $this->hasMany('Modules\\TradeVillage\\Entities\\Process', 'product_id');
+    }
 }

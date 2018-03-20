@@ -43,12 +43,13 @@
         	@include('tradevillage::frontend.villages.products.partials.sidebar')
         </div>
 	</div>
-	@include('core::partials.delete-modal')
+	@include('tradevillage::frontend.villages.delete_modal')
 @stop
 
 @section('scripts')
 	
 <script type="text/javascript">
+    $('.nav-products').addClass("active-nav");
     $("#images").change(function(){
         $('#image_preview').html("");
         var total_file=document.getElementById("images").files.length;
@@ -62,6 +63,28 @@
             $("#delete_model").val("yes");
         });
     });
-    $('.nav-products').addClass("active-nav");
+    $( document ).ready(function() {
+        $('#modal-delete-confirmation').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var actionTarget = button.data('action-target');
+            var modal = $(this);
+            modal.find('form').attr('action', actionTarget);
+
+            if (button.data('message') === undefined) {
+            } else if (button.data('message') != '') {
+                modal.find('.custom-message').show().empty().append(button.data('message'));
+                modal.find('.default-message').hide();
+            } else {
+                modal.find('.default-message').show();
+                modal.find('.custom-message').hide();
+            }
+
+            if (button.data('remove-submit-button') === true) {
+                modal.find('button[type=submit]').hide();
+            } else {
+                modal.find('button[type=submit]').show();
+            }
+        });
+    });
 </script>
 @stop

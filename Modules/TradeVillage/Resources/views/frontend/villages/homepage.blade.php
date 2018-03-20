@@ -60,7 +60,7 @@
 				<a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.favorite_products') }}</b></h4></a>
 				<div class="row">
 					@foreach($products as $product)
-						<div class="col-md-3 col-sm-3 col-xs-6 product">
+						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="product">
 								<?php $image_direct = public_path().$product->images ?>
 	                			<a href="{{ route('frontend.tradevillage.products.show', $product->id) }}"><img class="group list-group-image img-responsive thumbnail" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}"></a>
