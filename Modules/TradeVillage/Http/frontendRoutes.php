@@ -86,6 +86,17 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.artist.show',
         'uses' => 'FrontendArtistController@show'
     ]);
+    $router->bind('enterprises', function ($id) {
+        return app('Modules\TradeVillage\Repositories\EnterprisesRepository')->find($id);
+    });
+    $router->get('enterprises', [
+        'as' => 'frontend.tradevillage.enterprises.index',
+        'uses' => 'FrontendEnterpriseController@index'
+    ]);
+    $router->get('enterprises/{enterprise}', [
+        'as' => 'frontend.tradevillage.enterprises.show',
+        'uses' => 'FrontendEnterpriseController@show'
+    ]);
     $router->bind('events', function ($id) {
         return app('Modules\TradeVillage\Repositories\EventsRepository')->find($id);
     });

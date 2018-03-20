@@ -11,6 +11,8 @@ return [
     'category' => 'Lĩnh vực',
     'description' => 'Mô tả chung',
     'detail' => 'Chi tiết',
+    'address' => 'Địa chỉ',
+    'contact' => 'Liên hệ',
     'products' => 'Sản phẩm tiêu biểu',
     'title' => [
         'artists' => 'Nghệ nhân',

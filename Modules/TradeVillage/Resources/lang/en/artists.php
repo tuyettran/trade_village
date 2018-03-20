@@ -11,6 +11,8 @@ return [
     'category' => 'Category',
     'description' => 'Description',
     'detail' => 'Detail',
+    'address' => 'Addresss',
+    'contact' => 'Contact',
     'products' => 'Products',
     'title' => [
         'artists' => 'Artist',
