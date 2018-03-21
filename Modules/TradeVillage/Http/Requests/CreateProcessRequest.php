@@ -10,6 +10,7 @@ class CreateProcessRequest extends BaseFormRequest
     {
         return [
             'step' => 'required|integer|min:1',
+            'process-image' => 'required|file|image',
         ];
     }
 

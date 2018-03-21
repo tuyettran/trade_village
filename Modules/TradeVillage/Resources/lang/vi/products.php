@@ -14,6 +14,7 @@ return [
     'contact' => 'LIÊN HỆ MUA',
     'category' => 'Loại sản phẩm',
     'show_model' => 'Xem ảnh 3D',
+    'show_processes' => 'Quy trình chế tác',
     'address' => 'Địa chỉ',
     'comments' => 'Bình luận',
     'similar' => 'SẢN PHẨM TƯƠNG TỰ',
