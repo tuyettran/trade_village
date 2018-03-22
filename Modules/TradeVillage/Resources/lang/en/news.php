@@ -31,4 +31,9 @@ return [
     ],
     'validation' => [
     ],
+    'other' => [
+        'news' => 'News',
+        'newest' => 'Newest',
+        'relatedNews' => 'Related news',
+    ],
 ];

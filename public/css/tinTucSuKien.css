@@ -1,0 +1,223 @@
+.container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.big-img {
+    width: 100%;
+    height: 500px;
+}
+
+.small-img {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 0px;
+}
+
+.box {
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.event .news .news-diff{
+    color: #0000cc;
+}
+
+.col-md-12 .col-md-6 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.img-text {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+}
+
+.bottom-left a {
+    color: white;
+}
+
+.bottom-left a:hover {
+    color: blue;
+}
+
+.small-img {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.event-name {
+    position: absolute;
+    bottom: 1px;
+    left: 10px;
+}
+
+.event-name a {
+    color: white;
+}
+
+.event-name a:hover {
+    color: blue;
+}
+
+/*Silde news*/
+.carousel-inner.onebyone-carosel {
+    margin: auto;
+    width: 100%;
+}
+
+.onebyone-carosel .active.left {
+    left: -25.00%;
+}
+
+.onebyone-carosel .active.right {
+    left: 25.00%;
+}
+
+.onebyone-carosel .next {
+    left: 25.00%;
+}
+
+.onebyone-carosel .prev {
+    left: -25.00%;
+}
+
+.item img {
+    width: 250px;
+    height: 200px;
+}
+
+.item h5,p {
+    text-align: center;
+}
+
+.item a {
+    color: #ff8000;
+}
+.item a:hover {
+    color: blue;
+}
+/*end slide news*/
+
+.village-name a {
+    color: black;
+}
+
+.village-name a:hover {
+    color: green;
+}
+
+.village-name p {
+    font-size: 12px;
+}
+
+.bar-row {
+    margin-top: 20px;
+}
+
+.arrow {
+    font-size: 10px;
+    color: red;
+}
+
+/*tin khác*/
+.holder { 
+  width:100%;
+  height:250px;
+  overflow:hidden;
+  padding:10px;
+  font-family:Helvetica;
+}
+.holder .mask {
+  position: relative;
+  left: 0px;
+  top: 10px;
+  overflow: hidden;
+}
+.holder ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+  position: relative;
+}
+.holder ul li {
+  padding:10px 0px;
+}
+.holder ul li a {
+  color:darkred;
+  text-decoration:none;
+}
+/*end tin khác*/
+
+/*tin mới*/
+.new a {
+    color: #ff8000;
+    padding-left: 0px;
+}
+
+.new a:hover {
+    color: blue;
+}
+
+.new-info img {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 0px;
+}
+
+.new-img {
+    padding-left: 0px;
+    margin-top: 5px;
+}
+
+.time {
+    margin-top: 3px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.info-detail p {
+    text-align: left;
+}
+
+.info-detail {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-weight: normal;
+}
+
+.img-info {
+    padding-left: 0px;
+}
+
+hr {
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top:1px dotted black;
+}
+/*end tin mới*/
+.container {
+    margin-bottom: 100px;
+}
+
+.paginate {
+    text-align: center;
+}

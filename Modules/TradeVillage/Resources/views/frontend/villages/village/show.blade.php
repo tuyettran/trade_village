@@ -29,6 +29,16 @@
             </div>
         </div>
         <div class="col-md-3 sidebar">
+            <div class="col-md-12 col-sm-12" style="float: right;">
+                <form class="navbar-form" role="search">
+                    <div class="input-group add-on">
+                        <input class="form-control" name="srch-term" id="srch-term" type="text">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="right-side-box">
                 <div class="row village-info">
                     <div class="infomation col-xs-6 col-md-12">
@@ -166,7 +176,11 @@
                     var address = response[i]['address'];
                     var myLatLng = {lat: response[i]['lat'], lng: response[i]['lng']};
 
-                    var infowincontent = '<div><strong><a href="#">' + name + '</a></strong>' + '<br>' + address + '</div>';
+                    //url to specific enterprise
+                    var url = '{{ route("frontend.tradevillage.enterprises.show", ":id") }}';
+                    url = url.replace(':id', id);
+
+                    var infowincontent = '<div><strong><a href="' + url + '">' + name + '</a></strong>' + '<br>' + address + '</div>';
                     
                     var marker = new google.maps.Marker({
                         map: map,
