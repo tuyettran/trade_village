@@ -10,6 +10,7 @@ return [
     'address' => 'Place',
     'newest_events' => 'Newest events',
     'similar_events' => 'Similar events',
+    'nearest_events' => 'Incoming events',
     'title' => [
         'events' => 'Events',
         'create events' => 'Create a event',

@@ -9,6 +9,7 @@ return [
     'end_time' => 'Kết thúc',
     'address' => 'Địa điểm',
     'newest_events' => 'Sự kiện mới',
+    'nearest_events' => 'Sự kiện nổi bật sắp tới',
     'similar_events' => 'Sự kiện liên quan',
     'title' => [
         'events' => 'Sự kiện',

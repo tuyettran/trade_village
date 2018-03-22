@@ -35,9 +35,9 @@ class FrontendEventController extends BasePublicController
     public function index()
     {
         $events = $this->event->paginate($perPage = 10);
-        $top_events = $this->event->newest_events(5);
+        $nearest_events = $this->event->nearest_events(8);
         $categories = $this->category->all();
-        return view('tradevillage::frontend.villages.events.index', compact('events', 'categories', 'top_events'));
+        return view('tradevillage::frontend.villages.events.index', compact('events', 'categories', 'nearest_events'));
     }
 
     public function show(Events $event)
