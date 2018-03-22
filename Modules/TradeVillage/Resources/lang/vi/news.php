@@ -31,4 +31,9 @@ return [
     ],
     'validation' => [
     ],
+    'other' => [
+        'news' => 'Tin tức',
+        'newest' => 'Tin mới',
+        'relatedNews' => 'Tin liên quan',
+    ],
 ];

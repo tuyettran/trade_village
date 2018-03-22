@@ -164,5 +164,17 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.villages.xmlGenerate',
         'uses' => 'FrontendVillagesController@xmlGenerate'
     ]);
+
+    $router->bind('news', function ($id) {
+        return app('Modules\TradeVillage\Repositories\NewsRepository')->find($id);
+    });
+    $router->get('news', [
+        'as' => 'frontend.tradevillage.news.index',
+        'uses' => 'FrontendNewsController@index'
+    ]);
+    $router->get('news/{news}', [
+        'as' => 'frontend.tradevillage.news.show',
+        'uses' => 'FrontendNewsController@show'
+    ]);
 });
 ?>

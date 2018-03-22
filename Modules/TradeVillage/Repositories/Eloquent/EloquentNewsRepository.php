@@ -29,9 +29,17 @@ class EloquentNewsRepository extends EloquentBaseRepository implements NewsRepos
 
     public function latestNews($villageId, $number) {
         if (method_exists($this->model, 'translations')) {
-            return $this->model->with('translations')->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__news.village_id') ->where('tradevillage__news.village_id', '=', $villageId)->select('tradevillage__news.*')->orderBy('created_at', 'DESC')->limit($number)->get();
+            return $this->model->with('translations')->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__news.village_id') ->where('tradevillage__news.village_id', '=', $villageId)->select('tradevillage__news.*')->orderBy('updated_at', 'DESC')->limit($number)->get();
         }
 
-        return $this->model->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__news.village_id') ->where('tradevillage__news.village_id', '=', $villageId)->select('tradevillage__news.*')->orderBy('created_at', 'DESC')->limit($number)->get();
+        return $this->model->join('tradevillage__villages', 'tradevillage__villages.id', '=', 'tradevillage__news.village_id') ->where('tradevillage__news.village_id', '=', $villageId)->select('tradevillage__news.*')->orderBy('updated_at', 'DESC')->limit($number)->get();
+    }
+
+    public function newest($number) {
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->select('tradevillage__news.*')->orderBy('updated_at', 'DESC')->limit($number)->get();
+        }
+
+        return $this->model->select('tradevillage__news.*')->orderBy('updated_at', 'DESC')->limit($number)->get();
     }
 }
