@@ -1,4 +1,4 @@
-<div class="row thumbnail event">
+<div class="row event">
 	<h4 class="title"><b><a href="{{ route('frontend.tradevillage.events.show', $event->id) }}" class="orange-text">{{ $event->translate(locale())->title }}</a></b></h4>
 	<div class="row">
 		<div class="col-md-2 col-xs-4">

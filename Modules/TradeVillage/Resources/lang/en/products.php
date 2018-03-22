@@ -20,10 +20,15 @@ return [
     'similar' => 'SIMILAR PRODUCTS',
     'no product' => 'No product',
     'no comment' => 'No comment',
+    'create_process' => 'Create new process',
+    'enterprise' => 'MANUFACTURING ENTERPRISE',
+    'artist' => 'MANUFACTURING ARTIST',
+    'production_step' => 'PROCESS OF PRODUCT MANUFACTURE',
     'title' => [
         'products' => 'Products',
         'create products' => 'Create a product',
         'edit products' => 'Edit a product',
+        'contact' => 'Contact',
     ],
     'button' => [
         'create products' => 'Create a product',

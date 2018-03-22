@@ -11,6 +11,7 @@ use Modules\TradeVillage\Entities\Products;
 use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
 use Modules\TradeVillage\Repositories\ProductsRepository;
+use Modules\TradeVillage\Repositories\ProcessRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class ProductsController extends AdminBaseController
@@ -20,11 +21,12 @@ class ProductsController extends AdminBaseController
      */
     private $products;
 
-    public function __construct(ProductsRepository $products)
+    public function __construct(ProductsRepository $products, ProcessRepository $processes)
     {
         parent::__construct();
 
         $this->products = $products;
+        $this->processes = $processes;
     }
 
     /**
@@ -38,6 +40,12 @@ class ProductsController extends AdminBaseController
         $artists = DB::table('tradevillage__artist_translations')->get();
         $enterprises = DB::table('tradevillage__enterprises_translations')->get();
         return view('tradevillage::admin.products.index', compact('products', 'artists', 'enterprises'));
+    }
+
+    public function processes(Products $product)
+    {
+        $processes = $this->processes->getByAttributes(['product_id' => $product->id], $orderBy = 'step', $sortOrder = 'desc');
+        return view('tradevillage::admin.processes.index', compact('processes', 'product'));
     }
 
     /**

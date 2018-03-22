@@ -5,6 +5,7 @@ namespace Modules\TradeVillage\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Modules\TradeVillage\Entities\Process;
 use Modules\TradeVillage\Entities\Products;
 use Modules\TradeVillage\Http\Requests\CreateProcessRequest;
@@ -31,22 +32,14 @@ class ProcessController extends AdminBaseController
      *
      * @return Response
      */
-    public function index()
-    {
-        $processes = $this->process->all();
-        $products = DB::table('tradevillage__products_translations')->get();
-        return view('tradevillage::admin.processes.index', compact('processes', 'products'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
-    public function create()
+    public function create_new($product)
     {
-        $products = DB::table('tradevillage__products_translations')->get();
-        return view('tradevillage::admin.processes.create', compact('products'));
+        return view('tradevillage::admin.processes.create', compact('product'));
     }
 
     /**
@@ -55,12 +48,21 @@ class ProcessController extends AdminBaseController
      * @param  CreateProcessRequest $request
      * @return Response
      */
-    public function store(CreateProcessRequest $request)
+    public function store(CreateProcessRequest $request, $product)
     {
-        $this->process->create($request->all());
-
-        return redirect()->route('admin.tradevillage.process.index')
-            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('tradevillage::processes.title.processes')]));
+        $requests = $request->all();
+        $requests['product_id'] = $product->id;
+        $process = $this->process->create( $requests);
+        $path = '/product/process';
+        if( !empty($request->file('process-image'))){
+            $photo = $request->file('process-image');
+            if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                    Storage::putFileAs('/public'.$path, $photo, $process->id.$photo->getClientOriginalName());
+            }
+            $requests['image'] = $path.'/'.$process->id.$photo->getClientOriginalName();
+        }
+        $process->update($requests);
+        return redirect()->route('admin.tradevillage.products.processes', $product->id);
     }
 
     /**
@@ -71,8 +73,7 @@ class ProcessController extends AdminBaseController
      */
     public function edit(Process $process)
     {
-        $products = DB::table('tradevillage__products_translations')->get();
-        return view('tradevillage::admin.processes.edit', compact('process', 'products'));
+        return view('tradevillage::admin.processes.edit', compact('process'));
     }
 
     /**
@@ -84,10 +85,22 @@ class ProcessController extends AdminBaseController
      */
     public function update(Process $process, UpdateProcessRequest $request)
     {
-        $this->process->update($process, $request->all());
+        $path = '/product/process';
+        $requests = $request->all();
+        if( !empty($request->file('process-image'))){
+            $photo = $request->file('process-image');
+            if(substr($photo->getMimeType(), 0, 5) == 'image') {
+                if(file_exists(public_path().$process->image)) {
+                    unlink(public_path().$process->image);
+                }
+                Storage::delete('/public'.$process->image);
+                Storage::putFileAs('/public'.$path, $photo, $process->id.$photo->getClientOriginalName());
+            }
+            $requests['image'] = $path.'/'.$process->id.$photo->getClientOriginalName();
+        }
+        $this->process->update($process, $requests);
 
-        return redirect()->route('admin.tradevillage.process.index')
-            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('tradevillage::processes.title.processes')]));
+        return redirect()->route('admin.tradevillage.products.processes', $process->product->id);
     }
 
     /**
@@ -100,7 +113,6 @@ class ProcessController extends AdminBaseController
     {
         $this->process->destroy($process);
 
-        return redirect()->route('admin.tradevillage.process.index')
-            ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('tradevillage::processes.title.processes')]));
+        return redirect()->back();
     }
 }

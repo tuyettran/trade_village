@@ -20,10 +20,15 @@ return [
     'similar' => 'SẢN PHẨM TƯƠNG TỰ',
     'no product' => 'Không có sản phẩm',
     'no comment' => 'Chưa có bình luận',
+    'create_process' => 'Thêm bước mới',
+    'enterprise' => 'DOANH NGHIỆP CHẾ TÁC',
+    'artist' => 'NGHỆ NHÂN CHẾ TÁC',
+    'production_step' => 'QUY TRÌNH CHẾ TÁC SẢN PHẨM',
     'title' => [
         'products' => 'Sản phẩm',
         'create products' => 'Thêm sản phẩm',
         'edit products' => 'Sửa sản phẩm',
+        'contact' => 'Liên hệ',
     ],
     'button' => [
         'create products' => 'Thêm sản phẩm',

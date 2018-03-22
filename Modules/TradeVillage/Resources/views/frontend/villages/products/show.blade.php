@@ -70,7 +70,7 @@
 	        	</table>
 	        	<div class="row">
 	        		<div class="product-footer-box">
-	        			<div class="col-md-3 col-xs-4">
+	        			<div class="col-md-4 col-xs-4">
 		        			@include('tradevillage::frontend.villages.products.partials.rate', ['product' => $product])
 		        		</div>
 		        		<div class="col-md-5 col-xs-8">
@@ -78,7 +78,7 @@
 		        			@if($product->enterprise)
                                 <img src="{{ Imagy::getThumbnail($product->enterprise->feature_image['path'].'', 'smallThumb') }}"/>
 
-		        				<a href="#">{{ $product->enterprise->translate(locale())->name}}</a>
+		        				<a href="{{ route('frontend.tradevillage.enterprises.show', [$product->enterprise->id]) }}">{{ $product->enterprise->translate(locale())->name}}</a>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->contact }}</p>
 		        				<p>Website: {{ $product->enterprise->website }}</p>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->translate(locale())->address}}</p>
@@ -90,12 +90,12 @@
 		        			@endif
 		        		</div>
 		        		@if($product->model)
-			        		<div class="col-md-4 col-xs-12">
+			        		<div class="col-md-3 col-xs-12">
 			        			<a href="{{ route('frontend.tradevillage.products.model', [$product->id]) }}" class="btn btn-primary" target="_blank">{{ trans('tradevillage::products.show_model') }}</a>
 			        		</div>
 			        	@endif
 			        	@if(count($product->processes) > 0 )
-			        		<div class="col-md-4 col-xs-12">
+			        		<div class="col-md-3 col-xs-12">
 			        			<a href="{{ route('frontend.tradevillage.products.processes', $product->id) }}" class="btn btn-success show_processes" target="_blank">{{ trans('tradevillage::products.show_processes') }}</a>
 			        		</div>
 			        	@else

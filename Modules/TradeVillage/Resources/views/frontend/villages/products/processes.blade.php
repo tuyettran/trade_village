@@ -6,28 +6,39 @@
 
 @section('content')
 	<div class="row processes">
-		<div class="col-md-6 col-xs-9 info">
-			<h4 class="pull-right"><b>DOANH NGHIEP CHE TAC: afhuahieuwhfeiufhief</b></h4>
-			<h4 class="pull-right"><b>Lien he: ahuwahiweau</b></h4>
+		<div class="col-md-7 col-xs-9 info">
+			<div class="pull-right">
+				@if($product->enterprise)
+					<h4><b>{{ trans('tradevillage::products.enterprise') }}: <a href="#">{{ $product->enterprise->translate(locale())->name}}</a></b></h4>
+					
+					<p class="pull-right"><b>{{ trans('tradevillage::products.address') }}:</b> {{ $product->enterprise->address }}</p>
+					<p class="pull-right"><b>{{ trans('tradevillage::products.title.contact') }}:</b> {{ $product->artist->contact}}</p>
+					<p class="pull-right"><b>Website:</b> {{ $product->enterprise->website }}</p>
+			    @elseif($product->artist)
+			    	<h4><b>{{ trans('tradevillage::products.artist') }}: <a href="{{ route('frontend.tradevillage.artist.show', [$product->artist->id]) }}">{{ $product->artist->translate(locale())->name}}</a></b></h4>
+			        
+					<p class="pull-right"><b>{{ trans('tradevillage::products.address') }}:</b> {{ $product->artist->translate(locale())->address}}</p>
+					<p class="pull-right"><b>{{ trans('tradevillage::products.title.contact') }}:</b> {{ $product->artist->contact}}</p>
+				@endif
+			</div>
 		</div>
-		<div class="col-md-6 col-xs-12 background">
+		<div class="col-md-5 col-xs-12 background">
 			<div class="row">
 				<div class="col-md-4 col-xs-4 image">
 					<?php $image_direct = public_path().$product->images ?>
 		            <img class="img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">
 				</div>
 				<div class="col-md-8 col-xs-8">
-					<h3 class="white-text">QUY TRINH CHE TAC SAN PHAM THU CONG BINH GOM CHU DAU</h3>
+					<h3 class="white-text">{{ trans('tradevillage::products.production_step') }} {{ mb_strtoupper($product->translate(locale())->name, "UTF-8") }}</h3>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row items">
 		<ul>
-		<?php $i = 0 ?>
 		@foreach($processes as $process)
 			<li>
-				<div class="process row {{ $i%2==1? 'odd' : 'even'}}">
+				<div class="process row">
 					<div class="col-md-4">
 						<img src="{{ $process->image }}" class="img-responsive thumbnail process-image" />
 					</div>
@@ -38,19 +49,18 @@
 								<button class="btn btn-danger btn-flat btn-xs" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('frontend.tradevillage.process.destroy', [$process->id, $product->id]) }}"><span class="glyphicon glyphicon-trash"></span></button>
 							@endcan
 						</div>
-						<h3><span class="step">{{ $i + 1 }}</span><b>{{ $process->translate(locale())->title }}</b></h3>
+						<h3><span class="step">{{ $process->step }}</span><b>{{ $process->translate(locale())->title }}</b></h3>
 						{!! $process->translate(locale())->description !!}
 					</div>
 				</div>
 			</li>
-			<?php $i++ ?>
 		@endforeach
 		</ul>
 		<hr/>
 		@can('update-product', $product)
 			{!! Form::open(['route' => ['frontend.tradevillage.process.store', $product->id], 'method' => 'post', 'files' => true]) !!}
 			    <div class="row form">
-			    	<h4><b>THÊM BƯỚC MỚI</b></h4>
+			    	<h4><b>{{ trans('tradevillage::products.create_process') }}</b></h4>
 			        <div class="col-md-12">
 			            <div class="nav-tabs-custom">
 			                @include('partials.form-tab-header')

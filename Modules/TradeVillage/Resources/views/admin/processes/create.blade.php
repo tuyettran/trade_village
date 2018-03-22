@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.tradevillage.process.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.tradevillage.process.store', $product->id], 'method' => 'post', 'files' => 'true']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -26,28 +26,19 @@
                         </div>
                     @endforeach
                     <div class="box-body">
-                        <div class="form-group{{ $errors->has("product_id") ? " has-error" : "" }}">
-                            {!! Form::label("product_id", trans("tradevillage::processes.form.product")) !!}
-                            <br/>
-                            <select name="product_id">
-                            @if( isset($products))
-                                @foreach( $products as $product)
-                                    @if( $product->locale == locale())
-                                        <option value={{$product->products_id}}>{{$product->name}}</option>
-                                    @endif
-                                @endforeach
-                            @endif
-                            </select>
-                            {!! $errors->first("product", '<span class="help-block">:message</span>') !!}
-                        </div>
                         <div class="form-group{{ $errors->has("step") ? " has-error" : "" }}">
                             {!! Form::label("step", trans("tradevillage::processes.form.step")) !!}
                             
-                            {!! Form::text("step", old("step"), ["class" => "form-control", "placeholder" => trans("tradevillage::processes.form.step")]) !!}
+                            {{ Form::input('number', 'step', old("step"),  ["class" => "form-control", "placeholder" => trans("tradevillage::processes.form.step")]) }} 
                             
                             {!! $errors->first("step", '<span class="help-block">:message</span>') !!}
                         </div>
-                        @mediaSingle('feature_image')
+                        <div class="form-group{{ $errors->has("process-image") ? " has-error" : "" }}">
+                            {!! Form::label("image", trans("tradevillage::processes.form.image")) !!}
+                            
+                            <input name="process-image" type="file" required>
+                            {!! $errors->first("process-image", '<span class="help-block">:message</span>') !!}
+                        </div>
                     </div>
                     
                     <div class="box-footer">
