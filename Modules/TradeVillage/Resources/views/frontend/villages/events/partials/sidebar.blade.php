@@ -1,4 +1,4 @@
-<div class="thumbnail">
+<div>
 	<div class="similar-events">
 		<h4 class="orange-text"><b>{{ trans('tradevillage::events.similar_events') }}</b></h4>
 		@foreach($similar_events as $similar_event)
