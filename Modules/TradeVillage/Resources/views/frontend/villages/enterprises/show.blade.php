@@ -87,6 +87,10 @@
    			</div>
         </div>
         <div class="col-md-3 col-sm-12">
+        	<div style="height: 15px;"></div>
+        	<div id="map" style="width:100%;height: 300px;"></div>
+        	<input type="text" id="olat" value="{{ $enterprise->lat }}" style="display: none;">
+            <input type="text" id="olng" value="{{ $enterprise->lng }}" style="display: none;">
    			<h4 class="blue-text"><b>{{ trans('tradevillage::enterprises.products') }}</b></h4>
    			@foreach($products as $product)
    				@include('tradevillage::frontend.villages.artists.partials.product', ['product' => $product])
@@ -96,9 +100,23 @@
 @stop
 
 @section('scripts')
-	
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
+<script type="text/javascript">
+	var lat = document.getElementById("olat").value;
+	var lng = document.getElementById("olng").value;
+	var mapEnterprise = document.getElementById("map");
+	var myCenter = new google.maps.LatLng(lat, lng); 
+	var mapOptions = {center: myCenter, zoom: 16};
+	var map = new google.maps.Map(mapEnterprise, mapOptions);
+	var marker = new google.maps.Marker({
+	    position: myCenter,
+	    icon: '/images/icon10.png',
+	    animation: google.maps.Animation.BOUNCE
+	});
+	marker.setMap(map);
+</script>
+
 <script type="text/javascript">
     $('.nav-enterprises').addClass("active-nav");
-
 </script>
 @stop

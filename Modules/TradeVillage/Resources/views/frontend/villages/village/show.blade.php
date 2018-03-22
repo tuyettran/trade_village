@@ -64,7 +64,7 @@
                     <ul class="new-feed">
                         @if(count($latestNews) > 0)
                             @foreach($latestNews as $latestNew)
-                                <li><p class="oneline"><a href="videoDetail.html"><span class="glyphicon glyphicon-list-alt"></span>&emsp;{{ $latestNew->translate(locale())->title }}</a></p>
+                                <li><p class="oneline"><a href="{{ route('frontend.tradevillage.news.show', $latestNew->id) }}"><span class="glyphicon glyphicon-list-alt"></span>&emsp;{{ $latestNew->translate(locale())->title }}</a></p>
                                     <p class="timestamp pull-right">{{ $latestNew->created_at }}</p>
                                 </li>
                             @endforeach
@@ -80,8 +80,8 @@
                             @foreach($artists as $artist)
                                 <li class="row">
                                     <img src="@thumbnail($artist->feature_image->path, 'largeThumb')" class="img-circle artist img-responsive col-md-3 col-xs-2 thumbnail">
-                                    <a href=""><h5>{{ $artist->translate(locale())->name }}</h5></a>
-                                    <a href=""><p>{{ $artist->translate(locale())->address }}</p></a>
+                                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }}</h5></a>
+                                    <a href="{{ route('frontend.tradevillage.news.show', $latestNew->id) }}"><p>{{ $artist->translate(locale())->address }}</p></a>
                                 </li>
                             @endforeach
                         @else
@@ -118,9 +118,6 @@
 
 @section('scripts')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
-<script type="text/javascript">
-    
-</script>
 <script type="text/javascript">
     function initMap() {
         //Display villages
