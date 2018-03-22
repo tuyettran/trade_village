@@ -604,14 +604,24 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
     $router->get('processes', [
         'as' => 'admin.tradevillage.process.index',
         'uses' => 'ProcessController@index',
+        'middleware' => 'can:tradevillage.processes.edit'
+    ]);
+    $router->get('products/{product}/processes', [
+        'as' => 'admin.tradevillage.products.processes',
+        'uses' => 'ProductsController@processes',
         'middleware' => 'can:tradevillage.processes.index'
     ]);
     $router->get('processes/create', [
         'as' => 'admin.tradevillage.process.create',
-        'uses' => 'ProcessController@create',
+        'uses' => 'ProcessController@create_new',
         'middleware' => 'can:tradevillage.processes.create'
     ]);
-    $router->post('processes', [
+    $router->get('{product}/processes/create', [
+        'as' => 'admin.tradevillage.process.create_new',
+        'uses' => 'ProcessController@create_new',
+        'middleware' => 'can:tradevillage.processes.create'
+    ]);
+    $router->post('{product}/processes', [
         'as' => 'admin.tradevillage.process.store',
         'uses' => 'ProcessController@store',
         'middleware' => 'can:tradevillage.processes.create'

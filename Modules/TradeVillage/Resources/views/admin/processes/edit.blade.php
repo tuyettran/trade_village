@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.tradevillage.process.update', $process->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.tradevillage.process.update', $process->id], 'method' => 'put', 'files' => 'true']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -25,34 +25,23 @@
                             @include('tradevillage::admin.processes.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    @mediaSingle('feature_image', $process)
                     <div class="box-body">
-
-                        <div class="form-group{{ $errors->has("product_id") ? " has-error" : "" }}">
-                            {!! Form::label("product_id", trans("tradevillage::processes.form.product")) !!}
-                            <br/>
-                            <select name="product_id">
-                            @if( isset($products))
-                                @foreach( $products as $product)
-                                    @if( $product->locale == locale())
-                                        @if( $product->products_id == $process->product_id)
-                                            <option value={{$product->products_id}} selected>{{$product->name}} </option>
-                                        @else
-                                            <option value={{$product->products_id}}>{{$product->name}} </option>
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endif
-                            </select>
-                            
-                            {!! $errors->first("product_id", '<span class="help-block">:message</span>') !!}
-                        </div>
                         <div class="form-group{{ $errors->has("step") ? " has-error" : "" }}">
                             {!! Form::label("step", trans("tradevillage::processes.form.step")) !!}
                             
                             {!! Form::number("step", old("step", $process->step), ["class" => "form-control", "placeholder" => trans("tradevillage::processes.form.step")]) !!}
                             
                             {!! $errors->first("step", '<span class="help-block">:message</span>') !!}
+                        </div>
+                        <div class="form-group{{ $errors->has("process-image") ? " has-error" : "" }}">
+                            {!! Form::label("image", trans("tradevillage::processes.form.image")) !!}
+                            
+                            <div class="process-image-edit">
+                                <img src="{{ $process->image }}" class="img-responsive thumbnail" style="max-width: 700px;">
+                            </div>
+
+                            <input name="process-image" type="file">
+                            {!! $errors->first("process-image", '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
                     <div class="box-footer">

@@ -6,6 +6,9 @@
 .process-image-edit {
 	max-width: 700px !important;
 }
+.process-image {
+	margin-top: 10px;
+}
 .processes .image {
 	padding: 0;
 }
@@ -15,10 +18,11 @@
 .hide-div {
 	display: none;
 }
-.background {/*
-	background-color: #0000ff;*/
+.background {
 	background-color: #4d4d4d;
 	padding: 10px;
+	max-height: 200px;
+	min-height: 140px;
 }
 .info {
 	margin-top: 10px;
@@ -31,8 +35,13 @@
 .form {
 	margin-bottom: 25px;
 }
+.background .white-text {
+	line-height: 32px;
+}
 .processes img {
-	margin-top: 5px;
+	margin-top: 2px;
+	max-height: 180px;
+	width: 100%;
 }
 .top-right {
 	position: absolute;
@@ -43,8 +52,10 @@
 	position: relative;
 }
 .process {
-	border: 1px solid grey;
+	border: 2px solid grey;
+	box-shadow: 1px 1.5px 1px grey;
 	border-radius: 5px;
+	margin-bottom: 20px !important;
 }
 .process:hover {
 	background-color: lightgrey;
@@ -57,11 +68,3 @@
 .items li {
 	margin-bottom: 12px;
 }
-/*
-.odd{
-	border-left: 6px solid orange !important;
-	margin-left: 5px;
-}
-.even{
-	border-left: 6px solid green !important;
-}*/

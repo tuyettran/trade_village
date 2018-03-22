@@ -53,7 +53,6 @@ class FrontendProcessController extends BasePublicController
         }
         $process->update($requests);
         return redirect()->route('frontend.tradevillage.products.processes', $product->id);
-        echo '/public'.$path;
     }
 
 

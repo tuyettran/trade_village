@@ -109,16 +109,6 @@ class RegisterTradeVillageSidebar implements \Maatwebsite\Sidebar\SidebarExtende
                     );
                 });
 
-                $item->item(trans('tradevillage::processes.title.processes'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.tradevillage.process.create');
-                    $item->route('admin.tradevillage.process.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('tradevillage.processes.index')
-                    );
-                });
-
                 $item->item(trans('tradevillage::product_rates.title.product_rates'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);

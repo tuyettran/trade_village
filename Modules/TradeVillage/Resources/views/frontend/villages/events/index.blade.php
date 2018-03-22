@@ -7,9 +7,6 @@
 @stop
 
 @section('content')
-	<div class="list-group top_events">
-		@include('tradevillage::frontend.villages.events.partials.top_events', ['top_events' => $top_events])
-	</div>
 	<div class="row filter-search-box">
 		<div class="col-md-3 pull-right">
 			<form class="navbar-form pull-right search-form" role="search">
@@ -21,16 +18,16 @@
 		        </div>
 		    </form>
 		</div>
-		<div class="col-md-9 filter">
-			@include('tradevillage::frontend.villages.events.partials.filter', ['categories' => $categories])
-		</div>
 	</div>
-	
+	<div class="list-group top_events">
+		@include('tradevillage::frontend.villages.events.partials.top_events', ['top_events' => $top_events])
+	</div>
 	<div class="row">
 		<div class="col-md-9 col-sm-12">
    			<div class="list-group events">
    				@foreach($events as $event)
    					@include('tradevillage::frontend.villages.events.partials.event', ['event' => $event])
+   					<hr/>
    				@endforeach
    				{{ $events->links() }}
    			</div>

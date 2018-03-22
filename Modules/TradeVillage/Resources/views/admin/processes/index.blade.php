@@ -15,7 +15,7 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.tradevillage.process.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                    <a href="{{ route('admin.tradevillage.process.create_new', $product->id) }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('tradevillage::processes.button.create process') }}
                     </a>
                 </div>
@@ -47,18 +47,12 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <img src="{{ Imagy::getThumbnail($process->feature_image['path'].'', 'smallThumb') }}"/>
+                                    <img src="{{ $process->image }}" class="thumbnail" style="width: 50px; height: 50px;" />
                                 </td>
                                 <td>
-                                    @if( isset($products))
-                                        @foreach($products as $product)
-                                            @if( $product->products_id == $process->product_id && $product->locale == locale())
-                                                <a href="{{ route('admin.tradevillage.process.edit', [$process->id]) }}">
-                                                    {{ $product->name }}
-                                                </a>
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                    <a href="{{ route('admin.tradevillage.products.edit', [$product->id]) }}">
+                                        {{ $process->product->translate(locale())->name }}
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tradevillage.process.edit', [$process->id]) }}">
@@ -116,7 +110,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.tradevillage.process.create') ?>" }
+                    { key: 'c', route: "<?= route('admin.tradevillage.process.create_new', $product->id) ?>" }
                 ]
             });
         });
