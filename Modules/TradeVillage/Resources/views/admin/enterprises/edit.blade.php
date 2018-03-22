@@ -29,6 +29,8 @@
                         <input id="submit" type="button" value="Get coordinates">
                         <input id="lat" name="lat" style="display: none;">
                         <input id="lng" name="lng" style="display: none;">
+                        <input id="olat" name="olat" value="{{ $enterprises->lat }}" style="display: none;">
+                        <input id="olng" name="olng" value="{{ $enterprises->lng }}" style="display: none;">
                         <div class="col-md-12" id="map" style="width:100%;height: 300px;"></div>
 
                         <div class="form-group{{ $errors->has("user_id") ? " has-error" : "" }}">
@@ -89,6 +91,8 @@
 @push('js-stack')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
     <script type="text/javascript">
+        document.getElementById('lat').value = document.getElementById('olat').value;
+        document.getElementById('lng').value = document.getElementById('olng').value;
         var address = document.getElementById('address').value;
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({'address': address}, function(results, status) {

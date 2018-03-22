@@ -12,7 +12,7 @@
                 <li class="nav-home"><a href="/">{{ trans('tradevillage::main.title.home') }}</a></li>
                 <li class="nav-events"><a href="{{ route('frontend.tradevillage.events.index') }}">{{ trans('tradevillage::main.title.event') }}</a></li>
 
-                <li class="nav-news"><a href="tinTucSuKien.html">{{ trans('tradevillage::main.title.new') }}</a></li>
+                <li class="nav-news"><a href="{{ route('frontend.tradevillage.news.index') }}">{{ trans('tradevillage::main.title.new') }}</a></li>
                 <li class="nav-villages"><a href="{{ route('frontend.tradevillage.villages.index') }}">{{ trans('tradevillage::main.title.village') }}</a>
                 </li>
                 <li class="nav-products"><a href="{{ route('frontend.tradevillage.products.index') }}">{{ trans('tradevillage::main.title.product') }}</a></li>
