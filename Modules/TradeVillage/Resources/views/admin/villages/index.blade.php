@@ -38,7 +38,7 @@
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.province') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
 
-
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.active_home') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -92,7 +92,15 @@
                                 <td>
                                     <img src="{{ Imagy::getThumbnail($villages->image_village['path'].'', 'smallThumb') }}"/>
                                 </td>
-                                
+
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" {{ $villages->active_home? "checked" : "" }} disabled>
+                                        <span class="slider round"></span>
+                                        <p style="display: none">{{ $villages->active_home }}</p>
+                                    </label>
+                                </td>
+
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
@@ -113,7 +121,7 @@
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.district') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.province') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
-
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.active_home') }}</th>
                                 <th>{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
                             </tfoot>

@@ -22,6 +22,7 @@ class CreateTradeVillageVillagesTable extends Migration
             $table->String('province');
             $table->String('lat');
             $table->String('lng');
+            $table->boolean('active_home')->default(false);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('tradevillage__village_fields')->onDelete('cascade')->onUpdate('cascade');

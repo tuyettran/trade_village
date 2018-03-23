@@ -25,6 +25,7 @@ return [
         'address' => 'Địa chỉ',
         'story' => 'Giai thoại của',
         'actions' => 'Hoạt động',
+        'active_home' => 'Trang chủ',
     ],
     'form' => [
         'name'=> 'Tên',
@@ -36,6 +37,7 @@ return [
         'story' => 'Câu chuyện',
         'detail' => 'Chi tiết',
         'map' => 'Bản đồ',
+        'active_home' => 'Làng nghề tiêu biểu trên trang chủ?',
     ],
     'messages' => [
     ],

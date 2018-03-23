@@ -47,6 +47,15 @@
                             
                             {!! $errors->first("visitor_counter", '<span class="help-block">:message</span>') !!}
                         </div>
+                        <div class="form-group{{ $errors->has("active_home") ? " has-error" : "" }}">
+                            {!! Form::label("active_home", trans("tradevillage::villages.form.active_home")) !!}
+                            <br> 
+                            <label class="switch">
+                                <input name="active_home" type="checkbox" {{ $villages->active_home? "checked" : "" }}>
+                                <span class="slider round"></span>
+                            </label>
+                            {!! $errors->first("active_home", '<span class="help-block">:message</span>') !!}
+                        </div>
                         
                         @mediaSingle('image_village',$villages)
 

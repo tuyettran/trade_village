@@ -25,6 +25,7 @@ return [
         'address' => 'Address',
         'story' => 'The story of',
         'actions' => 'Actions',
+        'active_home' => 'Active home',
     ],
     'form' => [
         'name'=> 'Name',
@@ -36,6 +37,7 @@ return [
         'story' => 'Story',
         'detail' => 'Detail',
         'map' => 'Map',
+        'active_home' => 'Active on typical villages in homepage?',
     ],
     'messages' => [
     ],

@@ -59,7 +59,11 @@ class VillagesController extends AdminBaseController
      */
     public function store(CreateVillagesRequest $request)
     {
-        $this->villages->create($request->all());
+        $requests = $request->all();
+        if($request->active_home){
+            $requests['active_home'] = true;
+        }
+        $this->villages->create($requests);
 
         return redirect()->route('admin.tradevillage.villages.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('tradevillage::villages.title.villages')]));
@@ -86,7 +90,14 @@ class VillagesController extends AdminBaseController
      */
     public function update(Villages $villages, UpdateVillagesRequest $request)
     {
-        $this->villages->update($villages, $request->all());
+        $requests = $request->all();
+        if($request->active_home){
+            $requests['active_home'] = true;
+        }
+        else{
+            $requests['active_home'] = false;
+        }
+        $this->villages->update($villages, $requests);
 
         return redirect()->route('admin.tradevillage.villages.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('tradevillage::villages.title.villages')]));

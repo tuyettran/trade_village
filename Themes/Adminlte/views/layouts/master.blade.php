@@ -18,6 +18,7 @@
     @endforeach
     <link media="all" type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('css/bootstrap-datetimepicker.css') }}">
+    <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('css/toggle-button.css') }}">
     {!! Theme::script('vendor/jquery/jquery.min.js') !!}
     @include('partials.asgard-globals')
     @section('styles')
