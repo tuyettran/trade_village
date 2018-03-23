@@ -63,11 +63,11 @@ class PublicController extends BasePublicController
      */
     public function homepage()
     {
-        $villages = $this->villages->findByMany([2,3]);
+        $villages = $this->villages->getByAttributes(['active_home' => "1"], $orderBy = 'updated_at', $sortOrder = 'desc');
         $products = $this->products->favorite(8);
         $artists = $this->artists->findByMany([1,2]);
         $enterprises = $this->enterprises->all();
-        $news = $this->news->all();
+        $news = $this->news->newest(5);
         $events = $this->events->newest_events(5);
         return view('tradevillage::frontend.villages.homepage', compact('villages', 'products', 'artists', 'enterprises', 'news', 'events'));;
     }

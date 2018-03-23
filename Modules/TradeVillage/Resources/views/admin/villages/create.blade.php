@@ -40,6 +40,16 @@
                                 </select>
                             {!! $errors->first("district", '<span class="help-block">:message</span>') !!}
                         </div>
+
+                        <div class="form-group{{ $errors->has("active_home") ? " has-error" : "" }}">
+                            {!! Form::label("active_home", trans("tradevillage::villages.form.active_home")) !!}
+                            <br> 
+                            <label class="switch">
+                                <input name="active_home" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            {!! $errors->first("active_home", '<span class="help-block">:message</span>') !!}
+                        </div>
                         
                         <div class="form-group{{ $errors->has("visitor_counter") ? " has-error" : "" }}">
                             {!! Form::label("visitor_counter", trans("tradevillage::villages.form.visitor_counter")) !!}

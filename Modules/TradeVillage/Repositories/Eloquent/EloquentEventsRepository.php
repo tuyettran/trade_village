@@ -37,7 +37,7 @@ class EloquentEventsRepository extends EloquentBaseRepository implements EventsR
 	public function nearest_events($number){
 		$now = Carbon::now();
 		if (method_exists($this->model, 'translations')) {
-            return $this->model->with('translations')->where('start_time', '>', $now)->orWhere('end_time', '<', $now)->orderBy('end_time', 'DESC')->limit($number)->get();
+            return $this->model->with('translations')->where('start_time', '>', $now)->orWhere('end_time', '>', $now)->orderBy('end_time', 'DESC')->limit($number)->get();
         }
 
         return $this->model->where('start_time', '>', $now)->orWhere('end_time', '<', $now)->orderBy('end_time', 'DESC')->limit($number)->get();
