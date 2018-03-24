@@ -23,7 +23,8 @@ return [
     'create_process' => 'Thêm bước mới',
     'enterprise' => 'DOANH NGHIỆP CHẾ TÁC',
     'artist' => 'NGHỆ NHÂN CHẾ TÁC',
-    'production_step' => 'QUY TRÌNH CHẾ TÁC SẢN PHẨM',
+    'process_of' => 'QUY TRÌNH CHẾ TÁC',
+    'manufacture' => '',
     'title' => [
         'products' => 'Sản phẩm',
         'create products' => 'Thêm sản phẩm',

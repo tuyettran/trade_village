@@ -1,4 +1,4 @@
-<div class="navbar-form bar">
+<div class="navbar-form {{ isset($village)? 'bar':'margin-top-bar'}}">
     <div>
         <a href="#"><h4 class="text">{{ trans('tradevillage::main.sidebar.hot_products') }}</h4></a>
         <ul class="list-group list">

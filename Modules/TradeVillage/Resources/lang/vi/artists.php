@@ -14,6 +14,7 @@ return [
     'address' => 'Địa chỉ',
     'contact' => 'Liên hệ',
     'products' => 'Sản phẩm tiêu biểu',
+    'no_artist' => 'Chưa có nghệ nhân nào',
     'title' => [
         'artists' => 'Nghệ nhân',
         'create artist' => 'Thêm mới một nghệ nhân',

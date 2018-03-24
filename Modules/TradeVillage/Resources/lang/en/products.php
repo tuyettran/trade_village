@@ -23,7 +23,8 @@ return [
     'create_process' => 'Create new process',
     'enterprise' => 'MANUFACTURING ENTERPRISE',
     'artist' => 'MANUFACTURING ARTIST',
-    'production_step' => 'PROCESS OF PRODUCT MANUFACTURE',
+    'process_of' => 'PROCESS OF',
+    'manufacture' => ' MANUFACTURE',
     'title' => [
         'products' => 'Products',
         'create products' => 'Create a product',

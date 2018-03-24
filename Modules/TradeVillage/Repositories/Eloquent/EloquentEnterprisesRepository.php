@@ -26,4 +26,19 @@ class EloquentEnterprisesRepository extends EloquentBaseRepository implements En
         event(new EnterpriseWasDeleted($enterprise));
         return $enterprise->delete();
     }
+
+    public function getEnterpriseByAttributes(array $attributes)
+    {
+        $query = $this->model->query();
+
+        if (method_exists($this->model, 'translations')) {
+            $query = $query->with('translations');
+        }
+
+        foreach ($attributes as $field => $value) {
+            $query = $query->where($field, $value);
+        }
+
+        return $query;
+    }
 }

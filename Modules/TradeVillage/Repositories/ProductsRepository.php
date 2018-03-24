@@ -9,4 +9,5 @@ interface ProductsRepository extends BaseRepository
 	public function newest($number);
 	public function favorite($number);
 	public function hot($number);
+	public function getAllByVillage($enterprises, $artists);
 }

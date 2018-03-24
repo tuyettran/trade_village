@@ -14,8 +14,9 @@ return [
     'address' => 'Addresss',
     'contact' => 'Contact',
     'products' => 'Products',
+    'no_artist' => 'No artist',
     'title' => [
-        'artists' => 'Artist',
+        'artists' => 'Artists',
         'create artist' => 'Create a artist',
         'edit artist' => 'Edit a artist',
     ],

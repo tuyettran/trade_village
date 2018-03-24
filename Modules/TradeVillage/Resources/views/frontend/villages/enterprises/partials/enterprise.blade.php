@@ -19,5 +19,5 @@
         </div>
     @endforeach
 @else
-    <p>Khong co nghe nhan nao</p>
+    <p>{{ trans('tradevillage::enterprises.no_enterprise') }}</p>
 @endif

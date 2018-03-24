@@ -7,6 +7,7 @@ return [
         'enterprises' => 'Doanh nghiệp / hộ nghề',
         'artists' => 'Nghệ nhân',
         'events' => 'Sự kiện liên quan',
+        'news' => 'Tin tức liên quan',
         'visitors' => 'Lượt ghé thăm',
         'products' => 'Sản phẩm',
         'introduction' => 'Giới thiệu về chúng tôi',

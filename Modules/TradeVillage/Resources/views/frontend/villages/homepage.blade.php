@@ -30,7 +30,7 @@
 						<div class="village-image">
 							<img src="{{ Imagy::getThumbnail($village->image_village['path'].'', 'largeThumb') }}" class="img-responsive thumbnail" />
 							<div class="row pull-right bottom-right">
-								<a href="" class="btn white-btn">{{ trans('tradevillage::homepage.title.come') }}</a>
+								<a href="{{ route('frontend.tradevillage.villages.show', $village->id) }}" class="btn white-btn">{{ trans('tradevillage::homepage.title.come') }}</a>
 							</div>
 						</div>
 						<p class="summary"><i><b>{{ $village->translate(locale())->description }}</b></i></p>
@@ -38,12 +38,12 @@
 					<div class="col-md-5 right-side-info">
 						<div class="row village-info">
 							<div class="infomation col-xs-6 col-md-12">
-								<a href="#"><h3><b>{{ $village->translate(locale())->name }}</b></h3></a>
-								<a href="#"><b>{{ count($village->enterprises) }} {{ trans('tradevillage::homepage.title.enterprises') }}</b></a><br>
-								<a href="#"><b>{{ $num_products }} {{ trans('tradevillage::homepage.title.products') }}</b></a><br>
-								<a href="#"><b>{{ count($village->artists) }} {{ trans('tradevillage::homepage.title.artists') }}</b></a><br>
-								<a href="#"><b>{{ count($village->events) }} {{ trans('tradevillage::homepage.title.events') }}</b></a><br>
-								<a href=""><b>{{ $village->visitor_counter }} {{ trans('tradevillage::homepage.title.visitors') }}</b></a>
+								<a href="{{ route('frontend.tradevillage.villages.show', $village->id) }}"><h3><b>{{ $village->translate(locale())->name }}</b></h3></a>
+								<a href="{{ route('frontend.tradevillage.villages.enterprises', $village->id) }}"><b>{{ count($village->enterprises) }} {{ trans('tradevillage::homepage.title.enterprises') }}</b></a><br>
+								<a href="{{ route('frontend.tradevillage.villages.products', $village->id) }}"><b>{{ $num_products }} {{ trans('tradevillage::homepage.title.products') }}</b></a><br>
+								<a href="{{ route('frontend.tradevillage.villages.artists', $village->id) }}"><b>{{ count($village->artists) }} {{ trans('tradevillage::homepage.title.artists') }}</b></a><br>
+								<a href="{{ route('frontend.tradevillage.villages.news', $village->id) }}"><b>{{ count($village->news) }} {{ trans('tradevillage::homepage.title.news') }}</b></a><br>
+								<b class="blue-text">{{ $village->visitor_counter }} {{ trans('tradevillage::homepage.title.visitors') }}</b>
 							</div>
 							<div class="col-md-12 col-xs-6 map-box">
 								<img src="../assets/images/google-map.png" class="img-responsive thumbnail village-map pull-right col-md-12 col-xs-12" id="map_{{ $i }}">
@@ -109,7 +109,7 @@
 				<a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.hot news') }}</b></h4></a>
 				<ul class="new-feed">
 					@foreach( $news as $new )
-					<li><p class="oneline"><a href="videoDetail.html"><span class="glyphicon glyphicon-list-alt"></span>&emsp;{{ $new->translate(locale())->title}}</a></p>
+					<li><p class="oneline"><a href="{{ route('frontend.tradevillage.news.show', $new->id) }}"><span class="glyphicon glyphicon-list-alt"></span>&emsp;{{ $new->translate(locale())->title}}</a></p>
 						<p class="darkgrey-text pull-right">{{ $new->created_at }}</p>
 					</li>
 					@endforeach
@@ -132,7 +132,7 @@
 						<li class="row" title="Trương Văn Tý">
 							<a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="img-responsive artist col-md-3 col-xs-2 img-circle" /></a>
 							<a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }} ({{ $artist->date_of_birth }})</h5></a>
-							<a><p>{{ $artist->village->translate(locale())->name }}</p></a>
+							<a href="{{ route('frontend.tradevillage.villages.show', $artist->village->id) }}"><p>{{ $artist->village->translate(locale())->name }}</p></a>
 						</li>
 					@endforeach
 				</ul>

@@ -6,7 +6,7 @@
             <div class="thumbnail">
                 <?php $image_direct = public_path().$product->images ?>
                 <?php $i++ ?>
-                <img class="group list-group-image img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">
+                <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}"></a>
                 <div class="caption">
                     <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name">
                         {{ $product->translate(locale())->name }}</h5></a>
@@ -40,7 +40,7 @@
                 <div class="item col-md-3 col-sm-4 col-xs-6">
                     <div class="thumbnail">
                         <?php $image_direct = public_path().$product->images ?>
-                        <img class="group list-group-image img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">
+                        <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}"></a>
                         <div class="caption">
                             <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name oneline">
                                 {{ $product->translate(locale())->name }}</h5></a>

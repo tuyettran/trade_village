@@ -64,8 +64,14 @@ class PublicController extends BasePublicController
     public function homepage()
     {
         $villages = $this->villages->getByAttributes(['active_home' => "1"], $orderBy = 'updated_at', $sortOrder = 'desc');
+        $village_ids = array();
+        if(count($villages)>0)
+            foreach ($villages as $village) {
+                $village_ids[] = $village->id;
+            }
+            
         $products = $this->products->favorite(8);
-        $artists = $this->artists->findByMany([1,2]);
+        $artists = $this->artists->getAllByVillages($village_ids, 5);
         $enterprises = $this->enterprises->all();
         $news = $this->news->newest(5);
         $events = $this->events->newest_events(5);

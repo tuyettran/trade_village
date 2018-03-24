@@ -12,7 +12,7 @@
 					<h4><b>{{ trans('tradevillage::products.enterprise') }}: <a href="#">{{ $product->enterprise->translate(locale())->name}}</a></b></h4>
 					
 					<p class="pull-right"><b>{{ trans('tradevillage::products.address') }}:</b> {{ $product->enterprise->address }}</p>
-					<p class="pull-right"><b>{{ trans('tradevillage::products.title.contact') }}:</b> {{ $product->artist->contact}}</p>
+					<p class="pull-right"><b>{{ trans('tradevillage::products.title.contact') }}:</b> {{ $product->enterprise->contact}}</p>
 					<p class="pull-right"><b>Website:</b> {{ $product->enterprise->website }}</p>
 			    @elseif($product->artist)
 			    	<h4><b>{{ trans('tradevillage::products.artist') }}: <a href="{{ route('frontend.tradevillage.artist.show', [$product->artist->id]) }}">{{ $product->artist->translate(locale())->name}}</a></b></h4>
@@ -29,7 +29,7 @@
 		            <img class="img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">
 				</div>
 				<div class="col-md-8 col-xs-8">
-					<h3 class="white-text">{{ trans('tradevillage::products.production_step') }} {{ mb_strtoupper($product->translate(locale())->name, "UTF-8") }}</h3>
+					<h3 class="white-text">{{ trans('tradevillage::products.process_of') }} {{ mb_strtoupper($product->translate(locale())->name, "UTF-8") }} {{ trans('tradevillage::products.manufacture') }}</h3>
 				</div>
 			</div>
 		</div>

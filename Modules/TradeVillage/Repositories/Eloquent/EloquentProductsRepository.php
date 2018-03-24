@@ -33,5 +33,18 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
         }
         return $this->model->orderBy('visitor_counter', 'DESC')->limit($number)->get();
     }
-    
+
+    public function getAllByVillage($enterprises, $artists){
+        $query = $this->model->query();
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->whereIn('artist_id', $artists)
+                ->orWhere(function ($query) use ($enterprises){
+                    $query->whereIn('enterprise_id', $enterprises);
+                });
+        }
+        return $this->model->whereIn('artist_id', $artists)
+            ->orWhere(function ($query) {
+                $query->whereIn('enterprise_id', $enterprises);
+            });
+    }
 }

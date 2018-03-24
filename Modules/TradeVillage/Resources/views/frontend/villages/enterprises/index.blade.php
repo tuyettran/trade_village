@@ -18,9 +18,13 @@
 		        </div>
 		    </form>
 		</div>
-		<div class="col-md-9 filter">
-			@include('tradevillage::frontend.villages.artists.partials.filter', ['categories' => $categories])
-		</div>
+		@if(!isset($village))
+			<div class="col-md-9 filter">
+				@include('tradevillage::frontend.villages.artists.partials.filter', ['categories' => $categories])
+			</div>
+		@else
+			<h4><a href="">{{ $village->translate(locale())->name }}</a> > {{ trans('tradevillage::enterprises.title.enterprises') }}</h3>
+		@endif
 		
 	</div>
 	

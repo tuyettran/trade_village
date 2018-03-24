@@ -1,6 +1,7 @@
 .custom-container {
     font-size: 15px;
     margin-top: 10px !important;
+    min-height: 500px !important;
 }
 .pull-right {
 	clear: both;
