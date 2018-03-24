@@ -30,14 +30,13 @@
                             <thead>
                             <tr>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.name') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.description') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.nov') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.category') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.district') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.province') }}</th>
-                                <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
-
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.active_home') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>
@@ -51,21 +50,29 @@
                                         {{ $villages->id }}
                                     </a>
                                 </td>
+
+                                <td>
+                                    <img src="{{ Imagy::getThumbnail($villages->image_village['path'].'', 'smallThumb') }}"/>
+                                </td>
+
                                 <td>
                                     <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
                                         {{ $villages->translate(locale())->name }}
                                     </a>
                                 </td>
+
                                 <td>
                                     <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
                                         {{ $villages->translate(locale())->description }}
                                     </a>
                                 </td>
+
                                 <td>
                                     <a href="{{ route('admin.tradevillage.villages.edit', [$villages->id]) }}">
                                         {{ $villages->visitor_counter }}
                                     </a>
                                 </td>
+
                                 <td>
                                     @foreach ($categories as $category)
                                         @if($category->village_fields_id == $villages->category_id &&
@@ -88,11 +95,7 @@
                                         {{ $villages->province }}
                                     </a>
                                 </td>
-                                
-                                <td>
-                                    <img src="{{ Imagy::getThumbnail($villages->image_village['path'].'', 'smallThumb') }}"/>
-                                </td>
-
+                               
                                 <td>
                                     <label class="switch">
                                         <input type="checkbox" {{ $villages->active_home? "checked" : "" }} disabled>
@@ -114,13 +117,13 @@
                             <tfoot>
                             <tr>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.no') }}</th>
+                                <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.name') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.description') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.nov') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.category') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.district') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.province') }}</th>
-                                <th data-sortable="true">{{ trans('tradevillage::villages.table.image') }}</th>
                                 <th data-sortable="true">{{ trans('tradevillage::villages.table.active_home') }}</th>
                                 <th>{{ trans('tradevillage::villages.table.actions') }}</th>
                             </tr>

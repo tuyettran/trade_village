@@ -76,6 +76,15 @@ a .orange-text:hover {
 	position: absolute;
 	right: 5px;
 }
+.top-right {
+	top: 5px;
+	margin-right: 5px;
+	position: absolute;
+	right: 15px;
+}
+.top-right a {
+	font-size: 20px !important;
+}
 .row {
 	margin: 0;
 }

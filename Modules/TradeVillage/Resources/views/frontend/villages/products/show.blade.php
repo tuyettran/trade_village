@@ -100,7 +100,7 @@
 			        		</div>
 			        	@else
 			        		@can('update-product', $product)
-				        		<div class="col-md-4 col-xs-12">
+				        		<div class="col-md-3 col-xs-12">
 				        			<a href="{{ route('frontend.tradevillage.products.processes', $product->id) }}" class="btn btn-success show_processes" target="_blank">{{ trans('tradevillage::products.show_processes') }}</a>
 				        		</div>
 				        	@endcan
@@ -150,9 +150,28 @@
 @section('scripts')
 <script type="text/javascript" src="{{ URL::asset('js/bootstrap-rating-input.min.js') }}"></script>	
 <script type="text/javascript">
-    $('.carousel').carousel({
+	$('.carousel').carousel({
 	  	interval: false
 	});
 	$('.nav-products').addClass("active-nav");
+
+	$( document ).ready(function() {
+		$("#rating-product").change(function(e){
+			e.preventDefault();
+			var rate_value = $('#rating-product').val();
+			var CSRF_TOKEN = $('input[name="_token"]').val();
+            $.ajax({
+            	type:"POST",
+	            url: {{ $product->id }}+"/rate",
+	            data: {
+	            	_token: CSRF_TOKEN,
+	            	value: rate_value},
+	            success: function(data) {
+	                $('.alert').removeClass('flash-hidden');
+	                $('.alert').fadeOut(3000);
+	            }
+    		});
+	    });
+	});
 </script>
 @stop
