@@ -92,9 +92,7 @@ class FrontendVillagesController extends BasePublicController
         while($collecTopPros->count() > 7) {
             $collecTopPros->pop();
         }
-       
-        // dd($collecTopPros);
-
+        
         return view('tradevillage::frontend.villages.village.show', compact('village', 'collecTopPros', 'collectAll', 'enterprises', 'artists', 'news', 'events', 'latestNews'));
     }
 

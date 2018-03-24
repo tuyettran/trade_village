@@ -12,6 +12,19 @@
 				<h4 class="orange-text title"><b>{{ trans('tradevillage::homepage.title.typical_village') }}</b></h4>
 				<?php $i=0 ?>
 				@foreach( $villages as $village )
+				<?php
+					$num_products = 0;
+					if($village->enterprises){
+						foreach ($village->enterprises as $enterprise) {
+					 		$num_products += count($enterprise->products);
+						} 
+					}
+					if($village->artists){
+						foreach ($village->artists as $artist) {
+					 		$num_products += count($artist->products);
+						} 
+					}
+				?>
 				<div class="row village content-background thumbnail">
 					<div class="col-md-7 image">
 						<div class="village-image">
@@ -27,7 +40,7 @@
 							<div class="infomation col-xs-6 col-md-12">
 								<a href="#"><h3><b>{{ $village->translate(locale())->name }}</b></h3></a>
 								<a href="#"><b>{{ count($village->enterprises) }} {{ trans('tradevillage::homepage.title.enterprises') }}</b></a><br>
-								<a href="#"><b>35 {{ trans('tradevillage::homepage.title.products') }}</b></a><br>
+								<a href="#"><b>{{ $num_products }} {{ trans('tradevillage::homepage.title.products') }}</b></a><br>
 								<a href="#"><b>{{ count($village->artists) }} {{ trans('tradevillage::homepage.title.artists') }}</b></a><br>
 								<a href="#"><b>{{ count($village->events) }} {{ trans('tradevillage::homepage.title.events') }}</b></a><br>
 								<a href=""><b>{{ $village->visitor_counter }} {{ trans('tradevillage::homepage.title.visitors') }}</b></a>

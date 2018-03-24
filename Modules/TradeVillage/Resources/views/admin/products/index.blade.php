@@ -47,26 +47,27 @@
                                         {{ $products->id }}
                                     </a>
                                 </td>
-                                <th>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
                                         {{ ($products->translate(locale())) ? $products->translate(locale())->name : "" }}
                                     </a>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
                                         {{ ($products->translate(locale())) ? $products->translate(locale())->description : "" }}
                                     </a>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                 <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
                                         {{ $products->cost }}
                                     </a>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}">
                                         {{ ($products->translate(locale())) ? $products->translate(locale())->material : "" }}
                                     </a>
-                                <th>
+                                </td>
+                                <td>
                                     @if( $products->enterprise_id != null)
                                         @foreach( $enterprises as $enterprise)
                                             @if( $enterprise->enterprises_id == $products->enterprise_id && $enterprise->locale == locale())
@@ -84,7 +85,7 @@
                                             @endif
                                         @endforeach
                                     @endif
-                                </th>
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>

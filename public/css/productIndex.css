@@ -10,6 +10,14 @@
     list-style-type: none;
 }
 
+.alert-success {
+    padding: 4px !important;
+}
+
+.flash-hidden {
+    display: none;
+}
+
 .product-infomation {
     font-size: 18px;
     margin: 20px;

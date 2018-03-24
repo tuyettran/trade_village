@@ -5,7 +5,6 @@ namespace Modules\TradeVillage\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Modules\TradeVillage\Entities\Products;
@@ -16,9 +15,8 @@ use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
 use Modules\TradeVillage\Repositories\ProductsRepository;
 use Modules\TradeVillage\Repositories\Village_fieldsRepository;
+use Modules\TradeVillage\Repositories\Product_rateRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
-use Modules\User\Repositories\UserRespository;
-
 class FrontendProductController extends BasePublicController
 {
     /**
@@ -26,7 +24,7 @@ class FrontendProductController extends BasePublicController
      */
     private $products;
 
-    public function __construct(ProductsRepository $products, Village_fieldsRepository $category, ArtistRepository $artist, EnterprisesRepository $enterprise)
+    public function __construct(ProductsRepository $products, Village_fieldsRepository $category, ArtistRepository $artist, EnterprisesRepository $enterprise, Product_rateRepository $rates)
     {
         parent::__construct();
 
@@ -34,6 +32,7 @@ class FrontendProductController extends BasePublicController
         $this->category = $category;
         $this->artist = $artist;
         $this->enterprise = $enterprise;
+        $this->rates = $rates;
     }
 
     /**
@@ -55,7 +54,18 @@ class FrontendProductController extends BasePublicController
         $categories = $this->category->all();
         $images = Storage::files('/public/product/images/'.$product->id);
         $comments = $product->comments;
-        return view('tradevillage::frontend.villages.products.show', compact('categories', 'product', 'images', 'comments'));
+        if(Auth::user()){
+            $user = Auth::user();
+            $rates = $this->rates->findByAttributes(['user_id' => $user->id, 'product_id' => $product->id]);
+            if($rates)
+                $rate = $rates->value;
+            else
+                $rate = 0;
+        }
+        else{
+            $rate = $product->rate;
+        }
+        return view('tradevillage::frontend.villages.products.show', compact('categories', 'product', 'images', 'comments', 'rate'));
     }
 
     public function user_products($user_id)
@@ -190,6 +200,23 @@ class FrontendProductController extends BasePublicController
     public function model(Products $product)
     {
         return view('tradevillage::frontend.villages.products.product_model', compact('product'));
+    }
+
+    public function rate(Products $product, Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $rate = $this->rates->findByAttributes(['user_id' => $user_id, 'product_id' => $product->id]);
+
+        $requests = $request->all();
+        if($rate){
+            $this->rates->update($rate, $requests);
+        }
+        else {
+            $requests['product_id'] = $product->id;
+            $requests['user_id'] = $user_id;
+            $this->rates->create($requests);
+        }
+        return Response()->json($rate);
     }
 
     /**

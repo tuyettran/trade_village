@@ -148,6 +148,11 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'FrontendProductController@destroy',
         'middleware' => 'can:tradevillage.products.destroy'
     ]);
+    $router->post('product/{product}/rate', [
+        'as' => 'frontend.tradevillage.products.rate',
+        'uses' => 'FrontendProductController@rate',
+        'middleware' => 'can:tradevillage.products.index'
+    ]);
 
     $router->bind('villages', function ($id) {
         return app('Modules\TradeVillage\Repositories\VillagesRepository')->find($id);

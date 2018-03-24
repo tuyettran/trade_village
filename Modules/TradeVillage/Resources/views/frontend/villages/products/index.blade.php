@@ -25,23 +25,40 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-md-9 col-sm-12">
-            @foreach ($categories as $category)
-				<div class="row">
-					<div class="categories-item">
-						<a href="#"><h4 class="text">{{ mb_strtoupper($category->translate(locale())->name, "UTF-8") }}</h4></a>
-	               		<div id="products" class="row">
-	               			<div class="list-group">
-	               				@include('tradevillage::frontend.villages.products.partials.product', ['category' => $category])
-	               			</div>
-	                    </div>
-					</div>
-                </div>
-            @endforeach
-        </div>
-        <div class="col-md-3 col-sm-12">
-        	@include('tradevillage::frontend.villages.products.partials.sidebar')
-        </div>
+        @if(!isset($user_id))
+            <div class="col-md-9 col-sm-12">
+                @foreach ($categories as $category)
+                    <div class="row">
+                        <div class="categories-item">
+                            <a href="#"><h4 class="text">{{ mb_strtoupper($category->translate(locale())->name, "UTF-8") }}</h4></a>
+                            <div id="products" class="row">
+                                <div class="list-group">
+                                    @include('tradevillage::frontend.villages.products.partials.product', ['category' => $category])
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="col-md-3 col-sm-12">
+            	@include('tradevillage::frontend.villages.products.partials.sidebar')
+            </div>
+        @else
+            <div class="col-md-10 col-sm-12">
+                @foreach ($categories as $category)
+                    <div class="row">
+                        <div class="categories-item">
+                            <a href="#"><h4 class="text">{{ mb_strtoupper($category->translate(locale())->name, "UTF-8") }}</h4></a>
+                            <div id="products" class="row">
+                                <div class="list-group">
+                                    @include('tradevillage::frontend.villages.products.partials.product', ['category' => $category])
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
 	</div>
 	@include('tradevillage::frontend.villages.delete_modal')
 @stop
