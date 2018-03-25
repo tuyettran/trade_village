@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<h3>Giới thiệu</h3>
-				<p>Làng nghề Việt Nam đang lưu giữ những nét đẹp giá trị văn hóa truyền thống của dân tộc. Website là nơi bạn có thể tìm hiểu về các làng nghề truyền thống khắp cả nước và chiêm ngưỡng các sản phẩm độc đáo của các làng nghề.</p>
+				<p>{{ trans('tradevillage::homepage.title.page_description') }}</p>
 			</div>
 			<div class="col-md-5">
 				<h3>Fanpage</h3>

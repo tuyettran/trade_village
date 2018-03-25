@@ -14,6 +14,8 @@ return [
     'contact' => 'Liên hệ',
     'website' => 'Website',
     'products' => 'Sản phẩm tiêu biểu',
+    'no_enterprise' => 'Chưa có doanh nghiệp',
+
     'title' => [
         'enterprises' => 'Doanh nghiệp/Hộ nghề',
         'create enterprises' => 'Thêm mới một Doanh nghiệp/Hộ nghề',

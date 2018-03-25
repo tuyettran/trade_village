@@ -105,12 +105,16 @@
 }
 .product:hover .overlay{
 	height: auto;
+	display: block;
+	z-index: 2;
 }
 .enterprise {
 	position: relative;
 }
 .enterprise:hover .overlay{
 	height: auto;
+	display: block;
+	z-index: 2;
 }
 .page-view-count {
 	margin-top: 20px !important;
@@ -125,9 +129,11 @@
 }
 .overlay {
   	position: absolute;
-  	bottom: 10px;
+  	display: none;
+  	bottom: 0;
 	left: 10px;
 	right: 10px;
+	margin: 10px !important;
 	background-color: white;
 	overflow: hidden;
 	height: 0;
@@ -135,6 +141,7 @@
 	color: black;
 	font-weight: bold;
 	transition: .5s ease;
+	padding: 5px 2px;
 }
 .top-news a {
 	font-size: 14px;

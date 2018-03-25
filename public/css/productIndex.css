@@ -101,9 +101,14 @@ a:hover {
     color: #ff8000;
 }
 
-.thumbnail img {
+.thumbnail a img {
     width:100%;
     height: 200px;
+}
+
+.search-form-sidebar {
+    padding-right: 2px;
+    margin-top: 13px;
 }
 
 .thumbnail {
@@ -122,10 +127,13 @@ a:hover {
     margin-right: 5%;
 }
 
-.bar {
+.margin-top-bar, .bar {
     background-color: #f6f6ee;
-    margin-top: 50px;
     padding-top: 5px !important;
+}
+
+.margin-top-bar {
+    margin-top: 50px;
 }
 
 /*filter*/

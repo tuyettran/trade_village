@@ -8,4 +8,5 @@ interface NewsRepository extends BaseRepository
 {
 	public function latestNews($villageId, $number);
 	public function newest($number);
+	public function getNewsByAttributes(array $attributes);
 }

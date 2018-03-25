@@ -8,6 +8,7 @@ return [
         'artists' => 'Artists include',
         'events' => 'Events include',
         'visitors' => 'Visitors',
+        'news' => 'Relative news',
         'products' => 'Products',
         'introduction' => 'Introduction about us',
         'top_edu_enterprises' => 'BEST EDUCATION ENTERPRISES',

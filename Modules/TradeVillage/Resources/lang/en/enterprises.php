@@ -14,6 +14,7 @@ return [
     'contact' => 'Contact',
     'website' => 'Website',
     'products' => 'Products',
+    'no_enterprise' => 'No enterprise',
     'title' => [
         'enterprises' => 'Enterprises',
         'create enterprises' => 'Create a enterprise',

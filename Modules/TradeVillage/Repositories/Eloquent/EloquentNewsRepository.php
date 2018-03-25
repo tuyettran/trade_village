@@ -42,4 +42,25 @@ class EloquentNewsRepository extends EloquentBaseRepository implements NewsRepos
 
         return $this->model->select('tradevillage__news.*')->orderBy('updated_at', 'DESC')->limit($number)->get();
     }
+
+    public function getNewsByAttributes(array $attributes){
+        $query = $this->buildQueryByAttributes($attributes);
+
+        return $query;
+    }
+
+    private function buildQueryByAttributes(array $attributes)
+    {
+        $query = $this->model->query();
+
+        if (method_exists($this->model, 'translations')) {
+            $query = $query->with('translations');
+        }
+
+        foreach ($attributes as $field => $value) {
+            $query = $query->where($field, $value);
+        }
+
+        return $query;
+    }
 }

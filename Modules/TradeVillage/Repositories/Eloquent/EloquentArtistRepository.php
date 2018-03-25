@@ -25,4 +25,33 @@ class EloquentArtistRepository extends EloquentBaseRepository implements ArtistR
 		event(new ArtistWasDeleted($artist));
 		return $artist->delete();
 	}
+
+	public function getArtistByAttributes(array $attributes){
+		$query = $this->buildQueryByAttributes($attributes);
+
+        return $query;
+	}
+
+	public function getAllByVillages(array $village_id, $number){
+        $query = $this->model->query();
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->whereIn('village_id', $village_id)->limit($number)->get();
+        }
+        return $this->model->whereIn('village_id', $village_id)->limit($number)->get();
+    }
+
+	private function buildQueryByAttributes(array $attributes)
+    {
+        $query = $this->model->query();
+
+        if (method_exists($this->model, 'translations')) {
+            $query = $query->with('translations');
+        }
+
+        foreach ($attributes as $field => $value) {
+            $query = $query->where($field, $value);
+        }
+
+        return $query;
+    }
 }
