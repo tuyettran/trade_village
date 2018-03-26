@@ -13,6 +13,7 @@ use Modules\TradeVillage\Repositories\EnterprisesRepository;
 use Modules\TradeVillage\Repositories\ArtistRepository;
 use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
+use Modules\TradeVillage\Http\Requests\UpdateProduct_rateRequest;
 use Modules\TradeVillage\Repositories\ProductsRepository;
 use Modules\TradeVillage\Repositories\Village_fieldsRepository;
 use Modules\TradeVillage\Repositories\Product_rateRepository;
@@ -202,12 +203,16 @@ class FrontendProductController extends BasePublicController
         return view('tradevillage::frontend.villages.products.product_model', compact('product'));
     }
 
-    public function rate(Products $product, Request $request)
+    public function rate(Products $product, UpdateProduct_rateRequest $request)
     {
         $user_id = Auth::user()->id;
         $rate = $this->rates->findByAttributes(['user_id' => $user_id, 'product_id' => $product->id]);
 
         $requests = $request->all();
+        $rate_total = ($product->rate*(count($product->rates)) + $request->value);
+        $product_rate_update = $rate_total/(count($product->rates)+1);
+        $attribute = ['rate' => $product_rate_update];
+        $product->update($attribute);
         if($rate){
             $this->rates->update($rate, $requests);
         }
@@ -216,7 +221,8 @@ class FrontendProductController extends BasePublicController
             $requests['user_id'] = $user_id;
             $this->rates->create($requests);
         }
-        return Response()->json($rate);
+        $response = ['rate_avg' => round($product->rate,1)];
+        return Response()->json($response);
     }
 
     /**

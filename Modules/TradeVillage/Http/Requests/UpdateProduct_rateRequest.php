@@ -8,7 +8,9 @@ class UpdateProduct_rateRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'value' => 'required|integer|min:1|max:5',
+        ];
     }
 
     public function translationRules()

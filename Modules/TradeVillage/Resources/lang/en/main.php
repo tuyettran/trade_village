@@ -18,6 +18,7 @@ return [
         'favorite' => 'Favorite',
         'search product' => 'Search product',
         'search event' => 'Search event',
+        'search village' => 'Search village',
         'search artist' => 'Search artist',
         'search enterprise' => 'Search enterprise',
         'province' => 'Province',

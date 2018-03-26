@@ -19,6 +19,7 @@ return [
         'search product' => 'Tìm kiếm sản phẩm',
         'search event' => 'Tìm kiếm sự kiện',
         'search artist' => 'Tìm kiếm nghệ nhân',
+        'search village' => 'Tìm kiếm làng nghề',
         'search enterprise' => 'Tìm kiếm doanh nghiệp',
         'province' => 'Thành phố',
         'search' => 'Tìm kiếm',

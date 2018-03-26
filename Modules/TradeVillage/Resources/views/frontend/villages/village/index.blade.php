@@ -10,7 +10,7 @@
     <div class="col-md-3 col-sm-3" style="float: right;">
         <form class="navbar-form" role="search">
             <div class="input-group add-on">
-                <input class="form-control" placeholder="Tìm kiếm sản phẩm" name="srch-term" id="srch-term" type="text">
+                <input class="form-control" placeholder="{{ trans('tradevillage::main.filter.search village')}}" name="srch-term" id="srch-term" type="text">
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>

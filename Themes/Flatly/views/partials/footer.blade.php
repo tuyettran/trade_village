@@ -2,7 +2,7 @@
 	<div class="footer">
 		<div class="row">
 			<div class="col-md-4">
-				<h3>Giới thiệu</h3>
+				<h3>{{ trans('tradevillage::homepage.title.introduction') }}</h3>
 				<p>{{ trans('tradevillage::homepage.title.page_description') }}</p>
 			</div>
 			<div class="col-md-5">
