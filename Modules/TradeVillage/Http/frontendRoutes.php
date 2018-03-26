@@ -2,6 +2,7 @@
 use Illuminate\Routing\Router;
 /** @var Router $router */
 $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
+// education routes
     $router->group(['prefix' =>'/education'], function (Router $router) {
         $router->bind('documents', function ($id) {
             return app('Modules\TradeVillage\Repositories\DocumentsRepository')->find($id);
@@ -46,6 +47,9 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
     $router->bind('processes', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProcessRepository')->find($id);
     });
+
+
+//village routes
     $router->get('product/{product}/processes', [
         'as' => 'frontend.tradevillage.products.processes',
         'uses' => 'FrontendProcessController@process'
@@ -103,6 +107,9 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.events.show',
         'uses' => 'FrontendEventController@show'
     ]);
+
+
+// product routes
     $router->bind('product', function ($id) {
         return app('Modules\TradeVillage\Repositories\ProductsRepository')->find($id);
     });
@@ -114,46 +121,51 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.products.user_products',
         'uses' => 'FrontendProductController@user_products'
     ]);
-    $router->get('product/{product}', [
-        'as' => 'frontend.tradevillage.products.show',
-        'uses' => 'FrontendProductController@show'
-    ]);
     $router->get('products/create', [
         'as' => 'frontend.tradevillage.products.create',
         'uses' => 'FrontendProductController@create',
         'middleware' => 'can:tradevillage.products.create'
     ]);
-    $router->get('product/{product}/model', [
-        'as' => 'frontend.tradevillage.products.model',
-        'uses' => 'FrontendProductController@model',
-        'middleware' => 'can:tradevillage.products.index'
-    ]);
+
     $router->post('products', [
         'as' => 'frontend.tradevillage.products.store',
         'uses' => 'FrontendProductController@store',
         'middleware' => 'can:tradevillage.products.create'
     ]);
-    $router->get('product/{product}/edit', [
-        'as' => 'frontend.tradevillage.products.edit',
-        'uses' => 'FrontendProductController@edit',
-        'middleware' => 'can:tradevillage.products.edit'
-    ]);
-    $router->put('product/{product}', [
-        'as' => 'frontend.tradevillage.products.update',
-        'uses' => 'FrontendProductController@update',
-        'middleware' => 'can:tradevillage.products.edit'
-    ]);
-    $router->delete('product/{product}', [
-        'as' => 'frontend.tradevillage.products.destroy',
-        'uses' => 'FrontendProductController@destroy',
-        'middleware' => 'can:tradevillage.products.destroy'
-    ]);
-    $router->post('product/{product}/rate', [
-        'as' => 'frontend.tradevillage.products.rate',
-        'uses' => 'FrontendProductController@rate',
-        'middleware' => 'can:tradevillage.products.index'
-    ]);
+    $router->group(['prefix' =>'product/{product}'], function (Router $router) {
+        $router->get('model', [
+            'as' => 'frontend.tradevillage.products.model',
+            'uses' => 'FrontendProductController@model',
+            'middleware' => 'can:tradevillage.products.index'
+        ]);
+        $router->get('/', [
+            'as' => 'frontend.tradevillage.products.show',
+            'uses' => 'FrontendProductController@show'
+        ]);
+        $router->get('edit', [
+            'as' => 'frontend.tradevillage.products.edit',
+            'uses' => 'FrontendProductController@edit',
+            'middleware' => 'can:tradevillage.products.edit'
+        ]);
+        $router->put('/', [
+            'as' => 'frontend.tradevillage.products.update',
+            'uses' => 'FrontendProductController@update',
+            'middleware' => 'can:tradevillage.products.edit'
+        ]);
+        $router->delete('/', [
+            'as' => 'frontend.tradevillage.products.destroy',
+            'uses' => 'FrontendProductController@destroy',
+            'middleware' => 'can:tradevillage.products.destroy'
+        ]);
+        $router->post('rate', [
+            'as' => 'frontend.tradevillage.products.rate',
+            'uses' => 'FrontendProductController@rate',
+            'middleware' => 'can:tradevillage.products.index'
+        ]);
+    });
 
+
+//village routes
     $router->bind('villages', function ($id) {
         return app('Modules\TradeVillage\Repositories\VillagesRepository')->find($id);
     });
@@ -161,35 +173,37 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.villages.index',
         'uses' => 'FrontendVillagesController@index'
     ]);
-    $router->get('villages/{village}', [
-        'as' => 'frontend.tradevillage.villages.show',
-        'uses' => 'FrontendVillagesController@show'
-    ]);
-    $router->get('villages/{villages}/xml-generate', [
-        'as' => 'frontend.tradevillage.villages.xmlGenerate',
-        'uses' => 'FrontendVillagesController@xmlGenerate'
-    ]);
-    $router->get('villages/{villages}/enterprises', [
-        'as' => 'frontend.tradevillage.villages.enterprises',
-        'uses' => 'FrontendVillagesController@enterprises'
-    ]);
-    $router->get('villages/{villages}/artists', [
-        'as' => 'frontend.tradevillage.villages.artists',
-        'uses' => 'FrontendVillagesController@artists'
-    ]);
-    $router->get('villages/{villages}/products', [
-        'as' => 'frontend.tradevillage.villages.products',
-        'uses' => 'FrontendVillagesController@products'
-    ]);
-    $router->get('villages/{villages}/news', [
-        'as' => 'frontend.tradevillage.villages.news',
-        'uses' => 'FrontendVillagesController@news'
-    ]);
-    $router->get('villages/{villages}/events', [
-        'as' => 'frontend.tradevillage.villages.events',
-        'uses' => 'FrontendVillagesController@events'
-    ]);
 
+    $router->group(['prefix' =>'villages/{village}'], function (Router $router) {
+        $router->get('/', [
+            'as' => 'frontend.tradevillage.villages.show',
+            'uses' => 'FrontendVillagesController@show'
+        ]);
+        $router->get('xml-generate', [
+            'as' => 'frontend.tradevillage.villages.xmlGenerate',
+            'uses' => 'FrontendVillagesController@xmlGenerate'
+        ]);
+        $router->get('enterprises', [
+            'as' => 'frontend.tradevillage.villages.enterprises',
+            'uses' => 'FrontendVillagesController@enterprises'
+        ]);
+        $router->get('artists', [
+            'as' => 'frontend.tradevillage.villages.artists',
+            'uses' => 'FrontendVillagesController@artists'
+        ]);
+        $router->get('products', [
+            'as' => 'frontend.tradevillage.villages.products',
+            'uses' => 'FrontendVillagesController@products'
+        ]);
+        $router->get('news', [
+            'as' => 'frontend.tradevillage.villages.news',
+            'uses' => 'FrontendVillagesController@news'
+        ]);
+        $router->get('events', [
+            'as' => 'frontend.tradevillage.villages.events',
+            'uses' => 'FrontendVillagesController@events'
+        ]);
+    });
     $router->bind('news', function ($id) {
         return app('Modules\TradeVillage\Repositories\NewsRepository')->find($id);
     });

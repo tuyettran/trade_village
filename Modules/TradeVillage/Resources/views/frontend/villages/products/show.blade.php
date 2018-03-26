@@ -154,7 +154,9 @@
 	  	interval: false
 	});
 	$('.nav-products').addClass("active-nav");
-
+	function round(value, decimals) {
+	    return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+	}
 	$( document ).ready(function() {
 		$("#rating-product").change(function(e){
 			e.preventDefault();
@@ -168,7 +170,8 @@
 	            	value: rate_value},
 	            success: function(data) {
 	                $('.alert').removeClass('flash-hidden');
-	                $('.alert').fadeOut(3000);
+	    			$('.alert').fadeOut(3000);
+	    			$('#rate_avg').html(data.rate_avg);
 	            }
     		});
 	    });
