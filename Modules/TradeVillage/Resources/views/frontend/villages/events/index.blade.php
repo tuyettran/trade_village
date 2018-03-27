@@ -22,21 +22,33 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-9 col-sm-12">
-   			<div class="list-group events">
-   				@foreach($events as $event)
-   					@include('tradevillage::frontend.villages.events.partials.event', ['event' => $event])
-   					<hr/>
-   				@endforeach
-   				{{ $events->links() }}
-   			</div>
-        </div>
-        <div class="col-md-3 col-sm-12 thumbnail index-sidebar">
-			<div class="nearest_events">
-				<h4 class="orange-text"><b>{{ trans('tradevillage::events.nearest_events') }}</b></h4>
-				@include('tradevillage::frontend.villages.events.partials.nearest_events', ['nearest_events' => $nearest_events])
+		@if(!isset($village))
+			<div class="col-md-9 col-sm-12">
+	   			<div class="list-group events">
+	   				@foreach($events as $event)
+	   					@include('tradevillage::frontend.villages.events.partials.event', ['event' => $event])
+	   					<hr/>
+	   				@endforeach
+	   				{{ $events->links() }}
+	   			</div>
+	        </div>
+	        <div class="col-md-3 col-sm-12 thumbnail index-sidebar">
+				<div class="nearest_events">
+					<h4 class="orange-text"><b>{{ trans('tradevillage::events.nearest_events') }}</b></h4>
+					@include('tradevillage::frontend.villages.events.partials.nearest_events', ['nearest_events' => $nearest_events])
+				</div>
 			</div>
-		</div>
+			@else
+				<div class="col-md-11 col-sm-12">
+		   			<div class="list-group events">
+		   				@foreach($events as $event)
+		   					@include('tradevillage::frontend.villages.events.partials.event', ['event' => $event])
+		   					<hr/>
+		   				@endforeach
+		   				{{ $events->links() }}
+		   			</div>
+		        </div>
+			@endif
         
 	</div>
 @stop

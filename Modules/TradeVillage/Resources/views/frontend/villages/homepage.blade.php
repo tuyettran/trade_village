@@ -43,6 +43,7 @@
 								<a href="{{ route('frontend.tradevillage.villages.products', $village->id) }}"><b>{{ $num_products }} {{ trans('tradevillage::homepage.title.products') }}</b></a><br>
 								<a href="{{ route('frontend.tradevillage.villages.artists', $village->id) }}"><b>{{ count($village->artists) }} {{ trans('tradevillage::homepage.title.artists') }}</b></a><br>
 								<a href="{{ route('frontend.tradevillage.villages.news', $village->id) }}"><b>{{ count($village->news) }} {{ trans('tradevillage::homepage.title.news') }}</b></a><br>
+								<a href="{{ route('frontend.tradevillage.villages.events', $village->id) }}"><b>{{count($village->events)}} {{ trans('tradevillage::villages.other.events') }}</b></a><br>
 								<b class="blue-text">{{ $village->visitor_counter }} {{ trans('tradevillage::homepage.title.visitors') }}</b>
 							</div>
 							<div class="col-md-12 col-xs-6 map-box">

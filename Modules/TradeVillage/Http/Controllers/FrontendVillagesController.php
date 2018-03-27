@@ -10,6 +10,7 @@ use Modules\TradeVillage\Repositories\Village_fieldsRepository;
 use Modules\TradeVillage\Repositories\VillagesRepository;
 use Modules\TradeVillage\Repositories\ProductsRepository;
 use Modules\TradeVillage\Repositories\NewsRepository;
+use Modules\TradeVillage\Repositories\EventsRepository;
 use Modules\TradeVillage\Repositories\ArtistRepository;
 use Modules\TradeVillage\Repositories\EnterprisesRepository;
 use Illuminate\Support\Collection;
@@ -24,12 +25,13 @@ class FrontendVillagesController extends BasePublicController
     private $villages;
     private $news;
 
-    public function __construct(NewsRepository $news, Village_fieldsRepository $categories, VillagesRepository $villages, EnterprisesRepository $enterprises, ProductsRepository $products, ArtistRepository $artists)
+    public function __construct(NewsRepository $news, Village_fieldsRepository $categories, VillagesRepository $villages, EnterprisesRepository $enterprises, ProductsRepository $products, ArtistRepository $artists, EventsRepository $events)
     {
         parent::__construct();
         $this->categories = $categories;
         $this->villages = $villages;
         $this->news = $news;
+        $this->events = $events;
         $this->enterprises = $enterprises;
         $this->products = $products;
         $this->artists = $artists;
@@ -126,7 +128,7 @@ class FrontendVillagesController extends BasePublicController
         foreach ($village->artists as $artist) {
             $artists[] = $artist->id;
         }
-        $products = $this->products->getAllByVillage($enterprises, $artists)->paginate($perPage=20);
+        $products = $this->products->getAllByVillage($enterprises, $artists)->paginate(20);
         $newest_products = $this->products->newest(4);
         $favorite = $this->products->favorite(4);
         $hot = $this->products->hot(4);
@@ -135,14 +137,22 @@ class FrontendVillagesController extends BasePublicController
 
 // get all artists of village
     public function artists(Villages $village) {
-        $artists = $this->artists->getArtistByAttributes(['village_id' => $village->id])->paginate($perPage = 20);
+        $artists = $this->artists->getArtistByAttributes(['village_id' => $village->id])->paginate(20);
         return view('tradevillage::frontend.villages.artists.index', compact('artists','village'));
     }
 
     public function news(Villages $village) {
         if($village->news){
-            $news = $this->news->getNewsByAttributes(['village_id' => $village->id])->paginate($perPage = 20);
+            $news = $this->news->getNewsByAttributes(['village_id' => $village->id])->paginate(20);
         }
         return view('tradevillage::frontend.villages.news.index', compact('village', 'news'));
+    }
+
+
+    public function events(Villages $village) {
+        if($village->events){
+            $events = $this->events->getEventsByAttributes(['village_id' => $village->id])->paginate(20);
+        }
+        return view('tradevillage::frontend.villages.events.index', compact('village', 'events'));
     }
 }

@@ -84,4 +84,7 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ URL::asset('js/newsSlideshow.js') }}"></script>
+    <script type="">
+        $('.nav-news').addClass("active-nav");
+    </script>
 @stop
