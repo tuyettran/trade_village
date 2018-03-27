@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/mapDisplay.css') }}">
+@stop
+
 @section('content-header')
     <h1>
         {{ trans('tradevillage::enterprises.title.edit enterprises') }}
@@ -26,12 +30,18 @@
                         </div>
                     @endforeach
                     <div class="box-body">
-                        <input id="submit" type="button" value="Get coordinates">
-                        <input id="lat" name="lat" style="display: none;">
-                        <input id="lng" name="lng" style="display: none;">
-                        <input id="olat" name="olat" value="{{ $enterprises->lat }}" style="display: none;">
-                        <input id="olng" name="olng" value="{{ $enterprises->lng }}" style="display: none;">
-                        <div class="col-md-12" id="map" style="width:100%;height: 300px;"></div>
+                        <div class="map-box">
+                            <div id="floating-panel">
+                                <input id="addressMap" type="textbox" value="">
+                                <input id="submit" type="button" value="Get Coordinate">
+                            </div>
+                            <div class="col-md-12 map" id="map"></div>
+                        </div>
+
+                        <input id="lat" name="lat" class="lat">
+                        <input id="lng" name="lng" class="lng">
+                        <input id="olat" name="olat" value="{{ $enterprises->lat }}" class="olat">
+                        <input id="olng" name="olng" value="{{ $enterprises->lng }}" class="olng">
 
                         <div class="form-group{{ $errors->has("user_id") ? " has-error" : "" }}">
                             {!! Form::label("user_id", trans("tradevillage::enterprises.form.user")) !!} 
@@ -48,6 +58,24 @@
                                     @endif
                                 </select>
                             {!! $errors->first("user_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+
+                        <div class="form-group{{ $errors->has("village_id") ? " has-error" : "" }}">
+                            {!! Form::label("village_id", trans("tradevillage::enterprises.form.village")) !!} 
+                                <select name="village_id">
+                                    @if( isset($villages))
+                                    @foreach( $villages as $village)
+                                        @if( $village->locale == locale())
+                                            @if( $village->villages_id == $enterprises->village_id)
+                                                <option value={{$village->villages_id}} selected>{{$village->name}}</option>
+                                            @else
+                                                <option value={{$village->villages_id}}>{{$village->name}}</option>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                </select>
+                            {!! $errors->first("village_id", '<span class="help-block">:message</span>') !!}
                         </div>
 
                         <div class="form-group{{ $errors->has("website") ? " has-error" : "" }}">
@@ -91,48 +119,45 @@
 @push('js-stack')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
     <script type="text/javascript">
+        //display old map
         document.getElementById('lat').value = document.getElementById('olat').value;
         document.getElementById('lng').value = document.getElementById('olng').value;
-        var address = document.getElementById('address').value;
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === 'OK') {
-                var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 16,
-                    center: myLatLng
-                });
-
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map
-                });
-            }
+        var olatMap = parseFloat(document.getElementById('olat').value);
+        var olngMap = parseFloat(document.getElementById('olng').value);
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: {lat: olatMap, lng: olngMap}
+        });
+        var marker = new google.maps.Marker({
+            position: {lat: olatMap, lng: olngMap},
+            map: map
         });
 
+        //geocoding location
+        var geocoder = new google.maps.Geocoder();
         document.getElementById('submit').addEventListener('click', function() {
-          geocodeAddress(geocoder, map);
+            geocodeAddress(geocoder, map);
         });
         
         function geocodeAddress(geocoder, resultsMap) {
-            var address = document.getElementById('address').value;
+            var address = document.getElementById('addressMap').value;
             geocoder.geocode({'address': address}, function(results, status) {
-              if (status === 'OK') {
-                document.getElementById('lat').value = results[0].geometry.location.lat();
-                document.getElementById('lng').value = results[0].geometry.location.lng();
-                var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 18,
-                    center: myLatLng
-                });
+                if (status === 'OK') {
+                    document.getElementById('lat').value = results[0].geometry.location.lat();
+                    document.getElementById('lng').value = results[0].geometry.location.lng();
+                    var myLatLng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 18,
+                        center: myLatLng
+                    });
 
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map
-                });
-              } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map
+                    });
+                } else {
+                    alert('Address can not be identified!');
+                }
             });
         }  
     </script>

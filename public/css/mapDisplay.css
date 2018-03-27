@@ -1,0 +1,36 @@
+.lat {
+    display: none;
+}
+
+.lng {
+    display: none;
+}
+
+.olat {
+    display: none;
+}
+
+.olng {
+    display: none;
+}
+
+.map {
+    width:100%;
+    height: 300px;
+
+}
+
+.map-box {
+    position: relative;
+}
+
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 30%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+}
