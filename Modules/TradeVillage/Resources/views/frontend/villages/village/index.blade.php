@@ -82,4 +82,13 @@
             @endforeach
         @endif
     </div>
+
+    <div id="map"></div>
+@stop
+
+@section('scripts')
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
+    <script type="text/javascript">
+        
+    </script>
 @stop

@@ -81,7 +81,7 @@
                                 <li class="row">
                                     <img src="@thumbnail($artist->feature_image->path, 'largeThumb')" class="img-circle artist img-responsive col-md-3 col-xs-2 thumbnail">
                                     <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }}</h5></a>
-                                    <a href="{{ route('frontend.tradevillage.news.show', $latestNew->id) }}"><p>{{ $artist->translate(locale())->address }}</p></a>
+                                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><p>{{ $artist->translate(locale())->address }}</p></a>
                                 </li>
                             @endforeach
                         @else

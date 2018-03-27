@@ -14,20 +14,6 @@
         
         {!! $errors->first("{$lang}.description", '<span class="help-block">:message</span>') !!}
     </div>
-
-    <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
-        {!! Form::label("category_id", trans("tradevillage::villages.form.category")) !!} 
-            <select name="category_id">
-                @if( isset($categories))
-                @foreach( $categories as $category)
-                    @if( $category->locale == $lang)
-                        <option value={{$category->village_fields_id}}>{{$category->name}}</option>
-                    @endif
-                @endforeach
-                @endif
-            </select>
-        {!! $errors->first("category_id", '<span class="help-block">:message</span>') !!}
-    </div>
         
     @editor("story", trans("tradevillage::villages.form.story"), old("{$lang}.story"), $lang)
     @editor("detail", trans("tradevillage::villages.form.detail"), old("{$lang}.detail"), $lang)

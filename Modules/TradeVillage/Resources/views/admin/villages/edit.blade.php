@@ -26,6 +26,24 @@
                         </div>
                     @endforeach
                     <div class="box-body">
+                        <div class="form-group{{ $errors->has("category_id") ? " has-error" : "" }}">
+                            {!! Form::label("category_id", trans("tradevillage::villages.form.category")) !!} 
+                                <select name="category_id">
+                                    @if( isset($categories))
+                                    @foreach( $categories as $category)
+                                        @if( $category->locale == locale())
+                                            @if( $category->village_fields_id == $villages->category_id)
+                                                <option value={{$category->village_fields_id}} selected>{{$category->name}}</option>
+                                            @else
+                                                <option value={{$category->village_fields_id}}>{{$category->name}}</option>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                </select>
+                            {!! $errors->first("category_id", '<span class="help-block">:message</span>') !!}
+                        </div>
+
                         <div class="form-group{{ $errors->has("province") ? " has-error" : "" }}">
                             {!! Form::label("province", trans("tradevillage::villages.form.province")) !!} 
                                 <select name="province" id="province">
@@ -35,7 +53,7 @@
 
                         <div class="form-group{{ $errors->has("district") ? " has-error" : "" }}">
                             {!! Form::label("district", trans("tradevillage::villages.form.district")) !!} 
-                                <select name="district" id="district">   
+                                <select name="district" id="district" value="{{ $villages->district }}">   
                                 </select>
                             {!! $errors->first("district", '<span class="help-block">:message</span>') !!}
                         </div>
