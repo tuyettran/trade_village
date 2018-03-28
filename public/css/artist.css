@@ -1,9 +1,15 @@
+.no-padding {
+	padding-right: 0;
+}
 .artist-index-avatar {
 	border-radius: 50%;
 	width: 100%;
 	height: 150px !important;
 	margin: 0;
 	padding: 0;
+}
+.artist-sidebar {
+	margin-top: 10px;
 }
 .custom-container {
 	font-size: 17px !important;

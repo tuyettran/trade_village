@@ -14,7 +14,7 @@
                         {{ $product->translate(locale())->description }} </p>
                     <div class="product-footer bottom-right">
                         @can('update-product', $product)
-                            <div class="pull-right">
+                            <div class="pull-right modify-box">
                                 <a href={{route('frontend.tradevillage.products.edit', [$product->id])}}><span class="glyphicon glyphicon-pencil"></span></a>
                                 <button class="btn btn-danger btn-flat btn-xs" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('frontend.tradevillage.products.destroy', [$product->id]) }}"><span class="glyphicon glyphicon-trash"></span></button>
                             </div>

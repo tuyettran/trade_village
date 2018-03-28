@@ -11,6 +11,11 @@ return [
         'product' => 'PRODUCTS',
         'village' => 'VILLAGES',
         'home' => 'HOME',
+        'my_profile' => 'My profile',
+        'my_products' => 'My products',
+        'logout' => 'Logout',
+        'login' => 'Login',
+        'register_new' => 'Register',
     ],
     'filter' => [
         'category' => 'Category',

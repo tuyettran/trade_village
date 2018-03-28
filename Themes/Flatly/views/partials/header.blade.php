@@ -12,17 +12,17 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu language-menu">
-                        <li><a href="">My Profile</a></li>
-	                	<li><a href="{{ route('frontend.tradevillage.products.user_products', $currentUser->id) }}">My products</a></li>
-	               		<li><a href="">My courses</a></li>
+                        <li><a href="">{{ trans('tradevillage::main.title.my_profile') }}</a></li>
+	                	<li><a href="{{ route('frontend.tradevillage.products.user_products', $currentUser->id) }}">{{ trans('tradevillage::main.title.my_products') }}</a></li>
+                        <li><a href="{{ route('logout') }}">{{ trans('tradevillage::main.title.logout') }}</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
 	@else
 		<div class="sign top-right">
-			<a href="{{ route('login') }}" class="btn btn-warning black-text">Đăng nhập</a>
-			<a href="{{ route('register') }}" class="btn btn-warning black-text">Đăng ký</a>
+			<a href="{{ route('login') }}" class="btn btn-warning black-text">{{ trans('tradevillage::main.title.login') }}</a>
+			<a href="{{ route('register') }}" class="btn btn-warning black-text">{{ trans('tradevillage::main.title.register_new') }}</a>
 		</div>
 	@endif
 </div>
