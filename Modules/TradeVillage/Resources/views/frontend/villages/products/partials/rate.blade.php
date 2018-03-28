@@ -4,6 +4,6 @@
 	@if(Auth::user())
 		<input type="number" name="value" id="rating-product" class="rating rate-element orange-text"  value="{{ $rate }}"/>
 	@else
-		<input type="number" name="your_awesome_parameter" id="rating-readonly" class="rating rate-element orange-text"  value="{{ $rate }}" data-readonly/>
+		<input type="number" name="value" id="rating-product" class="rating rate-element orange-text"  value="{{ $rate }}" data-readonly/>
 	@endif
 </div>

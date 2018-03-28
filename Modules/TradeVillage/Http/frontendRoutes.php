@@ -136,7 +136,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         $router->get('model', [
             'as' => 'frontend.tradevillage.products.model',
             'uses' => 'FrontendProductController@model',
-            'middleware' => 'can:tradevillage.products.index'
+            'middleware' => 'logged.in'
         ]);
         $router->get('/', [
             'as' => 'frontend.tradevillage.products.show',
@@ -160,7 +160,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         $router->post('rate', [
             'as' => 'frontend.tradevillage.products.rate',
             'uses' => 'FrontendProductController@rate',
-            'middleware' => 'can:tradevillage.products.index'
+            'middleware' => 'logged.in'
         ]);
     });
 

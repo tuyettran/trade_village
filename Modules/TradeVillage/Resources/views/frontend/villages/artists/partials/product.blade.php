@@ -1,5 +1,5 @@
 <div class="item col-md-12 col-xs-12">
-    <div class="product-thumbnail row">
+    <div class="row">
         <?php $image_direct = public_path().$product->images ?>
         <div class="col-md-3">
             <img class="group list-group-image img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">

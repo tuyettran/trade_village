@@ -64,7 +64,7 @@ class FrontendProductController extends BasePublicController
                 $rate = 0;
         }
         else{
-            $rate = $product->rate;
+            $rate = round($product->rate);
         }
         return view('tradevillage::frontend.villages.products.show', compact('categories', 'product', 'images', 'comments', 'rate'));
     }
