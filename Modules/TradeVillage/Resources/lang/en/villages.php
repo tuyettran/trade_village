@@ -52,6 +52,7 @@ return [
         'newsRelative' => 'Relative news/Events',
         'visits' => 'Visits',
         'news' => 'News',
+        'events' => 'Events',
         'artistFamous' => 'Famous artisans',
         'messagenews' => 'Do not have any news',
     ],

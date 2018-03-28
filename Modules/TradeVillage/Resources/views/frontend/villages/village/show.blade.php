@@ -42,12 +42,13 @@
             <div class="right-side-box">
                 <div class="row village-info">
                     <div class="infomation col-xs-6 col-md-12">
-                        <a href="#"><h3><b>{{ $village->translate(locale())->name }}</b></h3></a>
-                        <a href="#">{{ count($enterprises) }} {{ trans('tradevillage::villages.other.enterprises') }}</a><br>
-                        <a href="#">{{ count($collectAll) }} {{ trans('tradevillage::villages.other.products') }}</a><br>
-                        <a href="#">{{ count($artists) }} {{ trans('tradevillage::villages.other.artists') }}</a><br>
-                        <a href="#">{{ count($news) + count($events)}} {{ trans('tradevillage::villages.other.newsRelative') }}</a><br>
-                        <a href="#">{{ $village->visitor_counter }} {{ trans('tradevillage::villages.other.visits') }}</a>
+                        <a href="{{ route('frontend.tradevillage.villages.show', $village->id) }}"><h3><b>{{ $village->translate(locale())->name }}</b></h3></a>
+                        <a href="{{ route('frontend.tradevillage.villages.enterprises', $village->id) }}">{{ count($enterprises) }} {{ trans('tradevillage::villages.other.enterprises') }}</a><br>
+                        <a href="{{ route('frontend.tradevillage.villages.products', $village->id) }}">{{ count($collectAll) }} {{ trans('tradevillage::villages.other.products') }}</a><br>
+                        <a href="{{ route('frontend.tradevillage.villages.artists', $village->id) }}">{{ count($artists) }} {{ trans('tradevillage::villages.other.artists') }}</a><br>
+                        <a href="{{ route('frontend.tradevillage.villages.events', $village->id) }}">{{count($events)}} {{ trans('tradevillage::villages.other.events') }}</a><br>
+                        <a href="{{ route('frontend.tradevillage.villages.news', $village->id) }}">{{count($news)}} {{ trans('tradevillage::villages.other.news') }}</a><br>
+                        <p class="blue-text">{{ $village->visitor_counter }} {{ trans('tradevillage::villages.other.visits') }}</p>
                     </div>
                     <input id="enterprises" name="enterprises" value="{{ $enterprises }}" style="display: none;">
                     <input id="lat" name="lat" style="display: none;">
@@ -196,5 +197,7 @@
         });
     }
     initMap();
+
+    $('.nav-villages').addClass("active-nav");
 </script>
 @stop

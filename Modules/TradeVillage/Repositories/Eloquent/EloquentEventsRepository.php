@@ -42,4 +42,24 @@ class EloquentEventsRepository extends EloquentBaseRepository implements EventsR
 
         return $this->model->where('start_time', '>', $now)->orWhere('end_time', '<', $now)->orderBy('end_time', 'DESC')->limit($number)->get();
 	}
+	public function getEventsByAttributes(array $attributes){
+        $query = $this->buildQueryByAttributes($attributes);
+
+        return $query;
+    }
+
+    private function buildQueryByAttributes(array $attributes)
+    {
+        $query = $this->model->query();
+
+        if (method_exists($this->model, 'translations')) {
+            $query = $query->with('translations');
+        }
+
+        foreach ($attributes as $field => $value) {
+            $query = $query->where($field, $value);
+        }
+
+        return $query;
+    }
 }

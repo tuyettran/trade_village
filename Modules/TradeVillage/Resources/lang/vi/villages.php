@@ -54,5 +54,6 @@ return [
         'news' => 'Tin tức mới',
         'artistFamous' =>'Nghệ nhân tiêu biểu',
         'messagenews' => 'Không có tin tức nào',
+        'events' => 'Sự kiện liên quan',
     ],
 ];

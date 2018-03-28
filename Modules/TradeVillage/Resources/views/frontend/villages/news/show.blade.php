@@ -68,5 +68,7 @@
 @stop
 
 @section('scripts')
-    
+    <script type="text/javascript">
+        $('.nav-news').addClass("active-nav");
+    </script>
 @stop
