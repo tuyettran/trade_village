@@ -16,6 +16,13 @@ return [
         'logout' => 'Đăng xuất',
         'login' => 'Đăng nhập',
         'register_new' => 'Đăng ký',
+        'no_village' => 'Không tìm thấy làng nghề phù hợp',
+        'no_artist' => 'Không tìm thấy nghệ nhân phù hợp',
+        'no_product' => 'Không tìm thấy sản phẩm phù hợp',
+        'no_enterprise' => 'Không tìm thấy doanh nghiệp phù hợp',
+        'no_event' => 'Không tìm thấy sự kiện phù hợp',
+        'no_new' => 'Không tìm thấy tin tức phù hợp',
+        'no_result' => 'Không tìm thấy kết quả nào phù hợp',
     ],
     'filter' => [
         'category' => 'Lĩnh vực',

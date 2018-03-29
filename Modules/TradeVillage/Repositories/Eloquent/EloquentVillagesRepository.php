@@ -32,7 +32,7 @@ class EloquentVillagesRepository extends EloquentBaseRepository implements Villa
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)->where('name', 'like binary', '%'.$key.'%')->orWhere('description', 'like binary', '%'.$key.'%');
             })->get();
         }
         return $this->model
