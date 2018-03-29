@@ -40,6 +40,17 @@ class EloquentArtistRepository extends EloquentBaseRepository implements ArtistR
         return $this->model->whereIn('village_id', $village_id)->limit($number)->get();
     }
 
+    public function search($key, $locale){
+    	$query = $this->model->query();
+    	if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+            	$query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+        	})->get();
+        }
+        return $this->model->where('id', '=', '1')->get();
+    }
+
 	private function buildQueryByAttributes(array $attributes)
     {
         $query = $this->model->query();

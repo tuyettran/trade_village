@@ -47,4 +47,18 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
                 $query->whereIn('enterprise_id', $enterprises);
             });
     }
+    
+    public function search($key, $locale){
+        $query = $this->model->query();
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+            })->get();
+        }
+        return $this->model
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+            })->get();
+    }
 }

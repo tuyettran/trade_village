@@ -215,5 +215,12 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.news.show',
         'uses' => 'FrontendNewsController@show'
     ]);
+
+
+//search route
+    $router->get('search', [
+        'as' => 'frontend.tradevillage.search',
+        'uses' => 'FrontendSearchController@home'
+    ]);
 });
 ?>

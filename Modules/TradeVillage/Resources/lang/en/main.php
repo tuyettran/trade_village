@@ -7,7 +7,7 @@ return [
         'new' => 'NEWS',
         'education' => 'EDUCATION',
         'contact' => 'CONTACT',
-        'enterprise' => 'ENTERPRISE',
+        'enterprise' => 'ENTERPRISES',
         'product' => 'PRODUCTS',
         'village' => 'VILLAGES',
         'home' => 'HOME',
