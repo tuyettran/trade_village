@@ -34,6 +34,7 @@ class EloquentEventsRepository extends EloquentBaseRepository implements EventsR
 
         return $this->model->orderBy('created_at', 'DESC')->limit($number)->get();
 	}
+
 	public function nearest_events($number){
 		$now = Carbon::now();
 		if (method_exists($this->model, 'translations')) {
@@ -42,10 +43,25 @@ class EloquentEventsRepository extends EloquentBaseRepository implements EventsR
 
         return $this->model->where('start_time', '>', $now)->orWhere('end_time', '<', $now)->orderBy('end_time', 'DESC')->limit($number)->get();
 	}
+
 	public function getEventsByAttributes(array $attributes){
         $query = $this->buildQueryByAttributes($attributes);
 
         return $query;
+    }
+
+    public function search($key, $locale){
+        $query = $this->model->query();
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('title', 'like binary', '%'.$key.'%');
+            })->get();
+        }
+        return $this->model
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('title', 'like binary', '%'.$key.'%');
+            })->get();
     }
 
     private function buildQueryByAttributes(array $attributes)

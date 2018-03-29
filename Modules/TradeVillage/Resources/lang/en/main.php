@@ -16,6 +16,13 @@ return [
         'logout' => 'Logout',
         'login' => 'Login',
         'register_new' => 'Register',
+        'no_village' => 'No village match',
+        'no_artist' => 'No artist match',
+        'no_product' => 'No product match',
+        'no_enterprise' => 'No enterprise match',
+        'no_event' => 'No event match',
+        'no_new' => 'No new match',
+        'no_result' => 'Can not find anything match',
     ],
     'filter' => [
         'category' => 'Category',

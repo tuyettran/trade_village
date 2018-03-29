@@ -9,4 +9,5 @@ interface EventsRepository extends BaseRepository
 	public function newest_events($number);
 	public function nearest_events($number);
 	public function getEventsByAttributes(array $attributes);
+	public function search($key, $locale);
 }
