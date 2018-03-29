@@ -56,7 +56,7 @@
 				@endforeach
 			</div>
 
-			<div class="row top-enterprise content-background">
+			<!-- <div class="row top-enterprise content-background">
 				<a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.top_edu_enterprises') }}</b></h4></a>
 				<div class="col-md-4 col-xs-12 infomation">
 					<p>{{ trans('tradevillage::homepage.title.top_edu_description') }}</p>
@@ -69,15 +69,15 @@
 						</div>
 					</div>
 				@endforeach
-			</div>
+			</div> -->
+
 			<div class="row top-product">
 				<a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.favorite_products') }}</b></h4></a>
 				<div class="row">
 					@foreach($products as $product)
 						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="product">
-								<?php $image_direct = public_path().$product->images ?>
-	                			<a href="{{ route('frontend.tradevillage.products.show', $product->id) }}"><img class="group list-group-image img-responsive thumbnail" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}"></a>
+	                			<a href="{{ route('frontend.tradevillage.products.show', $product->id) }}"><img class="group list-group-image img-responsive thumbnail" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
 								<div class="overlay">
 								    <div class="text">{{ $product->translate(locale())->name }}</div>
 								</div>

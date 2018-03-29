@@ -48,4 +48,29 @@ class FrontendSearchController extends BasePublicController
         
         return view('tradevillage::frontend.villages.events.search_result', compact('key', 'events'));
     }
+
+    public function new(Request $request)
+    {
+        $key = mb_strtolower(trim($request->search), 'utf-8');
+        $news = $this->news->search($key,'vi');
+        
+        return view('tradevillage::frontend.villages.news.search_result', compact('key', 'news'));
+    }
+
+    public function enterprise(Request $request)
+    {
+        $key = mb_strtolower(trim($request->search), 'utf-8');
+        $enterprises = $this->enterprises->search($key,'vi');
+        
+        return view('tradevillage::frontend.villages.enterprises.search_result', compact('key', 'enterprises'));
+    }
+
+    public function enterprise_by_category(Request $request)
+    {
+        $category = $request->category;
+        $enterprises = $this->enterprises->search($key,'vi');
+        
+        return view('tradevillage::frontend.villages.enterprises.search_result', compact('key', 'enterprises'));
+        echo $category;
+    }
 }

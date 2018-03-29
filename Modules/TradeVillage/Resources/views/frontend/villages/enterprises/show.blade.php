@@ -9,14 +9,16 @@
 @section('content')
 	<div class="row filter-search-box">
 		<div class="col-md-3 pull-right">
-			<form class="navbar-form pull-right search-form" role="search">
-		        <div class="input-group add-on">
-		            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search enterprise') }}" name="srch-term" id="srch-term" type="text">
-		            <div class="input-group-btn">
-		                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-		            </div>
-		        </div>
-		    </form>
+			<div class="col-md-12">
+				{!! Form::open(['route' => ['frontend.tradevillage.search.enterprise'], 'method' => 'get']) !!}
+			        <div class="input-group add-on">
+			            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search enterprise') }}" name="srch-term" id="srch-term" type="text">
+			            <div class="input-group-btn">
+			                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+			            </div>
+			        </div>
+			    {!! Form::close() !!}
+			</div>
 		</div>
 	</div>
 	

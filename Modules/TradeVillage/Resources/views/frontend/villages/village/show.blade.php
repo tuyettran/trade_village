@@ -101,7 +101,7 @@
                 @foreach($collecTopPros as $product)
                     <?php $image_direct = public_path().$product['product']->images ?>
                     <div class="col-md-3 col-xs-6 product">
-                        <a href="{{ route('frontend.tradevillage.products.show', [$product['product']->id]) }}"><img src="{{ URL::asset($product['product']->images.scandir($image_direct)[2]) }}" class="img-responsive thumbnail"></a>
+                        <a href="{{ route('frontend.tradevillage.products.show', [$product['product']->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product['product']->id)[0],7)) }}" class="img-responsive thumbnail"></a>
                         <div class="overlay">
                             <div class="text">{{ $product['product']->translate(locale())->name }}</div>
                         </div>

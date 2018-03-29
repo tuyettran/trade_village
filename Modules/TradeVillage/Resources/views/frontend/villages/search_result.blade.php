@@ -26,7 +26,7 @@
 		<h4><b>Search</b> > "{{ $key }}"</h4>
 		<hr>
 		<div class="row">
-			@if(count($villages)+count($enterprises)+count($artists)+count($products)>0)
+			@if(count($villages)+count($enterprises)+count($artists)+count($products)+count($events)+count($news)>0)
 				<div class="row trade-villages">
 					<h4 class="orange-text title"><b>{{ trans('tradevillage::main.title.village') }}</b></h4>
 					<?php $i=0 ?>
@@ -49,6 +49,7 @@
 						{{ trans('tradevillage::main.title.no_village') }}
 					@endif
 				</div>
+				<hr/>
 
 				<div class="row">
 					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.event') }}</b></h4>
@@ -61,12 +62,12 @@
 					                        {{ $event->translate(locale())->title }}</b></h4></a>
 					                </div>
 					            </div>
-					            <hr>
 					        </div>
 					    @endforeach
 					@else
 						{{ trans('tradevillage::main.title.no_event') }}
 					@endif
+					<hr/>
 				</div>
 
 				<div class="row">
@@ -76,17 +77,16 @@
 					        <div class="item col-md-12 col-sm-12">
 					            <div class="item-thumbnail row">
 					                <div class="caption col-md-9 col-sm-9 col-xs-9">
-					                    <a href="{{ route('frontend.tradevillage.news.show', $new->id) }}"><h4 class="group inner list-group-item-heading product-name oneline"><b>
-					                        {{ $new->translate(locale())->title }}</b></h4></a>
+					                    <a href="{{ route('frontend.tradevillage.news.show', $new->id) }}"><h4 class="group inner list-group-item-heading product-name oneline">
+					                        {{ $new->translate(locale())->title }}</h4></a>
 					                </div>
 					            </div>
-					            <hr>
 					        </div>
 					    @endforeach
 					@else
 						{{ trans('tradevillage::main.title.no_new') }}
 					@endif
-				</div>
+				</div><hr/>
 
 				<div class="row content-background">
 					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.enterprise') }}</b></h4>
@@ -98,8 +98,8 @@
 					                    <img src="{{ Imagy::getThumbnail($enterprise->feature_image['path'].'', 'mediumThumb') }}" class="enterprise-index-avatar img-responsive thumbnail" />
 					                </div>
 					                <div class="caption col-md-9 col-sm-9  col-xs-9">
-					                    <a href="{{ route('frontend.tradevillage.enterprises.show', $enterprise->id) }}"><h4 class="group inner list-group-item-heading product-name oneline"><b>
-					                        {{ $enterprise->translate(locale())->name }}</b></h4></a>
+					                    <a href="{{ route('frontend.tradevillage.enterprises.show', $enterprise->id) }}"><h4 class="group inner list-group-item-heading product-name oneline">
+					                        {{ $enterprise->translate(locale())->name }}</h4></a>
 					                    <p class="group inner list-group-item-text intro">
 					                        {!! $enterprise->translate(locale())->description !!} </p>
 					                </div>
@@ -109,6 +109,7 @@
 					@else
 						{{ trans('tradevillage::main.title.no_enterprise') }}
 					@endif
+					<hr/>
 				</div>
 
 				<div class="row">
@@ -121,28 +122,26 @@
 					                    <img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="artist-index-avatar img-responsive" />
 					                </div>
 					                <div class="caption col-md-9 col-sm-9 col-xs-9">
-					                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h4 class="group inner list-group-item-heading product-name oneline"><b>
-					                        {{ $artist->translate(locale())->name }}</b></h4></a>
+					                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h4 class="group inner list-group-item-heading product-name oneline">
+					                        {{ $artist->translate(locale())->name }}</h4></a>
 					                    <p class="group inner list-group-item-text intro">
 					                        {!! $artist->translate(locale())->description !!} </p>
 					                </div>
 					            </div>
-					            <hr>
 					        </div>
 					    @endforeach
 					@else
 						{{ trans('tradevillage::main.title.no_artist') }}
 					@endif
-				</div>
+				</div><hr/>
 
 				<div class="row products">
 					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.product') }}</b></h4>
 					@if(count($products)>0)
 						@foreach($products as $product)
 							<div class="col-md-2 col-sm-3 col-xs-6">
-								<div class="product">
-									<?php $image_direct = public_path().$product->images ?>
-		                			<a href="{{ route('frontend.tradevillage.products.show', $product->id) }}"><img class="group list-group-image img-responsive thumbnail" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}"></a>
+								<div class="product thumbnail">
+		                			<a href="{{ route('frontend.tradevillage.products.show', $product->id) }}"><img class="group list-product-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
 									<div class="overlay">
 									    <div class="text">
 									    	<b>{{ $product->translate(locale())->name }}</b>

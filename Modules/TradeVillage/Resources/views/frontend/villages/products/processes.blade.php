@@ -25,8 +25,7 @@
 		<div class="col-md-5 col-xs-12 background">
 			<div class="row">
 				<div class="col-md-4 col-xs-4 image">
-					<?php $image_direct = public_path().$product->images ?>
-		            <img class="img-responsive" src="{{ URL::asset($product->images.scandir($image_direct)[2]) }}">
+		            <img class="img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}">
 				</div>
 				<div class="col-md-8 col-xs-8">
 					<h3 class="white-text">{{ trans('tradevillage::products.process_of') }} {{ mb_strtoupper($product->translate(locale())->name, "UTF-8") }} {{ trans('tradevillage::products.manufacture') }}</h3>

@@ -35,6 +35,12 @@ return [
         'search enterprise' => 'Tìm kiếm doanh nghiệp',
         'province' => 'Thành phố',
         'search' => 'Tìm kiếm',
+        'event' => 'Sự kiện',
+        'new' => 'Tin tức',
+        'village' => 'Làng nghề',
+        'artist' => 'Nghệ nhân',
+        'product' => 'Sản phẩm',
+        'enterprise' => 'Doanh nghiệp',
     ],
     'sidebar' => [
         'newest_products' => 'Sản phẩm mới',

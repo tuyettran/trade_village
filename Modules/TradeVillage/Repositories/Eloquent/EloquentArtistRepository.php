@@ -45,10 +45,10 @@ class EloquentArtistRepository extends EloquentBaseRepository implements ArtistR
     	if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-            	$query->where('locale', $locale)->where('name', 'like binary', '%'.$key.'%')->orWhere('description', 'like binary', '%'.$key.'%');
+            	$query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
         	})->get();
         }
-        return $this->model->where('id', '=', '1')->get();
+        return $this->model->all();
     }
 
 	private function buildQueryByAttributes(array $attributes)
