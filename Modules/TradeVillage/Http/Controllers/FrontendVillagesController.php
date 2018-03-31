@@ -148,11 +148,16 @@ class FrontendVillagesController extends BasePublicController
         return view('tradevillage::frontend.villages.news.index', compact('village', 'news'));
     }
 
-
     public function events(Villages $village) {
         if($village->events){
             $events = $this->events->getEventsByAttributes(['village_id' => $village->id])->paginate(20);
         }
         return view('tradevillage::frontend.villages.events.index', compact('village', 'events'));
+    }
+    
+    //get all of villages
+    public function getAllVillages() {
+        $villages = $this->villages->all();
+        return $villages;
     }
 }

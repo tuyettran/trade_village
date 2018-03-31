@@ -161,7 +161,6 @@
         polygon.setMap(map);
 
         //Display enterprises
-        var pathname = window.location.pathname;
         var id = document.getElementById('id').value;
         $.ajax({
             url     : '/tradevillage/villages/'+id+'/xml-generate',
@@ -191,7 +190,7 @@
                             infowindow.setContent(infowincontent);
                             infowindow.open(map,marker);
                         };
-                    })(marker,infowincontent,infowindow));  
+                    })(marker,infowincontent,infowindow));
                 }
             }
         });
