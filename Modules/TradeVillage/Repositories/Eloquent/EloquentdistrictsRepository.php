@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Tradevillage\Repositories\Eloquent;
+namespace Modules\TradeVillage\Repositories\Eloquent;
 
-use Modules\Tradevillage\Repositories\districtsRepository;
+use Modules\TradeVillage\Repositories\districtsRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentdistrictsRepository extends EloquentBaseRepository implements districtsRepository

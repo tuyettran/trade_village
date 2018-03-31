@@ -288,39 +288,39 @@ class TradeVillageServiceProvider extends ServiceProvider
             }
         );
         $this->app->bind(
-            'Modules\Tradevillage\Repositories\provincesRepository',
+            'Modules\TradeVillage\Repositories\provincesRepository',
             function () {
-                $repository = new \Modules\Tradevillage\Repositories\Eloquent\EloquentprovincesRepository(new \Modules\Tradevillage\Entities\provinces());
+                $repository = new \Modules\TradeVillage\Repositories\Eloquent\EloquentprovincesRepository(new \Modules\TradeVillage\Entities\provinces());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\Tradevillage\Repositories\Cache\CacheprovincesDecorator($repository);
+                return new \Modules\TradeVillage\Repositories\Cache\CacheprovincesDecorator($repository);
             }
         );
         $this->app->bind(
-            'Modules\Tradevillage\Repositories\districtsRepository',
+            'Modules\TradeVillage\Repositories\districtsRepository',
             function () {
-                $repository = new \Modules\Tradevillage\Repositories\Eloquent\EloquentdistrictsRepository(new \Modules\Tradevillage\Entities\districts());
+                $repository = new \Modules\TradeVillage\Repositories\Eloquent\EloquentdistrictsRepository(new \Modules\TradeVillage\Entities\districts());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\Tradevillage\Repositories\Cache\CachedistrictsDecorator($repository);
+                return new \Modules\TradeVillage\Repositories\Cache\CachedistrictsDecorator($repository);
             }
         );
         $this->app->bind(
-            'Modules\Tradevillage\Repositories\LessonsRepository',
+            'Modules\TradeVillage\Repositories\LessonsRepository',
             function () {
-                $repository = new \Modules\Tradevillage\Repositories\Eloquent\EloquentLessonsRepository(new \Modules\Tradevillage\Entities\Lessons());
+                $repository = new \Modules\TradeVillage\Repositories\Eloquent\EloquentLessonsRepository(new \Modules\TradeVillage\Entities\Lessons());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\Tradevillage\Repositories\Cache\CacheLessonsDecorator($repository);
+                return new \Modules\TradeVillage\Repositories\Cache\CacheLessonsDecorator($repository);
             }
         );
 // add bindings

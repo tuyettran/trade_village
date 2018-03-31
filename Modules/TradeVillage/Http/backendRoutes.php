@@ -675,7 +675,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'middleware' => 'can:tradevillage.product_rates.destroy'
     ]);
     $router->bind('provinces', function ($id) {
-        return app('Modules\Tradevillage\Repositories\provincesRepository')->find($id);
+        return app('Modules\TradeVillage\Repositories\provincesRepository')->find($id);
     });
     $router->get('provinces', [
         'as' => 'admin.tradevillage.provinces.index',
@@ -708,7 +708,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'middleware' => 'can:tradevillage.provinces.destroy'
     ]);
     $router->bind('districts', function ($id) {
-        return app('Modules\Tradevillage\Repositories\districtsRepository')->find($id);
+        return app('Modules\TradeVillage\Repositories\districtsRepository')->find($id);
     });
     $router->get('districts', [
         'as' => 'admin.tradevillage.districts.index',
@@ -741,7 +741,7 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'middleware' => 'can:tradevillage.districts.destroy'
     ]);
     $router->bind('lessons', function ($id) {
-        return app('Modules\Tradevillage\Repositories\LessonsRepository')->find($id);
+        return app('Modules\TradeVillage\Repositories\LessonsRepository')->find($id);
     });
     $router->get('lessons', [
         'as' => 'admin.tradevillage.lessons.index',

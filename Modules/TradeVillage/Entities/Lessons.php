@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tradevillage\Entities;
+namespace Modules\TradeVillage\Entities;
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
