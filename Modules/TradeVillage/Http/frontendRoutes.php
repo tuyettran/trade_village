@@ -222,6 +222,10 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.search',
         'uses' => 'FrontendSearchController@home'
     ]);
+    $router->get('artist/search', [
+        'as' => 'frontend.tradevillage.search.artist',
+        'uses' => 'FrontendSearchController@artist'
+    ]);
     $router->get('event/search', [
         'as' => 'frontend.tradevillage.search.event',
         'uses' => 'FrontendSearchController@event'
@@ -237,6 +241,10 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
     $router->get('enterprise/category', [
         'as' => 'frontend.tradevillage.search.enterprise.category',
         'uses' => 'FrontendSearchController@enterprise_by_category'
+    ]);
+    $router->get('products/search', [
+        'as' => 'frontend.tradevillage.search.product',
+        'uses' => 'FrontendSearchController@product'
     ]);
 });
 ?>

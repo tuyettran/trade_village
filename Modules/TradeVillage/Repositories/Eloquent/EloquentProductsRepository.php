@@ -54,11 +54,11 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
                 $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
-            })->get();
+            });
         }
         return $this->model
             ->whereHas('translations', function ($query) use ($locale, $key) {
                 $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
-            })->get();
+            });
     }
 }

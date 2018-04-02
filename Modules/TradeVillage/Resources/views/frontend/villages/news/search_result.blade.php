@@ -13,7 +13,7 @@
 				<div class="col-md-12">
 					{!! Form::open(['route' => ['frontend.tradevillage.search.new'], 'method' => 'get']) !!}
 				        <div class="input-group add-on">
-			            	<input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search') }}" name="search" id="srch-term" value="{{isset($key)? $key: ''}}" type="text">
+			            	<input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search') }}" name="search" id="search" value="{{isset($key)? $key: ''}}" type="text">
 			            	<div class="input-group-btn">
 			                	<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			            	</div>
@@ -42,7 +42,7 @@
 						</div>
 				    @endforeach
 				</div>
-
+				{{ $news->links() }}
 			@else
 				<div class="col-md-9">
 					<h3 class="center">{{ trans('tradevillage::main.title.no_new') }}</h3>

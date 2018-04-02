@@ -23,7 +23,11 @@
 			</div>
 		</div>
 
-		<h4><b>{{ trans('tradevillage::main.filter.search') }}</b> > <a href="{{ route('frontend.tradevillage.enterprises.index') }}"><b>{{ trans('tradevillage::main.filter.enterprise') }}</b></a> > "{{ $key }}"</h4>
+		@if(isset($key))
+			<h4><b>{{ trans('tradevillage::main.filter.search') }}</b> > <a href="{{ route('frontend.tradevillage.enterprises.index') }}"><b>{{ trans('tradevillage::main.filter.enterprise') }}</b></a> > "{{ $key }}"</h4>
+		@else
+			<h4><b>{{ trans('tradevillage::main.filter.search') }}</b> > <a href="{{ route('frontend.tradevillage.enterprises.index') }}"><b>{{ trans('tradevillage::main.filter.enterprise') }}</b></a> > <a href="#"><b>{{ $category->translate(locale())->name }}</b></a> ></h4>
+		@endif
 		<hr>
 		<div class="row">
 			@if(count($enterprises)>0)
@@ -42,7 +46,7 @@
 						</div>
 				    @endforeach
 				</div>
-
+				{{ $enterprises->links() }}
 			@else
 				<div class="col-md-9">
 					<h3 class="center">{{ trans('tradevillage::main.title.no_enterprise') }}</h3>

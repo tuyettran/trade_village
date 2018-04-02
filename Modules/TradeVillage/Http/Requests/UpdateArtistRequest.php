@@ -13,7 +13,6 @@ class UpdateArtistRequest extends BaseFormRequest
         return [
             'date_of_birth' => 'required|date|before:'.$before_date,
             'village_id' => 'required|integer|min:1',
-            'user_id' => 'integer|min:1',
             'contact' => 'required'
         ];
     }

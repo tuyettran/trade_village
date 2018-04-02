@@ -142,7 +142,7 @@
 				<img src="{{ URL::asset('images/ho-tro.png') }}" class="img-responsive">
 				<h4 class="black-text hotline"><b>{{ trans('tradevillage::homepage.title.hotline') }}: 04.936.1738</b></h4>
 			</div>
-			<div class="row page-view-count">
+			<!-- <div class="row page-view-count">
 				<h5><b class="orange-text">{{ trans('tradevillage::homepage.title.total_visitors') }}:</b><span>&emsp;1671627</span></h5>
 				<h5 class="orange-text"><b>{{ trans('tradevillage::homepage.title.top countries') }}:</b></h5>
 				<ul>
@@ -151,7 +151,7 @@
 					<li>Korea: 18371</li>
 				</ul>
 				<a href="#" class="row black-text btn btn-xs btn-default">{{ trans('tradevillage::homepage.title.show all') }} >></a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 @stop

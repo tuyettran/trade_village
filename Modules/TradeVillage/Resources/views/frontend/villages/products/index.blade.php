@@ -11,14 +11,14 @@
 		<div class="col-md-3 pull-right search-form-sidebar">
 			<div class="row">
                 <div class="col-md-12 pull-right">
-                    <form class="pull-right search-form" role="search">
+                    {!! Form::open(['route' => ['frontend.tradevillage.search.product'], 'method' => 'get']) !!}
                         <div class="input-group add-on">
-                            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search product') }}" name="srch-term" id="srch-term" type="text">
+                            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search product') }}" name="search" id="srch-term" type="text">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
 		</div>
