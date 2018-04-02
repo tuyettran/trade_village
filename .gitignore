@@ -6,4 +6,3 @@ Homestead.json
 .env
 .php_cs.cache
 /public/product
-/public/pic

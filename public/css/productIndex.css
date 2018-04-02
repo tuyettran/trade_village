@@ -75,6 +75,7 @@ table th{
 .img-bar {
     width: 50px;
     height: 50px;
+    padding: 0 !important;
 }
 
 a:hover {
@@ -93,8 +94,21 @@ a:hover {
     color: #0000cc;
 }
 
+.index-product-navbar {
+    padding-bottom: 15px;
+}
+
+.sidebar-product {
+    margin-bottom: 7px;
+}
+
 .product-footer {
     margin-top: 10px;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
+    padding-left: 10px;
 }
 
 .list-group {

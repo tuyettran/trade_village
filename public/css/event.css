@@ -45,7 +45,7 @@ body {
 	width: 100%;
 }
 .event-index-image {
-	max-height: 150px;
+	max-height: 120px;
 	width: 100%;
 }
 .event-sidebar-image {
@@ -67,6 +67,9 @@ body {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     display: -webkit-box;
+}
+.description p {
+	margin: 0;
 }
 .newest-events {
 	margin-top: 30px;

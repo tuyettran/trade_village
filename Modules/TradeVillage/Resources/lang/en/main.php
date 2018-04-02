@@ -35,6 +35,12 @@ return [
         'search enterprise' => 'Search enterprise',
         'province' => 'Province',
         'search' => 'Search',
+        'event' => 'Event',
+        'new' => 'New',
+        'village' => 'Village',
+        'artist' => 'Artist',
+        'product' => 'Product',
+        'enterprise' => 'Enterprise',
     ],
     'sidebar' => [
         'newest_products' => 'Newest products',
