@@ -12,7 +12,7 @@
 			<div class="col-md-12 no-padding">
 				{!! Form::open(['route' => ['frontend.tradevillage.search.artist'], 'method' => 'get']) !!}
 			        <div class="input-group add-on">
-			            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search artist') }}" name="search" id="srch-term" type="text">
+			            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search artist') }}" name="search" id="srch-term" type="text" value="{{ $key }}">
 			            <div class="input-group-btn">
 			                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			            </div>
@@ -20,20 +20,11 @@
 			    {!! Form::close() !!}
 			</div>
 		</div>
-
-		@if(!isset($village))
-		<div class="col-md-9 filter">
-			@include('tradevillage::frontend.villages.artists.partials.filter', ['categories' => $categories])
-		</div>
-		@else
-		<div class="col-md-9">
-			<h4><a href="">{{ $village->translate(locale())->name }}</a> > {{ trans('tradevillage::artists.title.artists') }}</h4>
-		</div>
-		@endif
-		
 	</div>
 	
 	<div class="row">
+		<h4><b>{{ trans('tradevillage::main.filter.search') }}</b> > <a href="{{ route('frontend.tradevillage.events.index') }}"><b>{{ trans('tradevillage::main.filter.artist') }}</b></a> > "{{ $key }}"</h4>
+		<hr>
 		<div class="col-md-12 col-sm-12">
    			<div class="list-group">
    				@include('tradevillage::frontend.villages.artists.partials.artists', ['artists' => $artists])

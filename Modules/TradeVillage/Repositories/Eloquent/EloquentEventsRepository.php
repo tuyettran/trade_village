@@ -56,7 +56,7 @@ class EloquentEventsRepository extends EloquentBaseRepository implements EventsR
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
                 $query->where('locale', $locale)->where('title', 'like', '%'.$key.'%');
-            })->get();
+            });
         }
         return $this->model->all();
     }

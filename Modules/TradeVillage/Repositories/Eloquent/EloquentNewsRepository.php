@@ -54,8 +54,8 @@ class EloquentNewsRepository extends EloquentBaseRepository implements NewsRepos
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('title', 'like', '%'.$key.'%');
-            })->get();
+                $query->where('locale',$locale)->where('title', 'like', '%'.$key.'%');
+            });
         }
         return $this->model->all();
     }

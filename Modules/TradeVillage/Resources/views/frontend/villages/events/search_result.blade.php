@@ -45,7 +45,7 @@
 						</div>
 				    @endforeach
 				</div>
-
+				{{ $events->links() }}
 			@else
 				<div class="col-md-9">
 					<h3 class="center">{{ trans('tradevillage::main.title.no_event') }}</h3>

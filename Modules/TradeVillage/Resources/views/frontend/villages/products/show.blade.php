@@ -8,14 +8,14 @@
 @section('content')
 	<div class="row filter-search-box">
 		<div class="col-md-3 pull-right">
-			<form class="navbar-form pull-right search-form" role="search">
-		        <div class="input-group add-on">
-		            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search product') }}" name="srch-term" id="srch-term" type="text">
-		            <div class="input-group-btn">
-		                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-		            </div>
-		        </div>
-		    </form>
+			{!! Form::open(['route' => ['frontend.tradevillage.search.product'], 'method' => 'get']) !!}
+                <div class="input-group add-on">
+                    <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search product') }}" name="search" id="srch-term" type="text">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            {!! Form::close() !!}
 		</div>
 	</div>
 	
@@ -79,7 +79,7 @@
                                 <img src="{{ Imagy::getThumbnail($product->enterprise->feature_image['path'].'', 'smallThumb') }}"/>
 
 		        				<a href="{{ route('frontend.tradevillage.enterprises.show', [$product->enterprise->id]) }}">{{ $product->enterprise->translate(locale())->name}}</a>
-		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->contact }}</p>
+		        				<p>{{ $product->enterprise->contact }}</p>
 		        				<p>Website: {{ $product->enterprise->website }}</p>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->translate(locale())->address}}</p>
 		        			@elseif($product->artist)

@@ -12,7 +12,7 @@
             <div class="col-md-3 col-sm-3" style="float: right;">
                 {!! Form::open(['route' => ['frontend.tradevillage.search.new'], 'method' => 'get']) !!}
                     <div class="input-group add-on">
-                        <input class="form-control" name="search" id="srch-term" type="text">
+                        <input class="form-control" name="search" id="search" type="text">
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
