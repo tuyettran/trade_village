@@ -68,19 +68,20 @@
 	        			<td>{{ $product->cost }} {{ trans('tradevillage::products.unit') }}</td>
 	        		</tr>
 	        	</table>
+	        	<hr>
 	        	<div class="row">
 	        		<div class="product-footer-box">
-	        			<div class="col-md-4 col-xs-4">
+	        			<div class="col-md-3 col-xs-4">
 		        			@include('tradevillage::frontend.villages.products.partials.rate', ['product' => $product])
 		        		</div>
-		        		<div class="col-md-5 col-xs-8">
+		        		<div class="col-md-6 col-xs-8">
 		        			<p class="blue-text"><b>{{ trans('tradevillage::products.contact') }}</b></p>
 		        			@if($product->enterprise)
                                 <img src="{{ Imagy::getThumbnail($product->enterprise->feature_image['path'].'', 'smallThumb') }}"/>
 
 		        				<a href="{{ route('frontend.tradevillage.enterprises.show', [$product->enterprise->id]) }}">{{ $product->enterprise->translate(locale())->name}}</a>
 		        				<p>{{ $product->enterprise->contact }}</p>
-		        				<p>Website: {{ $product->enterprise->website }}</p>
+		        				<p>Website: <a href="{{ $product->enterprise->website }}">{{ $product->enterprise->website }}</a></p>
 		        				<p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->translate(locale())->address}}</p>
 		        			@elseif($product->artist)
 		        				<img src="{{ Imagy::getThumbnail($product->artist->feature_image['path'].'', 'smallThumb') }}" style="border-radius: 50%; max-height: 50px" />

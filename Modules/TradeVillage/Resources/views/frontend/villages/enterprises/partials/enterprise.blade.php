@@ -12,7 +12,7 @@
                         {!! $enterprise->translate(locale())->description !!} </p>
                     <p class="group inner list-group-item-text intro">
                         {{ trans('tradevillage::artists.village name') }} : 
-                        <a href=""><b>{!! $enterprise->village->translate(locale())->name !!}</b></a>
+                        <a href="{{ route('frontend.tradevillage.villages.show', $enterprise->village->id) }}"><b>{!! $enterprise->village->translate(locale())->name !!}</b></a>
                     </p>
                 </div>
             </div>
