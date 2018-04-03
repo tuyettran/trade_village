@@ -37,7 +37,7 @@
 	   							{{ trans('tradevillage::enterprises.website') }}: 
 	   						</th>
 	   						<td>
-	   							{{ $enterprise->website }}
+	   							<a href="{{ $enterprise->website }}">{{ $enterprise->website }}</a>
 	   						</td>
 	   					</tr>
 	   					<tr>
@@ -93,7 +93,8 @@
         	<div id="map" style="width:100%;height: 300px;"></div>
         	<input type="text" id="olat" value="{{ $enterprise->lat }}" style="display: none;">
             <input type="text" id="olng" value="{{ $enterprise->lng }}" style="display: none;">
-   			<h4 class="blue-text"><b>{{ trans('tradevillage::enterprises.products') }}</b></h4>
+   			<hr>
+   			<h4 class="orange-text"><b>{{ trans('tradevillage::enterprises.products') }}</b></h4>
    			@foreach($products as $product)
    				@include('tradevillage::frontend.villages.artists.partials.product', ['product' => $product])
    			@endforeach

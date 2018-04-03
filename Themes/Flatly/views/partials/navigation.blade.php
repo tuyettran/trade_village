@@ -19,27 +19,8 @@
                 <li class="nav-enterprises"><a href="{{ route('frontend.tradevillage.enterprises.index') }}">{{ trans('tradevillage::main.title.enterprise') }}</a></li>
                 <li class="nav-artists"><a href="{{ route('frontend.tradevillage.artist.index') }}">{{ trans('tradevillage::main.title.artist') }}</a></li>
                 <li class="nav-education"><a href="#">{{ trans('tradevillage::main.title.education') }}</a></li>
-                <li class="nav-contact"><a href="#">{{ trans('tradevillage::main.title.contact') }}</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-flag"></i>
-                        <span>
-                            {{ LaravelLocalization::getCurrentLocaleName()  }}
-                            <i class="caret"></i>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu language-menu">
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <li class="{{ App::getLocale() == $localeCode ? 'active' : '' }}">
-                                <a rel="alternate" lang="{{$localeCode}}" href="{{LaravelLocalization::getLocalizedURL($localeCode) }}">
-                                    {!! $properties['native'] !!}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
+                <!-- 
+                <li class="nav-contact"><a href="#">{{ trans('tradevillage::main.title.contact') }}</a></li> -->
             </ul>
         </div>
     </div>
