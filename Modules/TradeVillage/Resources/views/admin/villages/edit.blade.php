@@ -47,13 +47,15 @@
                         <div class="form-group{{ $errors->has("province") ? " has-error" : "" }}">
                             {!! Form::label("province", trans("tradevillage::villages.form.province")) !!} 
                                 <select name="province" id="province">
+                                    
                                 </select>
                             {!! $errors->first("province", '<span class="help-block">:message</span>') !!}
                         </div>
 
                         <div class="form-group{{ $errors->has("district") ? " has-error" : "" }}">
                             {!! Form::label("district", trans("tradevillage::villages.form.district")) !!} 
-                                <select name="district" id="district" value="{{ $villages->district }}">   
+                                <select name="district" id="district"> 
+                                    
                                 </select>
                             {!! $errors->first("district", '<span class="help-block">:message</span>') !!}
                         </div>
@@ -86,7 +88,8 @@
                         <input id="cancelbutton" type="button" value="Edit">
                         <div class="col-md-12" id="map" style="width:100%;height: 500px;"></div>
                     </div>
-
+                    <input type="text" id="oprovince" value="{{ $villages->province }}" style="display: none;">
+                    <input type="text" id="odistrict" value="{{ $villages->district }}" style="display: none;">
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.tradevillage.villages.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
@@ -299,7 +302,7 @@
                 districtElement.length = 0;
                 districtElement.options[0] = new Option('Select District','');
                 districtElement.selectedIndex = 0;   
-                var district_arr = district_a[selectedProvinceIndex].split("|");      
+                var district_arr = district_a[selectedProvinceIndex+1].split("|");      
                 for (var i = 0; i < district_arr.length; i++) {
                     districtElement.options[districtElement.length] = new Option(district_arr[i],district_arr[i]);
                 }
@@ -308,10 +311,27 @@
             function province(provinceElementId, districtElementId){
                 var provinceElement = document.getElementById(provinceElementId);
                 provinceElement.length = 0;
-                provinceElement.options[0] = new Option('Select Province','-1');
-                provinceElement.selectedIndex = 0;
+                var oprovince = document.getElementById('oprovince').value;
+
                 for (var i = 0; i < province_arr.length; i++) {
-                    provinceElement.options[provinceElement.length] = new Option(province_arr[i],province_arr[i]);
+                    if(oprovince == province_arr[i]) {
+                        provinceElement.options[provinceElement.length] = new Option(province_arr[i], province_arr[i], false, true);
+
+                        //create corresponding district
+                        var districtElement = document.getElementById(districtElementId);          
+                        districtElement.length = 0;
+                        var odistrict = document.getElementById('odistrict').value;
+                        var district_arr = district_a[i+1].split("|");      
+                        for (var j = 0; j < district_arr.length; j++) {
+                            if(odistrict == district_arr[j]) {
+                                districtElement.options[districtElement.length] = new Option(district_arr[j], district_arr[j], false, true);
+                            } else {
+                                districtElement.options[districtElement.length] = new Option(district_arr[j], district_arr[j]);
+                            }
+                        }
+                    } else {
+                        provinceElement.options[provinceElement.length] = new Option(province_arr[i], province_arr[i]);
+                    }
                 }
 
                 if(districtElementId){
