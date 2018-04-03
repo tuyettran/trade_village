@@ -30,7 +30,7 @@ class TradeVillageServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->publishConfig('tradevillage', 'permissions');
+        $this->publishConfig('TradeVillage', 'permissions');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
