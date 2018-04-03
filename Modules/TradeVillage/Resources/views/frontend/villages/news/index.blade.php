@@ -20,7 +20,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        @if(!isset($village))
+        
         <!-- news slideshow -->
             <div class="col-md-12 box">
                 <a href="#"><h3 class="news">{{ trans('tradevillage::news.other.newest') }}</h3></a>
@@ -54,7 +54,7 @@
                   <span class="sr-only">Next</span>
                 </a>       
             </div> <!-- end news slideshow -->
-        @else
+        
             <div class="col-md-12">
                 <a href="#"><h3 class="news">{{ trans('tradevillage::news.other.news') }}</h3></a>
                 <div class="col-md-9">
@@ -77,7 +77,7 @@
                     @endforeach
                 </div>
             </div>
-        @endif
+        
         <div class="paginate"> {{ $news->links() }} </div>
     </div>
 @stop
