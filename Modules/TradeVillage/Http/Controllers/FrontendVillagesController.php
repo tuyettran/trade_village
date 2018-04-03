@@ -167,4 +167,10 @@ class FrontendVillagesController extends BasePublicController
         $villages = $this->villages->all();
         return $villages;
     }
+
+    //get all of active villages
+    public function getAllActiveVillages() {
+        $actVillages = $this->villages->getByAttributes(['active_home' => "1"], $orderBy = 'updated_at', $sortOrder = 'desc');
+        return $actVillages;
+    }
 }

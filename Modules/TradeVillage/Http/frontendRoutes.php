@@ -177,6 +177,10 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.villages.allVillages',
         'uses' => 'FrontendVillagesController@getAllVillages'
     ]);
+    $router->get('active-villages', [
+        'as' => 'frontend.tradevillage.villages.activeVillages',
+        'uses' => 'FrontendVillagesController@getAllActiveVillages'
+    ]);
 
     $router->group(['prefix' =>'villages/{village}'], function (Router $router) {
         $router->get('/', [
