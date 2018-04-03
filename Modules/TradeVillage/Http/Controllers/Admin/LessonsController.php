@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Tradevillage\Http\Controllers\Admin;
+namespace Modules\TradeVillage\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Modules\Tradevillage\Entities\Lessons;
-use Modules\Tradevillage\Http\Requests\CreateLessonsRequest;
-use Modules\Tradevillage\Http\Requests\UpdateLessonsRequest;
-use Modules\Tradevillage\Repositories\LessonsRepository;
+use Modules\TradeVillage\Entities\Lessons;
+use Modules\TradeVillage\Http\Requests\CreateLessonsRequest;
+use Modules\TradeVillage\Http\Requests\UpdateLessonsRequest;
+use Modules\TradeVillage\Repositories\LessonsRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class LessonsController extends AdminBaseController

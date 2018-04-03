@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Tradevillage\Repositories\Cache;
+namespace Modules\TradeVillage\Repositories\Cache;
 
-use Modules\Tradevillage\Repositories\LessonsRepository;
+use Modules\TradeVillage\Repositories\LessonsRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CacheLessonsDecorator extends BaseCacheDecorator implements LessonsRepository

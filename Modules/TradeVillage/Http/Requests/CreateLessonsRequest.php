@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tradevillage\Http\Requests;
+namespace Modules\TradeVillage\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
