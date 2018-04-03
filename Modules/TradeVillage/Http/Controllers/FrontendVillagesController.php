@@ -45,6 +45,13 @@ class FrontendVillagesController extends BasePublicController
     public function index()
     {
         $categories = $this->categories->all();
+        // $villages = $this->villages->all();
+        // $img = [];
+        // $i = 0;
+        // foreach ($villages as $village) {
+        //     $img[$i] = $village->image_village->path;
+        //     $i++;
+        // }
         return view('tradevillage::frontend.villages.village.index', compact('categories'));
     }
 

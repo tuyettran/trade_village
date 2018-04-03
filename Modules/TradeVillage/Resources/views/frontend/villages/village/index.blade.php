@@ -107,7 +107,6 @@
                         lng[i] = parseFloat(lg[i]);
                         avgLng += lng[i];
                     }
-
                     var myLatLng = {lat: avgLat/(lt.length-1), lng: avgLng/(lt.length-1)};
                     var marker = new google.maps.Marker({
                         position: myLatLng,
@@ -130,43 +129,47 @@
 
                     polygon.setMap(map);
 
-                    var infowindow = new google.maps.InfoWindow({maxWidth: 350, maxHeight: 300});
-                    var infowincontent = 
-                    '<div id="iw-container">' + 
-                        '<div class="iw-title">Village name</div>' +
-                        '<div class="col-md-12">' + 
-                            '<div class="col-md-3">' + 
-                                '<img class="img-village" src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="90" width="90">' + 
-                            '</div>' + 
-                            '<div class="col-md-1"></div>' + 
-                            '<div class="col-md-6">' + 
-                                '<h5 class="village-name">' + 'Village name' + '</h5>' + 
-                                '<div class="village-address">' + 
-                                    '<img src="/images/marker1.jpg" width="15">' + 
-                                    'sfasff' + 
-                                    '<p class="forline">ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>' +
-                                '</div>' + 
-                            '</div>' + 
-                        '</div>' + 
-                        '<div class="col-md-12">' + 
-                        '</div>' + 
-                        '<div class="col-md-12">' + 
-                            '<ul class="ul-info">' + 
-                                '<li class="li-info"><a class="a-info" href="#"><img src="/images/view1.png" width="15"> Views</a></li>' + 
-                                '<li class="li-info"><a class="a-info" href="#"><img src="/images/category.png" width="15"> Category</a></li>' + 
-                                '<li class="li-info"><a class="a-info" href="#"><img src="/images/products.png" width="15"> Products</a></li>' + 
-                            '</ul>' + 
-                        '</div>' + 
-                        '<div class="col-md-12">' +
-                            '<h5>'+ 'Enterprise' +'</h5>' + 
-                        '</div>'
-                    '</div>';
-                    google.maps.event.addListener(marker,'click', (function(marker,infowincontent,infowindow){ 
-                        return function() {
-                            infowindow.setContent(infowincontent);
-                            infowindow.open(map,marker);
-                        };
-                    })(marker,infowincontent,infowindow));  
+                    // var infowindow = new google.maps.InfoWindow({maxWidth: 350, maxHeight: 300});
+                    // var villageName = response[k]['name'];
+                    // var villageDistrict = response[k]['district'];
+                    // var villageProvince = response[k]['province'];
+                    // var villageDescription = response[k]['description'];
+                    // var infowincontent = 
+                    // '<div id="iw-container">' + 
+                    //     '<div class="iw-title">' + villageName + '</div>' +
+                    //     '<div class="col-md-12">' + 
+                    //         '<div class="col-md-3">' + 
+                    //             '<img class="img-village" src="" height="90" width="90">' + 
+                    //         '</div>' + 
+                    //         '<div class="col-md-1"></div>' + 
+                    //         '<div class="col-md-6">' + 
+                    //             '<h5 class="village-name">' + 'Village name' + '</h5>' + 
+                    //             '<div class="village-address">' + 
+                    //                 '<img src="/images/marker1.jpg" width="15">' + 
+                    //                 'sfasff' + 
+                    //                 '<p class="forline">ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>' +
+                    //             '</div>' + 
+                    //         '</div>' + 
+                    //     '</div>' + 
+                    //     '<div class="col-md-12">' + 
+                    //     '</div>' + 
+                    //     '<div class="col-md-12">' + 
+                    //         '<ul class="ul-info">' + 
+                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/view1.png" width="15"> Views</a></li>' + 
+                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/category.png" width="15"> Category</a></li>' + 
+                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/products.png" width="15"> Products</a></li>' + 
+                    //         '</ul>' + 
+                    //     '</div>' + 
+                    //     '<div class="col-md-12">' +
+                    //         '<h5>'+ 'Enterprise' +'</h5>' + 
+                    //     '</div>'
+                    // '</div>';
+                    // google.maps.event.addListener(marker,'click', (function(marker,infowincontent,infowindow){ 
+                    //     return function() {
+                    //         infowindow.setContent(infowincontent);
+                    //         infowindow.open(map,marker);
+                    //     };
+                    // })(marker,infowincontent,infowindow));  
                 }
             }
         });
