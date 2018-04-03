@@ -45,6 +45,13 @@ class FrontendVillagesController extends BasePublicController
     public function index()
     {
         $categories = $this->categories->all();
+        // $villages = $this->villages->all();
+        // $img = [];
+        // $i = 0;
+        // foreach ($villages as $village) {
+        //     $img[$i] = $village->image_village->path;
+        //     $i++;
+        // }
         return view('tradevillage::frontend.villages.village.index', compact('categories'));
     }
 
@@ -148,11 +155,16 @@ class FrontendVillagesController extends BasePublicController
         return view('tradevillage::frontend.villages.news.index', compact('village', 'news'));
     }
 
-
     public function events(Villages $village) {
         if($village->events){
             $events = $this->events->getEventsByAttributes(['village_id' => $village->id])->paginate(20);
         }
         return view('tradevillage::frontend.villages.events.index', compact('village', 'events'));
+    }
+    
+    //get all of villages
+    public function getAllVillages() {
+        $villages = $this->villages->all();
+        return $villages;
     }
 }

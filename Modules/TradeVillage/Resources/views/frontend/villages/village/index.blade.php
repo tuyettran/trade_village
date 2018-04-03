@@ -4,18 +4,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/tradeVillageIndex.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/mapDisplay.css') }}">
 @stop
 
 @section('content')
-    <div class="col-md-3 col-sm-3" style="float: right;">
-        <form class="navbar-form" role="search">
-            <div class="input-group add-on">
-                <input class="form-control" placeholder="{{ trans('tradevillage::main.filter.search village')}}" name="srch-term" id="srch-term" type="text">
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                </div>
-            </div>
-        </form>
+    <div class="col-md-12">
+        <div class="col-md-6 map map-box-bottom" id="map"></div>
     </div>
     
     <ul class="nav nav-tabs village-category">
@@ -82,13 +76,102 @@
             @endforeach
         @endif
     </div>
-
-    <div id="map"></div>
 @stop
 
 @section('scripts')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
     <script type="text/javascript">
         $('.nav-villages').addClass("active-nav");
+        $.ajax({
+            url     : '/tradevillage/all-villages',
+            method  : 'get',
+            success : function(response){
+                //display map of VietNam
+                var vietnam = {lat: 16.294378, lng: 107.674525};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 5.2,
+                    center: vietnam
+                });
+                
+                //display all of Villages on map
+                for(var k = 0; k < response.length; k++) {
+                    var lt = response[k]['lat'].split("|");
+                    var lg = response[k]['lng'].split("|");
+                    var lat = new Array();
+                    var lng = new Array();
+                    var avgLat = 0;
+                    var avgLng = 0;
+                    for(var i = 0; i < lt.length-1; i++) {
+                        lat[i] = parseFloat(lt[i]);
+                        avgLat += lat[i];
+                        lng[i] = parseFloat(lg[i]);
+                        avgLng += lng[i];
+                    }
+                    var myLatLng = {lat: avgLat/(lt.length-1), lng: avgLng/(lt.length-1)};
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map
+                    });
+                    
+                    var polygonCoords  = [];
+                    for(var i = 0; i < lat.length; i++) { 
+                        polygonCoords.push(new google.maps.LatLng(lat[i],lng[i]));
+                    }
+
+                    var polygon = new google.maps.Polygon({
+                        paths: polygonCoords,
+                        strokeColor: 'black',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#505256',
+                        fillOpacity: 0.4
+                    });
+
+                    polygon.setMap(map);
+
+                    // var infowindow = new google.maps.InfoWindow({maxWidth: 350, maxHeight: 300});
+                    // var villageName = response[k]['name'];
+                    // var villageDistrict = response[k]['district'];
+                    // var villageProvince = response[k]['province'];
+                    // var villageDescription = response[k]['description'];
+                    // var infowincontent = 
+                    // '<div id="iw-container">' + 
+                    //     '<div class="iw-title">' + villageName + '</div>' +
+                    //     '<div class="col-md-12">' + 
+                    //         '<div class="col-md-3">' + 
+                    //             '<img class="img-village" src="" height="90" width="90">' + 
+                    //         '</div>' + 
+                    //         '<div class="col-md-1"></div>' + 
+                    //         '<div class="col-md-6">' + 
+                    //             '<h5 class="village-name">' + 'Village name' + '</h5>' + 
+                    //             '<div class="village-address">' + 
+                    //                 '<img src="/images/marker1.jpg" width="15">' + 
+                    //                 'sfasff' + 
+                    //                 '<p class="forline">ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>' +
+                    //             '</div>' + 
+                    //         '</div>' + 
+                    //     '</div>' + 
+                    //     '<div class="col-md-12">' + 
+                    //     '</div>' + 
+                    //     '<div class="col-md-12">' + 
+                    //         '<ul class="ul-info">' + 
+                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/view1.png" width="15"> Views</a></li>' + 
+                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/category.png" width="15"> Category</a></li>' + 
+                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/products.png" width="15"> Products</a></li>' + 
+                    //         '</ul>' + 
+                    //     '</div>' + 
+                    //     '<div class="col-md-12">' +
+                    //         '<h5>'+ 'Enterprise' +'</h5>' + 
+                    //     '</div>'
+                    // '</div>';
+                    // google.maps.event.addListener(marker,'click', (function(marker,infowincontent,infowindow){ 
+                    //     return function() {
+                    //         infowindow.setContent(infowincontent);
+                    //         infowindow.open(map,marker);
+                    //     };
+                    // })(marker,infowincontent,infowindow));  
+                }
+            }
+        });
     </script>
 @stop
