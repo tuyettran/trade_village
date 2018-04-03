@@ -101,7 +101,7 @@ a:hover {
     height: 200px;
 }
 
-.item h5,p {
+.box .item h5 {
     text-align: center;
 }
 
@@ -201,6 +201,11 @@ a:hover {
     -webkit-box-orient: vertical;
     display: -webkit-box;
     font-weight: normal;
+    max-height: 85px;
+}
+
+.info-detail img {
+    display: none;
 }
 
 .img-info {

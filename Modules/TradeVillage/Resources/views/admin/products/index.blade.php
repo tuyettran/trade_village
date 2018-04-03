@@ -35,6 +35,7 @@
                                 <th>{{ trans('tradevillage::products.table.cost') }}</th>
                                 <th>{{ trans('tradevillage::products.table.material') }}</th>
                                 <th>{{ trans('tradevillage::products.table.owner') }}</th>
+                                <th>{{ trans('tradevillage::products.table.processes') }}</th>
                                 <th data-sortable="false">{{ trans('tradevillage::products.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -88,6 +89,11 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                        <a href="{{ route('admin.tradevillage.products.processes', [$products->id]) }}" class="btn btn-primary btn-xs btn-flat"><i class="fa fa-eye"></i></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
                                         <a href="{{ route('admin.tradevillage.products.edit', [$products->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.tradevillage.products.destroy', [$products->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
@@ -104,6 +110,7 @@
                                 <th>{{ trans('tradevillage::products.table.cost') }}</th>
                                 <th>{{ trans('tradevillage::products.table.material') }}</th>
                                 <th>{{ trans('tradevillage::products.table.owner') }}</th>
+                                <th>{{ trans('tradevillage::products.table.processes') }}</th>
                                 <th>{{ trans('tradevillage::products.table.actions') }}</th>
                             </tr>
                             </tfoot>

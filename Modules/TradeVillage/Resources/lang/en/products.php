@@ -42,6 +42,7 @@ return [
         'material' => 'Material',
         'actions' => 'Actions',
         'category' => 'Category',
+        'processes' => 'Processes',
     ],
     'form' => [
         'name' => 'Name',

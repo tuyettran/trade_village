@@ -21,11 +21,11 @@
 
             <!-- story -->
             <div class="row">
-                <div class="story">
+                <div class="story limit-height" >
                     <h4><b>{{ trans('tradevillage::villages.table.story') }} {{ $village->translate(locale())->name }}</b></h4>
                     <p>{!! $village->translate(locale())->story !!}</p>
                 </div>
-                <a href="#" class="show-all pull-right orange-text btn btn-default btn-sm">>>{{ trans('tradevillage::villages.other.viewAll') }}</a>
+                <button class="show-all pull-right orange-text btn btn-default btn-sm" id="story_show_all">>>{{ trans('tradevillage::villages.other.viewAll') }}</button>
             </div>
         </div>
         <div class="col-md-3 sidebar">
@@ -95,20 +95,21 @@
         </div>
     </div>
     <div class="row relation">
-        <div class="col-md-7 col-xs-12 top-product">
+        <div class="col-md-9 col-xs-12 top-product">
             <h4 class="orange-text"><b>{{ trans('tradevillage::villages.other.topProducts') }}</b></h4>
             <div class="row">
                 @foreach($collecTopPros as $product)
-                    <?php $image_direct = public_path().$product['product']->images ?>
-                    <div class="col-md-3 col-xs-6 product">
-                        <a href="{{ route('frontend.tradevillage.products.show', [$product['product']->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product['product']->id)[0],7)) }}" class="img-responsive thumbnail"></a>
-                        <div class="overlay">
-                            <div class="text">{{ $product['product']->translate(locale())->name }}</div>
+                    <div class="col-md-2 col-xs-6 item">
+                        <div class="product">
+                           <a href="{{ route('frontend.tradevillage.products.show', [$product['product']->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product['product']->id)[0],7)) }}" class="img-responsive thumbnail"></a>
+                            <div class="overlay">
+                                <div class="text">{{ $product['product']->translate(locale())->name }}</div>
+                            </div> 
                         </div>
                     </div>
                 @endforeach
                 @if(count($collectAll) > 7)
-                    <div class="col-md-3 col-xs-6 product">
+                    <div class="col-md-2 col-xs-6 product">
                         <a href="#" class="bottom-right orange-text btn btn-default btn-sm">>>{{ trans('tradevillage::villages.other.viewAll') }}</a>
                     </div>
                 @endif
@@ -203,5 +204,8 @@
     initMap();
 
     $('.nav-villages').addClass("active-nav");
+    $('#story_show_all').click(function(){
+        $('.story').toggleClass('limit-height');
+    });
 </script>
 @stop

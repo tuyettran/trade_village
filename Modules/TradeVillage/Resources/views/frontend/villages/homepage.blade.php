@@ -107,6 +107,7 @@
                 <h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.introduction') }}</b></h4>
                 <p><i>{{ trans('tradevillage::homepage.title.page_description') }}</i></p>
             </div>
+            <hr>
             <div class="row top-news">
                 <a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.hot news') }}</b></h4></a>
                 <ul class="new-feed">
@@ -117,6 +118,7 @@
                     @endforeach
                 </ul>
             </div>
+            <hr>
             <div class="row top-events">
                 <a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.hot events') }}</b></h4></a>
                 <ul class="new-feed">
@@ -127,6 +129,7 @@
                     @endforeach
                 </ul>
             </div>
+            <hr>
             <div class="row top-artists">
                 <a href=""><h4 class="orange-text"><b>{{ trans('tradevillage::homepage.title.hot artists') }}</b></h4></a>
                 <ul>
@@ -139,6 +142,7 @@
                     @endforeach
                 </ul>
             </div>
+            <hr>
             <div class="row help">
                 <img src="{{ URL::asset('images/ho-tro.png') }}" class="img-responsive">
                 <h4 class="black-text hotline"><b>{{ trans('tradevillage::homepage.title.hotline') }}: 04.936.1738</b></h4>

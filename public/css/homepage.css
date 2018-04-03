@@ -1,5 +1,6 @@
 .trade-villages {
 	padding-right: 0;
+	margin-bottom: 15px;
 }
 .trade-villages .title {
 	margin-top: 0;
@@ -74,7 +75,7 @@
 }
 .content-background {
 	padding: 5px;
-	margin-top: 15px !important;
+	margin-top: 25px !important;
 }
 .top-enterprise {
 	margin: 0;

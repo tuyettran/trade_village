@@ -20,7 +20,7 @@ class UpdateVillagesRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:256',
             'story' => 'required',
             'detail' => 'required',
         ];

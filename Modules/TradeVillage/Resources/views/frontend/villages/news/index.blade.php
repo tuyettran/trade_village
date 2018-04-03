@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12 col-sm-12">
+        <div class="row col-md-12 col-sm-12">
             <div class="col-md-3 col-sm-3" style="float: right;">
                 {!! Form::open(['route' => ['frontend.tradevillage.search.new'], 'method' => 'get']) !!}
                     <div class="input-group add-on">
@@ -21,6 +21,8 @@
             </div>
         </div>
         
+        @if(!isset($village))
+
         <!-- news slideshow -->
             <div class="col-md-12 box">
                 <a href="#"><h3 class="news">{{ trans('tradevillage::news.other.newest') }}</h3></a>
@@ -77,7 +79,30 @@
                     @endforeach
                 </div>
             </div>
-        
+        @else
+            <div class="col-md-12">
+                <a href="#"><h3 class="news">{{ trans('tradevillage::news.other.news') }}</h3></a>
+                <div class="col-md-9">
+                    <?php $j = 1 ?>
+                    @foreach($news as $new)
+                        <div class="new">
+                            <a href="{{ route('frontend.tradevillage.news.show', [$new->id]) }}" class="col-md-12">{{ $new->translate(locale())->title }}</a>
+                            <div class="new-info">
+                                <div class="col-md-3 new-img"><a href="{{ route('frontend.tradevillage.news.show', [$new->id]) }}"><img src="@thumbnail($new->feature_image->path, 'mediumThumb')" class="thumbnail"/></a></div>
+                                <div class="col-md-9 img-info">
+                                    <p class="time">{{ $new->updated_at }}</p>
+                                    <div class="info-detail">{!! $new->translate(locale())->content !!}</div>
+                                </div>
+                            </div>
+                        </div>
+                        @if($j%10 != 0 && $j != count($news))
+                            <hr class="col-md-12">
+                        @endif
+                    <?php $j++ ?>
+                    @endforeach
+                </div>
+            </div>
+        @endif
         <div class="paginate"> {{ $news->links() }} </div>
     </div>
 @stop

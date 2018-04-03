@@ -42,6 +42,7 @@ return [
         'material' => 'Chất liệu',
         'actions' => 'Hành động',
         'category' => 'Category',
+        'processes' => 'Quy trình',
     ],
     'form' => [
         'name' => 'Tên',

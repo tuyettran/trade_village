@@ -95,11 +95,13 @@
     background-position: 0 .3em;
 }
 .story {
-	overflow: hidden;
 	text-overflow: ellipsis;
   	line-height: 26px;
-  	max-height: 415px;
   	font-style: italic;
+	overflow: hidden;
+}
+.limit-height {
+	max-height: 410px;
 }
 .relation {
 	margin: 20px 0;
@@ -144,4 +146,7 @@
 	font-size: 13px;
 	font-style: italic;
 	color: grey;
+}
+.top-product .item {
+    padding: 0;
 }

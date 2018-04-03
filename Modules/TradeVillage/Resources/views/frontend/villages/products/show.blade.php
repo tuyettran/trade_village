@@ -23,8 +23,12 @@
 		<div class="col-md-4 col-xs-12">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
-				   	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				   	<li data-target="#myCarousel" data-slide-to="1"></li>
+					@if(isset($images))
+						<?php $i=0 ?>
+		            	@foreach($images as $image)
+				   			<li data-target="#myCarousel" data-slide-to="{{$i++}}" {{ $i==0? 'active':''}}></li>
+				   		@endforeach
+		            @endif
 				</ol>
 	            <div class="carousel-inner">
 	            	<?php $i = 0 ?>
