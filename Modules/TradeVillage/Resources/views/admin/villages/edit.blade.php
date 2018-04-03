@@ -123,11 +123,16 @@
             var lng = new Array();
             var avgLat = 0;
             var avgLng = 0;
+            //autozoom
+            var myBounds = new google.maps.LatLngBounds();
+
             for(var i = 0; i < lt.length-1; i++) {
                 lat[i] = parseFloat(lt[i]);
                 avgLat += lat[i];
                 lng[i] = parseFloat(lg[i]);
                 avgLng += lng[i];
+                var latlngTemp = {lat: lat[i], lng: lng[i]};
+                myBounds.extend(latlngTemp);
             }
 
             var myLatLng = {lat: avgLat/(lt.length-1), lng: avgLng/(lt.length-1)};
@@ -157,6 +162,7 @@
             });
 
             polygon.setMap(map);
+            map.fitBounds(myBounds);
 
             google.maps.event.addDomListener(cancelbutton, 'click', function() {
                 document.getElementById('lat').value = "";
