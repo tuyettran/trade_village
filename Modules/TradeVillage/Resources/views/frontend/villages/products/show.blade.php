@@ -54,24 +54,26 @@
         <div class="col-md-8 col-xs-12">
         	<div class="product-infomation">
 	        	<h3 class="orange-text"><b>{{ mb_strtoupper($product->translate(locale())->name, 'UTF-8') }}</b></h3>
-	        	<table>
-	        		<tr>
-	        			<th class="table-title">{{ trans('tradevillage::products.description') }}</th>
-	        			<td>{{ $product->translate(locale())->description }}</td>
-	        		</tr>
-	        		<tr>
-	        			<th class="table-title">{{ trans('tradevillage::products.material') }}</th>
-	        			<td>{{ $product->translate(locale())->material }}</td>
-	        		</tr>
-	        		<tr>
-	        			<th class="table-title">{{ trans('tradevillage::products.category') }}</th>
-	        			<td>{{ $product->category->translate(locale())->name }}</td>
-	        		</tr>
-	        		<tr>
-	        			<th class="table-title">{{ trans('tradevillage::products.cost') }}</th>
-	        			<td>{{ $product->cost }} {{ trans('tradevillage::products.unit') }}</td>
-	        		</tr>
-	        	</table>
+	        	<div class="table-responsive">
+	        		<table class="table">
+		        		<tr>
+		        			<th class="table-title">{{ trans('tradevillage::products.description') }}</th>
+		        			<td>{{ $product->translate(locale())->description }}</td>
+		        		</tr>
+		        		<tr>
+		        			<th class="table-title">{{ trans('tradevillage::products.material') }}</th>
+		        			<td>{{ $product->translate(locale())->material }}</td>
+		        		</tr>
+		        		<tr>
+		        			<th class="table-title">{{ trans('tradevillage::products.category') }}</th>
+		        			<td>{{ $product->category->translate(locale())->name }}</td>
+		        		</tr>
+		        		<tr>
+		        			<th class="table-title">{{ trans('tradevillage::products.cost') }}</th>
+		        			<td>{{ $product->cost }} {{ trans('tradevillage::products.unit') }}</td>
+		        		</tr>
+		        	</table>
+	        	</div>
 	        	<hr>
 	        	<div class="row">
 	        		<div class="product-footer-box">
