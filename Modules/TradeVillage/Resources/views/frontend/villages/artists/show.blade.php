@@ -33,56 +33,58 @@
    				</div>
 	   			<div class="col-md-6 col-sm-12">
 	   				<h3 class="blue-text"><b>{{ $artist->translate(locale())->name }}</b></h3>
-	   				<table>
-	   					<tr>
-	   						<th>
-	   							{{ trans('tradevillage::artists.dob') }}: 
-	   						</th>
-	   						<td>
-	   							{{ $artist->date_of_birth }}
-	   						</td>
-	   					</tr>
-	   					<tr>
-	   						<th>
-	   							{{ trans('tradevillage::artists.contact') }}: 
-	   						</th>
-	   						<td>
-	   							{{ $artist->contact }}
-	   						</td>
-	   					</tr>
-	   					<tr>
-	   						<th>
-	   							{{ trans('tradevillage::artists.address') }}: 
-	   						</th>
-	   						<td>
-	   							{{ $artist->translate(locale())->address }}
-	   						</td>
-	   					</tr>
-	   					<tr>
-	   						<th>
-	   							{{ trans('tradevillage::artists.category') }}: 
-	   						</th>
-	   						<td>
-	   							{{ $artist->village->category->translate(locale())->name }}
-	   						</td>
-	   					</tr>
-	   					<tr>
-	   						<th>
-	   							{{ trans('tradevillage::artists.village name') }}: 
-	   						</th>
-	   						<td>
-	   							{{ $artist->village->translate(locale())->name }}
-	   						</td>
-	   					</tr>
-	   					<tr>
-	   						<th>
-	   							{{ trans('tradevillage::artists.description') }}: 
-	   						</th>
-	   						<td>
-	   							{!! $artist->translate(locale())->description !!}
-	   						</td>
-	   					</tr>
-	   				</table>
+	   				<div class="table-responsive">
+	   					<table class="table">
+		   					<tr>
+		   						<th>
+		   							{{ trans('tradevillage::artists.dob') }}: 
+		   						</th>
+		   						<td>
+		   							{{ $artist->date_of_birth }}
+		   						</td>
+		   					</tr>
+		   					<tr>
+		   						<th>
+		   							{{ trans('tradevillage::artists.contact') }}: 
+		   						</th>
+		   						<td>
+		   							{{ $artist->contact }}
+		   						</td>
+		   					</tr>
+		   					<tr>
+		   						<th>
+		   							{{ trans('tradevillage::artists.address') }}: 
+		   						</th>
+		   						<td>
+		   							{{ $artist->translate(locale())->address }}
+		   						</td>
+		   					</tr>
+		   					<tr>
+		   						<th>
+		   							{{ trans('tradevillage::artists.category') }}: 
+		   						</th>
+		   						<td>
+		   							{{ $artist->village->category->translate(locale())->name }}
+		   						</td>
+		   					</tr>
+		   					<tr>
+		   						<th>
+		   							{{ trans('tradevillage::artists.village name') }}: 
+		   						</th>
+		   						<td>
+		   							{{ $artist->village->translate(locale())->name }}
+		   						</td>
+		   					</tr>
+		   					<tr>
+		   						<th>
+		   							{{ trans('tradevillage::artists.description') }}: 
+		   						</th>
+		   						<td>
+		   							{!! $artist->translate(locale())->description !!}
+		   						</td>
+		   					</tr>
+		   				</table>
+	   				</div>
 	   			</div>
    			</div>
    			<div class="artist-detail">
