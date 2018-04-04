@@ -7,7 +7,9 @@
 	    {!! $errors->first("{$lang}.name", '<span class="help-block">:message</span>') !!}
 	</div>
 	<div class="form-group{{ $errors->has("{$lang}.description") ? " has-error" : "" }}">
-		@editor("{$lang}[description]", trans("tradevillage::artists.form.description"), old("{$lang}.description", $artist->translate($lang)->description))
+		{!! Form::label("{$lang}[description]", trans("tradevillage::artists.form.description")) !!}
+	        
+	    {!! Form::text("{$lang}[description]", old("{$lang}.description", $artist->translate($lang)->description), ["class" => "form-control", "placeholder" => trans("tradevillage::artists.form.description")]) !!}
 
 		{!! $errors->first("{$lang}.description", '<span class="help-block">:message</span>') !!}
 	</div>

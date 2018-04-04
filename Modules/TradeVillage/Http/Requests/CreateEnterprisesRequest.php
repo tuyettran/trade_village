@@ -17,7 +17,7 @@ class CreateEnterprisesRequest extends BaseFormRequest
     public function translationRules()
     {
         return [
-            'description' => 'required',
+            'description' => 'required|max:256',
             'name' => 'required',
             'detail' => 'required',
         ];

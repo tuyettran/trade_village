@@ -20,7 +20,7 @@ class CreateArtistRequest extends BaseFormRequest
     {
         return [
             'name' => 'required|max:100',
-            'description' => 'required',
+            'description' => 'required|max:256',
             'detail' => 'required',
             'address' => 'required',
         ];

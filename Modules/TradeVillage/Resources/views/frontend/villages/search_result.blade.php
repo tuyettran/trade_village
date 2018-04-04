@@ -28,7 +28,7 @@
 		<div class="row">
 			@if(count($villages)+count($enterprises)+count($artists)+count($products)+count($events)+count($news)>0)
 				<div class="row trade-villages">
-					<h4 class="orange-text title"><b>{{ trans('tradevillage::main.title.village') }}</b></h4>
+					<h4 class="orange-text title"><b>{{ trans('tradevillage::main.title.village') }}</b> {{ count($villages)>0? '( '.count($villages).' )' : '' }} </h4>
 					<?php $i=0 ?>
 					@if(count($villages)>0)
 						@foreach( $villages as $village )
@@ -52,7 +52,7 @@
 				<hr/>
 
 				<div class="row">
-					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.event') }}</b></h4>
+					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.event') }}</b> {{ count($events)>0? '( '.count($events).' )' : '' }} </h4>
 					@if(count($events)>0)
 						@foreach($events as $event)
 					        <div class="item col-md-12 col-sm-12">
@@ -71,7 +71,7 @@
 				</div>
 
 				<div class="row">
-					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.new') }}</b></h4>
+					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.new') }}</b> {{ count($news)>0? '( '.count($news).' )' : '' }}</h4>
 					@if(count($news)>0)
 						@foreach($news as $new)
 					        <div class="item col-md-12 col-sm-12">
@@ -89,7 +89,7 @@
 				</div><hr/>
 
 				<div class="row content-background">
-					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.enterprise') }}</b></h4>
+					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.enterprise') }}</b> {{ count($enterprises)>0? '( '.count($enterprises).' )' : '' }} </h4>
 					@if(count($enterprises)>0)
 						@foreach( $enterprises as $enterprise)
 							<div class="item col-md-12 col-sm-12">
@@ -113,7 +113,7 @@
 				</div>
 
 				<div class="row">
-					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.artist') }}</b></h4>
+					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.artist') }}</b> {{ count($artists)>0? '( '.count($artists).' )' : '' }} </h4>
 					@if(count($artists)>0)
 						@foreach($artists as $artist)
 					        <div class="item col-md-12 col-sm-12">
@@ -136,7 +136,7 @@
 				</div><hr/>
 
 				<div class="row products">
-					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.product') }}</b></h4>
+					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.product') }}</b> {{ count($products)>0? '( '.count($products).' )' : '' }} </h4>
 					@if(count($products)>0)
 						@foreach($products as $product)
 							<div class="col-md-2 col-sm-3 col-xs-6">
