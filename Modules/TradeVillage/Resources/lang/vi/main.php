@@ -23,6 +23,7 @@ return [
         'no_event' => 'Không tìm thấy sự kiện phù hợp',
         'no_new' => 'Không tìm thấy tin tức phù hợp',
         'no_result' => 'Không tìm thấy kết quả nào phù hợp',
+        'all' => 'Tất cả',
     ],
     'filter' => [
         'category' => 'Lĩnh vực',

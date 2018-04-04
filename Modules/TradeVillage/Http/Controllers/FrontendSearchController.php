@@ -51,6 +51,19 @@ class FrontendSearchController extends BasePublicController
         return view('tradevillage::frontend.villages.artists.search_result', compact('key', 'artists'));
     }
 
+    public function artist_by_category(Request $request)
+    {
+        $categories = $this->categories->all();
+        if($request->category == 0){
+            $artists = $this->artists->paginate(16);
+            return view('tradevillage::frontend.villages.artists.search_result', compact('artists', 'categories'));
+        }
+        $category = $this->categories->find($request->category);
+        $village_ids = $this->villages->getByCategory($request->category);
+        $artists = $this->artists->getArtistByVillages($village_ids)->paginate(16);
+        return view('tradevillage::frontend.villages.artists.search_result', compact('category', 'artists', 'categories'));
+    }
+
     public function event(Request $request)
     {
         $key = trim($request->search);
@@ -77,10 +90,15 @@ class FrontendSearchController extends BasePublicController
 
     public function enterprise_by_category(Request $request)
     {
+        $categories = $this->categories->all();
+        if($request->category == 0){
+            $artists = $this->artists->paginate(16);
+            return view('tradevillage::frontend.villages.artists.search_result', compact('artists', 'categories'));
+        }
         $category = $this->categories->find($request->category);
         $village_ids = $this->villages->getByCategory($request->category);
         $enterprises = $this->enterprises->getEnterpriseByVillages($village_ids)->paginate(16);
-        return view('tradevillage::frontend.villages.enterprises.search_result', compact('category', 'enterprises'));
+        return view('tradevillage::frontend.villages.enterprises.search_result', compact('category', 'enterprises', 'categories'));
     }
 
     public function product(Request $request)

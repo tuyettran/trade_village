@@ -23,6 +23,7 @@ return [
         'no_event' => 'No event match',
         'no_new' => 'No new match',
         'no_result' => 'Can not find anything match',
+        'all' => 'All',
     ],
     'filter' => [
         'category' => 'Category',

@@ -11,6 +11,9 @@
     height: 70px;
     border-radius: 50%;
 }
+.search-box {
+	margin-top: 5px;
+}
 .darkgrey-text {
     font-size: 12px;
     color: darkgrey;

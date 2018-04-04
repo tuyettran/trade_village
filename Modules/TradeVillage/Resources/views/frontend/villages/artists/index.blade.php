@@ -8,7 +8,7 @@
 
 @section('content')
 	<div class="row filter-search-box">
-		<div class="col-md-3 pull-right">
+		<div class="col-md-3 pull-right search-box">
 			<div class="col-md-12 no-padding">
 				{!! Form::open(['route' => ['frontend.tradevillage.search.artist'], 'method' => 'get']) !!}
 			        <div class="input-group add-on">
@@ -48,5 +48,10 @@
 	
 <script type="text/javascript">
     $('.nav-artists').addClass("active-nav");
+    $( document ).ready(function() {
+    	$('#category_select').change(function(){
+    		$('#category-form').submit();
+    	})
+    });
 </script>
 @stop

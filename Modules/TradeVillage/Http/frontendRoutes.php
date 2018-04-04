@@ -234,6 +234,10 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.search.artist',
         'uses' => 'FrontendSearchController@artist'
     ]);
+    $router->get('artist/category', [
+        'as' => 'frontend.tradevillage.search.artist.category',
+        'uses' => 'FrontendSearchController@artist_by_category'
+    ]);
     $router->get('event/search', [
         'as' => 'frontend.tradevillage.search.event',
         'uses' => 'FrontendSearchController@event'
