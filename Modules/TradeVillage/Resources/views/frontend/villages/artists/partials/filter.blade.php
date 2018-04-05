@@ -1,4 +1,32 @@
-@include('tradevillage::frontend.education.partials.filter', ['categories' => $categories])
+<div class="filter-group">
+	<table>
+		<tr>
+			<td><p class="filter-item">{{ trans('tradevillage::main.filter.category') }}</p></td>
+			<td>
+				{!! Form::open(['route' => ['frontend.tradevillage.search.artist.category'], 'method' => 'get', 'id' =>'category-form'] ) !!}
+				<select class="form-control filter-item" id="category_select" name="category">
+					<option value=0 {{ isset($category)? '' : 'selected' }}>
+				        {{ trans('tradevillage::main.title.all') }}
+				    </option>
+					@if(isset($category))
+						@foreach($categories as $cate)
+					        <option value={{ $cate->id }} {{ $cate->id==$category->id? 'selected' : '' }} >
+					        	{{ $cate->translate(locale())->name }}
+					        </option>
+				        @endforeach
+				    @else
+				    	@foreach($categories as $cate)
+					        <option value={{ $cate->id }} >
+					        	{{ $cate->translate(locale())->name }}
+					        </option>
+				        @endforeach
+				    @endif
+			    </select>
+			    {{ Form::close() }}
+			</td>
+		</tr>
+	</table>
+</div>
 <div class="filter-group">
 	<table>
 		<tr>

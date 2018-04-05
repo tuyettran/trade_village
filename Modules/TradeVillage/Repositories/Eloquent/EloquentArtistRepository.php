@@ -51,6 +51,14 @@ class EloquentArtistRepository extends EloquentBaseRepository implements ArtistR
         return $this->model->all();
     }
 
+
+    public function getArtistByVillages(array $village_ids){
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->whereIn('village_id', $village_ids);
+        }
+        return $this->model->whereIn('village_id', $village_ids);
+    }
+
 	private function buildQueryByAttributes(array $attributes)
     {
         $query = $this->model->query();
