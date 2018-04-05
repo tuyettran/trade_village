@@ -105,8 +105,9 @@ class FrontendSearchController extends BasePublicController
     {
         $key = trim($request->search);
         $categories = $this->categories->all();
-        $products = $this->products->search($key,'vi')->paginate(16);
-        
-        return view('tradevillage::frontend.villages.products.search_result', compact('key', 'products', 'categories'));
+        $category = $this->categories->find($request->category);
+        $favorite = $request->favorite;
+        $products = $this->products->search($key,'vi', $request->category, $favorite)->paginate(16);
+        return view('tradevillage::frontend.villages.products.search_result', compact('key', 'products', 'categories', 'category', 'favorite'));
     }
 }

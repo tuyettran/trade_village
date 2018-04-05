@@ -2,16 +2,15 @@
 	<div class="footer">
 		<div class="row">
 			
-			<div class="col-md-5">
+			<div class="col-md-4">
 				<h3>{{ trans('tradevillage::homepage.title.introduction') }}</h3>
 				<p>{{ trans('tradevillage::homepage.title.page_description') }}</p>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<p><h3>Liên hệ</h3></p>
 				<p>Địa chỉ: 25 Lê Thánh Tông, Hoàn Kiếm, Hà Nội</p>
 				<p>Phone number: 01127381738</p>
-				<p>Fax:</p>
-				<p>Email: info@ntbic.com</p>
+				<p>Email: office@ntbic.com</p>
 				<p>Giờ tiếp đón: 8h30 -17h30</p>
 			</div>
 			<div class="col-md-3">

@@ -4,8 +4,12 @@
         @if(isset($favorite))
             @foreach($favorite as $product)
                 <div class="row sidebar-product">
-                    <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}" class="img-thumbnail img-bar img-responsive col-md-2">
-                    <span class="col-md-9 no-padding-right"> {{ $product->translate(locale())->name}} </span></a>
+                    <div class="col-md-3 image-box">
+                        <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}" class="img-thumbnail img-bar img-responsive">
+                    </div>
+                    <div class="col-md-9 title-box">
+                        <span class="no-padding-right"> {{ $product->translate(locale())->name}} </span></a>
+                    </div>
                 </div>
             @endforeach
         @endif
@@ -16,8 +20,12 @@
         @if(isset($newest_products))
             @foreach($newest_products as $product)
                 <div class="row sidebar-product">
-                    <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}" class="img-thumbnail img-bar img-responsive col-md-2">
-                <span class="col-md-9 no-padding-right"> {{ $product->translate(locale())->name}} </span></a>
+                    <div class="col-md-3 image-box">
+                        <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}" class="img-thumbnail img-bar img-responsive">
+                    </div>
+                    <div class="col-md-9">
+                        <span class="no-padding-right"> {{ $product->translate(locale())->name}} </span></a>
+                    </div>
                 </div>
             @endforeach
         @endif

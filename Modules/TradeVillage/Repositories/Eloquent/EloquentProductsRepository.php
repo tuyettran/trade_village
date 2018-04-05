@@ -48,17 +48,29 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
             });
     }
     
-    public function search($key, $locale){
+    public function search($key, $locale, $category, $favorite){
         $query = $this->model->query();
-        if (method_exists($this->model, 'translations')) {
+        if($category != 0 && $favorite != null)
+            return $this->model->with('translations')->where('category_id', '=', $category)
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+            })->orderBy('rate', $favorite);
+        elseif($category == 0 && $favorite == null)
             return $this->model->with('translations')
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+            })->orderBy('created_at', 'desc');
+        elseif($category == 0){
+            return $this->model->with('translations')
+            ->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+            })->orderBy('rate', $favorite)->orderBy('created_at', 'desc');
+        }
+        elseif($favorite == null) {
+            return $this->model->with('translations')->where('category_id', '=', $category)
             ->whereHas('translations', function ($query) use ($locale, $key) {
                 $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
             });
         }
-        return $this->model
-            ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
-            });
     }
 }
