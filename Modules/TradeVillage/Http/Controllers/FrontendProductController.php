@@ -213,19 +213,25 @@ class FrontendProductController extends BasePublicController
         $rate = $this->rates->findByAttributes(['user_id' => $user_id, 'product_id' => $product->id]);
 
         $requests = $request->all();
-        $rate_total = ($product->rate*(count($product->rates)) + $request->value);
-        $product_rate_update = $rate_total/(count($product->rates)+1);
-        $attribute = ['rate' => $product_rate_update];
-        $product->update($attribute);
+        $rates_number = count($product->rates);
         if($rate){
+            $rate_total = ($product->rate*$rates_number) + $request->value - $rate->value;
+            $product_rate_update = $rate_total/$rates_number;
+            $attribute = ['rate' => $product_rate_update];
             $this->rates->update($rate, $requests);
         }
         else {
+            $rate_total = ($product->rate*$rates_number) + $request->value;
+            $rates_number +=1;
+            $product_rate_update = $rate_total/$rates_number;
+            $attribute = ['rate' => $product_rate_update];
             $requests['product_id'] = $product->id;
             $requests['user_id'] = $user_id;
             $this->rates->create($requests);
         }
-        $response = ['rate_avg' => round($product->rate,1)];
+
+        $product->update($attribute);
+        $response = ['rate_avg' => round($product->rate,1), 'rates_number' => $rates_number];
         return Response()->json($response);
     }
 

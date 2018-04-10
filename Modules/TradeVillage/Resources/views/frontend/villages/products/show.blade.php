@@ -259,9 +259,8 @@
             	_token: CSRF_TOKEN,
             	value: rate_value},
             success: function(data) {
-                $('.alert').removeClass('flash-hidden');
-    			$('.alert').fadeToggle(3000);
-    			$('.alert').fadeOut(1000);
+    			$('.alert').fadeToggle(1000);
+    			$('.alert').fadeOut(3000);
     			$('.rates-number').html(data.rates_number);
     			$('#rate_avg').html(data.rate_avg);
             }
