@@ -31,27 +31,38 @@
                             {{ $categories->translate(locale())->description }}
                         </div>
                         <div class="col-md-6 col-xs-12">
-                            <div class="row filter">
-                                <div class="filter-group">
-                                    <button class="filter-item">Tên<span class="glyphicon glyphicon glyphicon-sort"></span></button>
-                                    <button class="filter-item">Yêu thích<span class="glyphicon glyphicon glyphicon-sort"></span></button>
+                            <div class="row search-form">
+                                <div class="col-md-9 pull-right">
+                                    {!! Form::open(['route' => ['frontend.tradevillage.search.village'], 'method' => 'get', 'id' => 'search-form-{{$categories->id}}']) !!}
+                                    <div class="input-group add-on">
+                                        <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search') }}" name="search" id="search" value="{{isset($key)? $key: ''}}" type="text">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
+                                <input type="number" name="category" value="{{ $categories->id }}" hidden>
+                            </div>
+                            <div class="row filter">
                                 <div class="filter-group">
                                     <table class="table-responsive">
                                         <tr>
                                             <td><p class="filter-item">Tỉnh/ thành phố</p></td>
                                             <td>
-                                                <select class="form-control filter-item">
-                                                    <option>Hà Nội</option>
-                                                    <option>Hải Phòng</option>
-                                                    <option>Nam Định</option>
-                                                    <option>Hưng Yên</option>
+                                                <select class="form-control filter-item" name="province">
+                                                    <option value="all">All</option>
+                                                    <option value="Hà nội">Hà Nội</option>
+                                                    <option value="Hải phòng">Hải Phòng</option>
+                                                    <option value="Nam định">Nam Định</option>
+                                                    <option value="Hưng yên">Hưng Yên</option>
                                                 </select>
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
+
+                            {!! Form::close() !!}
                         </div>
                     </div>
                     <div class="row village-list">

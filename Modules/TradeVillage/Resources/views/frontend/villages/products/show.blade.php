@@ -244,8 +244,28 @@
                 success: function() {
                     location.reload();
                 }
-            });
+                    });
         });
     });
+
+    $("#rating-product").change(function(e){
+        e.preventDefault();
+        var rate_value = $('#rating-product').val();
+        var CSRF_TOKEN = $('input[name="_token"]').val();
+        $.ajax({
+            type:"POST",
+            url: {{ $product->id }}+"/rate",
+            data: {
+            	_token: CSRF_TOKEN,
+            	value: rate_value},
+            success: function(data) {
+                $('.alert').removeClass('flash-hidden');
+    			$('.alert').fadeToggle(3000);
+    			$('.alert').fadeOut(1000);
+    			$('.rates-number').html(data.rates_number);
+    			$('#rate_avg').html(data.rate_avg);
+            }
+    	});
+	});
 </script>
 @stop

@@ -99,6 +99,17 @@ a:hover {
     display: -webkit-box;
 }
 
+.list-group .thumbnail {
+    position: relative;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
 .text {
     color: #0000cc;
 }

@@ -93,7 +93,7 @@
 	background-color: #f1f1f1;
 }
 .product img {
-	height: 215px;
+	height: 230px;
 	width: 100%;
   	-webkit-transition: all 2s ease;
     -moz-transition: all 2s ease;
@@ -160,6 +160,7 @@
 }
 .artist{
 	height: 70px;
+	width: 100%;
 	border-radius: 1px solid #ddd !important;
 	padding: 3px;
 }
@@ -257,4 +258,7 @@
 .show-all-image {
 	height: 15px;
 	width: 15px;
+}
+.no-padding {
+	padding: 0;
 }

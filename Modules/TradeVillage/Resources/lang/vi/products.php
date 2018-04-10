@@ -9,6 +9,7 @@ return [
     'description' => 'Mô tả',
     'detail' => 'Chi tiết sản phẩm',
     'rate' => 'Đánh giá',
+    'have_just_rated' => 'Bạn vừa đánh giá sản phẩm',
     'material' => 'Chất liệu',
     'cost' => 'Giá',
     'contact' => 'LIÊN HỆ MUA',

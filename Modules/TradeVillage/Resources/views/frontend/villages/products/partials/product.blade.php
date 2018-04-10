@@ -5,7 +5,9 @@
         <div class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <?php $i++ ?>
-                <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
+                <div class="row">
+                    <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
+                </div>
                 <div class="caption">
                     <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name">
                         {{ $product->translate(locale())->name }}</h5></a>
@@ -38,8 +40,10 @@
             @else
                 <div class="item col-md-3 col-sm-4 col-xs-6">
                     <div class="thumbnail">
-                        <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
-                        <div class="caption">
+                        <div class="row">
+                            <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
+                        </div>
+                        <div class="caption bottom">
                             <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name oneline">
                                 {{ $product->translate(locale())->name }}</h5></a>
                             

@@ -32,7 +32,7 @@
 			<td>
 				<select class="form-control filter-item" id="favorite_select" name="favorite">
 					<option value="" >
-						Yêu thích
+						Sắp xếp
 			        </option>
 			        @if(isset($favorite))
 						<option value="desc" {{ $favorite=='desc' ? 'selected' : '' }}>

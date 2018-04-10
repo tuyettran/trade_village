@@ -3,7 +3,7 @@
         <div class="item col-md-6 col-sm-12">
             <div class="item-thumbnail row">
                 <div class="col-md-3 col-sm-3">
-                    <img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="col-md-4 artist-index-avatar img-responsive" />
+                    <img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="col-md-4 artist-index-avatar img-responsive thumbnail" />
                 </div>
                 <div class="caption col-md-9 col-sm-9">
                     <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h4 class="group inner list-group-item-heading product-name oneline"><b>
