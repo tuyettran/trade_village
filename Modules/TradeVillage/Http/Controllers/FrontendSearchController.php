@@ -34,9 +34,9 @@ class FrontendSearchController extends BasePublicController
     {
         $key = trim($request->search);
         $artists = $this->artists->search($key,'vi')->get();
-        $villages = $this->villages->search($key,'vi')->get();
+        $villages = $this->villages->simple_search($key,'vi')->get();
         $enterprises = $this->enterprises->search($key,'vi')->get();
-        $products = $this->products->search($key, 'vi')->get();
+        $products = $this->products->simple_search($key, 'vi')->get();
         $events = $this->events->search($key, 'vi')->get();
         $news = $this->news->search($key, 'vi')->get();
         
