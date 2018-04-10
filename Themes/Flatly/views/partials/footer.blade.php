@@ -9,7 +9,7 @@
 			<div class="col-md-4">
 				<p><h3>Liên hệ</h3></p>
 				<p>Địa chỉ: 25 Lê Thánh Tông, Hoàn Kiếm, Hà Nội</p>
-				<p>Phone number: 01127381738</p>
+				<p>Phone number: 02439336570 | 02439336571</p>
 				<p>Email: office@ntbic.com</p>
 				<p>Giờ tiếp đón: 8h30 -17h30</p>
 			</div>

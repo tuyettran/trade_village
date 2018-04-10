@@ -23,7 +23,7 @@
                     <div class="col-md-3 image-box">
                         <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}" class="img-thumbnail img-bar img-responsive">
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 title-box">
                         <span class="no-padding-right"> {{ $product->translate(locale())->name}} </span></a>
                     </div>
                 </div>

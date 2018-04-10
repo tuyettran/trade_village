@@ -135,9 +135,13 @@
                 <ul>
                     @foreach( $artists as $artist )
                         <li class="row" title="Trương Văn Tý">
-                            <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="img-responsive artist col-md-3 col-xs-2 img-circle" /></a>
-                            <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }} ({{ $artist->date_of_birth }})</h5></a>
-                            <a href="{{ route('frontend.tradevillage.villages.show', $artist->village->id) }}"><p>{{ $artist->village->translate(locale())->name }}</p></a>
+                            <div class="col-md-3 col-xs-2 no-padding">
+                            <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="img-responsive artist thumbnail" /></a>
+                            </div>
+                            <div class="col-md-9 col-xs-10">
+                                <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }} ({{ $artist->date_of_birth }})</h5></a>
+                                <a href="{{ route('frontend.tradevillage.villages.show', $artist->village->id) }}"><p>{{ $artist->village->translate(locale())->name }}</p></a>
+                            </div>
                         </li>
                     @endforeach
                 </ul>
@@ -145,7 +149,7 @@
             <hr>
             <div class="row help">
                 <img src="{{ URL::asset('images/ho-tro.png') }}" class="img-responsive">
-                <h4 class="black-text hotline"><b>{{ trans('tradevillage::homepage.title.hotline') }}: 04.936.1738</b></h4>
+                <h4 class="black-text hotline"><b>{{ trans('tradevillage::homepage.title.hotline') }}: 02439336570</b></h4>
             </div>
             <!-- <div class="row page-view-count">
                 <h5><b class="orange-text">{{ trans('tradevillage::homepage.title.total_visitors') }}:</b><span>&emsp;1671627</span></h5>

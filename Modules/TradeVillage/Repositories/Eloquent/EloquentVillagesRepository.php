@@ -33,15 +33,19 @@ class EloquentVillagesRepository extends EloquentBaseRepository implements Villa
         return $query;
     }
 
-    public function search($key, $locale){
-        $query = $this->model->query();
-        if (method_exists($this->model, 'translations')) {
-            return $this->model->with('translations')
-            ->whereHas('translations', function ($query) use ($locale, $key) {
+    public function search($key, $category, $province, $locale){
+        $query = $this->model->with('translations');
+            
+        if($province == "all")
+            $query = $query->where('category_id', '=', $category);
+        elseif($category == 0)
+            $query = $query->where('province', 'like', $province);
+        elseif($province != "all" && $category != 0)
+            $query = $query->where('category_id', '=', $category)->where('province', 'like', $province);
+
+        return $query->whereHas('translations', function ($query) use ($locale, $key, $category, $province) {
                 $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
             });
-        }
-        return $this->model->all();
     }
 
     private function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')

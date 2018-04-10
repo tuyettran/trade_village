@@ -9,6 +9,7 @@ return [
     'description' => 'Description',
     'detail' => 'Product detail',
     'rate' => 'Rate',
+    'have_just_rated' => 'You have just rated for this product',
     'material' => 'Material',
     'cost' => 'Cost',
     'contact' => 'CONTACT TO BUY',

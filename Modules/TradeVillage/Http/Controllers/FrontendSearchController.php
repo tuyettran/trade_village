@@ -43,6 +43,17 @@ class FrontendSearchController extends BasePublicController
         return view('tradevillage::frontend.villages.search_result', compact('key', 'artists', 'villages', 'enterprises', 'products', 'events', 'news'));
     }
 
+
+    public function village(Request $request)
+    {
+        $key = trim($request->search);
+        $category = $request->category;
+        $province = $request->province;
+        $categories = $this->categories->all();
+        $villages = $this->villages->search($key, $category, $province, 'vi')->paginate(15);
+        return view('tradevillage::frontend.villages.village.search_result', compact('key', 'villages', 'categories', 'category', 'province'));
+    }
+
     public function artist(Request $request)
     {
         $key = trim($request->search);
