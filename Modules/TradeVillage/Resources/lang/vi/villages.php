@@ -9,6 +9,7 @@ return [
         'villages' => 'Làng nghề',
         'create villages' => 'Thêm mới một làng nghề',
         'edit villages' => 'Sửa một làng nghề',
+        'no_artist' => 'Chưa có nghệ nhân',
     ],
     'button' =>[
         'create villages' => 'Thêm mới một làng nghề',

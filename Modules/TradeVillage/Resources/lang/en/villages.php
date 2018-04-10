@@ -9,6 +9,7 @@ return [
         'villages' => 'Villages',
         'create villages' => 'Create a village',
         'edit villages' => 'Edit a village',
+        'no_artist' => 'No artist in village',
     ],
     'button' =>[
         'create villages' => 'Create a village',

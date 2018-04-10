@@ -3,17 +3,17 @@
     @foreach($category->products as $product)
         @if($product->user_id == $user_id && $i<8)
         <div class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
-            <div class="thumbnail">
+            <div class="thumbnail-editable">
                 <?php $i++ ?>
                 <div class="row">
                     <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><img class="group list-group-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
                 </div>
-                <div class="caption">
-                    <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name">
+                <div class="caption bottom">
+                    <!-- <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name oneline">
                         {{ $product->translate(locale())->name }}</h5></a>
                     <p class="group inner list-group-item-text intro">
                         {{ $product->translate(locale())->description }} </p>
-                    <div class="product-footer bottom-right">
+                    <div class="product-footer">
                         @can('update-product', $product)
                             <div class="pull-right modify-box">
                                 <a href={{route('frontend.tradevillage.products.edit', [$product->id])}}><span class="glyphicon glyphicon-pencil"></span></a>
@@ -24,10 +24,26 @@
                             <span class="group inner list-group-item-text intro">
                             {{ $product->cost }} </span> {{ trans('tradevillage::products.unit') }}
                         </p>
+                    </div> -->
+                        <a href="{{ route('frontend.tradevillage.products.show', [$product->id]) }}"><h5 class="group inner list-group-item-heading product-name oneline">
+                            {{ $product->translate(locale())->name }}</h5></a>
+                        
+                        <p class="group inner list-group-item-text intro">
+                            {{ $product->translate(locale())->description }} </p>
+
+                        <p class="blue-text pull-right">{{ trans('tradevillage::products.form.cost') }}:
+                            <span class="group inner list-group-item-text intro">
+                            {{ $product->cost }} </span> {{ trans('tradevillage::products.unit') }}
+                        </p>
+                        @can('update-product', $product)
+                            <div class="pull-right modify-box">
+                                <a href={{route('frontend.tradevillage.products.edit', [$product->id])}}><span class="glyphicon glyphicon-pencil"></span></a>
+                                <button class="btn btn-danger btn-flat btn-xs" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('frontend.tradevillage.products.destroy', [$product->id]) }}"><span class="glyphicon glyphicon-trash"></span></button>
+                            </div>
+                        @endcan
                     </div>
                 </div>
             </div>
-        </div>
         @else
             <?php break; ?>
         @endif

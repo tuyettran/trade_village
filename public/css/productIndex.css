@@ -99,7 +99,7 @@ a:hover {
     display: -webkit-box;
 }
 
-.list-group .thumbnail {
+.list-group .thumbnail, .list-group .thumbnail-editable  {
     position: relative;
 }
 
@@ -140,9 +140,22 @@ a:hover {
     color: #ff8000;
 }
 
-.thumbnail a img {
+.thumbnail a img, .thumbnail-editable a img {
     width:100%;
     max-height: 225px;
+}
+
+.thumbnail-editable .caption {
+    padding: 9px;
+}
+
+.thumbnail .caption {
+    height: 110px;
+}
+
+.thumbnail-editable .caption {
+    height: 145px;
+    padding-top: 8px !important;
 }
 
 .search-form-sidebar {
@@ -153,6 +166,15 @@ a:hover {
 .thumbnail {
     height: 335px;
     position: relative;
+}
+
+.thumbnail-editable {
+    height: 375px;
+    position: relative;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
 }
 
 .categories {

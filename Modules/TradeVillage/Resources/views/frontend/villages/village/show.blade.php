@@ -80,16 +80,19 @@
                         @if(count($artists) > 0)
                             @foreach($artists as $artist)
                                 <li class="row">
-                                    <img src="@thumbnail($artist->feature_image->path, 'largeThumb')" class="img-circle artist img-responsive col-md-3 col-xs-2 thumbnail">
-                                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }}</h5></a>
-                                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><p>{{ $artist->translate(locale())->address }}</p></a>
+                                    <div class="col-md-3 artist-image">
+                                        <img src="@thumbnail($artist->feature_image->path, 'largeThumb')" class="img-circle artist img-responsive thumbnail">
+                                    </div>
+                                    <div class="col-md-9 artist-info">
+                                        <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h5>{{ $artist->translate(locale())->name }}</h5></a>
+                                        <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><p class="two-line">{{ $artist->translate(locale())->address }}</p></a>
+                                    </div>
                                 </li>
                             @endforeach
                         @else
-
+                            {{ trans('tradevillage::villages.title.no_artist') }}
                         @endif
                     </ul>
-                    <a href="#" class="pull-right orange-text btn btn-default btn-xs">>>{{ trans('tradevillage::villages.other.viewAll') }}</a>
                 </div>
             </div>
         </div>

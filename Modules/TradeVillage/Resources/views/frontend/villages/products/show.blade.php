@@ -90,7 +90,7 @@
                                 <p>Website: <a href="{{ $product->enterprise->website }}">{{ $product->enterprise->website }}</a></p>
                                 <p>{{ trans('tradevillage::products.address') }}: {{ $product->enterprise->translate(locale())->address}}</p>
                             @elseif($product->artist)
-                                <img src="{{ Imagy::getThumbnail($product->artist->feature_image['path'].'', 'smallThumb') }}" style="border-radius: 50%; max-height: 50px" />
+                                <img src="{{ Imagy::getThumbnail($product->artist->feature_image['path'].'', 'smallThumb') }}" style="max-height: 50px" />
                                 <a href="{{ route('frontend.tradevillage.artist.show', [$product->artist->id]) }}">{{ $product->artist->translate(locale())->name}}</a>
                                 <p>{{ trans('tradevillage::products.address') }}: {{ $product->artist->translate(locale())->address}}</p>
                                 {{ $product->artist->contact }}
@@ -259,10 +259,11 @@
             	_token: CSRF_TOKEN,
             	value: rate_value},
             success: function(data) {
-    			$('.alert').fadeToggle(1000);
+    			$('.alert').fadeIn(1000);
     			$('.alert').fadeOut(3000);
-    			$('.rates-number').html(data.rates_number);
-    			$('#rate_avg').html(data.rate_avg);
+
+                $('.rates-number').html(data.rates_number);
+                $('#rate_avg').html(data.rate_avg);
             }
     	});
 	});

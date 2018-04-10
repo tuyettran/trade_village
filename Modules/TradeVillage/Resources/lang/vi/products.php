@@ -46,6 +46,7 @@ return [
         'processes' => 'Quy trình',
     ],
     'form' => [
+        'add_new' => 'Thêm sản phẩm',
         'name' => 'Tên',
         'description' => 'Mô tả',
         'owner' => 'Chủ sản phẩm',

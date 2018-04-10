@@ -46,6 +46,7 @@ return [
         'processes' => 'Processes',
     ],
     'form' => [
+        'add_new' => 'Add new product',
         'name' => 'Name',
         'description' => 'Description',
         'owner' => 'Owner',
