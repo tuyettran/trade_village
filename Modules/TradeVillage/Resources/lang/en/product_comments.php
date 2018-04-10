@@ -20,4 +20,10 @@ return [
     ],
     'validation' => [
     ],
+    'other' => [
+        'cancel' => 'Cancel',
+        'comment' => 'Comment',
+        'delCmt' => 'Delete Comment',
+        'delCmtConfirm' => 'Do you really want to delete this comment?',
+    ],
 ];

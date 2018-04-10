@@ -132,6 +132,12 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'uses' => 'FrontendProductController@store',
         'middleware' => 'can:tradevillage.products.create'
     ]);
+
+    $router->delete('products/comment',[
+        'as' => 'frontend.tradevillage.products.deleteComment',
+        'uses' => 'FrontendProductController@deleteComment',
+        'middleware' => 'logged.in'
+    ]);
     $router->group(['prefix' =>'product/{product}'], function (Router $router) {
         $router->get('model', [
             'as' => 'frontend.tradevillage.products.model',
@@ -160,6 +166,12 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         $router->post('rate', [
             'as' => 'frontend.tradevillage.products.rate',
             'uses' => 'FrontendProductController@rate',
+            'middleware' => 'logged.in'
+        ]);
+
+        $router->post('comment', [
+            'as' => 'frontend.tradevillage.products.comment',
+            'uses' => 'FrontendProductController@comment',
             'middleware' => 'logged.in'
         ]);
     });

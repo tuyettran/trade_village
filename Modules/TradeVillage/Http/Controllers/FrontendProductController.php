@@ -15,9 +15,11 @@ use Modules\TradeVillage\Repositories\ArtistRepository;
 use Modules\TradeVillage\Http\Requests\CreateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProductsRequest;
 use Modules\TradeVillage\Http\Requests\UpdateProduct_rateRequest;
+use Modules\TradeVillage\Http\Requests\CreateProduct_commentsRequest;
 use Modules\TradeVillage\Repositories\ProductsRepository;
 use Modules\TradeVillage\Repositories\Village_fieldsRepository;
 use Modules\TradeVillage\Repositories\Product_rateRepository;
+use Modules\TradeVillage\Repositories\Product_commentsRepository;
 use Modules\Core\Http\Controllers\BasePublicController;
 class FrontendProductController extends BasePublicController
 {
@@ -26,7 +28,7 @@ class FrontendProductController extends BasePublicController
      */
     private $products;
 
-    public function __construct(ProductsRepository $products, Village_fieldsRepository $category, ArtistRepository $artist, EnterprisesRepository $enterprise, Product_rateRepository $rates)
+    public function __construct(ProductsRepository $products, Village_fieldsRepository $category, ArtistRepository $artist, EnterprisesRepository $enterprise, Product_rateRepository $rates, Product_commentsRepository $comment)
     {
         parent::__construct();
 
@@ -35,6 +37,7 @@ class FrontendProductController extends BasePublicController
         $this->artist = $artist;
         $this->enterprise = $enterprise;
         $this->rates = $rates;
+        $this->comment = $comment;
     }
 
     /**
@@ -55,7 +58,7 @@ class FrontendProductController extends BasePublicController
     {
         $categories = $this->category->all();
         $images = Storage::files('/public/product/images/'.$product->id);
-        $comments = $product->comments;
+        $comments = $product->comments()->orderBy('updated_at','DESC')->paginate(10);
         if(Auth::user()){
             $user = Auth::user();
             $rates = $this->rates->findByAttributes(['user_id' => $user->id, 'product_id' => $product->id]);
@@ -246,5 +249,25 @@ class FrontendProductController extends BasePublicController
         $this->products->destroy($products);
         return redirect()->route('frontend.tradevillage.products.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('tradevillage::products.title.products')]));
+    }
+
+    //Comment System Controller
+    //Create a comment
+    public function comment(Products $product, CreateProduct_commentsRequest $request)
+    {
+        $requests = $request->all();
+        $requests['user_id'] = Auth::user()->id;
+        $requests['product_id'] = $product->id;
+
+        $comment = $this->comment->create($requests);
+        return $comment->toJson();
+    }
+
+    //Delete a comment
+    public function deleteComment(Request $request)
+    {
+        $comment = $this->comment->find($request['id']);
+        $delComment = $this->comment->destroy($comment);
+        return json_encode($delComment);
     }
 }

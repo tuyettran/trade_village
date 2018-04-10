@@ -20,4 +20,10 @@ return [
     ],
     'validation' => [
     ],
+    'other' => [
+        'cancel' => 'Hủy',
+        'comment' => 'Bình luận',
+        'delCmt' => 'Xóa Bình luận',
+        'delCmtConfirm' => 'Bạn có thực sự muốn xóa bình luận này?',
+    ],
 ];

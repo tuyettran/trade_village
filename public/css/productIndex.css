@@ -174,3 +174,23 @@ a:hover {
     margin-left: 6px;
 }
 /*end filter*/
+
+.user-avatar {
+    width: 50%;
+    height: 50%;
+}
+
+.glyphicon-pencil {
+    color: black;
+    opacity: 0.5;
+}
+
+.glyphicon-remove {
+    color: black;
+    opacity: 0.5;
+}
+
+.center-div {
+    margin: 0 auto;
+    display: table;
+}
