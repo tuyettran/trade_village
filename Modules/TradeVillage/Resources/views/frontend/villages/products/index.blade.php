@@ -8,7 +8,13 @@
 
 @section('content')
 	<div class="row">
-
+        @if(isset($user_id) && $user_id == $currentUser->id)
+            <div class="row">
+                <div class="col-md-3 pull-right">
+                    <a href="{{ route('frontend.tradevillage.products.create') }}" class="btn btn-info pull-right"> <span class="glyphicon glyphicon-plus"></span> {{ trans('tradevillage::products.form.add_new') }}</a>
+                </div>
+            </div>
+        @endif
         {!! Form::open(['route' => ['frontend.tradevillage.search.product'], 'method' => 'get', 'id' => 'filter-search-form']) !!}
 		<div class="col-md-3 pull-right search-form-sidebar">
 			<div class="row">
