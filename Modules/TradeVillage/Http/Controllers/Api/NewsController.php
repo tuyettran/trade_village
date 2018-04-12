@@ -31,14 +31,11 @@ class NewsController extends BasePublicController
     public function list()
     {
         $news = $this->news->all();
-        return response()->json([
-            'name' => 'Abigail',
-            'state' => 'CA'
-        ], 200);
+        return Response($news);
     }
 
     public function details(News $new)
     {
-        return Response($new->toJson());
+        return Response($new);
     }
 }
