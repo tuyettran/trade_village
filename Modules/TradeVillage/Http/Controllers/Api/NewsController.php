@@ -30,15 +30,15 @@ class NewsController extends BasePublicController
      */
     public function list()
     {
-        $news = $this->news->paginate($perPage = 10);
-        $newests = $this->news->newest(6);
-        return Response($news->toJson());
+        $news = $this->news->all();
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
+        ], 200);
     }
 
     public function details(News $new)
     {
-        $newests = $this->news->newest(5);
-        $relatedNews = $this->news->latestNews($new->village_id, 3);
-        return Response($newests->toJson());
+        return Response($new->toJson());
     }
 }
