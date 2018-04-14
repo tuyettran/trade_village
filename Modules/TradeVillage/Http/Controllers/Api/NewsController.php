@@ -31,11 +31,16 @@ class NewsController extends BasePublicController
     public function list()
     {
         $news = $this->news->all();
-        return Response($news);
+        // $villages = $this->villages->all();
+        foreach ($news as $new) {
+            $new['image'] = (string)($new->feature_image->path);
+        }
+        return response()->json($news); 
     }
 
     public function details(News $new)
     {
-        return Response($new);
+        $new['image'] = (string)($new->feature_image->path);
+        return response($new);
     }
 }
