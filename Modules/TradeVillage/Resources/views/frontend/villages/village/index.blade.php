@@ -140,47 +140,67 @@
 
                     polygon.setMap(map);
 
-                    // var infowindow = new google.maps.InfoWindow({maxWidth: 350, maxHeight: 300});
-                    // var villageName = response[k]['name'];
-                    // var villageDistrict = response[k]['district'];
-                    // var villageProvince = response[k]['province'];
-                    // var villageDescription = response[k]['description'];
-                    // var infowincontent = 
-                    // '<div id="iw-container">' + 
-                    //     '<div class="iw-title">' + villageName + '</div>' +
-                    //     '<div class="col-md-12">' + 
-                    //         '<div class="col-md-3">' + 
-                    //             '<img class="img-village" src="" height="90" width="90">' + 
-                    //         '</div>' + 
-                    //         '<div class="col-md-1"></div>' + 
-                    //         '<div class="col-md-6">' + 
-                    //             '<h5 class="village-name">' + 'Village name' + '</h5>' + 
-                    //             '<div class="village-address">' + 
-                    //                 '<img src="/images/marker1.jpg" width="15">' + 
-                    //                 'sfasff' + 
-                    //                 '<p class="forline">ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>' +
-                    //             '</div>' + 
-                    //         '</div>' + 
-                    //     '</div>' + 
-                    //     '<div class="col-md-12">' + 
-                    //     '</div>' + 
-                    //     '<div class="col-md-12">' + 
-                    //         '<ul class="ul-info">' + 
-                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/view1.png" width="15"> Views</a></li>' + 
-                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/category.png" width="15"> Category</a></li>' + 
-                    //             '<li class="li-info"><a class="a-info" href="#"><img src="/images/products.png" width="15"> Products</a></li>' + 
-                    //         '</ul>' + 
-                    //     '</div>' + 
-                    //     '<div class="col-md-12">' +
-                    //         '<h5>'+ 'Enterprise' +'</h5>' + 
-                    //     '</div>'
-                    // '</div>';
-                    // google.maps.event.addListener(marker,'click', (function(marker,infowincontent,infowindow){ 
-                    //     return function() {
-                    //         infowindow.setContent(infowincontent);
-                    //         infowindow.open(map,marker);
-                    //     };
-                    // })(marker,infowincontent,infowindow));  
+                    //Infowindow for each village
+                    var infowindow = new google.maps.InfoWindow({maxWidth: 350, maxHeight: 300});
+                    var villageName = response[k]['name'];
+                    var villageDistrict = response[k]['district'];
+                    var villageProvince = response[k]['province'];
+                    var villageDescription = response[k]['description'];
+                    var imageURL = response[k]['image'];
+                    var villageVistors = response[k]['visitor_counter'];
+                    var villageEnterpriseNum = response[k]['enterpriseNum'];
+                    var villageProductNum = response[k]['productNum'];
+                    var villageID = response[k]['id'];
+
+                    var urlVillage = '{{ route("frontend.tradevillage.villages.show", ":id") }}';
+                    urlVillage = urlVillage.replace(':id', villageID);
+
+                    var urlVillageEnterprise = '{{ route("frontend.tradevillage.villages.enterprises", ":id") }}';
+                    urlVillageEnterprise = urlVillageEnterprise.replace(':id', villageID);
+
+                    var urlVillageProduct = '{{ route("frontend.tradevillage.villages.products", ":id") }}';
+                    urlVillageProduct = urlVillageProduct.replace(':id', villageID);
+
+                    var infowincontent = 
+                    '<div id="iw-container">' + 
+                        '<a href="' + urlVillage + '"><div class="iw-title">' + villageName + '</div></a>' +
+                        '<div class="col-md-12">' + 
+                            '<div class="col-md-3">' + 
+                                '<img class="img-village" src="'+ imageURL +'" height="90" width="90">' + 
+                            '</div>' + 
+                            '<div class="col-md-1"></div>' + 
+                            '<div class="col-md-6">' + 
+                                '<p class="village-address">' + 
+                                    '<img src="/images/marker1.jpg" width="15">' + 
+                                    villageDistrict + ' - ' + villageProvince + 
+                                '</p>' + 
+                                '<div class="village-name">' + 
+                                    '<h5>Mô tả</h5>' + 
+                                    '<p class="forline">' + 
+                                        villageDescription + 
+                                    '</p>' +
+                                '</div>' + 
+                            '</div>' + 
+                        '</div>' + 
+                        '<div class="col-md-12">' + 
+                        '</div>' + 
+                        '<div class="col-md-12">' + 
+                            '<ul class="ul-info">' + 
+                                '<li class="li-info"><a class="a-info" href="#"><img src="/images/view1.png" width="15"> ' + villageVistors + '</a></li>' + 
+                                '<li class="li-info"><a class="a-info" href="' + urlVillageEnterprise + '"><img src="/images/icon10.png" width="15"> ' + villageEnterpriseNum + ' Doanh nghiệp</a></li>' + 
+                                '<li class="li-info"><a class="a-info" href="'+ urlVillageProduct +'"><img src="/images/products.png" width="15"> ' + villageProductNum + '</a></li>' + 
+                            '</ul>' + 
+                        '</div>' + 
+                        '<div class="col-md-12">' +
+                            '<h5>Lĩnh vực: '+ response[k]['category']['name'] +'</h5>' + 
+                        '</div>'
+                    '</div>';
+                    google.maps.event.addListener(marker,'click', (function(marker,infowincontent,infowindow){ 
+                        return function() {
+                            infowindow.setContent(infowincontent);
+                            infowindow.open(map,marker);
+                        };
+                    })(marker,infowincontent,infowindow));  
                 }
             }
         });
