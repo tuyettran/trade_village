@@ -34,16 +34,17 @@ class EventController extends BasePublicController
      */
     public function list()
     {
-        $events = $this->event->paginate($perPage = 10);
-        $nearest_events = $this->event->nearest_events(8);
-        $categories = $this->category->all();
-        return Response($events->toJson());
+        $events = $this->event->all();
+        // $villages = $this->villages->all();
+        foreach ($events as $event) {
+            $event['image'] = (string)($event->feature_image->path);
+        }
+        return response()->json($events); 
     }
 
     public function details(Events $event)
     {
-        $top_events = $this->event->newest_events(5);
-        $similar_events = $event->village->events->take(6);
-        return Response($top_events->toJson());
+        $event['image'] = (string)($event->feature_image->path);
+        return response($event);
     }
 }
