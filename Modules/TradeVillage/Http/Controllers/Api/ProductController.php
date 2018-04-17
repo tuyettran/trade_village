@@ -44,8 +44,8 @@ class ProductController extends BasePublicController
     public function list()
     {
         $products = $this->products->all();
-        foreach ($products as $products) {
-            $products['image'] = substr(Storage::files('/public/product/images/'.$products->id)[0],7);
+        foreach ($products as $product) {
+            $product['image'] = substr(Storage::files('/public/product/images/'.$product->id)[0],7);
         }
         return response()->json($products); 
     }   

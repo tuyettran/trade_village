@@ -45,8 +45,8 @@ class VillageController extends BasePublicController
     public function list()
     {
         $villages = $this->villages->all();
-        foreach ($villages as $villages) {
-            $villages['image'] = (string)($villages->image_village->path);
+        foreach ($villages as $village) {
+            $village['image'] = (string)($village->image_village->path);
         }
         return response()->json($villages); 
     }   
