@@ -8,26 +8,25 @@
 
 @section('content')
 	<div class="row filter-search-box">
-		<div class="col-md-3 pull-right search-box">
-			<div class="col-md-12">
-				{!! Form::open(['route' => ['frontend.tradevillage.search.enterprise'], 'method' => 'get']) !!}
+		{!! Form::open(['route' => ['frontend.tradevillage.search.enterprise'], 'method' => 'get', 'id' => 'filter_search_form']) !!}
+			<div class="col-md-3 pull-right search-box">
+				<div class="col-md-12">
 			        <div class="input-group add-on">
 			            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search enterprise') }}" name="search" id="srch-term" type="text">
 			            <div class="input-group-btn">
 			                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			            </div>
 			        </div>
-			    {!! Form::close() !!}
+				</div>
 			</div>
-		</div>
-		@if(!isset($village))
-			<div class="col-md-9 filter">
-				@include('tradevillage::frontend.villages.enterprises.partials.filter', ['categories' => $categories])
-			</div>
-		@else
-			<h4><a href="">{{ $village->translate(locale())->name }}</a> > {{ trans('tradevillage::enterprises.title.enterprises') }}</h3>
-		@endif
-		
+			@if(!isset($village))
+				<div class="col-md-9 filter">
+					@include('tradevillage::frontend.villages.enterprises.partials.filter', ['categories' => $categories])
+				</div>
+			@else
+				<h4><a href="">{{ $village->translate(locale())->name }}</a> > {{ trans('tradevillage::enterprises.title.enterprises') }}</h3>
+			@endif
+		{!! Form::close() !!}
 	</div>
 	
 	<div class="row">
@@ -47,7 +46,7 @@
     $('.nav-enterprises').addClass("active-nav");
     $( document ).ready(function() {
     	$('#category_select').change(function(){
-    		$('#category-form').submit();
+    		$('#filter_search_form').submit();
     	})
     });
 </script>

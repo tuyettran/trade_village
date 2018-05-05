@@ -33,12 +33,12 @@ class FrontendSearchController extends BasePublicController
     public function home(Request $request)
     {
         $key = trim($request->search);
-        $artists = $this->artists->search($key,'vi')->get();
-        $villages = $this->villages->simple_search($key,'vi')->get();
-        $enterprises = $this->enterprises->search($key,'vi')->get();
-        $products = $this->products->simple_search($key, 'vi')->get();
-        $events = $this->events->search($key, 'vi')->get();
-        $news = $this->news->search($key, 'vi')->get();
+        $artists = $this->artists->search($key, locale())->get();
+        $villages = $this->villages->simple_search($key, locale())->get();
+        $enterprises = $this->enterprises->search($key,locale())->get();
+        $products = $this->products->simple_search($key, locale())->get();
+        $events = $this->events->search($key, locale())->get();
+        $news = $this->news->search($key, locale())->get();
         
         return view('tradevillage::frontend.villages.search_result', compact('key', 'artists', 'villages', 'enterprises', 'products', 'events', 'news'));
     }
@@ -48,37 +48,33 @@ class FrontendSearchController extends BasePublicController
     {
         $key = trim($request->search);
         $category = $request->category;
-        $province = $request->province;
+        // $province = $request->province;
         $categories = $this->categories->all();
-        $villages = $this->villages->search($key, $category, $province, 'vi')->paginate(15);
-        return view('tradevillage::frontend.villages.village.search_result', compact('key', 'villages', 'categories', 'category', 'province'));
+        // $villages = $this->villages->search($key, $category, $province, locale())->paginate(15);
+        $villages = $this->villages->search($key, $category, locale())->paginate(15);
+        return view('tradevillage::frontend.villages.village.search_result', compact('key', 'villages', 'categories', 'category'));
     }
 
     public function artist(Request $request)
     {
         $key = trim($request->search);
-        $artists = $this->artists->search($key,'vi')->paginate(16);
-        
-        return view('tradevillage::frontend.villages.artists.search_result', compact('key', 'artists'));
-    }
-
-    public function artist_by_category(Request $request)
-    {
+        $category = $request->category;
         $categories = $this->categories->all();
-        if($request->category == 0){
-            $artists = $this->artists->paginate(16);
-            return view('tradevillage::frontend.villages.artists.search_result', compact('artists', 'categories'));
+        if($category == 0){
+            $artists = $this->artists->search($key, locale())->paginate(16);
+            return view('tradevillage::frontend.villages.artists.search_result', compact('artists', 'categories', 'key'));
         }
-        $category = $this->categories->find($request->category);
-        $village_ids = $this->villages->getByCategory($request->category);
-        $artists = $this->artists->getArtistByVillages($village_ids)->paginate(16);
-        return view('tradevillage::frontend.villages.artists.search_result', compact('category', 'artists', 'categories'));
+        $village_ids = $this->villages->getByCategory($category);
+        $category = $this->categories->find($category);
+        $artists = $this->artists->searchArtistByVillages($village_ids, $key, locale())->paginate(16);
+        
+        return view('tradevillage::frontend.villages.artists.search_result', compact('key', 'artists', 'categories', 'category'));
     }
 
     public function event(Request $request)
     {
         $key = trim($request->search);
-        $events = $this->events->search($key,'vi')->paginate(16);
+        $events = $this->events->search($key, locale())->paginate(16);
         
         return view('tradevillage::frontend.villages.events.search_result', compact('key', 'events'));
     }
@@ -86,17 +82,25 @@ class FrontendSearchController extends BasePublicController
     public function new(Request $request)
     {
         $key = trim($request->search);
-        $news = $this->news->search($key,'vi')->paginate(16);
+        $news = $this->news->search($key, locale())->paginate(16);
         
         return view('tradevillage::frontend.villages.news.search_result', compact('key', 'news'));
     }
 
     public function enterprise(Request $request)
     {
+        $categories = $this->categories->all();
+        $category = $request->category;
         $key = trim($request->search);
-        $enterprises = $this->enterprises->search($key,'vi')->paginate(16);
+        if($category == 0){
+            $enterprises = $this->enterprises->search($key, locale())->paginate(16);
+            return view('tradevillage::frontend.villages.enterprises.search_result', compact('key', 'enterprises', 'categories'));
+        }
+        $village_ids = $this->villages->getByCategory($category);
+        $category = $this->categories->find($category);
+        $enterprises = $this->enterprises->searchEnterpriseByVillages($village_ids, $key, locale())->paginate(16);
         
-        return view('tradevillage::frontend.villages.enterprises.search_result', compact('key', 'enterprises'));
+        return view('tradevillage::frontend.villages.enterprises.search_result', compact('key', 'enterprises', 'categories', 'category'));
     }
 
     public function enterprise_by_category(Request $request)
@@ -118,7 +122,7 @@ class FrontendSearchController extends BasePublicController
         $categories = $this->categories->all();
         $category = $this->categories->find($request->category);
         $favorite = $request->favorite;
-        $products = $this->products->search($key,'vi', $request->category, $favorite)->paginate(16);
+        $products = $this->products->search($key, locale(), $request->category, $favorite)->paginate(16);
         return view('tradevillage::frontend.villages.products.search_result', compact('key', 'products', 'categories', 'category', 'favorite'));
     }
 }

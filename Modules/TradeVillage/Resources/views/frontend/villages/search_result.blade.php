@@ -116,10 +116,9 @@
 					<h4 class="orange-text"><b>{{ trans('tradevillage::main.title.artist') }}</b> {{ count($artists)>0? '( '.count($artists).' )' : '' }} </h4>
 					@if(count($artists)>0)
 						@foreach($artists as $artist)
-					        <div class="item col-md-12 col-sm-12">
-					            <div class="item-thumbnail row">
-					                <div class="col-md-1 col-sm-3  col-xs-3 artist-index-avatar">
-					                    <img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="artist-index-avatar img-responsive" />
+					        <div class="item col-md-12 col-sm-12">					<div class="item-thumbnail row">
+					                <div class="col-md-1 col-sm-3 col-xs-3 artist-index">
+					                    <img src="{{ Imagy::getThumbnail($artist->feature_image['path'].'', 'mediumThumb') }}" class="artist-index-avatar thumbnail img-responsive col-md-12" />
 					                </div>
 					                <div class="caption col-md-9 col-sm-9 col-xs-9">
 					                    <a href="{{ route('frontend.tradevillage.artist.show', $artist->id) }}"><h4 class="group inner list-group-item-heading product-name oneline">
@@ -140,11 +139,11 @@
 					@if(count($products)>0)
 						@foreach($products as $product)
 							<div class="col-md-2 col-sm-3 col-xs-6">
-								<div class="product thumbnail">
+								<div class="product">
 		                			<a href="{{ route('frontend.tradevillage.products.show', $product->id) }}"><img class="group list-product-image img-responsive" src="{{ asset(substr(Storage::files('/public/product/images/'.$product->id)[0],7)) }}"></a>
 									<div class="overlay">
 									    <div class="text">
-									    	<b>{{ $product->translate(locale())->name }}</b>
+									    	<b class="one-line">{{ $product->translate(locale())->name }}</b>
 									    	<p class="description">{{ $product->translate(locale())->description }}</p>
 									    </div>
 									</div>

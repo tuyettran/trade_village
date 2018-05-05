@@ -42,6 +42,9 @@ return [
         'artist' => 'Artist',
         'product' => 'Product',
         'enterprise' => 'Enterprise',
+        'desc' => 'Decrease',
+        'asc' => 'Ascending',
+        'arranged' => 'Arranged',
     ],
     'sidebar' => [
         'newest_products' => 'Newest products',

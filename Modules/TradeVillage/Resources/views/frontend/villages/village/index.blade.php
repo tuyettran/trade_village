@@ -43,7 +43,7 @@
                                 </div>
                                 <input type="number" name="category" value="{{ $categories->id }}" hidden>
                             </div>
-                            <div class="row filter">
+                            <!-- <div class="row filter">
                                 <div class="filter-group">
                                     <table class="table-responsive">
                                         <tr>
@@ -60,7 +60,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
 
                             {!! Form::close() !!}
                         </div>

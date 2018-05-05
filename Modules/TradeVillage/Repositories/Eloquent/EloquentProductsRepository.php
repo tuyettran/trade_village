@@ -53,23 +53,39 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
         if($category != 0 && $favorite != null)
             return $this->model->with('translations')->where('category_id', '=', $category)
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
             })->orderBy('rate', $favorite);
         elseif($category == 0 && $favorite == null)
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
             })->orderBy('created_at', 'desc');
         elseif($category == 0){
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
             })->orderBy('rate', $favorite)->orderBy('created_at', 'desc');
         }
         elseif($favorite == null) {
             return $this->model->with('translations')->where('category_id', '=', $category)
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
             });
         }
     }
@@ -77,7 +93,11 @@ class EloquentProductsRepository extends EloquentBaseRepository implements Produ
     public function simple_search($key, $locale){
         return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });;
         });
     }
 }

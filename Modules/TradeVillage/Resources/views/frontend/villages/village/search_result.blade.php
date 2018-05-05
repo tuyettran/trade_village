@@ -9,7 +9,7 @@
     <div class="row main-content">
         <div class="col-md-3 col-xs-12 pull-right search-box">
             <div class="row">
-                {!! Form::open(['route' => ['frontend.tradevillage.search.village'], 'method' => 'get']) !!}
+                {!! Form::open(['route' => ['frontend.tradevillage.search.village'], 'method' => 'get', 'id' => 'filter-search-form']) !!}
                 <div class="col-md-12">
                     <div class="input-group add-on">
                         <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search') }}" name="search" id="search" value="{{isset($key)? $key: ''}}" type="text">
@@ -21,22 +21,6 @@
             </div>
         </div>
         <div class="row filter">
-            <div class="filter-group">
-                <table class="table-responsive">
-                    <tr>
-                        <td><p class="filter-item">Tỉnh/ thành phố</p></td>
-                        <td>
-                            <select class="form-control filter-item" name="province">
-                                <option value="all" {{ $province=='all'? 'selected' : '' }}>{{ trans('tradevillage::main.title.all') }}</option>
-                                <option value="Hà nội" {{ $province=='Hà nội'? 'selected' : '' }}>Hà Nội</option>
-                                <option value="Hải phòng" {{ $province=='Hải phòng'? 'selected' : '' }}>Hải Phòng</option>
-                                <option value="Nam định" {{ $province=='Nam định'? 'selected' : '' }}>Nam Định</option>
-                                <option value="Hưng yên" {{ $province=='Hưng yên'? 'selected' : '' }}>Hưng Yên</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
             <div class="filter-group">
                 <table>
                     <tr>
@@ -97,5 +81,10 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
     <script type="text/javascript">
         $('.nav-villages').addClass("active-nav");
+        $( document ).ready(function() {
+        $('#category_select').change(function(){
+            $('#filter-search-form').submit();
+        })
+    });
     </script>
 @stop

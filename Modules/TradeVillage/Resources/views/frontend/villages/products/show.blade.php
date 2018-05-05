@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <th class="table-title">{{ trans('tradevillage::products.cost') }}</th>
-                            <td>{{ $product->cost }} {{ trans('tradevillage::products.unit') }}</td>
+                            <td>{{ $product->cost }}</td>
                         </tr>
                     </table>
                 </div>

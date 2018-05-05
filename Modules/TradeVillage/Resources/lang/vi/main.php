@@ -42,6 +42,9 @@ return [
         'artist' => 'Nghệ nhân',
         'product' => 'Sản phẩm',
         'enterprise' => 'Doanh nghiệp',
+        'desc' => 'Giảm dần',
+        'asc' => 'Tăng dần',
+        'arranged' => 'Sắp xếp',
     ],
     'sidebar' => [
         'newest_products' => 'Sản phẩm mới',

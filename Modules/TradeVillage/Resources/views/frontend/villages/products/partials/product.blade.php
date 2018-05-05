@@ -33,7 +33,7 @@
 
                         <p class="blue-text pull-right">{{ trans('tradevillage::products.form.cost') }}:
                             <span class="group inner list-group-item-text intro">
-                            {{ $product->cost }} </span> {{ trans('tradevillage::products.unit') }}
+                            {{ $product->cost }} </span>
                         </p>
                         @can('update-product', $product)
                             <div class="pull-right modify-box">
@@ -68,7 +68,7 @@
 
                             <p class="blue-text pull-right">{{ trans('tradevillage::products.form.cost') }}:
                                 <span class="group inner list-group-item-text intro">
-                                {{ $product->cost }} </span> {{ trans('tradevillage::products.unit') }}
+                                {{ $product->cost }} </span>
                             </p>
                             <!-- @can('update-product', $product)
                                 <a href={{route('frontend.tradevillage.products.edit', [$product->id])}}><span class="glyphicon glyphicon-pencil"></span></a>
