@@ -44,7 +44,7 @@ return [
         'enterprise' => 'Enterprise',
         'desc' => 'Decrease',
         'asc' => 'Ascending',
-        'arranged' => 'Arranged',
+        'arranged' => 'Sort',
     ],
     'sidebar' => [
         'newest_products' => 'Newest products',
