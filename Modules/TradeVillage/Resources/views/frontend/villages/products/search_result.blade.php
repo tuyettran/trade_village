@@ -30,9 +30,9 @@
 	</div>
 	
 	<div class="row">
-        <h4><b>{{ trans('tradevillage::main.filter.search') }}</b> > <a href="{{ route('frontend.tradevillage.news.index') }}"><b>{{ trans('tradevillage::main.filter.product') }}</b></a> {{ $category!=null? $category->translate(locale())->name : ' ' }} {{ $key==''? '' : '> "'.$key.'"' }}</h4>
+        <h4><b>{{ trans('tradevillage::main.filter.search') }}</b> > <a href="{{ route('frontend.tradevillage.news.index') }}"><b>{{ trans('tradevillage::main.filter.product') }}</b></a> {{ $category!=null? '> '.$category->translate(locale())->name : ' ' }} {{ $key==''? '' : '> "'.$key.'"' }}</h4>
         <hr>
-        <div class="col-md-9 col-sm-12">
+        <div class="col-md-10 col-sm-12">
             <div class="row">
                 <div class="categories-item">
                     <div id="products" class="row">

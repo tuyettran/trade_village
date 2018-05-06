@@ -33,24 +33,40 @@ class EloquentVillagesRepository extends EloquentBaseRepository implements Villa
         return $query;
     }
 
-    public function search($key, $category, $province, $locale){
+    public function search($key, $category, $locale){
         $query = $this->model->with('translations');
-            
-        if($province == "all")
+        if($category != 0)
             $query = $query->where('category_id', '=', $category);
-        elseif($category == 0)
-            $query = $query->where('province', 'like', $province);
-        elseif($province != "all" && $category != 0)
-            $query = $query->where('category_id', '=', $category)->where('province', 'like', $province);
+        // if($province == "all")
+        //     $query = $query->where('category_id', '=', $category);
+        // elseif($category == 0)
+        //     $query = $query->where('province', 'like', $province);
+        // elseif($province != "all" && $category != 0)
+        //     $query = $query->where('category_id', '=', $category)->where('province', 'like', $province);
 
-        return $query->whereHas('translations', function ($query) use ($locale, $key, $category, $province) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+        // return $query->whereHas('translations', function ($query) use ($locale, $key, $category, $province) {
+        //         $query->where('locale', $locale)
+        //             ->where(function($query) use ($key){
+        //                 $query->where('name', 'like', '%'.$key.'%')
+        //                 ->orWhere('description', 'like', '%'.$key.'%');
+        //         });
+        //     });
+        return $query->whereHas('translations', function ($query) use ($locale, $key, $category) {
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
             });
     }
 
     public function simple_search($key, $locale){
         return $this->model->with('translations')->whereHas('translations', function ($query) use ($locale, $key) {
-                $query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
             });
     }
 

@@ -45,18 +45,27 @@ class EloquentArtistRepository extends EloquentBaseRepository implements ArtistR
     	if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')
             ->whereHas('translations', function ($query) use ($locale, $key) {
-            	$query->where('locale', $locale)->where('name', 'like', '%'.$key.'%')->orWhere('description', 'like', '%'.$key.'%');
+            	$query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
         	});
         }
         return $this->model->all();
     }
 
 
-    public function getArtistByVillages(array $village_ids){
-        if (method_exists($this->model, 'translations')) {
-            return $this->model->with('translations')->whereIn('village_id', $village_ids);
-        }
-        return $this->model->whereIn('village_id', $village_ids);
+    public function searchArtistByVillages(array $village_ids, $key, $locale){
+        $query = $this->model->query();
+        $query = $query->whereIn('village_id', $village_ids);
+        return $query->with('translations')->whereHas('translations', function ($query) use ($locale, $key) {
+                $query->where('locale', $locale)
+                    ->where(function($query) use ($key){
+                        $query->where('name', 'like', '%'.$key.'%')
+                        ->orWhere('description', 'like', '%'.$key.'%');
+                });
+            });;
     }
 
 	private function buildQueryByAttributes(array $attributes)

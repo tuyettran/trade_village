@@ -8,7 +8,7 @@ return [
     'title' => [
         'processes' => 'Các bước quy trình',
         'create process' => 'Tạo một bước quy trình',
-        'edit process' => 'Xửa một bước quy trình',
+        'edit process' => 'Sửa một bước quy trình',
     ],
     'button' => [
         'create process' => 'Tạo một bước quy trình',

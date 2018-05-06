@@ -9,25 +9,25 @@
 
 	<div class="row main-content">
 		<div class="row">
-			<div class="col-md-3 col-xs-12 pull-right search-box">
-				<div class="col-md-12 no-padding">
-					{!! Form::open(['route' => ['frontend.tradevillage.search.enterprise'], 'method' => 'get']) !!}
+			{!! Form::open(['route' => ['frontend.tradevillage.search.enterprise'], 'method' => 'get', 'id' => 'filter_search_form']) !!}
+				<div class="col-md-3 col-xs-12 pull-right search-box">
+					<div class="col-md-12 no-padding">
 				        <div class="input-group add-on">
 			            	<input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search') }}" name="search" id="srch-term" value="{{isset($key)? $key: ''}}" type="text">
 			            	<div class="input-group-btn">
 			                	<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			            	</div>
 				        </div>
-				    {!! Form::close() !!}
+					</div>
 				</div>
-			</div>
-			<div class="col-md-9 filter">
-				@if(isset($category))
-					@include('tradevillage::frontend.villages.enterprises.partials.filter', ['categories' => $categories, 'category' => $category])
-				@else
-					@include('tradevillage::frontend.villages.enterprises.partials.filter', ['categories' => $categories])
-				@endif
-			</div>
+				<div class="col-md-9 filter">
+					@if(isset($category))
+						@include('tradevillage::frontend.villages.enterprises.partials.filter', ['categories' => $categories, 'category' => $category])
+					@else
+						@include('tradevillage::frontend.villages.enterprises.partials.filter', ['categories' => $categories])
+					@endif
+				</div>
+			{!! Form::close() !!}
 		</div>
 		
 
@@ -46,7 +46,7 @@
 				        <div class="row enterprise">
 							<div class="row">
 								<div class="col-md-1 col-xs-4">
-									<img src="{{ Imagy::getThumbnail($enterprise->feature_image['path'].'', 'mediumThumb') }}" class="img-responsive thumbnail enterprise-index-image" />
+									<img src="{{ Imagy::getThumbnail($enterprise->feature_image['path'].'', 'mediumThumb') }}" class="img-responsive thumbnail" />
 								</div>
 								<div class="col-md-10 col-xs-8">
 									<h4 class="title"><b><a href="{{ route('frontend.tradevillage.enterprises.show', $enterprise->id) }}" class="orange-text">{{ $enterprise->translate(locale())->name }}</a></b></h4>
@@ -71,7 +71,7 @@
     $('.nav-enterprises').addClass("active-nav");
     $( document ).ready(function() {
     	$('#category_select').change(function(){
-    		$('#category-form').submit();
+    		$('#filter_search_form').submit();
     	})
     });
 </script>
