@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content-header')
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/mapDisplay.css') }}">
     <h1>
         {{ trans('tradevillage::villages.title.edit villages') }}
     </h1>
@@ -80,13 +81,13 @@
                         @mediaSingle('image_village',$villages)
 
                         {!! Form::label("map", trans("tradevillage::villages.form.map")) !!}
-                        <input type="text" id="olat" value="{{ $villages->lat }}" style="display: none;">
-                        <input type="text" id="olng" value="{{ $villages->lng }}" style="display: none;">
+                        <input type="text" id="olat" value="{{ $villages->lat }}" class="olat">
+                        <input type="text" id="olng" value="{{ $villages->lng }}" class="olng">
                         <input id="savebutton" type="button" value="Save">
-                        <input id="lat" name="lat" style="display: none;">
-                        <input id="lng" name="lng" style="display: none;">
+                        <input id="lat" name="lat" class="lat">
+                        <input id="lng" name="lng" class="lng">
                         <input id="cancelbutton" type="button" value="Edit">
-                        <div class="col-md-12" id="map" style="width:100%;height: 500px;"></div>
+                        <div class="col-md-12" id="map" style="width:100%;height: 600px;"></div>
                     </div>
                     <input type="text" id="oprovince" value="{{ $villages->province }}" style="display: none;">
                     <input type="text" id="odistrict" value="{{ $villages->district }}" style="display: none;">
@@ -165,20 +166,10 @@
             map.fitBounds(myBounds);
 
             google.maps.event.addDomListener(cancelbutton, 'click', function() {
+                polygon.setMap(null);
                 document.getElementById('lat').value = "";
                 document.getElementById('lng').value = "";
-                var myLatLng = {lat: 21.027764, lng: 105.834160};
-
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 18,
-                    center: myLatLng
-                });
-                
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map
-                });
-
+            
                 var drawingManager = new google.maps.drawing.DrawingManager({
                     drawingMode: google.maps.drawing.OverlayType.MARKER,
                     drawingControl: true,
@@ -208,6 +199,13 @@
                         document.getElementById('lat').value = lat;
                         document.getElementById('lng').value = lng;
                     }
+                });
+                google.maps.event.addDomListener(cancelbutton, 'click', function() {
+                    for(var o = 0; o < polygons.length; o++) {
+                        polygons[o].setMap(null);
+                    }
+                    polygons = [];
+                    drawingManager.setMap(null);
                 });
             });
             google.maps.event.addDomListener(window, 'load', initMap);

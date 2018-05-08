@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content-header')
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/mapDisplay.css') }}">
     <h1>
         {{ trans('tradevillage::villages.title.create villages') }}
     </h1>
@@ -77,10 +78,11 @@
 
                         {!! Form::label("map", trans("tradevillage::villages.form.map")) !!}
                         <input id="savebutton" type="button" value="Save" name="savebutton">
-                        <input id="lat" name="lat" style="display: none;">
-                        <input id="lng" name="lng" style="display: none;">
+                        <input id="lat" name="lat" class="lat">
+                        <input id="lng" name="lng" class="lng">
                         <input id="cancelbutton" type="button" value="Cancel">
-                        <div class="col-md-12" id="map" style="width:100%;height: 500px;"></div>
+                        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                        <div class="col-md-12" id="map" style="width:100%;height: 600px;"></div>
                     </div>
                 
                     <div class="box-footer">
@@ -105,20 +107,73 @@
 @stop
 
 @push('js-stack')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqZMQRL3iYa5SHiluzgTJrHA_otrA52ec&libraries=drawing,places"></script>
     <script type="text/javascript">
         function initMap() {
             var myLatLng = {lat: 21.027764, lng: 105.834160};
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
-                center: myLatLng
+                center: myLatLng,
+                mapTypeId: 'roadmap'
             });
-            
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map
             });
+
+            //Search
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+              searchBox.setBounds(map.getBounds());
+            });
+
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function(marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                
+                    // Create a marker for each place.
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+            // end search box
 
             var drawingManager = new google.maps.drawing.DrawingManager({
                 drawingMode: google.maps.drawing.OverlayType.MARKER,
@@ -151,49 +206,54 @@
                 }
             });
 
+
             google.maps.event.addDomListener(cancelbutton, 'click', function() {
-                var myLatLng = {lat: 21.027764, lng: 105.834160};
+                for(var o = 0; o < polygons.length; o++) {
+                    polygons[o].setMap(null);
+                }
+                polygons = [];
+                // var myLatLng = {lat: 21.027764, lng: 105.834160};
 
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 18,
-                    center: myLatLng
-                });
+                // var map = new google.maps.Map(document.getElementById('map'), {
+                //     zoom: 18,
+                //     center: myLatLng
+                // });
                 
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map
-                });
+                // var marker = new google.maps.Marker({
+                //     position: myLatLng,
+                //     map: map
+                // });
 
-                var drawingManager = new google.maps.drawing.DrawingManager({
-                    drawingMode: google.maps.drawing.OverlayType.MARKER,
-                    drawingControl: true,
-                    drawingControlOptions: {
-                        position: google.maps.ControlPosition.TOP_CENTER,
-                        drawingModes: ['polygon']
-                    },
-                });
-                drawingManager.setMap(map);
+                // var drawingManager = new google.maps.drawing.DrawingManager({
+                //     drawingMode: google.maps.drawing.OverlayType.MARKER,
+                //     drawingControl: true,
+                //     drawingControlOptions: {
+                //         position: google.maps.ControlPosition.TOP_CENTER,
+                //         drawingModes: ['polygon']
+                //     },
+                // });
+                // drawingManager.setMap(map);
 
-                var polygons = [];
+                // var polygons = [];
 
-                google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-                    polygons.push(polygon);
-                });
+                // google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                //     polygons.push(polygon);
+                // });
 
-                google.maps.event.addDomListener(savebutton, 'click', function() {
-                    var lat = "";
-                    var lng = "";
-                    for (var i = 0; i < polygons.length; i++) {
-                        var polygonBounds = polygons[i].getPath();
-                        for (var j = 0; j < polygonBounds.length; j++)
-                        {
-                            lat += polygonBounds.getAt(j).lat() + "|";
-                            lng += polygonBounds.getAt(j).lng() + "|";
-                        }
-                        document.getElementById('lat').value = lat;
-                        document.getElementById('lng').value = lng;
-                    }
-                });
+                // google.maps.event.addDomListener(savebutton, 'click', function() {
+                //     var lat = "";
+                //     var lng = "";
+                //     for (var i = 0; i < polygons.length; i++) {
+                //         var polygonBounds = polygons[i].getPath();
+                //         for (var j = 0; j < polygonBounds.length; j++)
+                //         {
+                //             lat += polygonBounds.getAt(j).lat() + "|";
+                //             lng += polygonBounds.getAt(j).lng() + "|";
+                //         }
+                //         document.getElementById('lat').value = lat;
+                //         document.getElementById('lng').value = lng;
+                //     }
+                // });
             });
             google.maps.event.addDomListener(window, 'load', initMap);
         }
