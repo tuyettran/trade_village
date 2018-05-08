@@ -8,29 +8,29 @@
 
 @section('content')
 	<div class="row filter-search-box">
-		<div class="col-md-3 pull-right search-box">
-			<div class="col-md-12 no-padding">
-				{!! Form::open(['route' => ['frontend.tradevillage.search.artist'], 'method' => 'get']) !!}
+		{!! Form::open(['route' => ['frontend.tradevillage.search.artist'], 'method' => 'get', 'id' => 'filter_search_form']) !!}
+			<div class="col-md-3 pull-right search-box">
+				<div class="col-md-12 no-padding">
 			        <div class="input-group add-on">
 			            <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search artist') }}" name="search" id="srch-term" type="text">
 			            <div class="input-group-btn">
 			                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			            </div>
 			        </div>
-			    {!! Form::close() !!}
+				    
+				</div>
 			</div>
-		</div>
 
-		@if(!isset($village))
-		<div class="col-md-9 filter">
-			@include('tradevillage::frontend.villages.artists.partials.filter', ['categories' => $categories])
-		</div>
-		@else
-		<div class="col-md-9">
-			<h4><a href="">{{ $village->translate(locale())->name }}</a> > {{ trans('tradevillage::artists.title.artists') }}</h4>
-		</div>
-		@endif
-		
+			@if(!isset($village))
+			<div class="col-md-9 filter">
+				@include('tradevillage::frontend.villages.artists.partials.filter', ['categories' => $categories])
+			</div>
+			@else
+			<div class="col-md-9">
+				<h4><a href="">{{ $village->translate(locale())->name }}</a> > {{ trans('tradevillage::artists.title.artists') }}</h4>
+			</div>
+			@endif
+		{!! Form::close() !!}
 	</div>
 	
 	<div class="row">
@@ -50,7 +50,7 @@
     $('.nav-artists').addClass("active-nav");
     $( document ).ready(function() {
     	$('#category_select').change(function(){
-    		$('#category-form').submit();
+    		$('#filter_search_form').submit();
     	})
     });
 </script>

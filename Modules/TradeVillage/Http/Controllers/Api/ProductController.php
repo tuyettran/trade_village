@@ -43,10 +43,10 @@ class ProductController extends BasePublicController
      */
     public function list()
     {
-        $categories = $this->category->all();
-        $newest_products = $this->products->all();
-        $favorite = $this->products->favorite(4);
-        $hot = $this->products->hot(4);
-        return Response($newest_products->toJson());
+        $products = $this->products->all();
+        foreach ($products as $product) {
+            $product['image'] = substr(Storage::files('/public/product/images/'.$product->id)[0],7);
+        }
+        return response()->json($products); 
     }   
 }

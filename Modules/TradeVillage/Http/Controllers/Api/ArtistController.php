@@ -35,14 +35,16 @@ class ArtistController extends BasePublicController
      */
     public function list()
     {
-        $artists = $this->artist->paginate($perPage = 16);
-        // $categories = $this->category->all();
-        return Response($artists->toJson());
+        $artists = $this->artist->all();
+        foreach ($artists as $artist) {
+            $artist['image'] = (string)($artist->feature_image->path);
+        }
+        return response()->json($artists); 
     }
 
     public function details(Artist $artist)
     {
-        $products = $this->products->getByAttributes(['artist_id' => $artist->id], $orderBy = 'created_at', $sortOrder = 'desc');
-        return Response($products->toJson());
+        // $artist['description'] = (string)($artist->feature_image->path);
+        return response($artist);
     }
 }

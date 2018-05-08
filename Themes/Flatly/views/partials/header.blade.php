@@ -24,7 +24,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag"></i>
                         <span><b>
-                            <img src="{{ asset('images/vi.PNG') }}" style="width: 20px; height: 20px">
+                            <?php $language_flag = 'images/'.locale().'.PNG' ?>
+                            <img src="{{ asset($language_flag) }}" style="width: 20px; height: 20px">
                             {{ LaravelLocalization::getCurrentLocaleName()  }}
                             <i class="caret"></i></b>
                         </span>
@@ -46,7 +47,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag"></i>
                         <span><b>
-                            <img src="{{ asset('images/vi.PNG') }}" style="width: 20px; height: 20px">
+                            <?php $language_flag = 'images/'.locale().'.PNG' ?>
+                            <img src="{{ asset($language_flag) }}" style="width: 20px; height: 20px">
                             {{ LaravelLocalization::getCurrentLocaleName()  }}
                             <i class="caret"></i></b>
                         </span>

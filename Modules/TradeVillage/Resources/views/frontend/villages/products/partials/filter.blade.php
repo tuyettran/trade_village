@@ -32,14 +32,14 @@
 			<td>
 				<select class="form-control filter-item" id="favorite_select" name="favorite">
 					<option value="" >
-						Sắp xếp
+						{{ trans('tradevillage::main.filter.arranged') }}
 			        </option>
 			        @if(isset($favorite))
 						<option value="desc" {{ $favorite=='desc' ? 'selected' : '' }}>
-							Giảm dần
+							{{ trans('tradevillage::main.filter.desc') }}
 				        </option>
 				        <option value="asc"  {{ $favorite=='asc' ? 'selected' : '' }}>
-				        	Tăng dần
+				        	{{ trans('tradevillage::main.filter.asc') }}
 				        </option>
 				    @else
 				    	<option value="desc">
