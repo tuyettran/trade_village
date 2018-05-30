@@ -75,12 +75,23 @@ class FrontendProductController extends BasePublicController
 
     public function user_products($user_id)
     {
-        $products = $this->products->getByAttributes(['user_id' => $user_id]);
+        $products = $this->products->getAllByAttributes(['user_id' => $user_id])->paginate(20);
         $categories = $this->category->all();
         $newest_products = $this->products->newest(4);
         $favorite = $this->products->favorite(4);
         $hot = $this->products->hot(4);
         return view('tradevillage::frontend.villages.products.index', compact('products', 'categories', 'user_id', 'newest_products', 'favorite', 'hot'));
+    }
+
+    public function category_products($category_id)
+    {
+        $products = $this->products->getAllByAttributes(['category_id' => $category_id])->paginate(20);
+        $categories = $this->category->all();
+        $newest_products = $this->products->newest(4);
+        $favorite = $this->products->favorite(4);
+        $hot = $this->products->hot(4);
+        $category = $this->category->find($category_id);
+        return view('tradevillage::frontend.villages.products.category_products', compact('products', 'categories', 'category', 'newest_products', 'favorite', 'hot'));
     }
 
     /**

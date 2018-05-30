@@ -222,6 +222,10 @@ a:hover {
     height: 50%;
 }
 
+.categories-item {
+    margin-bottom: 15px;
+}
+
 .glyphicon-pencil {
     color: black;
     opacity: 0.5;

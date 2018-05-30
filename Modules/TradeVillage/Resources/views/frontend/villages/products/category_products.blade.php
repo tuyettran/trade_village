@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/filter.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/productIndex.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/filter.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/productIndex.css') }}">
 
 @stop
 
 @section('content')
-    <div class="row">
+	<div class="row">
         {!! Form::open(['route' => ['frontend.tradevillage.search.product'], 'method' => 'get', 'id' => 'filter-search-form']) !!}
-        <div class="col-md-3 pull-right search-form-sidebar">
-            <div class="row">
+		<div class="col-md-3 pull-right search-form-sidebar">
+			<div class="row">
                 <div class="col-md-12 pull-right">
                         <div class="input-group add-on">
                             <input class="form-control" placeholder= "{{ trans('tradevillage::main.filter.search product') }}" name="search" id="srch-term" type="text">
@@ -20,16 +20,16 @@
                         </div>
                 </div>
             </div>
-        </div>
+		</div>
 
         <div class="col-md-9 filter">
             @include('tradevillage::frontend.villages.products.partials.filter', ['categories' => $categories, 'category' => $category, 'favorite' => $favorite])
         </div>
 
         {!! Form::close() !!}
-    </div>
-    
-    <div class="row">
+	</div>
+	
+	<div class="row">
         <h4><a href="{{ route('frontend.tradevillage.news.index') }}"><b>{{ trans('tradevillage::main.filter.product') }}</b></a> {{ '> '.$category->translate(locale())->name }}</h4>
         <hr>
         <div class="col-md-10 col-sm-12">
@@ -44,11 +44,11 @@
             </div>
             {{ $products->links() }}
         </div>
-    </div>
+	</div>
 @stop
 
 @section('scripts')
-    
+	
 <script type="text/javascript">
     $('.nav-products').addClass("active-nav");
     $( document ).ready(function() {
