@@ -117,6 +117,10 @@ $router->group(['prefix' =>'/tradevillage'], function (Router $router) {
         'as' => 'frontend.tradevillage.products.user_products',
         'uses' => 'FrontendProductController@user_products'
     ]);
+    $router->get('category/{category_id}/products', [
+        'as' => 'frontend.tradevillage.products.category_products',
+        'uses' => 'FrontendProductController@category_products'
+    ]);
     $router->get('products/create', [
         'as' => 'frontend.tradevillage.products.create',
         'uses' => 'FrontendProductController@create',

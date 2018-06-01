@@ -42,7 +42,7 @@ class FrontendArtistController extends BasePublicController
 
     public function show(Artist $artist)
     {
-        $products = $this->products->getByAttributes(['artist_id' => $artist->id], $orderBy = 'created_at', $sortOrder = 'desc');
+        $products = $this->products->getAllByAttributes(['artist_id' => $artist->id], $orderBy = 'created_at', $sortOrder = 'desc')->get();
         return view('tradevillage::frontend.villages.artists.show', compact('artist', 'products'));
     }
 }

@@ -1,7 +1,7 @@
 <?php $i=0 ?>
 @if(isset($user_id))
     @foreach($category->products as $product)
-        @if($product->user_id == $user_id && $i<8)
+        @if($product->user_id == $user_id)
         <div class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail-editable">
                 <?php $i++ ?>
@@ -44,8 +44,6 @@
                     </div>
                 </div>
             </div>
-        @else
-            <?php break; ?>
         @endif
     @endforeach
 @else
@@ -80,6 +78,7 @@
             @endif
             <?php $i++ ?>
         @elseif($i>=8)
+            <a href="{{ route('frontend.tradevillage.products.category_products', $category) }}" class="btn btn-default pull-right orange-text btn-sm"><b>Xem tất cả >></b></a>
             <?php break; ?>
         @endif
 

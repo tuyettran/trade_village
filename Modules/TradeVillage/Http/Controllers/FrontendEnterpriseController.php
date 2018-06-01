@@ -42,7 +42,7 @@ class FrontendEnterpriseController extends BasePublicController
 
     public function show(Enterprises $enterprise)
     {
-        $products = $this->products->getByAttributes(['enterprise_id' => $enterprise->id], $orderBy = 'created_at', $sortOrder = 'desc');
+        $products = $this->products->getAllByAttributes(['enterprise_id' => $enterprise->id], $orderBy = 'created_at', $sortOrder = 'desc')->get();
         return view('tradevillage::frontend.villages.enterprises.show', compact('enterprise', 'products'));
     }
 }
