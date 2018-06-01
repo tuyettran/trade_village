@@ -11,6 +11,8 @@ class UpdateEnterprisesRequest extends BaseFormRequest
         return [
             'village_id' => 'required|integer|min:1',
             'contact' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
         ];
     }
 

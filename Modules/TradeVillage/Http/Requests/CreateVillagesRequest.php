@@ -13,6 +13,8 @@ class CreateVillagesRequest extends BaseFormRequest
             'visitor_counter' => 'required|integer',
             'district' => 'required',
             'province' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
         ];
     }
 

@@ -83,6 +83,9 @@
                         <input id="cancelbutton" type="button" value="Cancel">
                         <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                         <div class="col-md-12" id="map" style="width:100%;height: 600px;"></div>
+                        @if ($errors->has('lat'))
+                            <div class="er-map">Please draw the shape of the village and enter 'Save'</div>
+                        @endif
                     </div>
                 
                     <div class="box-footer">
@@ -208,52 +211,12 @@
 
 
             google.maps.event.addDomListener(cancelbutton, 'click', function() {
+                document.getElementById('lat').value = "";
+                document.getElementById('lng').value = "";
                 for(var o = 0; o < polygons.length; o++) {
                     polygons[o].setMap(null);
                 }
                 polygons = [];
-                // var myLatLng = {lat: 21.027764, lng: 105.834160};
-
-                // var map = new google.maps.Map(document.getElementById('map'), {
-                //     zoom: 18,
-                //     center: myLatLng
-                // });
-                
-                // var marker = new google.maps.Marker({
-                //     position: myLatLng,
-                //     map: map
-                // });
-
-                // var drawingManager = new google.maps.drawing.DrawingManager({
-                //     drawingMode: google.maps.drawing.OverlayType.MARKER,
-                //     drawingControl: true,
-                //     drawingControlOptions: {
-                //         position: google.maps.ControlPosition.TOP_CENTER,
-                //         drawingModes: ['polygon']
-                //     },
-                // });
-                // drawingManager.setMap(map);
-
-                // var polygons = [];
-
-                // google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-                //     polygons.push(polygon);
-                // });
-
-                // google.maps.event.addDomListener(savebutton, 'click', function() {
-                //     var lat = "";
-                //     var lng = "";
-                //     for (var i = 0; i < polygons.length; i++) {
-                //         var polygonBounds = polygons[i].getPath();
-                //         for (var j = 0; j < polygonBounds.length; j++)
-                //         {
-                //             lat += polygonBounds.getAt(j).lat() + "|";
-                //             lng += polygonBounds.getAt(j).lng() + "|";
-                //         }
-                //         document.getElementById('lat').value = lat;
-                //         document.getElementById('lng').value = lng;
-                //     }
-                // });
             });
             google.maps.event.addDomListener(window, 'load', initMap);
         }
