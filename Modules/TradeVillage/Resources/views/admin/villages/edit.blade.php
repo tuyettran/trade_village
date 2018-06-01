@@ -88,6 +88,9 @@
                         <input id="lng" name="lng" class="lng">
                         <input id="cancelbutton" type="button" value="Edit">
                         <div class="col-md-12" id="map" style="width:100%;height: 600px;"></div>
+                        @if ($errors->has('lat'))
+                            <div class="er-map">Please draw the shape of the village and enter 'Save'</div>
+                        @endif
                     </div>
                     <input type="text" id="oprovince" value="{{ $villages->province }}" style="display: none;">
                     <input type="text" id="odistrict" value="{{ $villages->district }}" style="display: none;">

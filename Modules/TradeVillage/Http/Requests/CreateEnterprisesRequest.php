@@ -10,7 +10,8 @@ class CreateEnterprisesRequest extends BaseFormRequest
     {
         return [
             'village_id' => 'required|integer|min:1',
-            'contact' => 'required', 
+            'contact' => 'required',
+            'lat' => 'required',
         ];
     }
 
@@ -20,6 +21,7 @@ class CreateEnterprisesRequest extends BaseFormRequest
             'description' => 'required|max:256',
             'name' => 'required',
             'detail' => 'required',
+            'address' => 'required',
         ];
     }
 

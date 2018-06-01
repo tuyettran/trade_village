@@ -40,6 +40,9 @@
 
                         <input id="lat" name="lat" class="lat">
                         <input id="lng" name="lng" class="lng">
+                        @if ($errors->has('lat'))
+                            <div class="er-map">Please enter a location and Get coordinate for the enterprise</div>
+                        @endif
 
                         <div class="form-group{{ $errors->has("user_id") ? " has-error" : "" }}">
                             {!! Form::label("user_id", trans("tradevillage::enterprises.form.user")) !!} 
